@@ -16,6 +16,7 @@ class Setting extends Model
         'site_twitter',
         'site_youtube',
         'site_instagram',
+        'site_linkedin',
         'site_phone',
         'site_mobile',
         'site_lang_ar',
@@ -25,6 +26,8 @@ class Setting extends Model
         'site_description_en',
         'site_keywords_ar',
         'site_keywords_en',
+        'site_address_ar',
+        'site_address_en',
         'site_icon',
         'site_logo',
     ];

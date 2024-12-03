@@ -25,36 +25,36 @@ class DashboardController extends Controller
         $articles = Article::limit(6)->get();
         $comments = Comment::limit(6)->get();
 
-           /// Article Chart
-            $Articles = Article::select(DB::raw("Sum(views) as count"))
-           ->whereYear('created_at', date('Y'))
-           ->groupBy(DB::raw("Month(created_at)"))
-           ->pluck('count');
-            $ArticleMonths = Article::select(DB::raw("Month(created_at) as month"))
-                ->whereYear('created_at', date('Y'))
-                ->groupBy(DB::raw("Month(created_at)"))
-                ->pluck('month');
-            $ArticleData = array(0,0,0,0,0,0,0,0,0,0,0,0);
-            foreach ($ArticleMonths as $index=>$month){
-                $ArticleData[$month-1] = $Articles[$index];
-            }
-           
-            /// Project Chart
-            $Projects = Projects::select(DB::raw("Sum(views) as count"))
-           ->whereYear('created_at', date('Y'))
-           ->groupBy(DB::raw("Month(created_at)"))
-           ->pluck('count');
-            $ProjectMonths = Projects::select(DB::raw("Month(created_at) as month"))
-                ->whereYear('created_at', date('Y'))
-                ->groupBy(DB::raw("Month(created_at)"))
-                ->pluck('month');
-            $ProjectData = array(0,0,0,0,0,0,0,0,0,0,0,0);
-            foreach ($ProjectMonths as $index=>$month){
-                $ProjectData[$month-1] = $Projects[$index];
-            }
-          
+        /// Article Chart
+        $Articles = Article::select(DB::raw("Sum(views) as count"))
+            ->whereYear('created_at', date('Y'))
+            ->groupBy(DB::raw("Month(created_at)"))
+            ->pluck('count');
+        $ArticleMonths = Article::select(DB::raw("Month(created_at) as month"))
+            ->whereYear('created_at', date('Y'))
+            ->groupBy(DB::raw("Month(created_at)"))
+            ->pluck('month');
+        $ArticleData = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        foreach ($ArticleMonths as $index => $month) {
+            $ArticleData[$month - 1] = $Articles[$index];
+        }
 
-        return view('admin.dashboard', compact('title' , 'articles' , 'comments' , 'ArticleData' ,'ProjectData'));
+        /// Project Chart
+        $Projects = Projects::select(DB::raw("Sum(views) as count"))
+            ->whereYear('created_at', date('Y'))
+            ->groupBy(DB::raw("Month(created_at)"))
+            ->pluck('count');
+        $ProjectMonths = Projects::select(DB::raw("Month(created_at) as month"))
+            ->whereYear('created_at', date('Y'))
+            ->groupBy(DB::raw("Month(created_at)"))
+            ->pluck('month');
+        $ProjectData = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        foreach ($ProjectMonths as $index => $month) {
+            $ProjectData[$month - 1] = $Projects[$index];
+        }
+
+
+        return view('admin.dashboard', compact('title', 'articles', 'comments', 'ArticleData', 'ProjectData'));
     }
     ////////////////////////////////////////////////////////
     /// get Settings
@@ -76,7 +76,7 @@ class DashboardController extends Controller
             if ($request->hasFile('site_icon')) {
                 $image = $request->file('site_icon');
                 $destinationPath = public_path('/adminBoard/uploadedImages/logos//');
-                $site_icon = $this->saveResizeImage($image, $destinationPath,250,250);
+                $site_icon = $this->saveResizeImage($image, $destinationPath, 250, 250);
             } else {
                 $site_icon = '';
             }
@@ -85,7 +85,7 @@ class DashboardController extends Controller
             if ($request->hasFile('site_logo')) {
                 $image = $request->file('site_logo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/logos//');
-                $site_logo = $this->saveResizeImage($image, $destinationPath,250,250);
+                $site_logo = $this->saveResizeImage($image, $destinationPath, 250, 250);
             } else {
                 $site_logo = '';
             }
@@ -99,6 +99,7 @@ class DashboardController extends Controller
                 'site_twitter' => $request->site_twitter,
                 'site_youtube' => $request->site_youtube,
                 'site_instagram' => $request->site_instagram,
+                'site_linkedin' => $request->site_linkedin,
                 'site_phone' => $request->site_phone,
                 'site_mobile' => $request->site_mobile,
                 'site_lang_en' => $request->site_lang_en,
@@ -107,6 +108,8 @@ class DashboardController extends Controller
                 'site_description_en' => $request->site_description_en,
                 'site_keywords_ar' => $request->site_keywords_ar,
                 'site_keywords_en' => $request->site_keywords_en,
+                'site_address_ar' => $request->site_address_ar,
+                'site_address_en' => $request->site_address_en,
                 'site_icon' => $site_icon,
                 'site_logo' => $site_logo,
             ]);
@@ -131,11 +134,11 @@ class DashboardController extends Controller
                 if (!empty($settings->site_icon)) {
                     $image = $request->file('site_icon');
                     $destinationPath = public_path('/adminBoard/uploadedImages/logos//');
-                    $site_icon = $this->saveResizeImage($image, $destinationPath,250,250);
+                    $site_icon = $this->saveResizeImage($image, $destinationPath, 250, 250);
                 } else {
                     $image = $request->file('site_icon');
                     $destinationPath = public_path('/adminBoard/uploadedImages/logos//');
-                    $site_icon = $this->saveResizeImage($image, $destinationPath,250,250);
+                    $site_icon = $this->saveResizeImage($image, $destinationPath, 250, 250);
                 }
             } else {
                 if (!empty($settings->site_icon)) {
@@ -156,11 +159,11 @@ class DashboardController extends Controller
                 if (!empty($settings->site_logo)) {
                     $image = $request->file('site_logo');
                     $destinationPath = public_path('/adminBoard/uploadedImages/logos//');
-                    $site_logo = $this->saveResizeImage($image, $destinationPath,250,250);
+                    $site_logo = $this->saveResizeImage($image, $destinationPath, 250, 250);
                 } else {
                     $image = $request->file('site_logo');
                     $destinationPath = public_path('/adminBoard/uploadedImages/logos//');
-                    $site_logo = $this->saveResizeImage($image, $destinationPath,250,250);
+                    $site_logo = $this->saveResizeImage($image, $destinationPath, 250, 250);
                 }
             } else {
                 if (!empty($settings->site_logo)) {
@@ -180,6 +183,7 @@ class DashboardController extends Controller
                 'site_twitter' => $request->site_twitter,
                 'site_youtube' => $request->site_youtube,
                 'site_instagram' => $request->site_instagram,
+                'site_linkedin' => $request->site_linkedin,
                 'site_phone' => $request->site_phone,
                 'site_mobile' => $request->site_mobile,
                 'site_lang_en' => $request->site_lang_en,
@@ -188,14 +192,14 @@ class DashboardController extends Controller
                 'site_description_en' => $request->site_description_en,
                 'site_keywords_ar' => $request->site_keywords_ar,
                 'site_keywords_en' => $request->site_keywords_en,
+                'site_address_ar' => $request->site_address_ar,
+                'site_address_en' => $request->site_address_en,
                 'site_icon' => $site_icon,
                 'site_logo' => $site_logo,
             ]);
 
             return $this->returnSuccessMessage(__('general.update_success_message'));
         }
-
-
     }
 
 
@@ -237,6 +241,4 @@ class DashboardController extends Controller
         $title = __('general.not_found');
         return view('admin.errors.not-found', compact('title'));
     }
-
-
 }
