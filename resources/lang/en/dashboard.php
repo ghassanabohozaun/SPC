@@ -8,10 +8,10 @@ return [
     'chart_article' => 'Article views Growth',
     'chart_projects' => 'Project Views Growth',
 
-    'project_counter' => 'Number of Projects' , 
-    'article_counter' => 'Number of Articles' , 
-    'publication_counter' =>  'Number of Publication' , 
-    'report_counter' => 'Number of Reports' ,
+    'project_counter' => 'Number of Projects',
+    'article_counter' => 'Number of Articles',
+    'publication_counter' =>  'Number of Publication',
+    'report_counter' => 'Number of Reports',
 
 
     'last_articles' => 'Last Articles',
@@ -38,7 +38,7 @@ return [
     'welcome_message_details' => 'We welcome you to the site control panel, this panel provides you with complete control over the site .',
     'profile' => 'Profile',
     'sign_out' => 'Sign Out',
-    'copy_rights' => 'Ethar',
+    'copy_rights' => 'SPCALTAWIL',
     'teachers_count' => 'Teachers Count',
     'mawhobs_count' => 'Mawhobs Count',
     'revenues_value' => 'Revenues Value',

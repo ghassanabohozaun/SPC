@@ -26,8 +26,8 @@ class CreateSettingsTable extends Migration
             $table->string('site_linkedin')->nullable();
             $table->string('site_phone')->nullable();
             $table->string('site_mobile')->nullable();
-            $table->string('site_lang_ar')->nullable();
             $table->string('site_lang_en')->default('on');
+            $table->string('site_lang_ar')->nullable();
             $table->string('lang_front_button_status')->nullable();
             $table->longText('site_description_ar')->nullable();
             $table->longText('site_description_en')->nullable();

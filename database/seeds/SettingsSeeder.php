@@ -13,10 +13,10 @@ class SettingsSeeder extends Seeder
     public function run()
     {
         Setting::create([
-            'site_name_ar'=>'ايثار',
-            'site_name_en'=>'Ethar',
-            'site_lang_ar'=>'on',
-            'site_lang_en'=>'on',
+            'site_name_ar' => 'ايثار',
+            'site_name_en' => 'Ethar',
+            'site_lang_ar' => '',
+            'site_lang_en' => 'on',
         ]);
     }
 }

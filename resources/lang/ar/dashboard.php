@@ -9,10 +9,10 @@ return [
     'chart_article' => 'نمو مشاهدات المقالات',
     'chart_projects' => 'نمو مشاهدات المشاريع',
 
-    'project_counter' => 'عدد المشاريع ' , 
-    'article_counter' => 'عدد المقالات' , 
-    'publication_counter' =>  'عدد المنشورت ' , 
-    'report_counter' => 'عدد التقارير' ,
+    'project_counter' => 'عدد المشاريع ',
+    'article_counter' => 'عدد المقالات',
+    'publication_counter' =>  'عدد المنشورت ',
+    'report_counter' => 'عدد التقارير',
 
 
 
@@ -39,7 +39,7 @@ return [
     'welcome_message_details' => 'نرحب بك في لوحة تحكم الموقع   ، توفر لك هذه اللوحة تحكم كامل بالموقع .  ',
     'profile' => 'الملف الشخصي',
     'sign_out' => 'تسجيل خروج',
-    'copy_rights' => 'ايثار',
+    'copy_rights' => 'SPCALTAWIL',
     'teachers_count' => 'عدد المدرسين',
     'mawhobs_count' => 'عدد الموهبين',
     'courses_count' => 'عدد الدورات',
