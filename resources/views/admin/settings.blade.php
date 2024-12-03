@@ -382,9 +382,9 @@
                                                                 </label>
                                                                 <div class="col-lg-9 col-xl-9 " id="site_lang_en_section">
                                                                     <div class="cst-switch switch-lg">
-                                                                        <input class="site_lang_en" type="checkbox"
-                                                                            {{ setting()->site_lang_en == 'on' ? 'checked' : '' }}
-                                                                            name="site_lang_en" id="site_lang_en">
+                                                                        <input class="site_lang_en" checked
+                                                                            type="checkbox" name="site_lang_en"
+                                                                            id="site_lang_en">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -398,8 +398,9 @@
                                                                 </label>
                                                                 <div class="col-lg-9 col-xl-9">
                                                                     <div class="cst-switch switch-lg">
-                                                                        <input type="checkbox" checked name="site_lang_ar"
-                                                                            id="site_lang_ar">
+                                                                        <input class="site_lang_ar" type="checkbox"
+                                                                            {{ setting()->site_lang_ar == 'on' ? 'checked' : '' }}
+                                                                            name="site_lang_ar" id="site_lang_ar">
                                                                     </div>
 
                                                                 </div>
@@ -568,10 +569,9 @@
 
 @push('js')
     <script type="text/javascript">
-        $("#site_lang_ar").prop('disabled', function() {
+        $("#site_lang_en").prop('disabled', function() {
             return !$(this).prop('disabled');
         });
-
 
 
         var site_icon = new KTImageInput('kt_site_icon');
@@ -692,7 +692,7 @@
         ////////////////////////////////////////////////////
         // switch english language
         var switchStatus = false;
-        $("#site_lang_en").on('change', function(e) {
+        $("#site_lang_ar").on('change', function(e) {
             e.preventDefault();
 
             if ($(this).is(':checked')) {
@@ -702,7 +702,7 @@
             }
 
             $.ajax({
-                url: "{{ route('switch.english.lang') }}",
+                url: "{{ route('switch.arabic.lang') }}",
                 data: {
                     switchStatus: switchStatus
                 },
@@ -725,10 +725,10 @@
                             icon: "success",
                             allowOutsideClick: false,
                             customClass: {
-                                confirmButton: 'switch_english_lang_button'
+                                confirmButton: 'switch_arabic_lang_button'
                             }
                         });
-                        $('.switch_english_lang_button').click(function() {});
+                        $('.switch_arabic_lang_button').click(function() {});
                     }
                 }, //end success
             })

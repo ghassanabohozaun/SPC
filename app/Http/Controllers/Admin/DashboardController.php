@@ -204,15 +204,15 @@ class DashboardController extends Controller
 
 
     ////////////////////////////////////////////////////////
-    ///  switchEnglishLang
-    public function switchEnglishLang(Request $request)
+    ///  switchArbicLang
+    public function switchArabicLang(Request $request)
     {
         $settings = Setting::orderBy('id', 'desc')->first();
         if ($request->switchStatus == 'false') {
-            $settings->site_lang_en = null;
+            $settings->site_lang_ar = null;
             $settings->save();
         } else {
-            $settings->site_lang_en = 'on';
+            $settings->site_lang_ar = 'on';
             $settings->save();
         }
         return $this->returnSuccessMessage(__('general.change_status_success_message'));

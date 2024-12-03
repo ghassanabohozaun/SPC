@@ -37,8 +37,8 @@ Route::group([
         ->name('get.admin.settings')->middleware('can:settings');
     Route::post('settings', 'DashboardController@storeSettings')
         ->name('store.admin.settings')->middleware('can:settings');
-    Route::post('switch-en-lang', 'DashboardController@switchEnglishLang')
-        ->name('switch.english.lang');
+    Route::post('switch-ar-lang', 'DashboardController@switchArabicLang')
+        ->name('switch.arabic.lang');
     Route::post('switch-frontend-lang', 'DashboardController@switchFrontendLang')
         ->name('switch.frontend.lang');
 
@@ -59,7 +59,6 @@ Route::group([
             Route::get('/edit/{id?}', 'SlidersController@edit')->name('admin.slider.edit');
             Route::post('/update', 'SlidersController@update')->name('admin.slider.update');
             Route::post('/change-status', 'SlidersController@changeStatus')->name('admin.slider.change.status');
-
         });
 
         /// fixed texts routes
@@ -80,7 +79,6 @@ Route::group([
             Route::post('/update', 'PartnersController@update')->name('admin.partner.update');
             Route::post('/change-status', 'PartnersController@changeStatus')->name('admin.partner.change.status');
         });
-
     });
 
     /////////////////////////////////////////////////////////////////////////////////////////////
@@ -143,7 +141,7 @@ Route::group([
         Route::post('/change-status', 'ArticlesController@changeStatus')->name('admin.articles.change.status');
 
         // comments
-        Route::get('/comments/{id}','CommentsController@index')->name('admin.comments');
+        Route::get('/comments/{id}', 'CommentsController@index')->name('admin.comments');
         Route::get('/create-comment/{id}', 'CommentsController@create')->name('admin.comments.create');
         Route::post('/comment-store', 'CommentsController@store')->name('admin.comments.store');
         Route::post('/comment-destroy', 'CommentsController@destroy')->name('admin.comments.destroy');
@@ -151,7 +149,6 @@ Route::group([
         Route::post('/comment-force-delete', 'CommentsController@forceDelete')->name('admin.comments.force.delete');
         Route::post('/comment-restore', 'CommentsController@restore')->name('admin.comments.restore');
         Route::post('/comment-change-status', 'CommentsController@changeStatus')->name('admin.comments.change.status');
-
     });
 
     /////////////////////////////////////////////////////////////////////////////////////////////
@@ -288,8 +285,6 @@ Route::group([
         Route::post('/restore', [QAController::class, 'restore'])->name('admin.QA.restore');
         Route::post('/change-status', [QAController::class, 'changeStatus'])->name('admin.QA.change.status');
     });
-
-
 });
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -304,6 +299,3 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'guest:admin'], function (
 /////////////////////////////////////////////////////////////////////////////////////////////
 /// Logout
 Route::get('logout', 'Admin\LoginController@logout')->name('admin.logout');
-
-
-
