@@ -16,12 +16,27 @@ class DatabaseSeeder extends Seeder
 
         // create role
         Role::create([
-            'role_name_ar' => 'supervisor',
-            'role_name_en' => 'مشرف عام',
+            'role_name_ar' => 'مشرف عام',
+            'role_name_en' => 'supervisor',
             'permissions' => json_encode([
-                'dashboard', 'settings', 'admins', 'roles', 'users', 'support-center', 'reports', 'articles',
-                'landing-page', 'projects', 'testimonials', 'publications', 'videos', 'photos', 'yearly-reports',
-                'abouts', 'teams','faq'
+                'dashboard',
+                'settings',
+                'admins',
+                'roles',
+                'users',
+                'support-center',
+                'reports',
+                'articles',
+                'landing-page',
+                'projects',
+                'testimonials',
+                'publications',
+                'videos',
+                'photos',
+                'yearly-reports',
+                'abouts',
+                'teams',
+                'faq'
             ]),
         ]);
 
@@ -42,6 +57,5 @@ class DatabaseSeeder extends Seeder
                 'name_ar' => $abouts_ar[$i],
             ]);
         }
-
     }
 }

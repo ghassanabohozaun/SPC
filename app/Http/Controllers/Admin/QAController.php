@@ -27,14 +27,14 @@ class QAController extends Controller
 
     public function store(QARequest $request)
     {
-        $lang_en = setting()->site_lang_en;
-        QA::create([
-            'details_ar' => $request->details_ar,
-            'details_en' => $lang_en == 'on' ? $request->details_en : null,
-            'title_ar' => $request->title_ar,
-            'title_en' => $lang_en == 'on' ? $request->title_en : null,
-            'status' => 'on',
+        $lang_ar = setting()->site_lang_ar;
 
+        QA::create([
+            'details_ar' => $lang_ar == 'on' ? $request->details_ar : '',
+            'details_en' => $request->details_en,
+            'title_ar' => $lang_ar == 'on' ? $request->title_ar : '',
+            'title_en' => $request->title_en,
+            'status' => 'on',
         ]);
 
         return $this->returnSuccessMessage(__('general.add_success_message'));
@@ -51,12 +51,13 @@ class QAController extends Controller
         // return $request->all();
         $QA = QA::findORFail($request->id);
 
-        $lang_en = setting()->site_lang_en;
+        $lang_ar = setting()->site_lang_ar;
         $QA->update([
-            'details_ar' => $request->details_ar,
-            'details_en' => $lang_en == 'on' ? $request->details_en : null,
-            'title_ar' => $request->title_ar,
-            'title_en' => $lang_en == 'on' ? $request->title_en : null,
+            'details_ar' => $lang_ar == 'on' ? $request->details_ar : '',
+            'details_en' => $request->details_en,
+            'title_ar' => $lang_ar == 'on' ? $request->title_ar : '',
+            'title_en' => $request->title_en,
+            'status' => 'on',
         ]);
 
         return $this->returnSuccessMessage(__('general.update_success_message'));
@@ -85,7 +86,7 @@ class QAController extends Controller
             }
         } catch (\Exception $exception) {
             return $this->returnError(__('general.try_catch_error_message'), 500);
-        }//end catch
+        } //end catch
     }
 
     /////////////////////////////////////////
@@ -103,7 +104,7 @@ class QAController extends Controller
             }
         } catch (\Exception $exception) {
             return $this->returnError(__('general.try_catch_error_message'), 500);
-        }//end catch
+        } //end catch
     }
 
     /////////////////////////////////////////
@@ -126,7 +127,7 @@ class QAController extends Controller
             }
         } catch (\Exception $exception) {
             return $this->returnError(__('general.try_catch_error_message'), 500);
-        }//end catch
+        } //end catch
 
     }
 

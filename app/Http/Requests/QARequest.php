@@ -24,22 +24,21 @@ class QARequest extends FormRequest
     public function rules()
     {
 
-            return [
-                'title_ar' => 'required',
-                'title_en' => ['required_if:english,on'],
-                'details_ar' => 'required',
-                'details_en' => ['required_if:english,on'],
-            ];
-
+        return [
+            'title_ar' => ['required_if:arabic,on'],
+            'details_ar' =>  ['required_if:arabic,on'],
+            'title_en' => 'required',
+            'details_en' => 'required',
+        ];
     }
 
     public function messages()
     {
         return [
-            'title_ar.required' => __('QA.title_ar_required') ,
-            'title_en.required_if' => __('QA.title_en_required') ,
-            'details_ar.required' =>  __('QA.details_ar_required'),
-            'details_en.required_if' =>  __('QA.details_en_required'),
+            'title_ar.required_if' => __('QA.title_ar_required'),
+            'title_en.required' => __('QA.title_en_required'),
+            'details_ar.required_if' =>  __('QA.details_ar_required'),
+            'details_en.required' =>  __('QA.details_en_required'),
         ];
     }
 }
