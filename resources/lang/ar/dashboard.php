@@ -2,8 +2,6 @@
 
 return [
 
-    'mohwb' => 'موهوب',
-    'teacher_panel' => 'لوحة تحكم المدرس',
     'admin_panel' => 'لوحة تحكم الإدارة',
     'panels' => "لوحات التحكم",
     'chart_article' => 'نمو مشاهدات المقالات',
@@ -14,11 +12,8 @@ return [
     'publication_counter' =>  'عدد المنشورت ',
     'report_counter' => 'عدد التقارير',
 
-
-
     'last_articles' => 'اخر المقالات',
     'last_comments' => 'اخر التعليقات',
-
 
     'dashboard' => 'لوحة التحكم',
     'home' => 'الرئيسية',
@@ -40,21 +35,6 @@ return [
     'profile' => 'الملف الشخصي',
     'sign_out' => 'تسجيل خروج',
     'copy_rights' => 'SPCALTAWIL',
-    'teachers_count' => 'عدد المدرسين',
-    'mawhobs_count' => 'عدد الموهبين',
-    'courses_count' => 'عدد الدورات',
-    'revenues_value' => 'قيمة الايرادات',
-    'daily_revenue' => 'الايرادات اليومية',
-
-    'last_courses' => 'أحدث الدورات',
-    'last_contests' => 'أحدث المسابقات',
-    'last_revenue' => 'أحدث الايرادات',
-
-    'no_courses_exists' => 'لا يوجد دورات حاليا',
-    'no_contests_exists' => 'لا يوجد مسابقات حاليا',
-    'no_revenues_exists' => 'لا يوجد ايرادات حاليا',
-    'new_mawobs_growth' => 'نمو المواهب الجديدة',
-    'new_revenues_growth' => 'نمو الايرادات الجديدة',
 
 
     /////////////////////////////////
