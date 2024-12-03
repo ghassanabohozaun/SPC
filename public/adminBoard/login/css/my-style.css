@@ -1,0 +1,120 @@
+
+#form_contact_message_send label {
+    display: inline-block;
+    margin-bottom: 0rem;
+}
+
+.error {
+    margin-top: 2px;
+    color: red;
+}
+
+
+#contests_section, #sounds_section, #videos_section {
+    padding-top: 5px;
+}
+
+#contactUs {
+    padding-top: 35px;
+}
+
+.item-itunes .img-views img {
+    width: 30px;
+    height: 30px;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+#my_list_user_li {
+    padding: 20px
+}
+
+.font_size_14 {
+    font-size: 14px;
+}
+
+
+.min_height_480 {
+    min-height: 488px
+}
+
+
+.my_price {
+    color: #707070;
+    font-size: 20px;
+}
+
+.my_text_decoration {
+    padding-bottom: 20px;
+    text-decoration: underline;
+    text-underline-offset: 0.4em;
+}
+
+#no_data_img {
+
+    display: block;
+    margin: 20px auto;
+}
+
+.my-cor-img img {
+    -o-object-position: top;
+    object-position: top;
+    -o-object-fit: fill;
+    object-fit: fill;
+    width: 100%;
+    height: 400px;
+    border-radius: 25px;
+}
+
+
+p {
+    text-align: justify;
+}
+
+.story_experience {
+    background: #ffffffab;
+    border-radius: 50px 0;
+}
+
+.box-noty {
+    top: 51px !important;
+}
+
+.player-screen {
+    position: fixed;
+    z-index: 99;
+    bottom: 0;
+    background: #fff;
+    left: 0;
+    width: 100%;
+}
+
+.net-price {
+    font-size: 16px !important;
+    font-weight: bold;
+}
+
+.auth_student_program_enroll_button, .not_auth_student_program_enroll_button, .student_program_enroll_button {
+    position: fixed;
+    left: 50px;
+    bottom: 50px;
+    z-index: 999;
+    height: 100px;
+    border-radius: 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 5px 9px 5px #f8630554;
+}
+
+#articles_section {
+    padding-top: 30px
+}
+
+/* Start index page style */
+.my_lead {
+    word-spacing: 0.1rem;
+    line-height: 1.8rem;
+    text-align: justify;
+}
+

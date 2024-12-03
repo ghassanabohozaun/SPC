@@ -1,0 +1,274 @@
+.header-style-one .logo-box .logo img {
+    border-bottom-right-radius: 20px;
+    padding-left: 50px
+}
+
+.my-social-style-one li {
+    position: relative;
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+}
+
+.content_block_10 .content-box .image {
+    position: relative;
+    margin-left: -120px;
+}
+
+.my-content-one {
+    text-align: left;
+}
+
+
+.main-menu .navigation > li > a {
+    position: relative;
+    display: block;
+    text-align: center;
+    font-size: 19px;
+    line-height: 30px;
+    font-weight: 600;
+    opacity: 1;
+    color: #232323;
+    padding-left: 17px;
+    z-index: 1;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+
+.main-menu .navigation > li > a:before {
+    position: absolute;
+    content: "";
+    background-color: #dddad8;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    left: 0px;
+    top: 12px;
+    transition: all 500ms ease;
+}
+
+.main-menu .navigation > li > ul > li > a,
+.main-menu .navigation > li > .megamenu li > a {
+    position: relative;
+    display: block;
+    padding: 14px 0px 13px 0px;
+    line-height: 24px;
+    font-family: 'Nunito Sans', "ArbFONTSBEINNormalAR", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #232323;
+    text-align: left;
+    transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+}
+
+.main-menu .navigation > li > ul > li > ul > li > a {
+    position: relative;
+    display: block;
+    padding: 14px 0px 13px 0px;
+    line-height: 24px;
+    font-family: 'Nunito Sans', "ArbFONTSBEINNormalAR", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #232323;
+    text-align: left;
+    transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+}
+
+.case-block-four .inner-box .content-box .info-box li {
+    position: relative;
+    display: inline-block;
+    float: left;
+    padding-left: 50px;
+    min-height: 49px;
+    padding-right: 55px;
+}
+
+
+.case-block-four .inner-box .content-box .info-box li i {
+    position: absolute;
+    left: 0px;
+    top: 3px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #cecac9;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 20px;
+}
+
+.case-block-four .inner-box .content-box .info-box li h5 {
+    position: relative;
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+    margin-bottom: 0px;
+}
+
+.case-block-four .inner-box .content-box .info-box li a {
+    color: #f65024;
+}
+
+
+.blog-details-content .comment-box .comment .comment-info span {
+    position: absolute;
+    display: block;
+    top: 3px;
+    right: 0px;
+    font-size: 15px;
+}
+
+
+.blog-details-content .comment-box .comment .thumb-box {
+    position: absolute;
+    left: 0px;
+    top: 10px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+
+.blog-details-content .content-one .upper-box .post-info li {
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 26px;
+    font-family: 'Quicksand', "ArbFONTSBEINNormalAR", sans-serif;
+    color: #5f5e5e;
+    font-weight: 500;
+    padding-left: 27px;
+    margin-right: 25px;
+}
+
+.blog-details-content .content-one .upper-box .post-info li i {
+    position: absolute;
+    left: 0px;
+    top: 5px;
+}
+
+
+.blog-details-content .content-one .upper-box .post-info li:before {
+    position: absolute;
+    content: '';
+    background-color: #c4bfbd;
+    width: 1px;
+    height: 20px;
+    top: 3px;
+    right: -15px;
+}
+
+
+.events-block-two .inner-box .content-box .links a:before {
+    position: absolute;
+    content: '';
+    width: 30px;
+    height: 1px;
+    left: 0px;
+    top: 0px;
+    transition: all 500ms ease;
+}
+
+
+.events-block-two .inner-box .content-box .links a:after {
+    position: absolute;
+    content: "\f105";
+    font-size: 18px;
+    font-family: 'Font Awesome 5 Pro';
+    font-weight: 400;
+    top: -12px;
+    right: 0px;
+    opacity: 0;
+    transition: all 500ms ease;
+}
+
+.events-block-two .inner-box .content-box .info li {
+    position: relative;
+    display: inline-block;
+    float: left;
+    font-size: 22px;
+    line-height: 26px;
+    font-family: 'Caveat', "ArbFONTSBEINNormalAR", cursive;
+    font-weight: 700;
+    padding-left: 25px;
+    margin-right: 30px;
+}
+
+.events-block-two .inner-box .content-box .info li i {
+    position: absolute;
+    left: 0px;
+    top: 6px;
+    font-size: 18px;
+}
+
+.event-details-content .tabs-content .lower-box .share-option h5 {
+    position: relative;
+    display: block;
+    font-size: 18px;
+    line-height: 54px;
+    font-weight: 700;
+    padding-right: 75px;
+}
+
+.blog-details-content .content-one .upper-box .post-info li:last-child {
+    margin: 0px !important;
+
+}
+
+
+.portfolio-block-one .inner-box .content-box .text {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: calc(100% - 20px);
+    background-color: #f4f1f0;
+    border-top-left-radius: 15px;
+    padding: 16px 20px 21px 20px;
+    text-align: left;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 500ms ease;
+}
+
+
+.sortable-masonry .filter-tabs li {
+    position: relative;
+    display: inline-block;
+    float: left;
+    font-size: 18px;
+    line-height: 28px;
+    font-family: 'Quicksand', "ArbFONTSBEINNormalAR", sans-serif;
+    color: #232323;
+    font-weight: 700;
+    text-align: center;
+    padding: 15px 38px;
+    cursor: pointer;
+    border-right: 1px solid #dddad8;
+    transition: all 500ms ease;
+}
+
+
+.funfact-block-one .inner-box:before {
+    position: absolute;
+    content: '';
+    background-color: #dddad8;
+    width: 1px;
+    height: 100%;
+    top: 0px;
+    right: -15px;
+}
+

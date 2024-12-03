@@ -1,0 +1,396 @@
+.slider{
+  background-image: url("../img/slider.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 620px;
+
+  .left-item{
+    @media screen  and (max-width: 780px){
+      width:100%;
+    }
+    width: 60%;
+    left: 50px;
+    bottom: 50px;
+
+    .latest{
+      font-size: 19px;
+      color:#fff;
+    }
+    h1{
+      font-size: 42px;
+      margin: 30px 0;
+    }
+    .uk-buttom-warning{
+      background: #f7911e;
+      color: #fff;
+      border-radius: 5px;
+      line-height: 50px;
+    }
+
+  }
+
+}
+section.article{
+  background: #F0F0F7;
+  padding:40px;
+
+  .uk-search-default{
+    width:100%;
+    background: #fff;
+  }
+
+}
+
+.item-search {
+  padding:20px;
+  background: #fff;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 80px;
+  .cat-name{
+    padding:10px;
+    background: #F7911E;
+    color:#fff;
+    font-weight: bold;
+    left: 20px;
+    top: 20px;
+
+  }
+
+  .img-post img{
+    object-fit: cover;
+    height: 300px;
+    width: 100%;
+
+  }
+  .title-post h2{
+    color:#000;
+    margin:20px;
+
+    @media screen and (max-width: 780px) {
+      margin:20px 0;
+    }
+  }
+  .date-post{
+    color:#B5B5B5;
+    font-size: 12px;
+    margin-bottom: 20px;
+
+  }
+  .des-post{
+    line-height: 1.5;
+    font-size: 14px;
+    padding: 0 20px;
+    color:#27323E;
+  }
+  .likes{
+    padding: 0;
+    list-style: none;
+    padding: 30px;
+    color: #b5b5b5;
+
+    li{
+      margin-right: 20px;
+      .text{
+        font-size: 12px;
+        margin-left: 5px;
+      }
+    }
+
+  }
+
+
+}
+.more-posts{
+  margin: 20px;
+  margin-top: 50px;
+  text-align: center;
+  .uk-buttom-warning-outline{
+    border: 2px solid;
+    border-color: #f7911e;
+    color: #f7911e;
+    border-radius: 25px;
+    line-height: 50px;
+
+  }
+}
+footer{
+  color:#C3CCD3;
+  background: #283C48;
+}
+
+//faq page
+body.faq{
+  header{
+    background: #162635;
+    padding:25px;
+    width: auto;
+  }
+  background: #F0F0F7;
+}
+.width-100{
+  width: 100%;
+}
+section.faqs{
+  padding:40px;
+}
+.uk-accordion-title{
+  background: #3A4D5B;
+  color: #fff;
+  padding: 25px;
+  font-size: 18px;
+}
+.uk-accordion-content {
+  margin-top: 20px;
+  background: #fff;
+  padding: 30px;
+  margin: 0;
+  color:#27323E;
+  font-size: 18px;
+  line-height: 1.5;
+}
+.uk-accordion-title::before{
+  background-image:url('../img/chevron-down.svg')
+}
+.uk-open > .uk-accordion-title::before{
+  background-image:url('../img/chevron-down-l.svg')
+}
+.uk-accordion-title:hover, .uk-accordion-title:focus{
+  color:#fff;
+}
+
+//opininons page
+
+.opininons-items{
+  .uk-card-body{
+  padding: 20px;
+    margin:0;
+    .op-item{
+    background: #fff;
+      marign: 20px;
+      text-align: center;
+      padding: 20px;
+      .img-box{
+        text-align: center;
+
+        img{
+          width: 130px;
+          height: 130px;
+          object-fit: cover;
+          border-radius: 50%;
+
+        }
+      }
+      .title-item{
+        color:#162635;
+        font-weight: bold;
+        margin: 12px;
+      }
+      .dex-item{
+        font-size: 15px;
+        color:#27323E;
+        line-height: 1.5;
+      }
+
+    }
+    }
+
+}
+//blogs
+.cat-left{
+  background: #fff;
+  padding:30px 20px;
+  h3{
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 15px;
+    font-weight: normal;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+  }
+  .selcted-items{
+    margin-top: 21px;
+    margin-bottom: 28px;
+    input[class="uk-radio"]{
+      margin-right: 20px;
+    }
+    .uk-radio:checked{
+      background-image:none;
+    }
+    .uk-radio:checked, .uk-checkbox:checked, .uk-checkbox:indeterminate
+    {
+      background-color: #f7911e;
+    }
+
+
+  }
+  label{
+    font-size: 14px;
+    span{
+      width: 35px;
+      display: inline-block;
+      margin-right: 5px;
+    }
+    .uk-form-width-small {
+      width: 175px;
+    }
+  }
+}
+
+
+//blog dt
+body.blog-dt{
+
+  background: #fff;
+  .header{
+    background: transparent;
+    position: relative;
+    padding: 40px;
+    background: #fff;
+    .logo{
+      background-image: url(../img/logo-b.png);
+    }
+
+    .uk-navbar-nav > li > a{
+      color:#333;
+    }
+  }
+
+.blog-det-content{
+  .img-blog img{
+    height: 350px;
+    object-fit: cover;
+  }
+  .title-blog h1{
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 10px;
+    span{
+      font-size: 24px;
+      font-weight: normal;
+    }
+    }
+  .date-published{
+    font-size: 15px;
+    color:#B5B5B5;
+  }
+  .likes{
+    position: static;
+    right: 0;
+    li{
+      margin-left: 15px;
+      color:#B5B5B5;
+    }
+  }
+}
+  .the-content{
+    line-height: 1.5;
+    color:#333;
+    text-align: justify;
+    padding:40px 0;
+  }
+  .like-des{
+    margin: 50px 0;
+    .like-add{
+      list-style: none;
+      li{
+        margin: 35px;
+        font-size: 36px;
+        .like-text{
+          color:#18C139;
+        }
+        .des-like-text{
+          color:#EF3D3D;
+        }
+      }
+    }
+  }
+  .related{
+    padding-bottom: 50px;
+    border-bottom: 1px solid #ccc;
+    .title-Related{
+      font-size: 24px;
+      color:#333;
+      margin-bottom: 20px;
+    }
+    .img{
+      img{
+        height: 230px;
+        object-fit: cover;
+      }
+    }
+    .title{
+      font-size: 24px;
+      color:#333;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    .some-text{
+      font-size: 18px;
+      color:#374957;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .link-blog a{
+      font-weight: bold;
+    }
+  }
+
+
+  .comments{
+    padding: 50px;
+    @media screen and (max-width: 780px){
+      padding:0
+    }
+    .add-comment{
+      padding:20px 40px;
+      background: #F5F5F5;
+    margin-bottom: 20px;
+    }
+    .list-comments{
+      padding:20px 40px;
+      @media screen and (max-width: 780px){
+        padding:0
+      }
+      li{
+        margin-bottom: 20px;
+        background: #f5f5f5;
+        padding: 15px;
+        h4{
+          font-size: 18px;
+          color:#333;
+          margin-bottom: 5px;
+        }
+      }
+      .img{
+        width: 80px;
+        height: 50px;
+        @media screen and (max-width: 780px){
+          width: 200px;
+          text-align: center;
+        }
+
+      img{
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+
+      }
+      }
+
+    }
+  }
+}
+@media screen and (max-width: 780px) {
+  .uk-navbar-right {
+    display: block;
+  }
+  .uk-navbar-center:not(:only-child){
+    display: block;
+    position: static;
+    transform: none;
+    float: right;
+  }
+}

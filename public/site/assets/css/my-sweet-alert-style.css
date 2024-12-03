@@ -1,0 +1,50 @@
+/* begin : Sweet alert 2 style*/
+.swal2-container {
+    z-index: 100000;
+}
+.swal2-popup {
+    display: none;
+    position: relative;
+    box-sizing: border-box;
+    grid-template-columns: minmax(0, 100%);
+    width: 30em;
+    max-width: 100%;
+    padding: 0.5em 0.5em 0.5em;
+    border: none;
+    border-radius: 5px;
+    background: #fff;
+    color: #545454;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.swal2-title {
+    position: relative;
+    max-width: 100%;
+    margin: 0;
+    padding: 2.2em 0.5em 0;
+    color: #595959;
+    font-size: 1.275em;
+    font-weight: 600;
+    text-align: center;
+    text-transform: none;
+    word-wrap: break-word;
+}
+
+
+.swal2-actions {
+    display: flex;
+    z-index: 1;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 2.5em auto 1.3em;
+    padding: 0;
+}
+
+/* end : Sweet alert 2 style*/
+
+>
