@@ -167,9 +167,9 @@
             <!------------------------------------ faq ---------------------------------------------------->
             @can('faq')
                 <li class="menu-item  menu-item-submenu
-               @if (str_contains(url()->current(), '/QA')) menu-item-open @endif"
+               @if (str_contains(url()->current(), '/faqs')) menu-item-open @endif"
                     aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="{!! route('admin.QA.index') !!}" class="menu-link menu-toggle">
+                    <a href="{!! route('admin.faqs.index') !!}" class="menu-link menu-toggle">
 
                         <span class="svg-icon menu-icon">
                             <span
@@ -189,7 +189,7 @@
                         <span class="menu-text">{{ __('menu.faq') }}</span>
                         <span class="menu-label">
                             <span class="label label-rounded label-white">
-                                {{ \App\Models\QA::count() }}
+                                {{ \App\Models\FAQ::count() }}
                             </span>
                         </span>
                     </a>

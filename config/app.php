@@ -198,7 +198,7 @@ return [
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
         'Blade' => Illuminate\Support\Facades\Blade::class,
-//        'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
+        //        'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
         'Bus' => Illuminate\Support\Facades\Bus::class,
         'Cache' => Illuminate\Support\Facades\Cache::class,
         'Config' => Illuminate\Support\Facades\Config::class,
@@ -231,7 +231,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
         'Image' => 'Intervention\Image\Facades\Image',
-        'Pusher' => Pusher\Pusher::class,
     ],
 
 ];

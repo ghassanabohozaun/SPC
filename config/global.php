@@ -21,6 +21,6 @@ return [
         'abouts' => 'app.abouts',
         'teams' => 'app.teams',
         'faq' => 'app.faq',
-
+        'trainings' => 'app.trainings'
     ]
 ];

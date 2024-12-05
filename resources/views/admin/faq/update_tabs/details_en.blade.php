@@ -1,4 +1,4 @@
-<div class="tab-pane fade" id="QA_details_en" role="tabpanel" aria-labelledby="details_en_tab">
+<div class="tab-pane fade show active" id="faq_details_en" role="tabpanel" aria-labelledby="faq_details_en_tab">
     <div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
         <div class="col-xl-12 col-xxl-10">
 
@@ -7,19 +7,15 @@
 
                     <!--begin::body-->
                     <div class="my-5">
-
                         <!--begin::Group-->
                         <div class="form-group">
                             <label>
-                                {{__('QA.title_en')}}
+                                {{ __('faqs.question_en') }}
                             </label>
-
                             <input type="text" class="form-control form-control-solid form-control-lg"
-                                   name="title_en" id="title_en"
-                                   placeholder="{{__('QA.title_en')}}"
-                                   autocomplete="off">
-                            <span class="form-text text-danger"
-                                  id="title_en_error"></span>
+                                name="question_en" id="question_en" value="{{ $faq->question_en }}"
+                                placeholder="{{ __('faqs.question_en') }}" autocomplete="off">
+                            <span class="form-text text-danger" id="question_en_error"></span>
 
                         </div>
                         <!--end::Group-->
@@ -27,12 +23,9 @@
 
                         <!--begin::Group-->
                         <div class="form-group">
-                            <label> {{__('QA.details_en')}}</label>
-                            <textarea class="form-control summernote"
-                                      name="details_en"
-                                      id="details_en"></textarea>
-                            <span class="form-text text-danger"
-                                  id="details_en_error"></span>
+                            <label> {{ __('faqs.answer_en') }}</label>
+                            <textarea class="form-control summernote" placeholder="{{ __('faqs.answer_en') }}" name="answer_en" id="answer_en">{{ $faq->answer_en }}</textarea>
+                            <span class="form-text text-danger" id="answer_en_error"></span>
                         </div>
                         <!--end::Group-->
 
@@ -45,5 +38,4 @@
 </div>
 
 @push('js')
-
 @endpush

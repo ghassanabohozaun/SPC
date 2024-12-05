@@ -173,5 +173,4 @@ class PartnersController extends Controller
         }
         return $this->returnSuccessMessage(__('general.change_status_success_message'));
     }
-
 }

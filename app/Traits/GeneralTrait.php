@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Traits;
+
 use Image;
 
 trait GeneralTrait
@@ -62,26 +63,29 @@ trait GeneralTrait
             return "";
     }
     ////////////////////////////////////////////////////////////////////////
-    public function saveImage($name , $path){
+    public function saveImage($name, $path)
+    {
         $ImageExtenstion = $name->getClientOriginalExtension();
-        $ImageName = time().rand().'.'.$ImageExtenstion;
-        $name->move($path,$ImageName);
+        $ImageName = time() . rand() . '.' . $ImageExtenstion;
+        $name->move($path, $ImageName);
         return $ImageName;
     }
     ////////////////////////////////////////////////////////////////////////
-    public function saveResizeImage($image , $destinationPath,$width,$height){
-        $input['photo'] = time().'.'.$image->getClientOriginalExtension();
+    public function saveResizeImage($image, $destinationPath, $width, $height)
+    {
+        $input['photo'] = time() . '.' . $image->getClientOriginalExtension();
         $imgFile = Image::make($image->getRealPath());
         $imgFile->fit($width, $height, function ($constraint) {
             $constraint->aspectRatio();
-        })->save($destinationPath.'/'.$input['photo']);
+        })->save($destinationPath . '/' . $input['photo']);
         return  $input['photo'];
     }
     ///////////////////////////////////////////
-    public function saveFile($name , $path){
+    public function saveFile($name, $path)
+    {
         $ImageExtenstion = $name->getClientOriginalName();
-        $ImageName = time().rand().'.'.$ImageExtenstion;
-        $name->move($path,$ImageName);
+        $ImageName = time() . rand() . '.' . $ImageExtenstion;
+        $name->move($path, $ImageName);
         return $ImageName;
     }
 }

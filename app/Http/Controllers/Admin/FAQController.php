@@ -3,37 +3,38 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\QARequest;
-use App\Models\QA;
+use App\Http\Requests\FAQRequest;
+use App\Models\FAQ;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 
-class QAController extends Controller
+class FAQController extends Controller
 {
     use GeneralTrait;
 
     public function index()
     {
-        $QAs = QA::paginate(15);
         $title = __('menu.faq');
-        return view('admin.QA.index', compact('QAs', 'title'));
+        $faqs = FAQ::paginate(15);
+        return view('admin.faq.index', compact('faqs', 'title'));
     }
 
     public function create()
     {
         $title = __('menu.add_new_faq');
-        return view('admin.QA.create', compact('title'));
+        return view('admin.faq.create', compact('title'));
     }
 
-    public function store(QARequest $request)
+    public function store(FAQRequest $request)
     {
-        $lang_ar = setting()->site_lang_ar;
 
-        QA::create([
-            'details_ar' => $lang_ar == 'on' ? $request->details_ar : '',
-            'details_en' => $request->details_en,
-            'title_ar' => $lang_ar == 'on' ? $request->title_ar : '',
-            'title_en' => $request->title_en,
+        $lang_ar  = setting()->site_lang_ar;
+
+        FAQ::create([
+            'question_en' => $request->question_en,
+            'question_ar' => $lang_ar == 'on' ? $request->question_ar : '',
+            'answer_en' => $request->answer_en,
+            'answer_ar' => $lang_ar == 'on' ? $request->answer_ar : '',
             'status' => 'on',
         ]);
 
@@ -42,21 +43,21 @@ class QAController extends Controller
 
     public function edit($id)
     {
-        $QA = QA::findOrFail($id);
-        return view('admin.QA.update', compact('QA'));
+        $faq = FAQ::findOrFail($id);
+        return view('admin.faq.update', compact('faq'));
     }
 
-    public function update(QARequest $request)
+    public function update(FAQRequest $request)
     {
         // return $request->all();
-        $QA = QA::findORFail($request->id);
+        $faq = FAQ::findORFail($request->id);
 
         $lang_ar = setting()->site_lang_ar;
-        $QA->update([
-            'details_ar' => $lang_ar == 'on' ? $request->details_ar : '',
-            'details_en' => $request->details_en,
-            'title_ar' => $lang_ar == 'on' ? $request->title_ar : '',
-            'title_en' => $request->title_en,
+        $faq->update([
+            'question_en' => $request->question_en,
+            'question_ar' => $lang_ar == 'on' ? $request->question_ar : '',
+            'answer_en' => $request->answer_en,
+            'answer_ar' => $lang_ar == 'on' ? $request->answer_ar : '',
             'status' => 'on',
         ]);
 
@@ -65,9 +66,9 @@ class QAController extends Controller
 
     public function trashed()
     {
-        $title = __('menu.trashed_qas');
-        $QAs = QA::onlyTrashed()->orderByDesc('created_at')->paginate(15);
-        return view('admin.QA.trashed', compact('title', 'QAs'));
+        $title = __('menu.trashed_faq');
+        $faqs = FAQ::onlyTrashed()->orderByDesc('created_at')->paginate(15);
+        return view('admin.faq.trashed', compact('title', 'faqs'));
     }
 
 
@@ -77,11 +78,11 @@ class QAController extends Controller
     {
         try {
             if ($request->ajax()) {
-                $QA = QA::find($request->id);
-                if (!$QA) {
+                $faq = FAQ::find($request->id);
+                if (!$faq) {
                     return redirect()->route('admin.not.found');
                 }
-                $QA->delete();
+                $faq->delete();
                 return $this->returnSuccessMessage(__('general.move_to_trash'));
             }
         } catch (\Exception $exception) {
@@ -95,11 +96,11 @@ class QAController extends Controller
     {
         try {
             if ($request->ajax()) {
-                $QA = QA::onlyTrashed()->find($request->id);
-                if (!$QA) {
+                $faq = FAQ::onlyTrashed()->find($request->id);
+                if (!$faq) {
                     return redirect()->route('admin.not.found');
                 }
-                $QA->restore();
+                $faq->restore();
                 return $this->returnSuccessMessage(__('general.restore_success_message'));
             }
         } catch (\Exception $exception) {
@@ -114,14 +115,14 @@ class QAController extends Controller
         try {
             if ($request->ajax()) {
 
-                $QA = QA::onlyTrashed()->find($request->id);
+                $faq = FAQ::onlyTrashed()->find($request->id);
 
-                if (!$QA) {
+                if (!$faq) {
                     return redirect()->route('admin.not.found');
                 }
 
 
-                $QA->forceDelete();
+                $faq->forceDelete();
 
                 return $this->returnSuccessMessage(__('general.delete_success_message'));
             }
@@ -135,14 +136,14 @@ class QAController extends Controller
     public function changeStatus(Request $request)
     {
 
-        $QA = QA::find($request->id);
+        $faq = FAQ::find($request->id);
 
         if ($request->switchStatus == 'false') {
-            $QA->status = null;
-            $QA->save();
+            $faq->status = null;
+            $faq->save();
         } else {
-            $QA->status = 'on';
-            $QA->save();
+            $faq->status = 'on';
+            $faq->save();
         }
 
         return $this->returnSuccessMessage(__('general.change_status_success_message'));

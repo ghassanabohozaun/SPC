@@ -1,30 +1,28 @@
 @extends('layouts.admin')
-@section('title') @endsection
+@section('title')
+@endsection
 @section('content')
-
-    <form class="form" action="{{route('admin.QA.store')}}" method="POST" id="form_QA_store"
-          enctype="multipart/form-data">
-    @csrf
-    <!--begin::Subheader-->
+    <form class="form" action="{{ route('admin.faqs.store') }}" method="POST" id="form_faq_store"
+        enctype="multipart/form-data">
+        @csrf
+        <!--begin::Subheader-->
         <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
-            <div
-                class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                 <!--begin::Info-->
                 <div class="d-flex align-items-center flex-wrap mr-2">
 
                     <!--begin::Actions-->
                     <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
 
-
                     <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                         <li class="breadcrumb-item">
-                            <a href="{{route('admin.QA.index')}}" class="text-muted">
-                                {{__('menu.faq')}}
+                            <a href="{{ route('admin.faqs.index') }}" class="text-muted">
+                                {{ __('menu.faq') }}
                             </a>
                         </li>
                         <li class="breadcrumb-item">
                             <a href="" class="text-muted">
-                                {{__('menu.add_new_faq')}}
+                                {{ __('menu.add_new_faq') }}
                             </a>
                         </li>
                     </ul>
@@ -36,10 +34,9 @@
                 <!--begin::Toolbar-->
                 <div class="d-flex align-items-center">
 
-                    <button type="submit"
-                            class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
+                    <button type="submit" class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
                         <i class="fa fa-save"></i>
-                        {{__('general.save')}}
+                        {{ __('general.save') }}
                     </button>
                 </div>
                 <!--end::Toolbar-->
@@ -64,8 +61,7 @@
                                     <div class="col-xl-12">
                                         <!--begin::body-->
                                         <div class="my-5">
-                                            <div class="alert alert-danger alert_errors d-none"
-                                                 style="padding-top: 20px">
+                                            <div class="alert alert-danger alert_errors d-none" style="padding-top: 20px">
                                                 <ul></ul>
                                             </div>
 
@@ -75,32 +71,29 @@
 
                                 <ul class="nav nav-tabs" id="myTab2" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="details_ar_tab" data-toggle="tab"
-                                           href="#QA_details_ar">
+                                        <a class="nav-link active" id="details_en_tab" data-toggle="tab"
+                                            href="#faq_details_en">
                                             <span class="nav-icon"><i class="flaticon2-settings"></i></span>
-                                            <span class="nav-text">{{__('QA.details_ar_tab')}}</span>
+                                            <span class="nav-text">{{ __('faqs.details_en_tab') }}</span>
                                         </a>
                                     </li>
-                                    @if($lang_en =setting()->site_lang_en == 'on')
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="details_en_tab" data-toggle="tab"
-                                           href="#QA_details_en"
-                                           aria-controls="profile">
-                                            <span class="nav-icon"><i class="flaticon2-layers-1"></i></span>
-                                            <span class="nav-text">{{__('QA.details_en_tab')}}</span>
-                                        </a>
-                                    </li>
+                                    @if (setting()->site_lang_ar == 'on')
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="details_ar_tab" data-toggle="tab" href="#faq_details_ar"
+                                                aria-controls="profile">
+                                                <span class="nav-icon"><i class="flaticon2-layers-1"></i></span>
+                                                <span class="nav-text">{{ __('faqs.details_ar_tab') }}</span>
+                                            </a>
+                                        </li>
                                     @endif
                                 </ul>
 
 
 
-
                                 <div class="tab-content mt-5">
-
-                                    @include('admin.QA.create_tabs.details_ar')
-                                    @if($lang_en =setting()->site_lang_en == 'on')
-                                    @include('admin.QA.create_tabs.details_en')
+                                    @include('admin.faq.create_tabs.details_en')
+                                    @if (setting()->site_lang_ar == 'on')
+                                        @include('admin.faq.create_tabs.details_ar')
                                     @endif
                                 </div>
 
@@ -129,28 +122,24 @@
         <!--end::content-->
 
     </form>
-
 @endsection
 @push('js')
-
     <script type="text/javascript">
-
-
-        $('#form_QA_store').on('submit', function (e) {
+        $('#form_faq_store').on('submit', function(e) {
             e.preventDefault();
 
             ////////////////////////////////////////////////////////////////////
 
 
-            $('#title_ar_error').text('');
-            $('#details_ar_error').text('');
-            $('#title_en_error').text('');
-            $('#details_en_error').text('');
+            $('#question_en_error').text('');
+            $('#answer_en_error').text('');
+            $('#question_ar_error').text('');
+            $('#answer_en_error').text('');
 
-            $('#title_ar').css('border-color', '');
-            $('#details_ar').css('border-color', '');
-            $('#title_en').css('border-color', '');
-            $('#details_en').css('border-color', '');
+            $('#question_en').css('border-color', '');
+            $('#question_ar').css('border-color', '');
+            $('#answer_en').css('border-color', '');
+            $('#answer_ar').css('border-color', '');
 
             ///////////////////////////////////////////////////////////////////
 
@@ -166,14 +155,14 @@
                 contentType: false,
                 processData: false,
                 cache: false,
-                beforeSend: function () {
+                beforeSend: function() {
                     KTApp.blockPage({
                         overlayColor: '#000000',
                         state: 'danger',
-                        message: "{{__('general.please_wait')}}",
+                        message: "{{ __('general.please_wait') }}",
                     });
                 },
-                success: function (data) {
+                success: function(data) {
                     KTApp.unblockPage();
                     console.log(data);
                     if (data.status == true) {
@@ -182,29 +171,33 @@
                             text: "",
                             icon: "success",
                             allowOutsideClick: false,
-                            customClass: {confirmButton: 'add_project_button'}
+                            customClass: {
+                                confirmButton: 'add_faq_button'
+                            }
                         });
-                        $('.add_project_button').click(function () {
-                            window.location.href = "{{route('admin.QA.index')}}";
+                        $('.add_faq_button').click(function() {
+                            window.location.href = "{{ route('admin.faqs.index') }}";
                         });
                     }
-                },//end success
-                error: function (reject) {
+                }, //end success
+                error: function(reject) {
                     KTApp.unblockPage();
-                    $('html, body').animate({scrollTop: 20}, 300);
+                    $('html, body').animate({
+                        scrollTop: 20
+                    }, 300);
                     var response = $.parseJSON(reject.responseText);
-                    $.each(response.errors, function (key, value) {
+                    $.each(response.errors, function(key, value) {
                         $('#' + key + '_error').text(value[0])
                         $('#' + key).css('border-color', '#F64E60 ')
                     });
                     ArticlePrintErrors(response.errors)
-                },//end error
-                complete: function () {
+                }, //end error
+                complete: function() {
                     KTApp.unblockPage();
-                },//end complete
-            });//end ajax
+                }, //end complete
+            }); //end ajax
 
-        });//end submit
+        }); //end submit
         ////////////////////////////////////
         ////// Print Errors Function
         function ArticlePrintErrors(msg) {
@@ -212,8 +205,7 @@
             $('.alert_errors').find('ul').empty();
             $('.alert_errors').removeClass('d-none');
             $('.alert_success').addClass('d-none');
-            $('.loading_save_continue').addClass('d-none');
-            $.each(msg, function (key, value) {
+            $.each(msg, function(key, value) {
                 $('.alert_errors').find('ul').append("<li>" + value + "</li>");
             });
         }

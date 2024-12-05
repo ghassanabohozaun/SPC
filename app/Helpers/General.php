@@ -1,6 +1,8 @@
 <?php
+
 use App\Models\AboutType;
 use App\Models\Projects;
+use App\Models\Setting;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
@@ -8,7 +10,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 if (!function_exists('setting')) {
     function setting()
     {
-        return App\Models\Setting::orderBy('id', 'desc')->first();
+        return Setting::orderBy('id', 'desc')->first();
     }
 }
 
@@ -50,7 +52,8 @@ function returnSpaceBetweenString($string)
     return $string = str_replace('-', ' ', $string); // Replaces all spaces with hyphens.
 }
 
-function abouts_type(){
+function abouts_type()
+{
     return AboutType::get();
 }
 
@@ -61,14 +64,14 @@ function fixedTexts()
     return App\Models\FixedText::orderBy('id', 'desc')->first();
 }
 
-function projects(){
-   return   Projects::orderByDesc('id')->where('status' ,'on')->where('type' ,'current')->where(function ($q) {
-        if(LaravelLocalization::getCurrentLocale() == 'ar'){
+function projects()
+{
+    return   Projects::orderByDesc('id')->where('status', 'on')->where('type', 'current')->where(function ($q) {
+        if (LaravelLocalization::getCurrentLocale() == 'ar') {
             $q->where('language', 'ar')
-            ->orWhere('language', 'ar_en');
-        }else{
+                ->orWhere('language', 'ar_en');
+        } else {
             $q->orWhere('language', 'ar_en');
         }
-   })->limit(4)->get() ;
+    })->limit(4)->get();
 }
-
