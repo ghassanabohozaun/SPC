@@ -29,7 +29,8 @@
                                 <!---begin: button div --->
                                 <div class='row' style="padding: 10px ; ">
                                     <div class="col-12">
-                                        <a href="#" class="btn btn-primary btn-sm" style="float:right ;margin:5px">
+                                        <a href="{!! route('admin.trainings.create') !!}" class="btn btn-primary btn-sm"
+                                            style="float:right ;margin:5px">
                                             Add New Training
                                         </a>
 
@@ -51,6 +52,7 @@
                                                         <th>ID</th>
                                                         <th>Title Ar </th>
                                                         <th>Title En </th>
+                                                        <th>Started Date</th>
                                                         <th>Status</th>
                                                         <th> Actions </th>
                                                     </thead>
@@ -60,6 +62,7 @@
                                                                 <td>{!! $training->id !!}</td>
                                                                 <td>{!! $training->title_ar !!}</td>
                                                                 <td>{!! $training->title_en !!}</td>
+                                                                <td>{!! $training->started_date !!}</td>
                                                                 <td>
                                                                     <div class="cst-switch switch-sm">
                                                                         <input type="checkbox" id='status_checkbox'
@@ -70,7 +73,7 @@
                                                                 </td>
                                                                 <td>
 
-                                                                    <a href='#' id='edit_training'
+                                                                    <a href='{!! route('admin.trainings.edit', $training->id) !!}' id='edit_training'
                                                                         name='edit_training'
                                                                         class='btn btn-info btn-sm edit_training'>
                                                                         <i class='fa fa-pen'></i>

@@ -1,15 +1,13 @@
 @extends('layouts.admin')
-@section('title') @endsection
+@section('title')
+@endsection
 @section('content')
 
-    <form class="form" action="{{route('user.store')}}" method="POST"
-          id="form_user_store"
-          enctype="multipart/form-data">
-    @csrf
-    <!--begin::Subheader-->
+    <form class="form" action="{{ route('user.store') }}" method="POST" id="form_user_store" enctype="multipart/form-data">
+        @csrf
+        <!--begin::Subheader-->
         <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
-            <div
-                class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                 <!--begin::Info-->
                 <div class="d-flex align-items-center flex-wrap mr-2">
 
@@ -19,13 +17,13 @@
                     <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                         <li class="breadcrumb-item">
                             <a href="{!! route('users') !!}" class="text-muted">
-                                {{__('menu.users')}}
+                                {{ __('menu.users') }}
                             </a>
                         </li>
 
                         <li class="breadcrumb-item">
                             <a href="" class="text-muted">
-                                {{__('menu.add_new_user')}}
+                                {{ __('menu.add_new_user') }}
                             </a>
                         </li>
 
@@ -38,10 +36,9 @@
                 <!--begin::Toolbar-->
                 <div class="d-flex align-items-center">
 
-                    <button type="submit"
-                            class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
+                    <button type="submit" class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
                         <i class="fa fa-save"></i>
-                        {{__('general.save')}}
+                        {{ __('general.save') }}
                     </button>
 
                 </div>
@@ -75,35 +72,33 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('users.photo')}}
+                                                            {{ __('users.photo') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <div
-                                                                class="image-input image-input-outline"
-                                                                id="kt_user_photo">
+                                                            <div class="image-input image-input-outline" id="kt_user_photo">
                                                                 <div class="image-input-wrapper"></div>
                                                                 <label
                                                                     class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                                                    data-action="change" data-toggle="tooltip" title=""
-                                                                    data-original-title="{{__('general.change_image')}}">
+                                                                    data-action="change" data-toggle="tooltip"
+                                                                    title=""
+                                                                    data-original-title="{{ __('general.change_image') }}">
                                                                     <i class="fa fa-pen icon-sm text-muted"></i>
                                                                     <input type="file" name="photo" id="photo"
-                                                                           class="table-responsive-sm">
-                                                                    <input type="hidden" name="photo_remove"/>
+                                                                        class="table-responsive-sm">
+                                                                    <input type="hidden" name="photo_remove" />
                                                                 </label>
 
                                                                 <span
                                                                     class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
                                                                     data-action="cancel" data-toggle="tooltip"
                                                                     title="Cancel avatar">
-                                                                                <i class="ki ki-bold-close icon-xs text-muted"></i>
-                                                                 </span>
+                                                                    <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                                </span>
                                                             </div>
                                                             <span
-                                                                class="form-text text-muted">{{__('general.image_format_allow')}}
+                                                                class="form-text text-muted">{{ __('general.image_format_allow') }}
                                                             </span>
-                                                            <span class="form-text text-danger"
-                                                                  id="photo_error"></span>
+                                                            <span class="form-text text-danger" id="photo_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -112,16 +107,14 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('users.name')}}
+                                                            {{ __('users.name') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="name" id="name" type="text"
-                                                                placeholder=" {{__('users.enter_name')}}"
-                                                                autocomplete="off"/>
-                                                            <span class="form-text text-danger"
-                                                                  id="name_error"></span>
+                                                                placeholder=" {{ __('users.enter_name') }}"
+                                                                autocomplete="off" />
+                                                            <span class="form-text text-danger" id="name_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -130,29 +123,27 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('users.gender')}}
+                                                            {{ __('users.gender') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
 
-                                                            <select
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <select class="form-control form-control-solid form-control-lg"
                                                                 name="gender" id="gender" type="text">
 
                                                                 <option value="">
-                                                                    {{__('general.select_from_list')}}
+                                                                    {{ __('general.select_from_list') }}
                                                                 </option>
 
                                                                 <option value="male">
-                                                                    {{__('general.male')}}
+                                                                    {{ __('general.male') }}
                                                                 </option>
 
                                                                 <option value="female">
-                                                                    {{__('general.female')}}
+                                                                    {{ __('general.female') }}
                                                                 </option>
 
                                                             </select>
-                                                            <span class="form-text text-danger"
-                                                                  id="gender_error"></span>
+                                                            <span class="form-text text-danger" id="gender_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -160,16 +151,14 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('users.email')}}
+                                                            {{ __('users.email') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="email" id="email" type="email"
-                                                                placeholder=" {{__('users.enter_email')}}"
-                                                                autocomplete="off"/>
-                                                            <span class="form-text text-danger"
-                                                                  id="email_error"></span>
+                                                                placeholder=" {{ __('users.enter_email') }}"
+                                                                autocomplete="off" />
+                                                            <span class="form-text text-danger" id="email_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -178,16 +167,15 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('users.password')}}
+                                                            {{ __('users.password') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="password" id="password" type="password"
-                                                                placeholder=" {{__('users.enter_password')}}"
-                                                                autocomplete="off"/>
+                                                                placeholder=" {{ __('users.enter_password') }}"
+                                                                autocomplete="off" />
                                                             <span class="form-text text-danger"
-                                                                  id="password_error"></span>
+                                                                id="password_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -195,22 +183,21 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('users.role_id')}}
+                                                            {{ __('users.role_id') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
 
-                                                            <select
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <select class="form-control form-control-solid form-control-lg"
                                                                 name="role_id" id="role_id" type="text">
 
                                                                 <option value="">
-                                                                    {{__('general.select_from_list')}}
+                                                                    {{ __('general.select_from_list') }}
                                                                 </option>
 
-                                                                @if($roles && $roles->count()>0)
-                                                                    @foreach($roles as $role)
+                                                                @if ($roles && $roles->count() > 0)
+                                                                    @foreach ($roles as $role)
                                                                         <option value="{!! $role->id !!}">
-                                                                            @if(Lang()=='ar')
+                                                                            @if (Lang() == 'ar')
                                                                                 {!! $role->role_name_ar !!}
                                                                             @else
                                                                                 {!! $role->role_name_en !!}
@@ -220,8 +207,7 @@
                                                                 @endif
 
                                                             </select>
-                                                            <span class="form-text text-danger"
-                                                                  id="role_id_error"></span>
+                                                            <span class="form-text text-danger" id="role_id_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -229,16 +215,14 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('users.mobile')}}
+                                                            {{ __('users.mobile') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="mobile" id="mobile" type="text"
-                                                                placeholder=" {{__('users.enter_mobile')}}"
-                                                                autocomplete="off"/>
-                                                            <span class="form-text text-danger"
-                                                                  id="mobile_error"></span>
+                                                                placeholder=" {{ __('users.enter_mobile') }}"
+                                                                autocomplete="off" />
+                                                            <span class="form-text text-danger" id="mobile_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -269,13 +253,12 @@
 
 @push('js')
     <script type="text/javascript">
-
         //////////////////////////////////////////////////////
         var user_photo = new KTImageInput('kt_user_photo');
 
         /////////////////////////////////////////////////////////
         // Store User
-        $('#form_user_store').on('submit', function (e) {
+        $('#form_user_store').on('submit', function(e) {
             e.preventDefault();
             ////////////////////////////////////////////////////
             $('#name_error').text('');
@@ -308,14 +291,14 @@
                 contentType: false,
                 cache: false,
                 processData: false,
-                beforeSend: function () {
+                beforeSend: function() {
                     KTApp.blockPage({
                         overlayColor: '#000000',
                         state: 'danger',
-                        message: "{{__('general.please_wait')}}",
+                        message: "{{ __('general.please_wait') }}",
                     });
                 },
-                success: function (data) {
+                success: function(data) {
                     KTApp.unblockPage();
                     console.log(data);
                     if (data.status == true) {
@@ -324,29 +307,30 @@
                             text: "",
                             icon: "success",
                             allowOutsideClick: false,
-                            customClass: {confirmButton: 'add_user_button'}
+                            customClass: {
+                                confirmButton: 'add_user_button'
+                            }
                         });
-                        $('.add_user_button').click(function () {
-                            window.location.href = "{{route('users')}}";
+                        $('.add_user_button').click(function() {
+                            window.location.href = "{{ route('users') }}";
                         });
                     }
                 },
 
-                error: function (reject) {
+                error: function(reject) {
                     var response = $.parseJSON(reject.responseText);
-                    $.each(response.errors, function (key, value) {
+                    $.each(response.errors, function(key, value) {
                         $('#' + key + '_error').text(value[0]);
                         $('#' + key).css('border-color', 'red');
-                        $('body,html').animate({scrollTop: 20}, 300);
+                        $('body,html').animate({
+                            scrollTop: 20
+                        }, 300);
                     });
                 },
-                complete: function () {
+                complete: function() {
                     KTApp.unblockPage();
                 },
             })
         })
-
-
     </script>
 @endpush
-

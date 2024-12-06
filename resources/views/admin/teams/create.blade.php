@@ -1,14 +1,13 @@
 @extends('layouts.admin')
-@section('title') @endsection
+@section('title')
+@endsection
 
 @section('content')
-
-    <form class="form" action="{{route('admin.team.member.store')}}" method="POST" id="form_team_member_add">
+    <form class="form" action="{{ route('admin.team.member.store') }}" method="POST" id="form_team_member_add">
         @csrf
         <!--begin::Subheader-->
         <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
-            <div
-                class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                 <!--begin::Info-->
                 <div class="d-flex align-items-center flex-wrap mr-2">
 
@@ -18,14 +17,14 @@
 
                     <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                         <li class="breadcrumb-item">
-                            <a href="{{route('admin.teams')}}" class="text-muted">
-                                {{__('menu.teams')}}
+                            <a href="{{ route('admin.teams') }}" class="text-muted">
+                                {{ __('menu.teams') }}
                             </a>
                         </li>
 
                         <li class="breadcrumb-item">
                             <a href="" class="text-muted">
-                                {{__('menu.add_new_team_member')}}
+                                {{ __('menu.add_new_team_member') }}
                             </a>
                         </li>
                     </ul>
@@ -37,10 +36,9 @@
                 <!--begin::Toolbar-->
                 <div class="d-flex align-items-center">
 
-                    <button type="submit"
-                            class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
+                    <button type="submit" class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
                         <i class="fa fa-save"></i>
-                        {{__('general.save')}}
+                        {{ __('general.save') }}
                     </button>
 
                 </div>
@@ -74,36 +72,35 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('teams.photo')}}
+                                                            {{ __('teams.photo') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <div
-                                                                class="image-input image-input-outline"
+                                                            <div class="image-input image-input-outline"
                                                                 id="kt_team_member_photo">
 
                                                                 <div class="image-input-wrapper"></div>
                                                                 <label
                                                                     class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                                                    data-action="change" data-toggle="tooltip" title=""
-                                                                    data-original-title="{{__('general.change_image')}}">
+                                                                    data-action="change" data-toggle="tooltip"
+                                                                    title=""
+                                                                    data-original-title="{{ __('general.change_image') }}">
                                                                     <i class="fa fa-pen icon-sm text-muted"></i>
                                                                     <input type="file" name="photo" id="photo"
-                                                                           class="table-responsive-sm">
-                                                                    <input type="hidden" name="photo_remove"/>
+                                                                        class="table-responsive-sm">
+                                                                    <input type="hidden" name="photo_remove" />
                                                                 </label>
 
                                                                 <span
                                                                     class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
                                                                     data-action="cancel" data-toggle="tooltip"
                                                                     title="Cancel avatar">
-                                                                                <i class="ki ki-bold-close icon-xs text-muted"></i>
-                                                                 </span>
+                                                                    <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                                </span>
                                                             </div>
                                                             <span
-                                                                class="form-text text-muted">{{__('general.image_format_allow')}}
+                                                                class="form-text text-muted">{{ __('general.image_format_allow') }}
                                                             </span>
-                                                            <span class="form-text text-danger"
-                                                                  id="photo_error"></span>
+                                                            <span class="form-text text-danger" id="photo_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -112,17 +109,15 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('teams.name_ar')}}
+                                                            {{ __('teams.name_ar') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="name_ar" id="name_ar" type="text"
-                                                                placeholder=" {{__('teams.enter_name_ar')}}"
-                                                                autocomplete="off"/>
+                                                                placeholder=" {{ __('teams.enter_name_ar') }}"
+                                                                autocomplete="off" />
 
-                                                            <span class="form-text text-danger"
-                                                                  id="name_ar_error"></span>
+                                                            <span class="form-text text-danger" id="name_ar_error"></span>
 
                                                         </div>
                                                     </div>
@@ -132,17 +127,15 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('testimonials.name_en')}}
+                                                            {{ __('testimonials.name_en') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="name_en" id="name_en" type="text"
-                                                                placeholder=" {{__('teams.enter_name_en')}}"
-                                                                autocomplete="off"/>
+                                                                placeholder=" {{ __('teams.enter_name_en') }}"
+                                                                autocomplete="off" />
 
-                                                            <span class="form-text text-danger"
-                                                                  id="name_en_error"></span>
+                                                            <span class="form-text text-danger" id="name_en_error"></span>
 
                                                         </div>
                                                     </div>
@@ -152,16 +145,15 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('teams.position_ar')}}
+                                                            {{ __('teams.position_ar') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="position_ar" id="position_ar" type="text"
-                                                                placeholder=" {{__('teams.enter_position_ar')}}"
+                                                                placeholder=" {{ __('teams.enter_position_ar') }}"
                                                                 autocomplete="off">
                                                             <span class="form-text text-danger"
-                                                                  id="position_ar_error"></span>
+                                                                id="position_ar_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -170,16 +162,15 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('teams.position_en')}}
+                                                            {{ __('teams.position_en') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="position_en" id="position_en" type="text"
-                                                                placeholder=" {{__('teams.enter_position_en')}}"
+                                                                placeholder=" {{ __('teams.enter_position_en') }}"
                                                                 autocomplete="off">
                                                             <span class="form-text text-danger"
-                                                                  id="position_en_error"></span>
+                                                                id="position_en_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -187,16 +178,15 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('teams.description_ar')}}
+                                                            {{ __('teams.description_ar') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="description_ar" id="description_ar" type="text"
-                                                                placeholder=" {{__('teams.enter_description_ar')}}"
+                                                                placeholder=" {{ __('teams.enter_description_ar') }}"
                                                                 autocomplete="off">
                                                             <span class="form-text text-danger"
-                                                                  id="description_ar_error"></span>
+                                                                id="description_ar_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -204,16 +194,15 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('teams.description_en')}}
+                                                            {{ __('teams.description_en') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="description_en" id="description_en" type="text"
-                                                                placeholder=" {{__('teams.enter_description_en')}}"
+                                                                placeholder=" {{ __('teams.enter_description_en') }}"
                                                                 autocomplete="off">
                                                             <span class="form-text text-danger"
-                                                                  id="description_en_error"></span>
+                                                                id="description_en_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -221,16 +210,15 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('teams.facebook')}}
+                                                            {{ __('teams.facebook') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="facebook" id="facebook" type="text"
-                                                                placeholder=" {{__('teams.enter_facebook')}}"
+                                                                placeholder=" {{ __('teams.enter_facebook') }}"
                                                                 autocomplete="off">
                                                             <span class="form-text text-danger"
-                                                                  id="facebook_error"></span>
+                                                                id="facebook_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -238,16 +226,14 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('teams.twitter')}}
+                                                            {{ __('teams.twitter') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="twitter" id="twitter" type="text"
-                                                                placeholder=" {{__('teams.enter_twitter')}}"
+                                                                placeholder=" {{ __('teams.enter_twitter') }}"
                                                                 autocomplete="off">
-                                                            <span class="form-text text-danger"
-                                                                  id="twitter_error"></span>
+                                                            <span class="form-text text-danger" id="twitter_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -255,16 +241,15 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('teams.linkedIn')}}
+                                                            {{ __('teams.linkedIn') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="linkedIn" id="linkedIn" type="text"
-                                                                placeholder=" {{__('teams.enter_linkedIn')}}"
+                                                                placeholder=" {{ __('teams.enter_linkedIn') }}"
                                                                 autocomplete="off">
                                                             <span class="form-text text-danger"
-                                                                  id="linkedIn_error"></span>
+                                                                id="linkedIn_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -273,33 +258,31 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('teams.type')}}
+                                                            {{ __('teams.type') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
 
-                                                            <select
-                                                                class="form-control  form-control-lg"
-                                                                name="type" id="type" type="text">
+                                                            <select class="form-control  form-control-lg" name="type"
+                                                                id="type" type="text">
                                                                 <option value="">
-                                                                    {{__('general.select_from_list')}}
+                                                                    {{ __('general.select_from_list') }}
                                                                 </option>
 
                                                                 <option value="founder">
-                                                                    {{__('teams.founder')}}
+                                                                    {{ __('teams.founder') }}
                                                                 </option>
 
                                                                 <option value="director">
-                                                                    {{__('teams.director')}}
+                                                                    {{ __('teams.director') }}
                                                                 </option>
 
                                                                 <option value="member">
-                                                                    {{__('teams.member')}}
+                                                                    {{ __('teams.member') }}
                                                                 </option>
 
                                                             </select>
 
-                                                            <span class="form-text text-danger"
-                                                                  id="type_error"></span>
+                                                            <span class="form-text text-danger" id="type_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -329,12 +312,11 @@
 
 
 @push('js')
-
     <script type="text/javascript">
         ////////////////////////////////////////////////////
         var team_member_photo = new KTImageInput('kt_team_member_photo');
 
-        $('#form_team_member_add').on('submit', function (e) {
+        $('#form_team_member_add').on('submit', function(e) {
             e.preventDefault();
             //////////////////////////////////////////////////////////////
             $('#photo').css('border-color', '');
@@ -374,14 +356,14 @@
                 contentType: false,
                 cache: false,
                 processData: false,
-                beforeSend: function () {
+                beforeSend: function() {
                     KTApp.blockPage({
                         overlayColor: '#000000',
                         state: 'danger',
-                        message: "{{__('general.please_wait')}}",
+                        message: "{{ __('general.please_wait') }}",
                     });
-                },//end beforeSend
-                success: function (data) {
+                }, //end beforeSend
+                success: function(data) {
                     KTApp.unblockPage();
                     if (data.status == true) {
                         Swal.fire({
@@ -389,31 +371,34 @@
                             text: "",
                             icon: "success",
                             allowOutsideClick: false,
-                            customClass: {confirmButton: 'add_team_member_button'}
+                            customClass: {
+                                confirmButton: 'add_team_member_button'
+                            }
                         });
-                        $('.add_team_member_button').click(function () {
-                            window.location.href = "{{route('admin.teams')}}";
+                        $('.add_team_member_button').click(function() {
+                            window.location.href = "{{ route('admin.teams') }}";
                         });
                     }
-                },//end success
+                }, //end success
 
-                error: function (reject) {
+                error: function(reject) {
                     var response = $.parseJSON(reject.responseText);
-                    $.each(response.errors, function (key, value) {
+                    $.each(response.errors, function(key, value) {
                         $('#' + key + '_error').text(value[0]);
                         $('#' + key).css('border-color', '#F64E60');
-                        $('html, body').animate({scrollTop: 20}, 300);
+                        $('html, body').animate({
+                            scrollTop: 20
+                        }, 300);
                     });
 
-                },//end error
+                }, //end error
 
-                complete: function () {
+                complete: function() {
                     KTApp.unblockPage();
-                },//end complete
+                }, //end complete
 
             });
 
-        });//end submit
-
+        }); //end submit
     </script>
 @endpush

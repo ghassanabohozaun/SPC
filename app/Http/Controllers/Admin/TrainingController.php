@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TrainingRequest;
+use App\Http\Requests\TrainingUpdateRequest;
 use App\Models\Training;
 use App\Traits\GeneralTrait;
+use Database\Factories\TrainingFactory;
 use Illuminate\Http\Request;
+use File;
 
 class TrainingController extends Controller
 {
@@ -16,17 +20,114 @@ class TrainingController extends Controller
 
     public function index()
     {
-
         $title = 'Trainings';
-        $trainings = Training::paginate(15);
+        $trainings = Training::orderBy('created_at', 'desc')->paginate(15);
         return view('admin.trainings.index', compact('title', 'trainings'));
+    }
+
+    //////////////////////////////////////////////////
+    // create
+    public function create()
+    {
+        $title = 'Create Training';
+        return view('admin.trainings.create', compact('title'));
+    }
+
+    //////////////////////////////////////////////////
+    // store
+
+    public function store(TrainingRequest $request)
+    {
+        $site_lang = setting()->site_lang_ar;
+
+        if ($request->hasFile('photo')) {
+            $photo_file  = $request->file('photo');
+            $path_destination = public_path('/adminBoard/uploadedImages/trainings//');
+            $photo = $this->saveResizeImage($photo_file, $path_destination, 200, 200);
+        } else {
+            $photo = '';
+        }
+
+        $training =  Training::create(
+            [
+                'title_en' => $request->title_en,
+                'title_ar' => $site_lang == 'on' ? $request->title_ar : '',
+                'status' => 'on',
+                'photo' => $photo,
+                'started_date' => $request->started_date,
+                'language' =>  'ar_en',
+
+            ]
+        );
+
+        if ($training) {
+            return $this->returnSuccessMessage('Training created successfully');
+        }
+    }
+
+    //////////////////////////////////////////////////
+    // edit
+    public function edit($id)
+    {
+        $title = 'Edit Training';
+        $training = Training::find($id);
+        if (!$training) {
+            return redirect()->route('admin.not.found');
+        }
+        return view('admin.trainings.update', compact('title', 'training'));
     }
 
 
 
+    ///////////////////////////////////////////////////////////
+    // update
+    public function update(TrainingRequest $request)
+    {
+        $training = Training::find($request->id);
+        if (!$training) {
+            return $this->returnError('Training not found', 404);
+        }
+
+        if ($request->hasFile('photo')) {
+            if (!empty($training->photo)) {
+
+                //delete old photo
+                $public_path = public_path('/adminBoard/uploadedImages/trainings//') . $training->photo;
+                if (File::exists($public_path)) {
+                    File::delete($public_path);
+                }
+
+                // upload new photo
+                $photo_file = $request->file('photo');
+                $photo_destination = public_path('/adminBoard/uploadedImages/trainings//');
+                $photo = $this->saveResizeImage($photo_file, $photo_destination, 200, 200);
+            } else {
+
+                $photo_file = $request->file('photo');
+                $photo_destination = public_path('/adminBoard/uploadedImages/trainings//');
+                $photo  = $this->saveResizeImage($photo_file, $photo_destination, 200, 200);
+            }
+        } else {
+            if (!empty($training->photo)) {
+                $photo = $training->photo;
+            } else {
+                $photo = '';
+            }
+        }
 
 
+        $site_lang = setting()->site_lang_ar;
 
+        $training->update([
+            'title_ar' => $site_lang == 'on' ?  $request->title_ar : '',
+            'title_en' => $request->title_en,
+            'started_date' => $request->started_date,
+            'language' => $site_lang == 'on' ? 'ar_en' : 'en',
+            'photo' => $photo,
+        ]);
+
+        return $this->returnSuccessMessage('Training updated successfully');
+    }
     //////////////////////////////////////////////////
     // destroy
 
@@ -86,6 +187,14 @@ class TrainingController extends Controller
             if (!$training) {
                 return $this->returnError('Training not found', 404);
             }
+
+            if (!empty($training->photo)) {
+                $public_path = public_path('/adminBoard/uploadedImages/trainings//') . $training->photo;
+                if (File::exists($public_path)) {
+                    File::delete($public_path);
+                }
+            }
+
 
             $training->forceDelete();
             return $this->returnSuccessMessage('Training force deleted successfully');

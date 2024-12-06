@@ -129,6 +129,9 @@
                         $('#alert_messages').removeClass('d-none');
                         $('#alert_messages').find('span').html(data.msg);
                         $('#trashed_trainings_table').load(location.href + ' #trashed_trainings_table');
+                        setTimeout(function() {
+                            $('#alert_messages').addClass('d-none');
+                        }, 1500);
                     }
                 }
             });

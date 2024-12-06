@@ -56,12 +56,10 @@ class TeamController extends Controller
             'twitter' => $request->twitter,
             'linkedIn' => $request->linkedIn,
             'type' => $request->type,
-            'status' =>'on',
+            'status' => 'on',
         ]);
 
         return $this->returnSuccessMessage(__('general.add_success_message'));
-
-
     }
 
 
@@ -96,13 +94,11 @@ class TeamController extends Controller
                 $image = $request->file('photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/teams//');
                 $photo_path = $this->saveResizeImage($image, $destinationPath, 348, 400);
-
             } else {
-                $image_path = public_path('/adminBoard/uploadedImages/teams//') . $team->photo;
-                if (File::exists($image_path)) {
-                    File::delete($image_path);
-                }
-
+                // $image_path = public_path('/adminBoard/uploadedImages/teams//') . $team->photo;
+                // if (File::exists($image_path)) {
+                //     File::delete($image_path);
+                // }
                 $image = $request->file('photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/teams//');
                 $photo_path = $this->saveResizeImage($image, $destinationPath, 348, 400);
@@ -131,7 +127,6 @@ class TeamController extends Controller
         ]);
 
         return $this->returnSuccessMessage(__('general.update_success_message'));
-
     }
 
 
@@ -169,27 +164,25 @@ class TeamController extends Controller
             $team->restore();
             return $this->returnSuccessMessage(__('general.restore_success_message'));
         }
-
     }
 
     //  force delete
     public function forceDelete(Request $request)
     {
-            if ($request->ajax()) {
-                $team = Team::onlyTrashed()->find($request->id);
-                if (!$team) {
-                    return redirect()->route('admin.not.found');
-                }
-                if (!empty($team->photo)) {
-                    $image_path = public_path('/adminBoard/uploadedImages/teams//') . $team->photo;
-                    if (File::exists($image_path)) {
-                        File::delete($image_path);
-                    }
-                }
-                $team->forceDelete();
-                return $this->returnSuccessMessage(__('general.delete_success_message'));
+        if ($request->ajax()) {
+            $team = Team::onlyTrashed()->find($request->id);
+            if (!$team) {
+                return redirect()->route('admin.not.found');
             }
-
+            if (!empty($team->photo)) {
+                $image_path = public_path('/adminBoard/uploadedImages/teams//') . $team->photo;
+                if (File::exists($image_path)) {
+                    File::delete($image_path);
+                }
+            }
+            $team->forceDelete();
+            return $this->returnSuccessMessage(__('general.delete_success_message'));
+        }
     }
 
 
@@ -209,5 +202,4 @@ class TeamController extends Controller
 
         return $this->returnSuccessMessage(__('general.change_status_success_message'));
     }
-
 }

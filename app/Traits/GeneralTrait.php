@@ -83,9 +83,17 @@ trait GeneralTrait
     ///////////////////////////////////////////
     public function saveFile($name, $path)
     {
-        $ImageExtenstion = $name->getClientOriginalName();
-        $ImageName = time() . rand() . '.' . $ImageExtenstion;
-        $name->move($path, $ImageName);
-        return $ImageName;
+
+
+        $fileExtenstion = $name->getClientOriginalExtension();
+        $fileName = time() . rand() . '.' . $fileExtenstion;
+        $name->move($path, $fileName);
+        return $fileName;
+
+
+        // $ImageExtenstion = $name->getClientOriginalExtension();
+        // $ImageName = time() . rand() . '.' . $ImageExtenstion;
+        // $name->move($path, $ImageName);
+        // return $ImageName;
     }
 }

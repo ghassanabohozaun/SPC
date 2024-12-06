@@ -184,6 +184,10 @@ Route::group([
         Route::get('/trashed', [TrainingController::class, 'getTrashed'])->name('admin.trainings.get.trashed');
         Route::post('/restore', [TrainingController::class, 'restore'])->name('admin.trainings.restore');
         Route::post('/force-delete', [TrainingController::class, 'forceDelete'])->name('admin.trainings.force.delete');
+        Route::get('/create', [TrainingController::class, 'create'])->name('admin.trainings.create');
+        Route::post('/store', [TrainingController::class, 'store'])->name('admin.trainings.store');
+        Route::get("/edit/{id}", [TrainingController::class, 'edit'])->name('admin.trainings.edit');
+        Route::post('/update', [TrainingController::class, 'update'])->name('admin.trainings.update');
     });
 
     // /////////////////////////////////////////////////////////////////////////////////////////////
@@ -197,7 +201,6 @@ Route::group([
     //     Route::post('/change-status', 'SupportCenterController@changeStatus')->name('admin.support.center.change.status');
     //     Route::get('/get-one-message', 'SupportCenterController@getOneMessage')->name('admin.support.center.get.one.message');
     // });
-
 
     // /////////////////////////////////////////////////////////////////////////////////////////////
     // /// articles  routes

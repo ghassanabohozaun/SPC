@@ -12,6 +12,7 @@ class SettingsSeeder extends Seeder
      */
     public function run()
     {
+
         Setting::create([
             'site_name_ar' => 'ايثار',
             'site_name_en' => 'Ethar',
