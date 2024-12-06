@@ -1,5 +1,6 @@
 <?php
 
+use Database\Seeders\FaqSeeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\TrainingsSeeder;
 use Illuminate\Database\Seeder;
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             AdminSeeder::class,
             TrainingsSeeder::class,
+            FaqSeeder::class,
             // FixedTextsSeeder::class,
         ]);
 

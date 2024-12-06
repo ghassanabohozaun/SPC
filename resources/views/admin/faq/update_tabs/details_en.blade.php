@@ -24,7 +24,8 @@
                         <!--begin::Group-->
                         <div class="form-group">
                             <label> {{ __('faqs.answer_en') }}</label>
-                            <textarea class="form-control summernote" placeholder="{{ __('faqs.answer_en') }}" name="answer_en" id="answer_en">{{ $faq->answer_en }}</textarea>
+                            <textarea class="form-control summernote answer_en" placeholder="{{ __('faqs.answer_en') }}" name="answer_en"
+                                id="answer_en">{{ $faq->answer_en }}</textarea>
                             <span class="form-text text-danger" id="answer_en_error"></span>
                         </div>
                         <!--end::Group-->

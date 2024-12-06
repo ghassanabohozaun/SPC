@@ -120,6 +120,12 @@
 @endsection
 @push('js')
     <script type="text/javascript">
+        $(document).ready(function() {
+            //$('.note-frame').css('border-color', 'red');
+            //$('#answer_en_div .note-frame').attr('border', '1px solid #973c10');
+            // $('#answer_en_div.note-editor.note-frame').attr('border-color', 'red');
+        });
+
         $('#form_faq_update').on('submit', function(e) {
             e.preventDefault();
 
@@ -132,6 +138,7 @@
 
             $('#question_en').css('border-color', '');
             $('#question_ar').css('border-color', '');
+
             $('#answer_en').css('border-color', '');
             $('#answer_ar').css('border-color', '');
             ///////////////////////////////////////////////////////////////////

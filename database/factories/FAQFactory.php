@@ -8,7 +8,7 @@ use Faker\Factory as Faker;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Projects>
  */
-class TrainingFactory extends Factory
+class FAQFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,12 +20,11 @@ class TrainingFactory extends Factory
         $faker = Faker::create();
 
         return [
-            'title_ar' => $faker->sentence(),
-            'title_en' => $faker->sentence(),
+            'question_en' => $faker->sentence(),
+            'question_ar' => $faker->sentence(),
+            'answer_en' => $faker->paragraph(),
+            'answer_ar' => $faker->paragraph(),
             'status' => 'on',
-            'photo' => '',
-            'started_date' => now(),
-            'language' => 'ar_en',
         ];
     }
 }

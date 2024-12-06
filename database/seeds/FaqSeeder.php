@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Training;
+use App\Models\FAQ;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
 
-class TrainingsSeeder extends Seeder
+
+class FaqSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,6 +16,6 @@ class TrainingsSeeder extends Seeder
      */
     public function run()
     {
-        Training::factory()->count(50)->create();
+        FAQ::factory()->count(5)->create();
     }
 }
