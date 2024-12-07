@@ -23,7 +23,7 @@ return [
     'add_new_faq' => 'إضافة سؤال شائع',
 
     'trainings' => 'التدريبات',
-    'trashed_training' => '  التدريبات المحذوفة',
+    'trashed_trainings' => '  التدريبات المحذوفة',
     'add_new_training' => 'إضافة تدريب جديد',
 
 

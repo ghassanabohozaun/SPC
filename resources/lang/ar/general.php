@@ -65,6 +65,7 @@ return [
 
     'add_success_message' => 'تمت عملية الحفظ بنجاح',
     'delete_success_message' => 'تمت عملية الحذف بنجاح',
+    'delete_error_message' => 'لم تتم عملية الحذف',
     'update_success_message' => 'تمت عملية التعديل بنجاح',
     'upload_success_message' => 'تمت عملية الرفع بنجاح',
     'send_success_message' => 'تمت عملية الارسال بنجاح',
@@ -78,7 +79,7 @@ return [
     'ask_delete_record' => 'هل تريد حذف هذا السجل ؟ ',
     'ask_permanent_delete_record' => 'هل تريد حذف هذا السجل نهائياً؟ ',
     'move_to_trash' => 'ثم نقل  السجل الي المحذوفات',
-    'trash'=>'سلة المحذوفات',
+    'trash' => 'سلة المحذوفات',
     'change_status_success_message' => 'تمت عملية تغير الحالة بنجاح',
     'change_password_success_message' => 'تمت عملية تغير كلمة المرور بنجاح',
 
@@ -112,20 +113,20 @@ return [
     'inputTooShort' => 'الرجاء قم بادخال حرف علي الاقل',
 
 
-    'validation_error_message'=>' عذرا ,  يبدو انه تم اكتشاف بعد الاخطاء  , الرجاء المحاولة مرة اخري.',
+    'validation_error_message' => ' عذرا ,  يبدو انه تم اكتشاف بعد الاخطاء  , الرجاء المحاولة مرة اخري.',
     'ok_got_it' => 'حسناً, فهمتك! ',
     'required' => 'هذا الحقل مطلوب',
     'image_max' => 'حجم الصورة المسموح به 2 ميجا فقط',
     'in' => 'القيمية المدخلة غير صحيحة',
     'digits' => 'القيمية المدخلة يجب ان تكون أرقام',
-    'personal_id_validation'=>'رقم الهوية يتكون من 9 ارقام',
-    'mobile_number_validation'=>'رقم الموبايل يتكون من 10 ارقام',
-    'choose_validation'=>'يجب عليك اختبار احد الخيارات',
-    'review_your_details_and_submit'=>'قم بمراجعة البيانات ثم ارسلها',
-    'search'=>'بحث',
-    'reset'=>'اعادة تعيين',
-    'character_limit_reached'=>'تم الوصول الي عدد الحروف المسموح به',
-    'character_limit'=>'عدد الحروف المسموح بها',
-    'remaining'=>'متبقي',
+    'personal_id_validation' => 'رقم الهوية يتكون من 9 ارقام',
+    'mobile_number_validation' => 'رقم الموبايل يتكون من 10 ارقام',
+    'choose_validation' => 'يجب عليك اختبار احد الخيارات',
+    'review_your_details_and_submit' => 'قم بمراجعة البيانات ثم ارسلها',
+    'search' => 'بحث',
+    'reset' => 'اعادة تعيين',
+    'character_limit_reached' => 'تم الوصول الي عدد الحروف المسموح به',
+    'character_limit' => 'عدد الحروف المسموح بها',
+    'remaining' => 'متبقي',
 
 ];

@@ -59,7 +59,7 @@ class TrainingController extends Controller
         );
 
         if ($training) {
-            return $this->returnSuccessMessage('Training created successfully');
+            return $this->returnSuccessMessage(__('general.add_success_message'));
         }
     }
 
@@ -122,7 +122,7 @@ class TrainingController extends Controller
             'photo' => $photo,
         ]);
 
-        return $this->returnSuccessMessage('Training updated successfully');
+        return $this->returnSuccessMessage(__('general.update_success_message'));
     }
     //////////////////////////////////////////////////
     // destroy
@@ -132,14 +132,14 @@ class TrainingController extends Controller
         if ($request->ajax()) {
             $training = Training::find($request->id);
             if (!$training) {
-                return $this->returnError('Training not found', 404);
+                return $this->returnError(__('general.not_found'), 404);
                 //return redirect()->route('admin.not.found');
             }
 
             if ($training->delete()) {
-                return $this->returnSuccessMessage('Training deleted successfully');
+                return $this->returnSuccessMessage(__('general.delete_success_message'));
             } else {
-                return $this->returnError('Training not deleted', 400);
+                return $this->returnError(__('general.delete_error_message'), 400);
             }
         }
     }
@@ -168,7 +168,7 @@ class TrainingController extends Controller
             $training->restore();
             //return response()->json($training, 200);
             //return $this->returnData()
-            return $this->returnSuccessMessage('Training restored successfully');
+            return $this->returnSuccessMessage(__('general.restore_success_message'));
         }
     }
 
@@ -192,7 +192,7 @@ class TrainingController extends Controller
             }
 
             $training->forceDelete();
-            return $this->returnSuccessMessage('Training force deleted successfully');
+            return $this->returnSuccessMessage(__('general.delete_success_message'));
         }
     }
     /////////////////////////////////////////////////////////////////////////////////
@@ -215,7 +215,7 @@ class TrainingController extends Controller
                 $training->save();
             }
 
-            return $this->returnSuccessMessage('Training status updated successfully');
+            return $this->returnSuccessMessage(__('general.change_status_success_message'));
         }
     }
 }

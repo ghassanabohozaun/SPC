@@ -58,6 +58,8 @@ return [
     'word_format_allow' => 'Allowed file types Word',
     'add_success_message' => 'Added Successfully',
     'delete_success_message' => 'Deleted Successfully',
+    'delete_error_message' => 'Record Not Deleted',
+
     'update_success_message' => 'Updated Successfully',
     'upload_success_message' => ' Upload Successfully',
     'restore_success_message' => 'Restored Successfully',
@@ -75,7 +77,7 @@ return [
     'ask_delete_record' => 'Do You Want To Delete This Record ? ',
     'ask_permanent_delete_record' => 'Do You Want To Permanent Delete This Record ? ',
     'move_to_trash' => 'Record Moved To Trash',
-    'trash'=>'Trash',
+    'trash' => 'Trash',
     'change_status_success_message' => 'change Status Successfully',
     'change_password_success_message' => 'change password Successfully',
 
@@ -124,10 +126,10 @@ return [
     'mobile_number_validation' => 'Mobile consist of 10 digits',
     'choose_validation' => 'You Must chose one of options',
     'review_your_details_and_submit' => 'Review your Details and Submit',
-    'search'=>'Search',
-    'reset'=>'Reset',
-    'character_limit_reached'=>'character limit reached',
-    'character_limit'=>'character limit',
-    'remaining'=>'remaining',
+    'search' => 'Search',
+    'reset' => 'Reset',
+    'character_limit_reached' => 'character limit reached',
+    'character_limit' => 'character limit',
+    'remaining' => 'remaining',
 
 ];

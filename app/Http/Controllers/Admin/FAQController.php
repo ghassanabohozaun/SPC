@@ -15,7 +15,7 @@ class FAQController extends Controller
     public function index()
     {
         $title = __('menu.faqs');
-        $faqs = FAQ::paginate(15);
+        $faqs = FAQ::orderByDesc('created_at')->paginate(15);
         return view('admin.faq.index', compact('faqs', 'title'));
     }
 
@@ -27,7 +27,6 @@ class FAQController extends Controller
 
     public function store(FAQRequest $request)
     {
-
         $lang_ar  = setting()->site_lang_ar;
 
         FAQ::create([
@@ -67,7 +66,7 @@ class FAQController extends Controller
     public function trashed()
     {
         $title = __('menu.trashed_faq');
-        $faqs = FAQ::onlyTrashed()->orderByDesc('created_at')->paginate(15);
+        $faqs = FAQ::onlyTrashed()->orderByDesc('deleted_at')->paginate(15);
         return view('admin.faq.trashed', compact('title', 'faqs'));
     }
 
