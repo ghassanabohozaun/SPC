@@ -162,7 +162,7 @@ Route::group([
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// faq routes
     Route::group(['prefix' => 'faqs', 'middleware' => 'can:faqs'], function () {
-        Route::get('/', [FAQController::class, 'index'])->name('admin.faqs.index');
+        Route::get('/', [FAQController::class, 'index'])->name('admin.faqs');
         Route::get('/create', [FAQController::class, 'create'])->name('admin.faqs.create');
         Route::post('/store', [FAQController::class, 'store'])->name('admin.faqs.store');
         Route::get('/edit/{id}', [FAQController::class, 'edit'])->name('admin.faqs.edit');
@@ -178,7 +178,7 @@ Route::group([
     // trainings routes
 
     Route::group(['prefix' => 'trainings', 'middllware' => 'can:trainings'], function () {
-        Route::get('/', [TrainingController::class, 'index'])->name('admin.trainings.index');
+        Route::get('/', [TrainingController::class, 'index'])->name('admin.trainings');
         Route::post('/destroy', [TrainingController::class, 'destroy'])->name('admin.trainings.destroy');
         Route::post('/change-status', [TrainingController::class, 'changeStatus'])->name('admin.trainings.change.status');
         Route::get('/trashed', [TrainingController::class, 'getTrashed'])->name('admin.trainings.trashed');

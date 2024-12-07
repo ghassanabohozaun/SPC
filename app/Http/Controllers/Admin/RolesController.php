@@ -41,7 +41,6 @@ class RolesController extends Controller
             'permissions' => $permissions,
         ]);
         return $this->returnSuccessMessage(__('general.add_success_message'));
-
     }
 
 
@@ -76,7 +75,6 @@ class RolesController extends Controller
             'permissions' => $permissions,
         ]);
         return $this->returnSuccessMessage(__('general.update_success_message'));
-
     }
 
 
@@ -98,6 +96,4 @@ class RolesController extends Controller
             }
         }
     }
-
-
 }

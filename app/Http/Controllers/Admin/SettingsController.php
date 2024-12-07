@@ -29,7 +29,6 @@ class SettingsController extends Controller
         $settings = Setting::get();
         if ($settings->isEmpty()) {
 
-
             // save logo
             if ($request->hasFile('site_icon')) {
                 $image = $request->file('site_icon');

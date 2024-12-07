@@ -168,7 +168,7 @@
                 <li class="menu-item  menu-item-submenu
                @if (str_contains(url()->current(), '/faqs')) menu-item-open @endif"
                     aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="{!! route('admin.faqs.index') !!}" class="menu-link menu-toggle">
+                    <a href="{!! route('admin.faqs') !!}" class="menu-link menu-toggle">
 
                         <span class="svg-icon menu-icon">
                             <span
@@ -200,7 +200,7 @@
                 <li class="menu-item  menu-item-submenu
                @if (str_contains(url()->current(), '/trainings')) menu-item-open @endif"
                     aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="{!! route('admin.trainings.index') !!}" class="menu-link menu-toggle">
+                    <a href="{!! route('admin.trainings') !!}" class="menu-link menu-toggle">
 
                         <span class="svg-icon menu-icon">
                             <span

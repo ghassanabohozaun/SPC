@@ -81,7 +81,7 @@ class TrainingController extends Controller
     {
         $training = Training::find($request->id);
         if (!$training) {
-            return $this->returnError('Training not found', 404);
+            return $this->returnError(__('general.not_found'), 404);
         }
 
         if ($request->hasFile('photo')) {
@@ -163,7 +163,7 @@ class TrainingController extends Controller
         if ($request->ajax()) {
             $training = Training::onlyTrashed()->find($request->id);
             if (!$training) {
-                return $this->returnError('Training not found', 404);
+                return $this->returnError(__('general.not_found'), 404);
             }
             $training->restore();
             //return response()->json($training, 200);
@@ -181,7 +181,7 @@ class TrainingController extends Controller
             $training = Training::onlyTrashed()->find($request->id);
 
             if (!$training) {
-                return $this->returnError('Training not found', 404);
+                return $this->returnError(__('general.not_found'), 404);
             }
 
             if (!empty($training->photo)) {
@@ -202,7 +202,7 @@ class TrainingController extends Controller
         if ($request->ajax()) {
             $training  = Training::find($request->id);
             if (!$training) {
-                return $this->returnError('Training not found', 404);
+                return $this->returnError(__('general.not_found'), 404);
             }
 
             //return response()->json($request->id, 200);

@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArticlesTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +14,14 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('trainings', function (Blueprint $table) {
             $table->id();
-            $table->string('photo')->nullable();
             $table->string('title_ar')->nullable();
             $table->string('title_en')->nullable();
-            $table->longText('abstract_ar')->nullable();
-            $table->longText('abstract_en')->nullable();
-            $table->string('publish_date')->nullable();
-            $table->string('publisher_name')->nullable();
-            $table->enum('language', ['ar', 'ar_en'])->default('ar');
+            $table->date('started_date')->nullable();
             $table->string('status')->nullable();
-            $table->integer('views')->default(1);
+            $table->string('photo')->nullable();
+            $table->enum('language', ['en', 'ar_en'])->default('en');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -37,6 +34,6 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('trainings');
     }
-}
+};

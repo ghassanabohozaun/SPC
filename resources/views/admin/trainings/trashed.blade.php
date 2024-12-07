@@ -12,7 +12,7 @@
                 <!--begin::Actions-->
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item">
-                        <a href="{{ route('admin.trainings.index') }}" class="text-muted">
+                        <a href="{{ route('admin.trainings') }}" class="text-muted">
                             {{ __('menu.trainings') }}
                         </a>
                     </li>

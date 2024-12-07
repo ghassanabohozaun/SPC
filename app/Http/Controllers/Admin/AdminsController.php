@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminRequest;
 use App\Http\Requests\AdminUpdateRequest;
 use App\Models\Admin;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use File;
+
 class AdminsController extends Controller
 {
     use GeneralTrait;
@@ -34,7 +36,7 @@ class AdminsController extends Controller
     }
     //////////////////////////////////////////////////////////////////////////////
     /// Admin Update
-    public function adminUpdate(AdminUpdateRequest $request)
+    public function adminUpdate(AdminRequest $request)
     {
 
         try {
@@ -52,12 +54,11 @@ class AdminsController extends Controller
                     }
                     $image = $request->file('photo');
                     $destinationPath = public_path('/adminBoard/uploadedImages/admin//');
-                    $photo_path = $this->saveResizeImage($image, $destinationPath,250,250);
-
+                    $photo_path = $this->saveResizeImage($image, $destinationPath, 250, 250);
                 } else {
                     $image = $request->file('photo');
                     $destinationPath = public_path('/adminBoard/uploadedImages/admin//');
-                    $photo_path = $this->saveResizeImage($image, $destinationPath,250,250);
+                    $photo_path = $this->saveResizeImage($image, $destinationPath, 250, 250);
                 }
             } else {
                 if (!empty($admin->photo)) {
