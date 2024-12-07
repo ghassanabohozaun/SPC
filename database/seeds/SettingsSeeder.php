@@ -14,9 +14,9 @@ class SettingsSeeder extends Seeder
     {
 
         Setting::create([
-            'site_name_ar' => 'ايثار',
-            'site_name_en' => 'Ethar',
-            'site_lang_ar' => '',
+            'site_name_ar' => 'SPC',
+            'site_name_en' => 'SPC',
+            'site_lang_ar' => 'on',
             'site_lang_en' => 'on',
         ]);
     }

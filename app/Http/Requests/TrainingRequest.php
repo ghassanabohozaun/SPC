@@ -24,21 +24,24 @@ class TrainingRequest extends FormRequest
     public function rules()
     {
 
-        return [
-            'title_en' =>  ['required'],
-            'title_ar' => ['required_if:site_lang,on'],
-            'started_date' =>  ['required'],
-            'photo' => ['required_without:hidden_photo'],
+
+        $rules =  [
+            'title_en' =>  'required',
+            'title_ar' => 'required_if:site_lang_ar,on',
+            'started_date' =>  'required',
+            'photo' => 'required_without:hidden_photo',
         ];
+
+        return $rules;
     }
 
-    // public function messages()
-    // {
-    //     return [
-    //         'question_en.requied' => __('faqs.quetoin_en_required'),
-    //         'question_ar.required_if' => __('faqs.question_ar_required'),
-    //         'answer_en.requied' =>  __('faqs.answer_en_required'),
-    //         'answer_ar.required_if' =>  __('faqs.answer_ar_required'),
-    //     ];
-    // }
+    public function messages()
+    {
+        return [
+            'title_en.required' => __('trainings.required'),
+            'title_ar.required_if' => __('trainings.required'),
+            'started_date.required' =>  __('trainings.required'),
+            'photo.required_without' =>  __('trainings.photo_required'),
+        ];
+    }
 }

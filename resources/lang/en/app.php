@@ -18,6 +18,6 @@ return [
     'abouts' => 'Abouts Management',
     'reports' => 'Reports Management',
     'teams' => 'Team Members Management',
-    'faq' => 'FAQ Management',
+    'faqs' => 'FAQ Management',
     'trainings' => 'Trainings Management',
 ];

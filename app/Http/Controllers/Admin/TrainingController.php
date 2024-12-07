@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TrainingRequest;
-use App\Http\Requests\TrainingUpdateRequest;
 use App\Models\Training;
 use App\Traits\GeneralTrait;
-use Database\Factories\TrainingFactory;
 use Illuminate\Http\Request;
 use File;
 
@@ -76,8 +74,6 @@ class TrainingController extends Controller
         }
         return view('admin.trainings.update', compact('title', 'training'));
     }
-
-
 
     ///////////////////////////////////////////////////////////
     // update
@@ -194,7 +190,6 @@ class TrainingController extends Controller
                     File::delete($public_path);
                 }
             }
-
 
             $training->forceDelete();
             return $this->returnSuccessMessage('Training force deleted successfully');

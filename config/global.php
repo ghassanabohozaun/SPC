@@ -8,6 +8,10 @@ return [
         'admins' => 'app.admins',
         'roles' => 'app.roles',
         'users' => 'app.users',
+        'faqs' => 'app.faqs',
+        'trainings' => 'app.trainings',
+
+
         'support-center' => 'app.support-center',
         'reports' => 'app.reports',
         'articles' => 'app.articles',
@@ -20,7 +24,6 @@ return [
         'yearly-reports' => 'app.yearly-reports',
         'abouts' => 'app.abouts',
         'teams' => 'app.teams',
-        'faq' => 'app.faq',
-        'trainings' => 'app.trainings'
+
     ]
 ];

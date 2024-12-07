@@ -161,7 +161,7 @@ Route::group([
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// faq routes
-    Route::group(['prefix' => 'faqs', 'middleware' => 'can:faq'], function () {
+    Route::group(['prefix' => 'faqs', 'middleware' => 'can:faqs'], function () {
         Route::get('/', [FAQController::class, 'index'])->name('admin.faqs.index');
         Route::get('/create', [FAQController::class, 'create'])->name('admin.faqs.create');
         Route::post('/store', [FAQController::class, 'store'])->name('admin.faqs.store');
@@ -181,7 +181,7 @@ Route::group([
         Route::get('/', [TrainingController::class, 'index'])->name('admin.trainings.index');
         Route::post('/destroy', [TrainingController::class, 'destroy'])->name('admin.trainings.destroy');
         Route::post('/change-status', [TrainingController::class, 'changeStatus'])->name('admin.trainings.change.status');
-        Route::get('/trashed', [TrainingController::class, 'getTrashed'])->name('admin.trainings.get.trashed');
+        Route::get('/trashed', [TrainingController::class, 'getTrashed'])->name('admin.trainings.trashed');
         Route::post('/restore', [TrainingController::class, 'restore'])->name('admin.trainings.restore');
         Route::post('/force-delete', [TrainingController::class, 'forceDelete'])->name('admin.trainings.force.delete');
         Route::get('/create', [TrainingController::class, 'create'])->name('admin.trainings.create');

@@ -2,6 +2,53 @@
 @section('title')
 @endsection
 @section('content')
+    <!--begin::Subheader-->
+    <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-2">
+
+                <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                <!--begin::Actions-->
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('admin.trainings.index') }}" class="text-muted">
+                            {{ __('menu.trainings') }}
+                        </a>
+                    </li>
+
+                    <li class="breadcrumb-item">
+                        <a href="#" class="text-muted">
+                            {{ __('menu.trashed_trainings') }}
+                        </a>
+                    </li>
+
+                    <li class="breadcrumb-item">
+                        <a href="" class="text-muted">
+                            {{ __('menu.show_all') }}
+                        </a>
+                    </li>
+                </ul>
+
+                <!--end::Actions-->
+            </div>
+            <!--end::Info-->
+
+            <!--begin::Toolbar-->
+            <div class="d-flex align-items-center">
+                <a href="{{ route('admin.trainings.create') }}"
+                    class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
+                    <i class="fa fa-plus-square"></i>
+                    {{ __('menu.add_new_training') }}
+                </a>
+                &nbsp;
+            </div>
+            <!--end::Toolbar-->
+        </div>
+    </div>
+    <!--end::Subheader-->
+
+    <!--begin::content-->
     <div class="d-flex flex-column-fluid">
         <!--begin::Container-->
         <div class=" container-fluid ">
@@ -14,80 +61,57 @@
 
                             <!--begin: Datatable-->
                             <div class="portlet-body">
-
-                                <!---begin: alert messages div --->
-                                <div class="row">
-                                    <div class="col-12 d-none" class='alert_messages' id='alert_messages'
-                                        style="background-color :rgb(57, 131, 119) ; padding:20px ; display:inline-flex">
-                                        <span style='color:rgb(255, 255, 255)'></span>
-                                    </div>
-                                </div>
-                                <!---end: alert messages div --->
-
-
-                                <!---begin: button div --->
-                                <div class='row' style="padding: 10px ; ">
-                                    <div class="col-12">
-                                        <a href="{!! route('admin.trainings.index') !!}" class="btn btn-info btn-sm"
-                                            style="float: right ;margin:5px">
-                                            Trainings
-                                        </a>
-                                    </div>
-
-                                </div>
-                                <!---end: button div --->
-
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="scroll">
                                             <div class="table-responsive">
-                                                <table class="table table-striped  table-hover trashed_trainings_table"
-                                                    id='trashed_trainings_table' name ='trashed_trainings_table'>
+                                                <table class="table myTable table-hover" id="myTable">
                                                     <thead>
                                                         <tr>
-                                                            <th>ID</th>
-                                                            <th>Title EN</th>
-                                                            <th>Title Ar</th>
-                                                            <th>Action</th>
+                                                            <th>#</th>
+                                                            <th>{!! __('trainings.photo') !!}</th>
+                                                            <th>{!! __('trainings.title_ar') !!}</th>
+                                                            <th>{!! __('trainings.title_ar') !!}</th>
+                                                            <th>{!! __('trainings.started_date') !!}</th>
+                                                            <th class="text-center" style="width: 100px;">
+                                                                {!! __('general.actions') !!}
+                                                            </th>
                                                         </tr>
-
                                                     </thead>
                                                     <tbody>
                                                         @forelse($trainings as $training)
                                                             <tr>
-                                                                <td>{!! $training->id !!}</td>
-                                                                <td>{!! $training->title_en !!}</td>
-                                                                <td>{!! $training->title_ar !!}</td>
+                                                                <td>{!! $loop->iteration !!}</td>
+                                                                <td>@include('admin.trainings.parts.photo')</td>
+                                                                <td>{{ $training->title_ar }}</td>
+                                                                <td>{{ $training->title_ar }}</td>
+                                                                <td>{{ $training->started_date }}</td>
                                                                 <td>
-
-                                                                    <a href="#"
-                                                                        class='restore_training btn btn-success'
-                                                                        id='restore_training' name='restore_training'
-                                                                        data-id='{!! $training->id !!}'>
-                                                                        Restore
+                                                                    <a class="btn btn-hover-warning btn-icon btn-pill restore_training_btn"
+                                                                        data-id="{{ $training->id }}"
+                                                                        title="{{ __('general.restore') }}">
+                                                                        <i class="fa fa-trash-restore fa-1x"></i>
                                                                     </a>
 
                                                                     <a href="#"
-                                                                        class='force_delete_training btn btn-danger'
-                                                                        id='force_delete_training'
-                                                                        name='force_delete_training'
-                                                                        data-id="{!! $training->id !!}">
-                                                                        Force Delete
+                                                                        class="btn btn-hover-danger btn-icon btn-pill force_delete_training_btn"
+                                                                        data-id="{{ $training->id }}"
+                                                                        title="{{ __('general.force_delete') }}">
+                                                                        <i class="fa fa-trash-alt fa-1x"></i>
                                                                     </a>
-
                                                                 </td>
                                                             </tr>
                                                         @empty
                                                             <tr>
-                                                                <td colspan="4" class="text-center">
-                                                                    No Data Found
+                                                                <td colspan="8" class="text-center">
+                                                                    {!! __('trainings.no_trainings_found') !!}
                                                                 </td>
                                                             </tr>
                                                         @endforelse
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
-                                                            <td colspan="4">
+                                                            <td colspan="8">
                                                                 <div class="float-right">
                                                                     {!! $trainings->appends(request()->all())->links() !!}
                                                                 </div>
@@ -100,71 +124,127 @@
                                     </div>
                                 </div>
                             </div>
+                            <!--end: Datatable-->
+
                         </div>
+
+                        <form class="d-none" id="form_training_delete">
+                            <input type="hidden" id="training_delete_id">
+                        </form>
+                        <!--end::Form-->
+
                     </div>
+                    <!--end::Card-->
                 </div>
             </div>
+            <!--end::Row-->
         </div>
+        <!--end::Container-->
+
+        <!--begin::Form-->
     </div>
+    <!--end::content-->
 @endsection
 @push('js')
     <script type="text/javascript">
-        ///////////////////////////////////////////////////////////////////
-        // restore
-        $(document).on('click', '.restore_training', function(e) {
-
-            e.preventDefault();
-            var id = $(this).attr('data-id');
-
-            $.ajax({
-                url: "{!! route('admin.trainings.restore') !!}",
-                data: {
-                    id: id
-                },
-                dataType: 'json',
-                type: 'post',
-                success: function(data) {
-                    if (data.status == true) {
-                        $('#alert_messages').find('span').empty();
-                        $('#alert_messages').removeClass('d-none');
-                        $('#alert_messages').find('span').html(data.msg);
-                        $('#trashed_trainings_table').load(location.href + ' #trashed_trainings_table');
-                        setTimeout(function() {
-                            $('#alert_messages').addClass('d-none');
-                        }, 1500);
-                    }
-                }
-            });
-
-        });
-
-        ///////////////////////////////////////////////////////////////////////////
-        // force delete
-        $('body').on('click', '.force_delete_training', function(e) {
+        // delete training
+        $(document).on('click', '.force_delete_training_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
-            console.log(id);
 
-            url: "{!! route('admin.trainings.force.delete') !!}";
+            Swal.fire({
+                title: "{{ __('general.ask_permanent_delete_record') }}",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "{{ __('general.yes') }}",
+                cancelButtonText: "{{ __('general.no') }}",
+                reverseButtons: false,
+                allowOutsideClick: false,
+            }).then(function(result) {
+                if (result.value) {
+                    //////////////////////////////////////
+                    // Delete User
+                    $.ajax({
+                        url: "{!! route('admin.trainings.force.delete') !!}",
+                        data: {
+                            id,
+                            id
+                        },
+                        type: 'post',
+                        dataType: 'json',
+                        success: function(data) {
+                            console.log(data);
+                            if (data.status == true) {
+                                Swal.fire({
+                                    title: "{!! __('general.deleted') !!}",
+                                    text: "{!! __('general.delete_success_message') !!}",
+                                    icon: "success",
+                                    allowOutsideClick: false,
+                                    customClass: {
+                                        confirmButton: 'delete_training_button'
+                                    }
+                                });
+                                $('.delete_training_button').click(function() {
+                                    $('#myTable').load(location.href + (' #myTable'));
+                                });
+                            }
+                        }, //end success
+                    });
+
+                } else if (result.dismiss === "cancel") {
+                    Swal.fire({
+                        title: "{!! __('general.cancelled') !!}",
+                        text: "{!! __('general.error_message') !!}",
+                        icon: "error",
+                        allowOutsideClick: false,
+                        customClass: {
+                            confirmButton: 'cancel_delete_training_button'
+                        }
+                    })
+                }
+            });
+        })
+
+
+        // restore training
+        $(document).on('click', '.restore_training_btn', function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+
             $.ajax({
-                url: "{!! route('admin.trainings.force.delete') !!}",
-                type: 'POST',
-                dataType: 'JSON',
+                url: "{{ route('admin.trainings.restore') }}",
                 data: {
-                    id: id
+                    id,
+                    id
                 },
-
+                type: 'post',
+                dataType: 'JSON',
+                beforeSend: function() {
+                    KTApp.blockPage({
+                        overlayColor: '#000000',
+                        state: 'danger',
+                        message: "{{ __('general.please_wait') }}",
+                    });
+                },
                 success: function(data) {
+                    KTApp.unblockPage();
+                    console.log(data);
                     if (data.status == true) {
-                        $('#alert_messages').find('span').empty();
-                        $('#alert_messages').removeClass('d-none');
-                        $('#alert_messages').find('span').html(data.msg);
-                        $('#trashed_trainings_table').load(location.href + ' #trashed_trainings_table');
+                        Swal.fire({
+                            title: data.msg,
+                            text: "",
+                            icon: "success",
+                            allowOutsideClick: false,
+                            customClass: {
+                                confirmButton: 'restore_training_button'
+                            }
+                        });
+                        $('.restore_training_button').click(function() {
+                            $('#myTable').load(location.href + (' #myTable'));
+                        });
                     }
-                },
+                }, //end success
             })
-
-
-        });
+        })
     </script>
 @endpush

@@ -16,15 +16,23 @@ return [
 
     'permissions' => 'Permissions',
     'add_new_permission' => 'Add New Permission',
-
-
     'support_center' => 'Support Center',
-
     'landing_page' => 'Landing Page',
     'index' => 'Website Index',
-
-
     'static_strings' => 'Static Strings',
+
+
+    'faqs' => 'FAQ',
+    'trashed_faq' => 'Trashed FAQ',
+    'add_new_faq' => 'Add New FAQ',
+
+    'trainings' => 'Training',
+    'trashed_training' => 'Trashed Training',
+    'add_new_training' => 'Add New Training',
+
+
+
+
 
     'sliders' => 'Sliders',
     'trashed_sliders' => 'Trashed Sliders',
@@ -66,9 +74,6 @@ return [
     'trashed_teams' => 'Trashed Teams',
     'add_new_team_member' => 'Add New Team Member',
 
-    'faq' => 'FAQ',
-    'trashed_faq' => 'Trashed FAQ',
-    'add_new_faq' => 'Add New FAQ',
 
     'comments' => 'Comments',
     'trashed_comments' => 'Trashed Comments',
@@ -81,5 +86,3 @@ return [
     'fixed_texts' => 'Fixed Texts',
 
 ];
-
-

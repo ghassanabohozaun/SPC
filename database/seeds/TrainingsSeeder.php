@@ -16,6 +16,6 @@ class TrainingsSeeder extends Seeder
      */
     public function run()
     {
-        Training::factory()->count(50)->create();
+        Training::factory()->count(15)->create();
     }
 }

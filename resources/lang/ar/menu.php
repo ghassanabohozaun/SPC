@@ -18,6 +18,20 @@ return [
     'index' => 'رئيسية الموقع',
     'static_strings' => 'النصوص الثابتة',
 
+    'faqs' => 'الأسئلة الشائعة',
+    'trashed_faq' => ' الأسئلة الشائعة المحذوفة',
+    'add_new_faq' => 'إضافة سؤال شائع',
+
+    'trainings' => 'التدريبات',
+    'trashed_training' => '  التدريبات المحذوفة',
+    'add_new_training' => 'إضافة تدريب جديد',
+
+
+
+
+
+
+
     'sliders' => 'السلايدر',
     'trashed_sliders' => 'السلايدرات المحذوفة',
     'add_new_slider' => 'إضافة سلايدر جديد',
@@ -58,9 +72,9 @@ return [
     'trashed_teams' => ' اعضاء الفريق المحذوفة',
     'add_new_team_member' => 'إضافة عضو للفريق',
 
-    'faq' => 'الأسئلة الشائعة',
-    'trashed_faq' => ' الأسئلة الشائعة المحذوفة',
-    'add_new_faq' => 'إضافة سؤال شائع',
+
+
+
 
     'comments' => 'التعليقات',
     'trashed_comments' => 'التعليقات المحذوفة',
@@ -69,6 +83,8 @@ return [
     'partners' => 'الشركاء',
     'trashed_partners' => 'الشركاء المحذوفة',
     'add_new_partner' => 'اضافة شريك جديد',
+
+
 
 
     'fixed_texts' => 'النصوص الثابتة',

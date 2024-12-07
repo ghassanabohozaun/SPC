@@ -14,7 +14,7 @@ class FAQController extends Controller
 
     public function index()
     {
-        $title = __('menu.faq');
+        $title = __('menu.faqs');
         $faqs = FAQ::paginate(15);
         return view('admin.faq.index', compact('faqs', 'title'));
     }

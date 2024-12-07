@@ -25,6 +25,10 @@ class RoleSeeder extends Seeder
                 'admins',
                 'roles',
                 'users',
+                'faqs',
+                'trainings',
+
+
                 // 'support-center',
                 // 'reports',
                 // 'articles',
@@ -37,7 +41,7 @@ class RoleSeeder extends Seeder
                 // 'yearly-reports',
                 // 'abouts',
                 // 'teams',
-                'faq'
+
             ]),
         ]);
     }
