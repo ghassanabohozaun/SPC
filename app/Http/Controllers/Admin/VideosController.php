@@ -17,7 +17,7 @@ class VideosController extends Controller
     public function index()
     {
         $title = __('menu.videos');
-        $videos = Video::orderByDesc('created_at')->paginate();
+        $videos = Video::orderByDesc('created_at')->paginate(15);
         return view('admin.videos.index', compact('title', 'videos'));
     }
 
@@ -51,16 +51,17 @@ class VideosController extends Controller
         }
 
 
-        $lang_en = setting()->site_lang_en;
+        $site_lang_ar = setting()->site_lang_ar;
+
         Video::create([
-            'photo' => $photo_path,
-            'language' => $lang_en == 'on' ? 'ar_en' : 'ar',
-            'title_ar' => $request->title_ar,
-            'title_en' => $lang_en == 'on' ? $request->title_en : null,
+            'title_en' => $request->title_en,
+            'title_ar' => $site_lang_ar == 'on' ? $request->title_ar : null,
             'link' => $VideoLink,
             'duration' => $request->duration,
             'added_date' => $request->added_date,
             'status' => 'on',
+            'photo' => $photo_path,
+            'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
         ]);
 
         return $this->returnSuccessMessage(__('general.add_success_message'));
@@ -138,15 +139,16 @@ class VideosController extends Controller
         }
 
 
-        $lang_en = setting()->site_lang_en;
+        $site_lang_ar = setting()->site_lang_ar;
+
         $video->update([
-            'photo' => $photo_path,
-            'language' => $lang_en == 'on' ? 'ar_en' : 'ar',
-            'title_ar' => $request->title_ar,
-            'title_en' => $lang_en == 'on' ? $request->title_en : null,
+            'title_en' => $request->title_en,
+            'title_ar' => $site_lang_ar == 'on' ? $request->title_ar : null,
             'link' => $VideoLink,
             'duration' => $request->duration,
             'added_date' => $request->added_date,
+            'photo' => $photo_path,
+            'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
         ]);
 
 

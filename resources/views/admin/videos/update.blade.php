@@ -1,13 +1,12 @@
 @extends('layouts.admin')
-@section('title') @endsection
+@section('title')
+@endsection
 @section('content')
-
-    <form class="form" action="{{route('admin.video.update')}}" method="POST" id="form_videos_update">
+    <form class="form" action="{{ route('admin.video.update') }}" method="POST" id="form_videos_update">
         @csrf
         <!--begin::Subheader-->
         <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
-            <div
-                class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                 <!--begin::Info-->
                 <div class="d-flex align-items-center flex-wrap mr-2">
 
@@ -17,13 +16,13 @@
 
                     <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                         <li class="breadcrumb-item">
-                            <a href="{{route('admin.videos')}}" class="text-muted">
-                                {{__('menu.videos')}}
+                            <a href="{{ route('admin.videos') }}" class="text-muted">
+                                {{ __('menu.videos') }}
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{route('admin.video.edit',$video->id)}}" class="text-muted">
-                                {{__('videos.video_update')}}
+                            <a href="{{ route('admin.video.edit', $video->id) }}" class="text-muted">
+                                {{ __('videos.video_update') }}
                             </a>
                         </li>
                     </ul>
@@ -35,10 +34,9 @@
                 <!--begin::Toolbar-->
                 <div class="d-flex align-items-center">
 
-                    <button type="submit"
-                            class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
+                    <button type="submit" class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
                         <i class="fa fa-save"></i>
-                        {{__('general.save')}}
+                        {{ __('general.save') }}
                     </button>
 
                 </div>
@@ -69,17 +67,18 @@
                                                 <!--begin::body-->
                                                 <div class="my-5">
                                                     <!--begin::Group-->
-                                                    <div class="d-none form-group row">
-                                                        <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            ID
-                                                        </label>
+                                                    <div class="form-group row d-none">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label"></label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
-                                                                name="id" id="id" type="hidden"
-                                                                value="{{$video->id}}"/>
-                                                            <input type="hidden" name="hidden_photo"
-                                                                   value="hidden_photo">
+
+                                                            <input name="id" id="id" type="text"
+                                                                value="{{ $video->id }}" />
+
+                                                            <input type="text" id='site_lang_ar' name="site_lang_ar"
+                                                                value="{!! setting()->site_lang_ar !!}">
+
+                                                            <input type="text" name="hidden_photo" value="hidden_photo">
+
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -87,36 +86,36 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('videos.photo')}}
+                                                            {{ __('videos.photo') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <div
-                                                                class="image-input image-input-outline"
+                                                            <div class="image-input image-input-outline"
                                                                 id="kt_video_photo_album">
                                                                 <div class="image-input-wrapper"
-                                                                     style="background-image: url({{asset('adminBoard/uploadedImages/videos/'.$video->photo)}})"></div>
+                                                                    style="background-image: url({{ asset('adminBoard/uploadedImages/videos/' . $video->photo) }})">
+                                                                </div>
                                                                 <label
                                                                     class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                                                    data-action="change" data-toggle="tooltip" title=""
-                                                                    data-original-title="{{__('general.change_image')}}">
+                                                                    data-action="change" data-toggle="tooltip"
+                                                                    title=""
+                                                                    data-original-title="{{ __('general.change_image') }}">
                                                                     <i class="fa fa-pen icon-sm text-muted"></i>
                                                                     <input type="file" name="photo" id="photo"
-                                                                           class="table-responsive-sm">
-                                                                    <input type="hidden" name="photo_remove"/>
+                                                                        class="table-responsive-sm">
+                                                                    <input type="hidden" name="photo_remove" />
                                                                 </label>
 
                                                                 <span
                                                                     class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
                                                                     data-action="cancel" data-toggle="tooltip"
                                                                     title="Cancel avatar">
-                                                                                <i class="ki ki-bold-close icon-xs text-muted"></i>
-                                                                 </span>
+                                                                    <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                                </span>
                                                             </div>
                                                             <span
-                                                                class="form-text text-muted">{{__('general.image_format_allow')}}
+                                                                class="form-text text-muted">{{ __('general.image_format_allow') }}
                                                             </span>
-                                                            <span class="form-text text-danger"
-                                                                  id="photo_error"></span>
+                                                            <span class="form-text text-danger" id="photo_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -124,54 +123,49 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('videos.title_ar')}}
+                                                            {{ __('videos.title_en') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
-                                                                name="title_ar" id="title_ar"
-                                                                placeholder=" {{__('videos.enter_title_ar')}}"
-                                                                autocomplete="off" value="{{$video->title_ar}}"/>
-
-                                                            <span class="form-text text-danger"
-                                                                  id="title_ar_error"></span>
-
-                                                        </div>
-                                                    </div>
-                                                    <!--end::Group-->
-
-
-                                                    <!--begin::Group-->
-                                                    <div class="form-group row">
-                                                        <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('videos.title_en')}}
-                                                        </label>
-                                                        <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="title_en" id="title_en" rows="3"
-                                                                placeholder=" {{__('videos.enter_title_en')}}"
-                                                                autocomplete="off" value="{{$video->title_en}} "/>
-                                                            <span class="form-text text-danger"
-                                                                  id="title_en_error"></span>
+                                                                placeholder=" {{ __('videos.enter_title_en') }}"
+                                                                autocomplete="off" value="{{ $video->title_en }} " />
+                                                            <span class="form-text text-danger" id="title_en_error"></span>
 
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
 
+
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('videos.duration')}}
+                                                            {{ __('videos.title_ar') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
+                                                                name="title_ar" id="title_ar"
+                                                                placeholder=" {{ __('videos.enter_title_ar') }}"
+                                                                autocomplete="off" value="{{ $video->title_ar }}" />
+
+                                                            <span class="form-text text-danger" id="title_ar_error"></span>
+
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Group-->
+
+                                                    <!--begin::Group-->
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label">
+                                                            {{ __('videos.duration') }}
+                                                        </label>
+                                                        <div class="col-lg-9 col-xl-9">
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="duration" id="duration" type="text"
-                                                                placeholder=" {{__('videos.enter_duration')}}"
-                                                                autocomplete="off" value="{{$video->duration}} "/>
+                                                                placeholder=" {{ __('videos.enter_duration') }}"
+                                                                autocomplete="off" value="{{ $video->duration }} " />
                                                             <span class="form-text text-danger"
-                                                                  id="duration_error"></span>
+                                                                id="duration_error"></span>
                                                         </div>
 
                                                     </div>
@@ -180,18 +174,18 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('videos.added_date')}}
+                                                            {{ __('videos.added_date') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
                                                             <div class="input-group date">
                                                                 <input type="text" class="form-control"
-                                                                       id="added_date" name="added_date"
-                                                                       readonly value="{{$video->added_date}} "
-                                                                       placeholder="{{__('videos.enter_added_date')}}"/>
+                                                                    id="added_date" name="added_date" readonly
+                                                                    value="{{ $video->added_date }} "
+                                                                    placeholder="{{ __('videos.enter_added_date') }}" />
                                                                 <div class="input-group-append">
-                                                             <span class="input-group-text">
-                                                                <i class="la la-calendar-check-o"></i>
-                                                             </span>
+                                                                    <span class="input-group-text">
+                                                                        <i class="la la-calendar-check-o"></i>
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -202,18 +196,17 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('videos.link')}}
+                                                            {{ __('videos.link') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="link" id="link" type="text"
-                                                                value="https://www.youtube.com/watch?v={{$video->link}}"
-                                                                placeholder=" {{__('videos.enter_link')}}"
-                                                                autocomplete="off"/>
+                                                                value="https://www.youtube.com/watch?v={{ $video->link }}"
+                                                                placeholder=" {{ __('videos.enter_link') }}"
+                                                                autocomplete="off" />
 
                                                             <span class="form-text text-muted">
-                                                                {{__('general.example')}} :
+                                                                {{ __('general.example') }} :
                                                                 https://www.youtube.com/watch?v=DzwIRzD7da4
                                                             </span>
                                                             <span class="form-text text-danger" id="link_error"></span>
@@ -248,7 +241,6 @@
 
 @push('js')
     <script type="text/javascript">
-
         var video_photo_album = new KTImageInput('kt_video_photo_album');
 
         ////////////////////////////////////////////////
@@ -258,12 +250,12 @@
             todayBtn: true,
             clearBtn: false,
             orientation: "bottom auto",
-            language: "{{LaravelLocalization::getCurrentLocale()}}",
+            language: "{{ LaravelLocalization::getCurrentLocale() }}",
             autoclose: true,
             todayHighlight: true,
         });
 
-        $('#form_videos_update').on('submit', function (e) {
+        $('#form_videos_update').on('submit', function(e) {
             e.preventDefault();
             //////////////////////////////////////////////////////////////
             $('#title_ar').css('border-color', '');
@@ -288,14 +280,14 @@
                 contentType: false,
                 cache: false,
                 processData: false,
-                beforeSend: function () {
+                beforeSend: function() {
                     KTApp.blockPage({
                         overlayColor: '#000000',
                         state: 'danger',
-                        message: "{{__('general.please_wait')}}",
+                        message: "{{ __('general.please_wait') }}",
                     });
-                },//end beforeSend
-                success: function (data) {
+                }, //end beforeSend
+                success: function(data) {
                     KTApp.unblockPage();
                     if (data.status == true) {
                         Swal.fire({
@@ -303,33 +295,34 @@
                             text: "",
                             icon: "success",
                             allowOutsideClick: false,
-                            customClass: {confirmButton: 'update_video_button'}
+                            customClass: {
+                                confirmButton: 'update_video_button'
+                            }
                         });
-                        $('.update_video_button').click(function () {
-                            window.location.href = "{{route('admin.videos')}}";
+                        $('.update_video_button').click(function() {
+                            window.location.href = "{{ route('admin.videos') }}";
                         });
                     }
-                },//end success
+                }, //end success
 
-                error: function (reject) {
+                error: function(reject) {
                     var response = $.parseJSON(reject.responseText);
-                    $.each(response.errors, function (key, value) {
+                    $.each(response.errors, function(key, value) {
                         $('#' + key + '_error').text(value[0]);
                         $('#' + key).css('border-color', '#F64E60');
-                        $('html, body').animate({scrollTop: 20}, 300);
+                        $('html, body').animate({
+                            scrollTop: 20
+                        }, 300);
                     });
 
-                },//end error
+                }, //end error
 
-                complete: function () {
+                complete: function() {
                     KTApp.unblockPage();
-                },//end complete
+                }, //end complete
 
             });
 
-        });//end submit
-
-
-
+        }); //end submit
     </script>
 @endpush

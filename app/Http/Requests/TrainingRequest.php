@@ -29,7 +29,7 @@ class TrainingRequest extends FormRequest
             'title_en' =>  'required',
             'title_ar' => 'required_if:site_lang_ar,on',
             'started_date' =>  'required',
-            'photo' => 'required_without:hidden_photo',
+            'photo' => 'required_without:hidden_photo|image|mimes:png,jpg,jpeg|max:1024',
         ];
 
         return $rules;
@@ -42,6 +42,9 @@ class TrainingRequest extends FormRequest
             'title_ar.required_if' => __('trainings.required'),
             'started_date.required' =>  __('trainings.required'),
             'photo.required_without' =>  __('trainings.photo_required'),
+            'photo.image' =>  __('trainings.image'),
+            'photo.mimes' =>  __('trainings.mimes'),
+            'photo.max' =>  __('trainings.max'),
         ];
     }
 }

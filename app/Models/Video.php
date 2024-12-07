@@ -8,14 +8,14 @@ class Video extends Model
 {
     protected $table = 'videos';
     protected $fillable = [
-        'language',
-        'status',
         'title_ar',
         'title_en',
         'link',
-        'photo',
         'duration',
         'added_date',
+        'status',
+        'photo',
+        'language',
     ];
     protected $hidden = ['updated_at'];
     //////////////////////////////////////////////////////////////
@@ -31,5 +31,4 @@ class Video extends Model
             return __('general.ar_en');
         }
     }
-
 }

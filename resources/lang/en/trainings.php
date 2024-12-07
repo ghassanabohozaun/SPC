@@ -18,13 +18,13 @@ return [
     'enter_started_date' => 'Enter Training Started Date',
 
 
-    'required' => 'This Field Required',
+    'required' => 'This field required',
     'max' => 'Max allow characters 100',
     'in' => 'The entered value is not valid',
-    'image' => 'must be image ',
-    'image_max' => 'Max allow image size 1 mega',
-    'mimes' => 'image with png format only',
-    'photo_required' => 'Photo Required',
+    'mimes' => 'Photo with jpeg, jpg, png formats only',
+    'image_max' => 'Max allow photo size 1 mega',
+    'mimes' => 'Photo with png format only',
+    'photo_required' => 'Photo required',
 
 
     'no_trainings_found' => 'No trainings found',

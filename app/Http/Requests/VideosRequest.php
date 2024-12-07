@@ -24,27 +24,22 @@ class VideosRequest extends FormRequest
     public function rules()
     {
 
-        if (setting()->site_lang_en == 'on') {
-            return [
-                'title_ar' => 'required',
-                'title_en' => 'required',
-                'link' => 'required',
-                'photo'=>'sometimes|nullable|image|mimes:jpg,jpeg,png|max:1024',
-            ];
-        } else {
-            return [
-                'title_ar' => 'required',
-                'link' => 'required',
-                'photo'=>'sometimes|nullable|image|mimes:jpg,jpeg,png|max:1024',
-            ];
-        }
+        $rules = [
+            'title_en' => 'required',
+            'title_ar' => 'required_if:site_lang_ar,on',
+            'link' => 'required',
+            'photo' => 'required_without:hidden_photo|image|mimes:png,jpg,jpeg,gif|max:1024',
+        ];
+
+        return $rules;
     }
 
     public function messages()
     {
         return [
             'required' => __('videos.required'),
-            'in' => __('videos.in'),
+            'required_if' => __('videos.required'),
+            'required_without' => __('videos.photo_required'),
             'image' => __('videos.image'),
             'mimes' => __('videos.mimes'),
             'max' => __('videos.image_max'),
