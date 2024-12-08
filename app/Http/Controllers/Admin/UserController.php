@@ -10,6 +10,7 @@ use App\Models\Role;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use File;
+
 class UserController extends Controller
 {
     use GeneralTrait;
@@ -62,11 +63,9 @@ class UserController extends Controller
             'gender' => $request->gender,
         ]);
         return $this->returnSuccessMessage(__('general.add_success_message'));
-
     }
 
-    /////////////////////////////////////////
-    ///  edit
+    //  edit
     public function edit($id = null)
     {
         if (!$id) {
@@ -83,8 +82,8 @@ class UserController extends Controller
         return view('admin.users.update', compact('title', 'user', 'roles'));
     }
 
-    /////////////////////////////////////////
-    ///  Update
+
+    //  Update
     public function update(UserUpdateRequest $request)
     {
         $user = Admin::find($request->id);
@@ -128,10 +127,10 @@ class UserController extends Controller
         ]);
 
         return $this->returnSuccessMessage(__('general.update_success_message'));
-
     }
-    /////////////////////////////////////////
-    ///  restore
+
+
+    //  restore
     public function restore(Request $request)
     {
         try {
@@ -145,10 +144,10 @@ class UserController extends Controller
             }
         } catch (\Exception $exception) {
             return $this->returnError(__('general.try_catch_error_message'), 500);
-        }//end catch
+        } //end catch
     }
-    /////////////////////////////////////////
-    ///  Destroy
+
+    //  Destroy
     public function destroy(Request $request)
     {
         if ($request->ajax()) {
@@ -161,8 +160,7 @@ class UserController extends Controller
         }
     }
 
-    /////////////////////////////////////////
-    ///  force delete
+    //  force delete
     public function forceDelete(Request $request)
     {
         if ($request->ajax()) {
@@ -182,8 +180,8 @@ class UserController extends Controller
             return $this->returnSuccessMessage(__('general.delete_success_message'));
         }
     }
-    /////////////////////////////////////////
-    /// change  status
+
+    // change  status
     public function changeStatus(Request $request)
     {
         $admin = Admin::find($request->id);
@@ -195,7 +193,5 @@ class UserController extends Controller
             $admin->save();
         }
         return $this->returnSuccessMessage(__('general.change_status_success_message'));
-
     }
-
 }

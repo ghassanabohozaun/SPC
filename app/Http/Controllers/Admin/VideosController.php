@@ -163,6 +163,7 @@ class VideosController extends Controller
         $videos = Video::onlyTrashed()->orderByDesc('deleted_at')->paginate(15);
         return view('admin.videos.trashed', compact('title', 'videos'));
     }
+
     // destroy
     public function destroy(Request $request)
     {
@@ -196,8 +197,6 @@ class VideosController extends Controller
         }
     }
 
-
-
     // force delete
     public function forceDelete(Request $request)
     {
@@ -230,7 +229,6 @@ class VideosController extends Controller
         }
     }
 
-    /////////////////////////////////////////
     /// change  status
     public function changeStatus(Request $request)
     {

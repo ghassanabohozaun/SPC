@@ -13,8 +13,8 @@ class DashboardController extends Controller
 {
     use GeneralTrait;
 
-    ////////////////////////////////////////////////////////
-    /// index
+
+    // index
     public function index()
     {
         $title = __('dashboard.admin_panel');
@@ -53,8 +53,8 @@ class DashboardController extends Controller
         return view('admin.dashboard', compact('title'));
     }
 
-    ////////////////////////////////////////////////////////
-    /// not Found
+
+    // not Found
     public function notFound()
     {
         $title = __('general.not_found');

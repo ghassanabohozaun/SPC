@@ -77,7 +77,6 @@ class RolesController extends Controller
         return $this->returnSuccessMessage(__('general.update_success_message'));
     }
 
-
     // destroy roles
     public function destroy(Request $request)
     {

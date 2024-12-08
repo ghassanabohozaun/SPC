@@ -10,15 +10,14 @@ use Carbon\Carbon;
 class LoginController extends Controller
 {
 
-    /////////////////////////////////////
-    /// get Login
+
+    // get Login
     public function getLogin()
     {
         return view('admin.auth.login');
     }
 
-    /////////////////////////////////////
-    /// do Login
+    // do Login
     public function doLogin(LoginRequest $request)
     {
 
@@ -28,7 +27,7 @@ class LoginController extends Controller
             return redirect()->route('get.admin.login')
                 ->with(['error' => __('login.account_unavailable')]);
         } else {
-            if($admin->status == 'on'){
+            if ($admin->status == 'on') {
 
                 $rememberMe = $request->has('rememberMe') ? true : false;
 
@@ -38,26 +37,20 @@ class LoginController extends Controller
                         'last_login_ip' => $request->getClientIp()
                     ]);
                     return redirect()->route('admin.dashboard');
-
                 } else {
                     return redirect()->route('get.admin.login')->with(['error' => __('login.login_failed')]);
                 }
-            }else{
+            } else {
                 return redirect()->route('get.admin.login')
                     ->with(['error' => __('login.account_disabled')]);
             }
-
         }
-
     }
 
-    /////////////////////////////////////
-    ///  Logout
+    //  Logout
     public function logout()
     {
         auth()->guard('admin')->logout();
         return redirect()->route('get.admin.login');
     }
-
-
 }

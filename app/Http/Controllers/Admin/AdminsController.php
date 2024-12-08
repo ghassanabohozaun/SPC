@@ -14,8 +14,8 @@ class AdminsController extends Controller
 {
     use GeneralTrait;
 
-    //////////////////////////////////////////////////////////////////////////////
-    /// index
+
+    // index
     public function index()
     {
         $id = admin()->user()->id;
@@ -24,8 +24,7 @@ class AdminsController extends Controller
         return view('admin.admin.index', compact('title', 'admin'));
     }
 
-    //////////////////////////////////////////////////////////////////////////////
-    /// get Admin By Id
+    // get Admin By Id
     public function getAdminById(Request $request)
     {
         $admin = Admin::find($request->id);
@@ -34,8 +33,8 @@ class AdminsController extends Controller
         }
         return $this->returnData('OK', 'data', $admin);
     }
-    //////////////////////////////////////////////////////////////////////////////
-    /// Admin Update
+
+    // Admin Update
     public function adminUpdate(AdminRequest $request)
     {
 

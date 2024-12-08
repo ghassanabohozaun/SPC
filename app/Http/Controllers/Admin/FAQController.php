@@ -12,6 +12,7 @@ class FAQController extends Controller
 {
     use GeneralTrait;
 
+    // index
     public function index()
     {
         $title = __('menu.faqs');
@@ -19,12 +20,14 @@ class FAQController extends Controller
         return view('admin.faq.index', compact('faqs', 'title'));
     }
 
+    // create
     public function create()
     {
         $title = __('menu.add_new_faq');
         return view('admin.faq.create', compact('title'));
     }
 
+    // store
     public function store(FAQRequest $request)
     {
         $lang_ar  = setting()->site_lang_ar;
@@ -40,12 +43,14 @@ class FAQController extends Controller
         return $this->returnSuccessMessage(__('general.add_success_message'));
     }
 
+    // edit
     public function edit($id)
     {
         $faq = FAQ::findOrFail($id);
         return view('admin.faq.update', compact('faq'));
     }
 
+    // update
     public function update(FAQRequest $request)
     {
         // return $request->all();
@@ -63,6 +68,7 @@ class FAQController extends Controller
         return $this->returnSuccessMessage(__('general.update_success_message'));
     }
 
+    // trashed
     public function trashed()
     {
         $title = __('menu.trashed_faq');
@@ -71,8 +77,7 @@ class FAQController extends Controller
     }
 
 
-    ///////////////////////////////////////////////
-    /// destroy
+    // destroy
     public function destroy(Request $request)
     {
         try {
@@ -89,8 +94,7 @@ class FAQController extends Controller
         } //end catch
     }
 
-    /////////////////////////////////////////
-    ///  restore
+    //  restore
     public function restore(Request $request)
     {
         try {
@@ -107,8 +111,7 @@ class FAQController extends Controller
         } //end catch
     }
 
-    /////////////////////////////////////////
-    ///  force delete
+    //  force delete
     public function forceDelete(Request $request)
     {
         try {
@@ -131,7 +134,7 @@ class FAQController extends Controller
 
     }
 
-
+    // change status
     public function changeStatus(Request $request)
     {
 
