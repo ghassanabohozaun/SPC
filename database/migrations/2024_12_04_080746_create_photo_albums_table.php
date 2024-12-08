@@ -15,12 +15,13 @@ class CreatePhotoAlbumsTable extends Migration
     {
         Schema::create('photo_albums', function (Blueprint $table) {
             $table->id();
-            $table->enum('language', ['ar', 'ar_en'])->default('ar');
-            $table->string('status')->nullable();
-            $table->text('title_ar')->nullable();
             $table->text('title_en')->nullable();
+            $table->text('title_ar')->nullable();
+            $table->string('year')->nullable();
+            $table->string('status')->nullable();
             $table->string('main_photo')->nullable();
-            $table->string('year');
+            $table->enum('language', ['en', 'ar_en'])->default('en');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

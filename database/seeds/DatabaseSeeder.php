@@ -3,6 +3,7 @@
 use Database\Seeders\FaqSeeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\TrainingsSeeder;
+use Database\Seeders\VideosSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             TrainingsSeeder::class,
             FaqSeeder::class,
+            VideosSeeder::class,
             // FixedTextsSeeder::class,
         ]);
 

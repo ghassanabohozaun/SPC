@@ -1,15 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\FAQController;
-use App\Http\Controllers\Admin\ProjectsController;
-use App\Http\Controllers\Admin\PublicationsController;
-use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\PhotoAlbumsController;
 use App\Http\Controllers\Admin\TrainingController;
 use App\Http\Controllers\Admin\VideosController;
 use Illuminate\Support\Facades\Route;
-
-
 
 
 /*
@@ -86,7 +81,6 @@ Route::group([
     Route::get('/get-admin-by-id', 'AdminsController@getAdminById')->name('get.admin.by.id');
     Route::post('/admin-update', 'AdminsController@adminUpdate')->name('admin.update');
 
-
     /////////////////////////////////////////////////////////////////////////////////////////////
     /// users routes
     Route::group(['prefix' => 'users', 'middleware' => 'can:users'], function () {
@@ -114,27 +108,9 @@ Route::group([
         Route::post('/update', 'RolesController@update')->name('admin.role.update');
     });
 
-
-    /////////////////////////////////////////////////////////////////////////////////////////////
-    /// testimonials routes
-    Route::group(['prefix' => 'testimonials', 'middleware' => 'can:testimonials'], function () {
-        Route::get('/', 'TestimonialController@index')->name('admin.testimonials');
-        Route::get('/create', 'TestimonialController@create')->name('admin.testimonial.create');
-        Route::post('/store', 'TestimonialController@store')->name('admin.testimonial.store');
-        Route::get('/edit/{id?}', 'TestimonialController@edit')->name('admin.testimonial.edit');
-        Route::post('/update', 'TestimonialController@update')->name('admin.testimonial.update');
-        Route::post('/destroy', 'TestimonialController@destroy')->name('admin.testimonial.destroy');
-        Route::get('/trashed', 'TestimonialController@trashed')->name('admin.testimonial.trashed');
-        Route::post('/force-delete', 'TestimonialController@forceDelete')->name('admin.testimonial.force.delete');
-        Route::post('/restore', 'TestimonialController@restore')->name('admin.testimonial.restore');
-        Route::post('/change-status', 'TestimonialController@changeStatus')->name('admin.testimonial.change-status');
-    });
-
-
     /////////////////////////////////////////////////////////////////////////////////////////////
     /// videos routes
     Route::group(['prefix' => 'videos', 'middleware' => 'can:videos'], function () {
-
         Route::get('/', [VideosController::class, 'index'])->name('admin.videos');
         Route::get('/get-videos', [VideosController::class, 'getVideos'])->name('get.admin.video');
         Route::get('/create', [VideosController::class, 'create'])->name('admin.videos.create');
@@ -143,7 +119,6 @@ Route::group([
         Route::get('/trashed', [VideosController::class, 'trashed'])->name('admin.videos.trashed');
         Route::post('/restore', [VideosController::class, 'restore'])->name('admin.videos.restore');
         Route::post('/force-delete', [VideosController::class, 'forceDelete'])->name('admin.videos.force.delete');
-
         Route::get('/edit/{id}', [VideosController::class, 'edit'])->name('admin.videos.edit');
         Route::post('/update', [VideosController::class, 'update'])->name('admin.videos.update');
         Route::post('/change-status', [VideosController::class, 'changeStatus'])->name('admin.videos.change.status');
@@ -153,18 +128,20 @@ Route::group([
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// photo albums routes
     Route::group(['prefix' => 'photo-albums', 'middleware' => 'can:photos'], function () {
-        Route::get('/', 'PhotoAlbumsController@index')->name('admin.photo.albums');
-        Route::get('/create', 'PhotoAlbumsController@create')->name('admin.photo.albums.create');
-        Route::post('/store', 'PhotoAlbumsController@store')->name('admin.photo.albums.store');
-        Route::post('/destroy', 'PhotoAlbumsController@destroy')->name('admin.photo.albums.destroy');
-        route::get('/edit/{id?}', 'PhotoAlbumsController@edit')->name('admin.photo.albums.edit');
-        route::post('/update', 'PhotoAlbumsController@update')->name('admin.photo.albums.update');
-        Route::get('/add-other-album-photos/{id?}', 'PhotoAlbumsController@addOtherAlbumPhotos')->name('admin.add.other.album.photos');
-        Route::post('/upload/other/album/photos/{paid}', 'PhotoAlbumsController@uploadOtherAlbumPhotos')->name('admin.upload.other.album.photos');
-        Route::post('/delete/other/album/photo', 'PhotoAlbumsController@deleteOtherAlbumPhoto')->name('admin.delete.other.album.photo');
-        Route::post('/change-status', 'PhotoAlbumsController@changeStatus')->name('admin.photo.albums.change.status');
+        Route::get('/', [PhotoAlbumsController::class, 'index'])->name('admin.photo.albums');
+        Route::get('/create', [PhotoAlbumsController::class, 'create'])->name('admin.photo.albums.create');
+        Route::get('/store', [PhotoAlbumsController::class, 'store'])->name('admin.photo.albums.store');
+        Route::post('/destroy', [PhotoAlbumsController::class, 'destroy'])->name('admin.photo.albums.destroy');
+        Route::get('/trashed', [PhotoAlbumsController::class, 'trashed'])->name('admin.photo.albums.trashed');
+        Route::post('/restore', [PhotoAlbumsController::class, 'restore'])->name('admin.photo.albums.restore');
+        Route::post('/force-delete', [PhotoAlbumsController::class, 'forceDelete'])->name('admin.photo.albums.force.delete');
+        Route::get('/edit/{id}', [PhotoAlbumsController::class, 'edit'])->name('admin.photo.albums.edit');
+        Route::post('/update', [PhotoAlbumsController::class, 'update'])->name('admin.photo.albums.update');
+        Route::get('/add-other-album-photos/{id}', [PhotoAlbumsController::class, 'addOtherAlbumPhotos'])->name('admin.add.other.album.photos');
+        Route::post('/upload-other-album-photo/{pid}', [PhotoAlbumsController::class, 'uploadOtherAlbumPhotos'])->name('admin.upload.other.album.photos');
+        Route::post('/delete-other-album-photo', [PhotoAlbumsController::class, 'deleteOtherAlbumPhoto'])->name('admin.delete.other.album.photo');
+        Route::post('/change-status', [PhotoAlbumsController::class, 'changeStatus'])->name('admin.photo.albums.change.status');
     });
-
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// faq routes
@@ -196,6 +173,22 @@ Route::group([
         Route::get("/edit/{id}", [TrainingController::class, 'edit'])->name('admin.trainings.edit');
         Route::post('/update', [TrainingController::class, 'update'])->name('admin.trainings.update');
     });
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    /// testimonials routes
+    // Route::group(['prefix' => 'testimonials', 'middleware' => 'can:testimonials'], function () {
+    //     Route::get('/', 'TestimonialController@index')->name('admin.testimonials');
+    //     Route::get('/create', 'TestimonialController@create')->name('admin.testimonial.create');
+    //     Route::post('/store', 'TestimonialController@store')->name('admin.testimonial.store');
+    //     Route::get('/edit/{id?}', 'TestimonialController@edit')->name('admin.testimonial.edit');
+    //     Route::post('/update', 'TestimonialController@update')->name('admin.testimonial.update');
+    //     Route::post('/destroy', 'TestimonialController@destroy')->name('admin.testimonial.destroy');
+    //     Route::get('/trashed', 'TestimonialController@trashed')->name('admin.testimonial.trashed');
+    //     Route::post('/force-delete', 'TestimonialController@forceDelete')->name('admin.testimonial.force.delete');
+    //     Route::post('/restore', 'TestimonialController@restore')->name('admin.testimonial.restore');
+    //     Route::post('/change-status', 'TestimonialController@changeStatus')->name('admin.testimonial.change-status');
+    // });
 
     // /////////////////////////////////////////////////////////////////////////////////////////////
     // /// support center routes

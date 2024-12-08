@@ -53,7 +53,6 @@ class PhotoAlbumsController extends Controller
         ]);
 
         return $this->returnSuccessMessage(__('general.add_success_message'));
-
     }
 
     // edit
@@ -87,7 +86,6 @@ class PhotoAlbumsController extends Controller
                 $image = $request->file('main_photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/albums//');
                 $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
-
             } else {
                 $image_path = public_path('/adminBoard/uploadedImages/albums//') . $photoAlbum->main_photo;
                 if (File::exists($image_path)) {
@@ -117,8 +115,6 @@ class PhotoAlbumsController extends Controller
         ]);
 
         return $this->returnSuccessMessage(__('general.update_success_message'));
-
-
     }
 
 
@@ -138,18 +134,17 @@ class PhotoAlbumsController extends Controller
                     File::delete($image_path);
                 }
             }
-//            ////////////////////  delete other Album Photos
-//            $files = File::where('relation_id', $request->id)->get();
-//            foreach ($files as $file) {
-//                Storage::delete($file->full_path_after_upload);
-//                $file->delete();
-//                Storage::deleteDirectory($file->file_path);
-//            }
+            //            ////////////////////  delete other Album Photos
+            //            $files = File::where('relation_id', $request->id)->get();
+            //            foreach ($files as $file) {
+            //                Storage::delete($file->full_path_after_upload);
+            //                $file->delete();
+            //                Storage::deleteDirectory($file->file_path);
+            //            }
 
             $photoAlbum->delete();
             return $this->returnSuccessMessage(__('general.delete_success_message'));
         }
-
     }
 
 
@@ -219,5 +214,4 @@ class PhotoAlbumsController extends Controller
 
         return $this->returnSuccessMessage(__('general.change_status_success_message'));
     }
-
 }
