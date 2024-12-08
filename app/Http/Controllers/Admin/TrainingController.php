@@ -13,9 +13,8 @@ class TrainingController extends Controller
 {
 
     use GeneralTrait;
-    //////////////////////////////////////////////////
-    // index
 
+    // index
     public function index()
     {
         $title = 'Trainings';
@@ -23,7 +22,6 @@ class TrainingController extends Controller
         return view('admin.trainings.index', compact('title', 'trainings'));
     }
 
-    //////////////////////////////////////////////////
     // create
     public function create()
     {
@@ -31,9 +29,7 @@ class TrainingController extends Controller
         return view('admin.trainings.create', compact('title'));
     }
 
-    //////////////////////////////////////////////////
     // store
-
     public function store(TrainingRequest $request)
     {
         $site_lang = setting()->site_lang_ar;
@@ -63,7 +59,6 @@ class TrainingController extends Controller
         }
     }
 
-    //////////////////////////////////////////////////
     // edit
     public function edit($id)
     {
@@ -75,13 +70,12 @@ class TrainingController extends Controller
         return view('admin.trainings.update', compact('title', 'training'));
     }
 
-    ///////////////////////////////////////////////////////////
     // update
     public function update(TrainingRequest $request)
     {
         $training = Training::find($request->id);
         if (!$training) {
-            return $this->returnError(__('general.not_found'), 404);
+            return redirect()->route('admin.not.found');
         }
 
         if ($request->hasFile('photo')) {
@@ -124,16 +118,14 @@ class TrainingController extends Controller
 
         return $this->returnSuccessMessage(__('general.update_success_message'));
     }
-    //////////////////////////////////////////////////
-    // destroy
 
+    // destroy
     public function destroy(Request $request)
     {
         if ($request->ajax()) {
             $training = Training::find($request->id);
             if (!$training) {
-                return $this->returnError(__('general.not_found'), 404);
-                //return redirect()->route('admin.not.found');
+                return redirect()->route('admin.not.found');
             }
 
             if ($training->delete()) {
@@ -144,9 +136,7 @@ class TrainingController extends Controller
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////////
     // get trashed
-
     public function getTrashed()
     {
         $title = 'Trashed';
@@ -155,15 +145,14 @@ class TrainingController extends Controller
         return view('admin.trainings.trashed', compact('title', 'trainings'));
     }
 
-    ////////////////////////////////////////////////////////////////////////////////
-    // restore
 
+    // restore
     public function restore(Request $request)
     {
         if ($request->ajax()) {
             $training = Training::onlyTrashed()->find($request->id);
             if (!$training) {
-                return $this->returnError(__('general.not_found'), 404);
+                return redirect()->route('admin.not.found');
             }
             $training->restore();
             //return response()->json($training, 200);
@@ -172,16 +161,15 @@ class TrainingController extends Controller
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////////
-    // force delete
 
+    // force delete
     public function forceDelete(Request $request)
     {
         if ($request->ajax()) {
             $training = Training::onlyTrashed()->find($request->id);
 
             if (!$training) {
-                return $this->returnError(__('general.not_found'), 404);
+                return redirect()->route('admin.not.found');
             }
 
             if (!empty($training->photo)) {
@@ -195,14 +183,14 @@ class TrainingController extends Controller
             return $this->returnSuccessMessage(__('general.delete_success_message'));
         }
     }
-    /////////////////////////////////////////////////////////////////////////////////
-    /// change status
+
+    // change status
     public function changeStatus(Request $request)
     {
         if ($request->ajax()) {
             $training  = Training::find($request->id);
             if (!$training) {
-                return $this->returnError(__('general.not_found'), 404);
+                return redirect()->route('admin.not.found');
             }
 
             //return response()->json($request->id, 200);

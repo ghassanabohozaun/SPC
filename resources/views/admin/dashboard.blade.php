@@ -38,7 +38,7 @@
         <div class=" container-fluid ">
 
             <!--begin::Counters-->
-            <div class="row">
+            {{-- <div class="row">
                 <!------------------------- start Projects Count ---------------->
                 <div class="col-xl-3">
                     <!--begin::Stats Widget 32-->
@@ -190,11 +190,11 @@
                 </div>
                 <!------------------------ end Reports count ----------->
 
-            </div>
+            </div> --}}
             <!--end::Counters-->
 
             <!--begin::chart-->
-            <div class="card card-custom gutter-b">
+            {{-- <div class="card card-custom gutter-b">
 
                 <div class="card-body py-2" style="">
                     <div class="container-fluid">
@@ -335,7 +335,7 @@
                 <!--end::Body-->
 
             </div>
-            <!--end::Last Articles-->
+            <!--end::Last Articles--> --}}
 
 
         </div>
@@ -343,12 +343,11 @@
 
     </div>
     <!--end::content-->
-
 @endsection
 
 
 @push('js')
-    <script type="text/javascript" src="{!! asset('adminBoard/assets/js/Chart.bundle.min.js') !!}"></script>
+    {{-- <script type="text/javascript" src="{!! asset('adminBoard/assets/js/Chart.bundle.min.js') !!}"></script>
     <script type="text/javascript">
         $(function() {
             var ArticleData = <?php echo json_encode($ArticleData); ?>;
@@ -408,5 +407,5 @@
                 }
             })
         });
-    </script>
+    </script> --}}
 @endpush

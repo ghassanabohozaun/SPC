@@ -56,14 +56,20 @@ return [
     'image_format_allow' => 'Allowed file types jpg,jpeg,png',
     'file_format_allow' => 'Allowed file types pdf',
     'word_format_allow' => 'Allowed file types Word',
-    'add_success_message' => 'Added Successfully',
-    'delete_success_message' => 'Deleted Successfully',
-    'delete_error_message' => 'Record Not Deleted',
 
+
+    'add_success_message' => 'Added Successfully',
+    'add_error_message' => 'Added Failed',
+    'delete_success_message' => 'Deleted Successfully',
+    'delete_error_message' => 'Record Failed',
     'update_success_message' => 'Updated Successfully',
+    'update_error_message' => 'Updated Failed',
     'upload_success_message' => ' Upload Successfully',
+    'upload_error_message' => ' Upload Failed',
     'restore_success_message' => 'Restored Successfully',
+    'restore_error_message' => 'Restored Failed',
     'send_success_message' => ' Send Successfully',
+    'send_error_message' => ' Send Failed',
 
 
 

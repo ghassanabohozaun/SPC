@@ -2,7 +2,7 @@
 @section('title')
 @endsection
 @section('content')
-    <form class="form" action="{{ route('admin.video.update') }}" method="POST" id="form_videos_update">
+    <form class="form" action="{{ route('admin.videos.update') }}" method="POST" id="form_videos_update">
         @csrf
         <!--begin::Subheader-->
         <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
@@ -21,7 +21,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ route('admin.video.edit', $video->id) }}" class="text-muted">
+                            <a href="{{ route('admin.videos.edit', $video->id) }}" class="text-muted">
                                 {{ __('videos.video_update') }}
                             </a>
                         </li>

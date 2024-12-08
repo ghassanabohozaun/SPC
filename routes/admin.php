@@ -6,7 +6,9 @@ use App\Http\Controllers\Admin\ProjectsController;
 use App\Http\Controllers\Admin\PublicationsController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\TrainingController;
+use App\Http\Controllers\Admin\VideosController;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -132,15 +134,20 @@ Route::group([
     /////////////////////////////////////////////////////////////////////////////////////////////
     /// videos routes
     Route::group(['prefix' => 'videos', 'middleware' => 'can:videos'], function () {
-        Route::get('/', 'VideosController@index')->name('admin.videos');
-        Route::get('/get-videos', 'VideosController@getVideos')->name('get.admin.videos');
-        Route::get('/create', 'VideosController@create')->name('admin.videos.create');
-        Route::post('/store', 'VideosController@store')->name('admin.videos.store');
-        Route::post('/destroy', 'VideosController@destroy')->name('admin.video.destroy');
-        Route::get('edit/{id?}', 'VideosController@edit')->name('admin.video.edit');
-        Route::post('update', 'VideosController@update')->name('admin.video.update');
-        Route::post('/change-status', 'VideosController@changeStatus')->name('admin.video.change.status');
-        Route::get('/view.video', 'VideosController@viewVideo')->name('admin.view.video');
+
+        Route::get('/', [VideosController::class, 'index'])->name('admin.videos');
+        Route::get('/get-videos', [VideosController::class, 'getVideos'])->name('get.admin.video');
+        Route::get('/create', [VideosController::class, 'create'])->name('admin.videos.create');
+        Route::post('/store', [VideosController::class, 'store'])->name('admin.videos.store');
+        Route::post('/destroy', [VideosController::class, 'destroy'])->name('admin.videos.destroy');
+        Route::get('/trashed', [VideosController::class, 'trashed'])->name('admin.videos.trashed');
+        Route::post('/restore', [VideosController::class, 'restore'])->name('admin.videos.restore');
+        Route::post('/force-delete', [VideosController::class, 'forceDelete'])->name('admin.videos.force.delete');
+
+        Route::get('/edit/{id}', [VideosController::class, 'edit'])->name('admin.videos.edit');
+        Route::post('/update', [VideosController::class, 'update'])->name('admin.videos.update');
+        Route::post('/change-status', [VideosController::class, 'changeStatus'])->name('admin.videos.change.status');
+        Route::get('/view.video', [VideosController::class, 'viewVideo'])->name('admin.videos.view');
     });
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////

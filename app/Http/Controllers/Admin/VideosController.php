@@ -156,6 +156,13 @@ class VideosController extends Controller
     }
 
 
+    // trashed
+    public function trashed()
+    {
+        $title = __('general.trashed');
+        $videos = Video::onlyTrashed()->orderByDesc('deleted_at')->paginate(15);
+        return view('admin.videos.trashed', compact('title', 'videos'));
+    }
     // destroy
     public function destroy(Request $request)
     {
@@ -164,24 +171,62 @@ class VideosController extends Controller
             if (!$video) {
                 return redirect()->route('admin.not.found');
             }
-            if (!empty($video->photo)) {
-                $image_path = public_path('/adminBoard/uploadedImages/videos//') . $video->photo;
-                if (File::exists($image_path)) {
-                    File::delete($image_path);
-                }
+            if ($video->delete()) {
+                return $this->returnSuccessMessage(__('general.delete_success_message'));
+            } else {
+                return $this->returnError(__('general.delete_error_message'), 400);
             }
-            $video->delete();
-            return $this->returnSuccessMessage(__('general.delete_success_message'));
         }
     }
 
+    public function restore(Request $request)
+    {
+        if ($request->ajax()) {
+
+            $video = Video::onlyTrashed()->find($request->id);
+            if (!$video) {
+                return redirect()->route('admin.not.found');
+            }
+
+            if ($video->restore()) {
+                return $this->returnSuccessMessage(__('general.restore_success_message'));
+            } else {
+                return $this->returnError(__('general.restore_error_message'), 400);
+            }
+        }
+    }
+
+
+
+    // force delete
+    public function forceDelete(Request $request)
+    {
+        if ($request->ajax()) {
+            $video = Video::onlyTrashed()->find($request->id);
+            if (!$video) {
+                return redirect()->route('admin.not.found');
+            }
+
+            //delete photo
+            $public_path  = public_path('/adminBoard/uploadedImages/videos//') . $video->photo;
+            if (File::exists($public_path)) {
+                File::delete($public_path);
+            }
+
+            if ($video->forceDelete()) {
+                return $this->returnSuccessMessage(__('general.delete_success_message'));
+            } else {
+                return $this->returnError(__('general.delete_error_message'), 400);
+            }
+        }
+    }
 
     // view video
     public function viewVideo(Request $request)
     {
         if ($request->ajax()) {
             $video = Video::find($request->id);
-            return response()->json(['data' => $video]);
+            return response()->json($video);
         }
     }
 

@@ -64,13 +64,21 @@ return [
 
 
     'add_success_message' => 'تمت عملية الحفظ بنجاح',
+    'add_error_message' => 'لم تتم عملية الحفظ',
     'delete_success_message' => 'تمت عملية الحذف بنجاح',
     'delete_error_message' => 'لم تتم عملية الحذف',
     'update_success_message' => 'تمت عملية التعديل بنجاح',
-    'upload_success_message' => 'تمت عملية الرفع بنجاح',
-    'send_success_message' => 'تمت عملية الارسال بنجاح',
-
+    'update_error_message' => 'لم تتم عملية التعديل',
     'restore_success_message' => 'تمت عملية الاسترجاع بنجاح',
+    'restore_error_message' => 'لم تتم عملية الاسترجاع',
+
+    'upload_success_message' => 'تمت عملية الرفع بنجاح',
+    'upload_error_message' => 'لم تتم عملية الرفع ',
+    'send_success_message' => 'تمت عملية الارسال بنجاح',
+    'send_error_message' => 'لم تتم عملية الارسال',
+
+
+
     'internal_server_error_message' => 'عذراً , خطأ داخلي في الخادم ',
     'try_catch_error_message' => 'عذراً , هتالك خطأ ما يرجي المحاولة فيما بعد  ',
     'error_message' => 'عذراً , هتالك خطأ ما',
