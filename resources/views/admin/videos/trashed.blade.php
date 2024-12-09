@@ -70,8 +70,10 @@
                                                         <tr>
                                                             <th>#</th>
                                                             <th>{!! __('videos.photo') !!}</th>
-                                                            <th>{!! __('videos.title_ar') !!}</th>
-                                                            <th>{!! __('videos.title_ar') !!}</th>
+                                                            <th>{!! __('videos.title_en') !!}</th>
+                                                            @if (setting()->site_lang_ar == 'on')
+                                                                <th>{!! __('videos.title_ar') !!}</th>
+                                                            @endif
                                                             <th>{!! __('videos.duration') !!}</th>
                                                             <th class="text-center" style="width: 100px;">
                                                                 {!! __('general.actions') !!}
@@ -83,8 +85,10 @@
                                                             <tr>
                                                                 <td>{!! $loop->iteration !!}</td>
                                                                 <td>@include('admin.videos.parts.photo')</td>
-                                                                <td>{{ $video->title_ar }}</td>
-                                                                <td>{{ $video->title_ar }}</td>
+                                                                <td>{{ $video->title_en }}</td>
+                                                                @if (setting()->site_lang_ar == 'on')
+                                                                    <td>{{ $video->title_ar }}</td>
+                                                                @endif
                                                                 <td>{{ $video->duration }}</td>
                                                                 <td>
                                                                     <a class="btn btn-hover-warning btn-icon btn-pill restore_video_btn"
@@ -128,8 +132,8 @@
 
                         </div>
 
-                        <form class="d-none" id="form_viode_delete">
-                            <input type="hidden" id="viode_delete_id">
+                        <form class="d-none" id="form_video_delete">
+                            <input type="hidden" id="video_delete_id">
                         </form>
                         <!--end::Form-->
 
@@ -147,7 +151,7 @@
 @endsection
 @push('js')
     <script type="text/javascript">
-        // delete viode
+        // delete video
         $(document).on('click', '.force_delete_video_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');

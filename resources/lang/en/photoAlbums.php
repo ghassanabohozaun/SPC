@@ -14,18 +14,19 @@ return [
     'main_photo' => 'Photo Album Main Photo ',
     'year' => 'Photo Album Year',
 
-    'enter_title_ar' => 'Enter Photo Album Title  in Arabic',
-    'enter_title_en' => 'Enter Photo Album Title  in English',
+    'enter_title_ar' => 'Enter Arabic Photo Album Title',
+    'enter_title_en' => 'Enter English Photo Album Title ',
     'enter_language' => 'Enter Photo Album Language ',
     'enter_status' => 'Enter Photo Album Status ',
     'enter_main_photo' => 'Enter Main Photo Album',
 
-    'required' => 'This Field is Required ',
-    'image' => 'image with jpeg, jpg, png formats only',
+    'required' => 'This field  required ',
+    'image' => 'Must be Image ',
     'in' => 'The entered value incorrect',
-    'mimes' => 'image with jpeg, jpg, png formats only',
-    'photo_required' => 'Photo Album Main Photo Required',
-    'image_max' => 'Max allow image size 1 mega',
+    'mimes' => 'Photo with jpeg, jpg, png formats only',
+    'image_max' => 'Max allow photo size 1 mega',
+    'photo_required' => 'Photo required',
+
     'not_photo_albums_found' => 'No Photo Albums Found',
 
 ];

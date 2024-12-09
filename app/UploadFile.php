@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Upload_Files extends Model
+class UploadFile extends Model
 {
     protected $table = 'files';
 

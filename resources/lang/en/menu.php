@@ -30,6 +30,15 @@ return [
     'trashed_trainings' => 'Trashed Training',
     'add_new_training' => 'Add New Training',
 
+    'videos' => 'Videos',
+    'trashed_videos' => 'Trashed Videos',
+    'add_new_video' => 'Add New Video',
+
+    'photo_albums' => 'Photo Albums',
+    'trashed_photo_albums' => 'Trashed Photo Albums',
+    'add_new_photo_album' => 'Add New Photo Album',
+
+
 
     'sliders' => 'Sliders',
     'trashed_sliders' => 'Trashed Sliders',
@@ -55,13 +64,6 @@ return [
     'trashed_publications' => 'Trashed Publications',
     'add_new_publication' => 'Add New Publication',
 
-    'videos' => 'Videos',
-    'trashed_videos' => 'Trashed Videos',
-    'add_new_video' => 'Add New Video',
-
-    'photo_albums' => 'Photo Albums',
-    'trashed_photo_albums' => 'Trashed Photo Albums',
-    'add_new_photo_album' => 'Add New Photo Album',
 
     'abouts' => 'Abouts',
     'trashed_abouts' => 'Trashed Abouts',

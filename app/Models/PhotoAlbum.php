@@ -2,18 +2,22 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PhotoAlbum extends Model
 {
+    use HasFactory, SoftDeletes;
+
     protected $table = 'photo_albums';
     protected $fillable = [
-        'language',
-        'status',
         'title_ar',
         'title_en',
-        'main_photo',
+        'status',
         'year',
+        'main_photo',
+        'language',
     ];
     protected $hidden = ['updated_at',];
 
@@ -21,7 +25,7 @@ class PhotoAlbum extends Model
     /// files
     public function files()
     {
-        return $this->hasMany('App\Upload_Files', 'relation_id', 'id')
+        return $this->hasMany('App\UploadFile', 'relation_id', 'id')
             ->where('file_type', 'photo_albums_photos');
     }
     ///////////////////////////////////////////////////////////
@@ -36,5 +40,4 @@ class PhotoAlbum extends Model
             return __('general.ar_en');
         }
     }
-
 }

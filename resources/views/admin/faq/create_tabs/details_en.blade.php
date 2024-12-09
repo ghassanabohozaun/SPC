@@ -15,7 +15,7 @@
                             </label>
 
                             <input type="text" class="form-control form-control-solid form-control-lg"
-                                name="question_en" id="question_en" placeholder="{{ __('faqs.question_en') }}"
+                                name="question_en" id="question_en" placeholder="{{ __('faqs.enter_question_en') }}"
                                 autocomplete="off">
                             <span class="form-text text-danger" id="question_en_error"></span>
 

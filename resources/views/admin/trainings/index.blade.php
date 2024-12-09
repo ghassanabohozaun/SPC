@@ -70,7 +70,9 @@
                                                             <th>#</th>
                                                             <th>{!! __('trainings.photo') !!}</th>
                                                             <th>{!! __('trainings.title_en') !!}</th>
-                                                            <th>{!! __('trainings.title_ar') !!}</th>
+                                                            @if (setting()->site_lang_ar == 'on')
+                                                                <th>{!! __('trainings.title_ar') !!}</th>
+                                                            @endif
                                                             <th>{!! __('trainings.started_date') !!}</th>
                                                             <th class="text-center" style="width: 100px;">
                                                                 {!! __('general.actions') !!}</th>
@@ -82,7 +84,9 @@
                                                                 <td>{!! $loop->iteration !!}</td>
                                                                 <td>@include('admin.trainings.parts.photo')</td>
                                                                 <td>{{ $training->title_en }}</td>
-                                                                <td>{{ $training->title_ar }}</td>
+                                                                @if (setting()->site_lang_ar == 'on')
+                                                                    <td>{{ $training->title_ar }}</td>
+                                                                @endif
                                                                 <td>{{ $training->started_date }}</td>
                                                                 <td>
                                                                     <div class="cst-switch switch-sm">

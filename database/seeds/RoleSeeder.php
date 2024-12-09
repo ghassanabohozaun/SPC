@@ -28,7 +28,7 @@ class RoleSeeder extends Seeder
                 'faqs',
                 'trainings',
                 'videos',
-
+                'photos',
 
                 // 'support-center',
                 // 'reports',
@@ -38,7 +38,7 @@ class RoleSeeder extends Seeder
                 // 'testimonials',
                 // 'publications',
                 //
-                // 'photos',
+                //
                 // 'yearly-reports',
                 // 'abouts',
                 // 'teams',

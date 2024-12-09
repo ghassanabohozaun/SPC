@@ -130,7 +130,7 @@ Route::group([
     Route::group(['prefix' => 'photo-albums', 'middleware' => 'can:photos'], function () {
         Route::get('/', [PhotoAlbumsController::class, 'index'])->name('admin.photo.albums');
         Route::get('/create', [PhotoAlbumsController::class, 'create'])->name('admin.photo.albums.create');
-        Route::get('/store', [PhotoAlbumsController::class, 'store'])->name('admin.photo.albums.store');
+        Route::post('/store', [PhotoAlbumsController::class, 'store'])->name('admin.photo.albums.store');
         Route::post('/destroy', [PhotoAlbumsController::class, 'destroy'])->name('admin.photo.albums.destroy');
         Route::get('/trashed', [PhotoAlbumsController::class, 'trashed'])->name('admin.photo.albums.trashed');
         Route::post('/restore', [PhotoAlbumsController::class, 'restore'])->name('admin.photo.albums.restore');
@@ -138,7 +138,7 @@ Route::group([
         Route::get('/edit/{id}', [PhotoAlbumsController::class, 'edit'])->name('admin.photo.albums.edit');
         Route::post('/update', [PhotoAlbumsController::class, 'update'])->name('admin.photo.albums.update');
         Route::get('/add-other-album-photos/{id}', [PhotoAlbumsController::class, 'addOtherAlbumPhotos'])->name('admin.add.other.album.photos');
-        Route::post('/upload-other-album-photo/{pid}', [PhotoAlbumsController::class, 'uploadOtherAlbumPhotos'])->name('admin.upload.other.album.photos');
+        Route::post('/upload-other-album-photo/{paid}', [PhotoAlbumsController::class, 'uploadOtherAlbumPhotos'])->name('admin.upload.other.album.photos');
         Route::post('/delete-other-album-photo', [PhotoAlbumsController::class, 'deleteOtherAlbumPhoto'])->name('admin.delete.other.album.photo');
         Route::post('/change-status', [PhotoAlbumsController::class, 'changeStatus'])->name('admin.photo.albums.change.status');
     });

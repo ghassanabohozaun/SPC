@@ -1,13 +1,12 @@
 @extends('layouts.admin')
-@section('title') @endsection
+@section('title')
+@endsection
 @section('content')
-
-    <form class="form" action="{{route('admin.photo.albums.store')}}" method="POST" id="form_photo_album_add">
+    <form class="form" action="{{ route('admin.photo.albums.store') }}" method="POST" id="form_photo_album_add">
         @csrf
         <!--begin::Subheader-->
         <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
-            <div
-                class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                 <!--begin::Info-->
                 <div class="d-flex align-items-center flex-wrap mr-2">
 
@@ -17,19 +16,19 @@
 
                     <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                         <li class="breadcrumb-item">
-                            <a href="{{route('admin.photo.albums')}}" class="text-muted">
-                                {{__('menu.photo_albums')}}
+                            <a href="{{ route('admin.photo.albums') }}" class="text-muted">
+                                {{ __('menu.photo_albums') }}
                             </a>
                         </li>
 
                         <li class="breadcrumb-item">
-                            <a href="{{route('admin.photo.albums')}}" class="text-muted">
-                                {{__('menu.photo_albums')}}
+                            <a href="{{ route('admin.photo.albums') }}" class="text-muted">
+                                {{ __('menu.photo_albums') }}
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{route('admin.photo.albums.create')}}" class="text-muted">
-                                {{__('menu.add_new_photo_album')}}
+                            <a href="{{ route('admin.photo.albums.create') }}" class="text-muted">
+                                {{ __('menu.add_new_photo_album') }}
                             </a>
                         </li>
                     </ul>
@@ -41,10 +40,9 @@
                 <!--begin::Toolbar-->
                 <div class="d-flex align-items-center">
 
-                    <button type="submit"
-                            class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
+                    <button type="submit" class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
                         <i class="fa fa-save"></i>
-                        {{__('general.save')}}
+                        {{ __('general.save') }}
                     </button>
 
                 </div>
@@ -75,39 +73,44 @@
                                                 <!--begin::body-->
                                                 <div class="my-5">
 
+                                                    <div class="form-group row d-none">
+                                                        <input type="hidden" id='site_lang_ar' name='site_lang_ar'
+                                                            value="{!! setting()->site_lang_ar !!}">
+                                                    </div>
+
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('photoAlbums.main_photo')}}
+                                                            {{ __('photoAlbums.main_photo') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <div
-                                                                class="image-input image-input-outline"
+                                                            <div class="image-input image-input-outline"
                                                                 id="kt_main_photo_album">
-                                                                <!--  style="background-image: url({{--asset(Storage::url(setting()->site_icon))--}})"-->
+                                                                <!--  style="background-image: url({{-- asset(Storage::url(setting()->site_icon)) --}})"-->
                                                                 <div class="image-input-wrapper"></div>
                                                                 <label
                                                                     class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                                                    data-action="change" data-toggle="tooltip" title=""
-                                                                    data-original-title="{{__('general.change_image')}}">
+                                                                    data-action="change" data-toggle="tooltip"
+                                                                    title=""
+                                                                    data-original-title="{{ __('general.change_image') }}">
                                                                     <i class="fa fa-pen icon-sm text-muted"></i>
                                                                     <input type="file" name="main_photo" id="main_photo"
-                                                                           class="table-responsive-sm">
-                                                                    <input type="hidden" name="main_photo_remove"/>
+                                                                        class="table-responsive-sm">
+                                                                    <input type="hidden" name="main_photo_remove" />
                                                                 </label>
 
                                                                 <span
                                                                     class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
                                                                     data-action="cancel" data-toggle="tooltip"
                                                                     title="Cancel avatar">
-                                                                                <i class="ki ki-bold-close icon-xs text-muted"></i>
-                                                                 </span>
+                                                                    <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                                </span>
                                                             </div>
                                                             <span
-                                                                class="form-text text-muted">{{__('general.image_format_allow')}}
+                                                                class="form-text text-muted">{{ __('general.image_format_allow') }}
                                                             </span>
                                                             <span class="form-text text-danger"
-                                                                  id="main_photo_error"></span>
+                                                                id="main_photo_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -115,68 +118,60 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('photoAlbums.year')}}
+                                                            {{ __('photoAlbums.title_en') }}
+                                                        </label>
+                                                        <div class="col-lg-9 col-xl-9">
+                                                            <textarea rows="3" class="form-control form-control-solid form-control-lg" name="title_en" id="title_en"
+                                                                type="text" placeholder=" {{ __('photoAlbums.enter_title_en') }}" autocomplete="off"></textarea>
+
+                                                            <span class="form-text text-danger" id="title_en_error"></span>
+
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Group-->
+
+
+                                                    <!--begin::Group-->
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label">
+                                                            {{ __('photoAlbums.title_ar') }}
+                                                        </label>
+                                                        <div class="col-lg-9 col-xl-9">
+                                                            <textarea rows="3" class="form-control form-control-solid form-control-lg" name="title_ar" id="title_ar"
+                                                                type="text" placeholder=" {{ __('photoAlbums.enter_title_ar') }}" autocomplete="off"></textarea>
+
+                                                            <span class="form-text text-danger" id="title_ar_error"></span>
+
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Group-->
+
+                                                    <!--begin::Group-->
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label">
+                                                            {{ __('photoAlbums.year') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
 
-                                                            <select
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <select class="form-control form-control-solid form-control-lg"
                                                                 name="year" id="year" type="text">
                                                                 <?php
-                                                                $firstYear = (int)date('Y') - 2;
+                                                                $firstYear = (int) date('Y') - 2;
                                                                 $lastYear = $firstYear + 6;
                                                                 ?>
-                                                                <option
-                                                                    value="">{{__('general.select_from_list')}}
+                                                                <option value="">
+                                                                    {{ __('general.select_from_list') }}
                                                                 </option>
-                                                                @for ($year= $firstYear; $year<= $lastYear; $year++)
-                                                                    <option value="{{$year}}">{{ $year }} </option>
+                                                                @for ($year = $firstYear; $year <= $lastYear; $year++)
+                                                                    <option value="{{ $year }}">
+                                                                        {{ $year }} </option>
                                                                 @endfor
                                                             </select>
-                                                            <span class="form-text text-danger"
-                                                                  id="year_error"></span>
+                                                            <span class="form-text text-danger" id="year_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
 
-
-                                                    <!--begin::Group-->
-                                                    <div class="form-group row">
-                                                        <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('photoAlbums.title_ar')}}
-                                                        </label>
-                                                        <div class="col-lg-9 col-xl-9">
-                                                            <textarea rows="3"
-                                                                      class="form-control form-control-solid form-control-lg"
-                                                                      name="title_ar" id="title_ar" type="text"
-                                                                      placeholder=" {{__('photoAlbums.enter_title_ar')}}"
-                                                                      autocomplete="off"></textarea>
-
-                                                            <span class="form-text text-danger"
-                                                                  id="title_ar_error"></span>
-
-                                                        </div>
-                                                    </div>
-                                                    <!--end::Group-->
-
-                                                    <!--begin::Group-->
-                                                    <div class="form-group row">
-                                                        <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('photoAlbums.title_en')}}
-                                                        </label>
-                                                        <div class="col-lg-9 col-xl-9">
-                                                            <textarea rows="3"
-                                                                      class="form-control form-control-solid form-control-lg"
-                                                                      name="title_en" id="title_en" type="text"
-                                                                      placeholder=" {{__('photoAlbums.enter_title_en')}}"
-                                                                      autocomplete="off"></textarea>
-
-                                                            <span class="form-text text-danger"
-                                                                  id="title_en_error"></span>
-
-                                                        </div>
-                                                    </div>
-                                                    <!--end::Group-->
 
                                                 </div>
                                                 <!--begin::body-->
@@ -204,7 +199,7 @@
     <script type="text/javascript">
         var main_photo_album = new KTImageInput('kt_main_photo_album');
 
-        $('#form_photo_album_add').on('submit', function (e) {
+        $('#form_photo_album_add').on('submit', function(e) {
             e.preventDefault();
             //////////////////////////////////////////////////////////////
             $('#language_error').text('');
@@ -231,14 +226,14 @@
                 contentType: false,
                 cache: false,
                 processData: false,
-                beforeSend: function () {
+                beforeSend: function() {
                     KTApp.blockPage({
                         overlayColor: '#000000',
                         state: 'danger',
-                        message: "{{__('general.please_wait')}}",
+                        message: "{{ __('general.please_wait') }}",
                     });
-                },//end beforeSend
-                success: function (data) {
+                }, //end beforeSend
+                success: function(data) {
                     KTApp.unblockPage();
                     if (data.status == true) {
                         Swal.fire({
@@ -246,33 +241,34 @@
                             text: "",
                             icon: "success",
                             allowOutsideClick: false,
-                            customClass: {confirmButton: 'add_photo_button'}
+                            customClass: {
+                                confirmButton: 'add_photo_button'
+                            }
                         });
-                        $('.add_photo_button').click(function () {
-                            window.location.href = "{{route('admin.photo.albums')}}";
+                        $('.add_photo_button').click(function() {
+                            window.location.href = "{{ route('admin.photo.albums') }}";
                         });
                     }
-                },//end success
+                }, //end success
 
-                error: function (reject) {
+                error: function(reject) {
                     var response = $.parseJSON(reject.responseText);
-                    $.each(response.errors, function (key, value) {
+                    $.each(response.errors, function(key, value) {
                         $('#' + key + '_error').text(value[0]);
                         $('#' + key).css('border-color', '#F64E60');
-                        $('html, body').animate({scrollTop: 20}, 300);
+                        $('html, body').animate({
+                            scrollTop: 20
+                        }, 300);
                     });
 
-                },//end error
+                }, //end error
 
-                complete: function () {
+                complete: function() {
                     KTApp.unblockPage();
-                },//end complete
+                }, //end complete
 
             });
 
-        });//end submit
-
-
+        }); //end submit
     </script>
-
 @endpush

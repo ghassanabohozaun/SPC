@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PhotoAlbumsRequest;
 use App\Models\PhotoAlbum;
 use App\Traits\GeneralTrait;
-use App\Upload_Files;
+use App\UploadFile;
 use File;
 use Illuminate\Http\Request;
 
@@ -32,7 +32,6 @@ class PhotoAlbumsController extends Controller
     // store
     public function store(PhotoAlbumsRequest $request)
     {
-
         // save image
         if ($request->hasFile('main_photo')) {
             $image = $request->file('main_photo');
@@ -42,14 +41,14 @@ class PhotoAlbumsController extends Controller
             $photo_path = '';
         }
 
-        $lang_en = setting()->site_lang_en;
+        $site_lang_ar = setting()->site_lang_ar;
         PhotoAlbum::create([
-            'main_photo' => $photo_path,
-            'language' => $lang_en == 'on' ? 'ar_en' : 'ar',
-            'title_ar' => $request->title_ar,
-            'title_en' => $lang_en == 'on' ? $request->title_en : null,
+            'title_en' => $request->title_en,
+            'title_ar' => $site_lang_ar == 'on' ? $request->title_ar : null,
             'year' => $request->year,
             'status' => 'on',
+            'main_photo' => $photo_path,
+            'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
         ]);
 
         return $this->returnSuccessMessage(__('general.add_success_message'));
@@ -79,7 +78,7 @@ class PhotoAlbumsController extends Controller
             if (!empty($photoAlbum->main_photo)) {
 
                 $image_path = public_path('/adminBoard/uploadedImages/albums//') . $photoAlbum->main_photo;
-                if (\Illuminate\Support\Facades\File::exists($image_path)) {
+                if (File::exists($image_path)) {
                     File::delete($image_path);
                 }
 
@@ -87,11 +86,6 @@ class PhotoAlbumsController extends Controller
                 $destinationPath = public_path('/adminBoard/uploadedImages/albums//');
                 $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
             } else {
-                $image_path = public_path('/adminBoard/uploadedImages/albums//') . $photoAlbum->main_photo;
-                if (File::exists($image_path)) {
-                    File::delete($image_path);
-                }
-
                 $image = $request->file('main_photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/albums//');
                 $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
@@ -105,13 +99,13 @@ class PhotoAlbumsController extends Controller
         }
 
 
-        $lang_en = setting()->site_lang_en;
+        $site_lang_ar = setting()->site_lang_ar;
         $photoAlbum->update([
-            'main_photo' => $photo_path,
-            'language' => $lang_en == 'on' ? 'ar_en' : 'ar',
-            'title_ar' => $request->title_ar,
-            'title_en' => $lang_en == 'on' ? $request->title_en : null,
+            'title_en' => $request->title_en,
+            'title_ar' => $site_lang_ar == 'on' ? $request->title_ar : null,
             'year' => $request->year,
+            'main_photo' => $photo_path,
+            'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
         ]);
 
         return $this->returnSuccessMessage(__('general.update_success_message'));
@@ -134,16 +128,71 @@ class PhotoAlbumsController extends Controller
                     File::delete($image_path);
                 }
             }
-            //            ////////////////////  delete other Album Photos
-            //            $files = File::where('relation_id', $request->id)->get();
-            //            foreach ($files as $file) {
-            //                Storage::delete($file->full_path_after_upload);
-            //                $file->delete();
-            //                Storage::deleteDirectory($file->file_path);
-            //            }
+
 
             $photoAlbum->delete();
             return $this->returnSuccessMessage(__('general.delete_success_message'));
+        }
+    }
+
+    // trashed
+    public function trashed()
+    {
+        $title = __('general.trashed');
+        $photoAlbums = PhotoAlbum::onlyTrashed()->orderByDesc(('deleted_at'))->paginate(15);
+        return view('admin.photo-albums.trashed', compact('title', 'photoAlbums'));
+    }
+
+
+    // restore
+    public function restore(Request $request)
+    {
+
+        if ($request->ajax()) {
+            $photoAlbum = PhotoAlbum::onlyTrashed()->find($request->id);
+            if (!$photoAlbum) {
+                return redirect()->route('admin.not.found');
+            }
+            if ($photoAlbum->restore()) {
+
+                return $this->returnSuccessMessage(__('general.restore_success_message'));
+            } else {
+                return $this->returnErrorMessage(__('general.restore_error_message'));
+            }
+        }
+    }
+
+    // force delete
+    public function forceDelete(Request $request)
+    {
+
+        if ($request->ajax()) {
+            $photoAlbum = PhotoAlbum::onlyTrashed()->find($request->id);
+            if (!$photoAlbum) {
+                return redirect()->route('admin.not.found');
+            }
+
+            $public_path = public_path('/adminBoard/uploadedImages/albums//') . $photoAlbum->main_photo;
+            // delete main photo
+            if (File::exists($public_path)) {
+                File::delete($public_path);
+            }
+
+            //////////////////  delete other Album Photos
+            $files = UploadFile::where('relation_id', $request->id)->get();
+            foreach ($files as $file) {
+                $public_path = public_path('/adminBoard/uploadedImages/albums_photos//') . $file->full_path_after_upload;
+
+                if (File::exists($public_path)) {
+                    File::delete($public_path);
+                }
+            }
+
+            if ($photoAlbum->forceDelete()) {
+                return $this->returnSuccessMessage(__('general.delete_success_message'));
+            } else {
+                return $this->returnErrorMessage(__('general.delete_error_message'));
+            }
         }
     }
 
@@ -169,7 +218,7 @@ class PhotoAlbumsController extends Controller
             $destinationPath = public_path('/adminBoard/uploadedImages/albums_photos//');
             $filePath = $this->saveResizeImage($image, $destinationPath, 1200, 750);
 
-            $file = new Upload_Files();
+            $file = new UploadFile();
             $file->file_name = $request->file('file')->getClientOriginalName();
             $file->file_size = $request->file('file')->getSize();
             $file->file_path = 'photo_albums/' . $paid;
@@ -188,7 +237,7 @@ class PhotoAlbumsController extends Controller
     public function deleteOtherAlbumPhoto(Request $request)
     {
         if ($request->ajax()) {
-            $file = Upload_Files::find($request->id);
+            $file = UploadFile::find($request->id);
             $image_path = public_path('/adminBoard/uploadedImages/albums_photos//') . $file->full_path_after_upload;
             if (File::exists($image_path)) {
                 File::delete($image_path);

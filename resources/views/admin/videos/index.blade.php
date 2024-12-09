@@ -73,7 +73,9 @@
                                                             <th>#</th>
                                                             <th>{!! __('videos.photo') !!}</th>
                                                             <th>{!! __('videos.title_en') !!}</th>
-                                                            <th>{!! __('videos.title_ar') !!}</th>
+                                                            @if (setting()->site_lang_ar == 'on')
+                                                                <th>{!! __('videos.title_ar') !!}</th>
+                                                            @endif
                                                             <th>{!! __('videos.duration') !!}</th>
                                                             <th>{!! __('videos.status') !!}</th>
                                                             <th class="text-center" style="width: 200px;">
@@ -86,7 +88,9 @@
                                                                 <td>{!! $loop->iteration !!}</td>
                                                                 <td>@include('admin.videos.parts.photo') </td>
                                                                 <td>{{ $video->title_en }}</td>
-                                                                <td>{{ $video->title_ar }}</td>
+                                                                @if (setting()->site_lang_ar == 'on')
+                                                                    <td>{{ $video->title_ar }}</td>
+                                                                @endif
                                                                 <td>{{ $video->duration }}</td>
                                                                 <td>
                                                                     <div class="cst-switch switch-sm">

@@ -72,12 +72,9 @@
                                                     <thead>
                                                         <tr>
                                                             <th>{!! __('faqs.question_en') !!}</th>
-
-
                                                             @if (setting()->site_lang_ar == 'on')
                                                                 <th>{!! __('faqs.question_ar') !!}</th>
                                                             @endif
-
                                                             <th class="text-center" style="width: 100px;">
                                                                 {!! __('general.actions') !!}</th>
                                                         </tr>
@@ -86,11 +83,9 @@
                                                         @forelse($faqs as $faq)
                                                             <tr>
                                                                 <td>{{ $faq->question_en }}</td>
-
                                                                 @if (setting()->site_lang_ar == 'on')
                                                                     <td>{{ $faq->questoin_ar }}</td>
                                                                 @endif
-
                                                                 <td>
                                                                     <a href='#'
                                                                         class="btn btn-hover-warning

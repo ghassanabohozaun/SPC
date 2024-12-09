@@ -1,12 +1,10 @@
 @extends('layouts.admin')
-@section('title') @endsection
+@section('title')
+@endsection
 @section('content')
-
-
     <!--begin::Subheader-->
     <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
-        <div
-            class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
             <!--begin::Info-->
             <div class="d-flex align-items-center flex-wrap mr-2">
 
@@ -15,13 +13,13 @@
 
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item">
-                        <a href="{{route('admin.photo.albums')}}" class="text-muted">
-                            {{__('menu.photo_albums')}}
+                        <a href="{{ route('admin.photo.albums') }}" class="text-muted">
+                            {{ __('menu.photo_albums') }}
                         </a>
                     </li>
                     <li class="breadcrumb-item">
                         <a href="" class="text-muted">
-                            {{__('photoAlbums.add_other_album_photos')}}
+                            {{ __('photoAlbums.add_other_album_photos') }}
                         </a>
                     </li>
 
@@ -67,10 +65,11 @@
 
 
                                                 <label
-                                                    style="font-weight:bold">{{__('photoAlbums.add_other_album_photos')}}</label>
+                                                    style="font-weight:bold">{{ __('photoAlbums.add_other_album_photos') }}
+                                                </label>
 
-                                                <div class="dropzone dropzone-default dz-clickable"
-                                                     id="dropzoneFileUpload"></div>
+                                                <div class="dropzone dropzone-default dz-clickable" id="dropzoneFileUpload">
+                                                </div>
 
                                             </div>
                                             <!--begin::body-->
@@ -91,79 +90,79 @@
         </div>
     </div>
     <!--end::content-->
-
-
 @endsection
 
 
 @push('js')
     <script type="text/javascript">
-
         Dropzone.autoDiscover = false;
-        $(document).ready(function () {
+        $(document).ready(function() {
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////
             ///  Upload post Photos
             $('#dropzoneFileUpload').dropzone({
-                url: "{{route('admin.upload.other.album.photos',$photoAlbum->id)}}",
+                url: "{{ route('admin.upload.other.album.photos', $photoAlbum->id) }}",
                 paramName: 'file',
                 uploadMultiple: false,
-                maxFiles: 20,  // Max File  Count
+                maxFiles: 20, // Max File  Count
                 maximumFileSize: 1, // File Size
-                acceptedFiles: 'image/*',  // File Type
+                acceptedFiles: 'image/*', // File Type
                 resizeWidth: 700,
                 //// Default Message
-                dictDefaultMessage: "{{__('photoAlbums.other_album_photos_upload')}}",
+                dictDefaultMessage: "{{ __('photoAlbums.other_album_photos_upload') }}",
                 ///// Remove Image
                 params: {
-                    _token: "{{csrf_token()}}"
+                    _token: "{{ csrf_token() }}"
                 },
                 ///////////////////////////////////////////////////
                 ////////// Delete File
-                dictRemoveFile: "{{__('general.delete')}}",
+                dictRemoveFile: "{{ __('general.delete') }}",
                 addRemoveLinks: true,
-                removedfile: function (file) {
-                    $.post("{{route('admin.delete.other.album.photo')}}", {id: file.fid}, function (data) {
+                removedfile: function(file) {
+                    $.post("{{ route('admin.delete.other.album.photo') }}", {
+                        id: file.fid
+                    }, function(data) {
                         console.log(data);
                     });
                     var fmock;
-                    return (fmock = file.previewElement) != null ? fmock.parentNode.removeChild(file.previewElement) : void 0;
+                    return (fmock = file.previewElement) != null ? fmock.parentNode.removeChild(file
+                        .previewElement) : void 0;
                 },
 
                 ///////////////////////////////// Start Get Images
                 ////// Get Images From Model --> tip: take care there is relation between post and file
-                init: function () {
-                    @foreach($photoAlbum->files()->get() as $file)
-                    var mock = {
-                        name: '{{$file->file_name}}',
-                        fid: '{{$file->id}}',
-                        size: '{{$file->file_size}}',
-                        type: '{{$file->file_mimes_type}}'
-                    };
-                    this.emit('addedfile', mock);
-                    this.options.thumbnail.call(this, mock, '{{asset('adminBoard/uploadedImages/albums_photos/'.$file->full_path_after_upload)}}');
-
+                init: function() {
+                    @foreach ($photoAlbum->files()->get() as $file)
+                        var mock = {
+                            name: '{{ $file->file_name }}',
+                            fid: '{{ $file->id }}',
+                            size: '{{ $file->file_size }}',
+                            type: '{{ $file->file_mimes_type }}'
+                        };
+                        this.emit('addedfile', mock);
+                        this.options.thumbnail.call(this, mock,
+                            '{{ asset('adminBoard/uploadedImages/albums_photos/' . $file->full_path_after_upload) }}'
+                        );
                     @endforeach
-                        this.on('sending', function (file, xhr, formData) {
+                    this.on('sending', function(file, xhr, formData) {
                         formData.append('fid', '');
                         file.fid = '';
                     });
 
-                    this.on('success', function (file, response) {
+                    this.on('success', function(file, response) {
                         file.fid = response.id;
                     })
                 }
                 ///////////////////////////////// End Get Images
-            });//end dropzone
+            }); //end dropzone
 
 
-        });//end document
+        }); //end document
     </script>
 @endpush
 
 @push('css')
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" />
 
     <style>
         .dz-filename {
@@ -173,7 +172,5 @@
         .dz-progress {
             display: none;
         }
-
-
     </style>
 @endpush

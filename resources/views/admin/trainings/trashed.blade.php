@@ -70,8 +70,10 @@
                                                         <tr>
                                                             <th>#</th>
                                                             <th>{!! __('trainings.photo') !!}</th>
-                                                            <th>{!! __('trainings.title_ar') !!}</th>
-                                                            <th>{!! __('trainings.title_ar') !!}</th>
+                                                            <th>{!! __('trainings.title_en') !!}</th>
+                                                            @if (setting()->site_lang_ar == 'on')
+                                                                <th>{!! __('trainings.title_ar') !!}</th>
+                                                            @endif
                                                             <th>{!! __('trainings.started_date') !!}</th>
                                                             <th class="text-center" style="width: 100px;">
                                                                 {!! __('general.actions') !!}
@@ -83,8 +85,10 @@
                                                             <tr>
                                                                 <td>{!! $loop->iteration !!}</td>
                                                                 <td>@include('admin.trainings.parts.photo')</td>
-                                                                <td>{{ $training->title_ar }}</td>
-                                                                <td>{{ $training->title_ar }}</td>
+                                                                <td>{{ $training->title_en }}</td>
+                                                                @if (setting()->site_lang_ar == 'on')
+                                                                    <td>{{ $training->title_ar }}</td>
+                                                                @endif
                                                                 <td>{{ $training->started_date }}</td>
                                                                 <td>
                                                                     <a class="btn btn-hover-warning btn-icon btn-pill restore_training_btn"

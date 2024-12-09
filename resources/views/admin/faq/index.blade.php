@@ -70,13 +70,10 @@
                                                 <table class="table myTable table-hover" id="myTable">
                                                     <thead>
                                                         <tr>
-
                                                             <th>{!! __('faqs.question_en') !!}</th>
-
                                                             @if (setting()->site_lang_ar == 'on')
                                                                 <th>{!! __('faqs.question_ar') !!}</th>
                                                             @endif
-
                                                             <th>{!! __('faqs.status') !!}</th>
                                                             <th class="text-center" style="width: 100px;">
                                                                 {!! __('general.actions') !!}</th>
@@ -85,13 +82,10 @@
                                                     <tbody>
                                                         @forelse($faqs as $faq)
                                                             <tr>
-
                                                                 <td>{{ $faq->question_en }}</td>
-
                                                                 @if (setting()->site_lang_ar == 'on')
                                                                     <td>{{ $faq->question_ar }}</td>
                                                                 @endif
-
                                                                 <td>
                                                                     <div class="cst-switch switch-sm">
                                                                         <input type="checkbox"

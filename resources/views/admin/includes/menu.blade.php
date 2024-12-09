@@ -187,7 +187,7 @@
 
                         <span class="menu-text">{{ __('menu.faqs') }}</span>
                         <span class="menu-label">
-                            <span class="label label-rounded label-white">
+                            <span class="label label-rounded label-danger">
                                 {{ \App\Models\FAQ::count() }}
                             </span>
                         </span>
@@ -260,7 +260,7 @@
             <!------------------------------------ photos  ---------------------------------------------------->
             @can('photos')
                 <li class="menu-item  menu-item-submenu
-                           @if (str_contains(url()->current(), '/photo-albums')) menu-item-open @endif"
+                        @if (str_contains(url()->current(), '/photo-albums')) menu-item-open @endif"
                     aria-haspopup="true" data-menu-toggle="hover">
                     <a href="{{ route('admin.photo.albums') }}" class="menu-link menu-toggle">
 
@@ -280,7 +280,7 @@
                         </span>
                         <span class="menu-text">{{ __('menu.photo_albums') }}</span>
                         <span class="menu-label">
-                            <span class="label label-rounded label-primary">
+                            <span class="label label-rounded label-danger">
                                 {{ App\Models\PhotoAlbum::count() }}
 
                             </span>
@@ -290,7 +290,7 @@
             @endcan
 
             <!------------------------------------ Testimonials  ---------------------------------------------------->
-            @can('testimonials')
+            {{-- @can('testimonials')
                 <li class="menu-item  menu-item-submenu
                          @if (str_contains(url()->current(), '/testimonials')) menu-item-open @endif"
                     aria-haspopup="true" data-menu-toggle="hover">
@@ -318,7 +318,7 @@
                     </a>
                 </li>
             @endcan
-
+ --}}
 
 
 

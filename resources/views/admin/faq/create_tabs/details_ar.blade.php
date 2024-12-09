@@ -29,7 +29,7 @@
                             </label>
 
                             <input type="text" class="form-control form-control-solid form-control-lg"
-                                name="question_ar" id="question_ar" placeholder="{{ __('faqs.question_ar') }}"
+                                name="question_ar" id="question_ar" placeholder="{{ __('faqs.enter_question_ar') }}"
                                 autocomplete="off">
                             <span class="form-text text-danger" id="question_ar_error"></span>
 
