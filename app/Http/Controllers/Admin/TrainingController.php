@@ -18,7 +18,7 @@ class TrainingController extends Controller
     public function index()
     {
         $title = 'Trainings';
-        $trainings = Training::orderBy('created_at', 'desc')->paginate(15);
+        $trainings = Training::withoutTrashed()->orderBy('created_at', 'desc')->paginate(15);
         return view('admin.trainings.index', compact('title', 'trainings'));
     }
 
@@ -129,7 +129,7 @@ class TrainingController extends Controller
             }
 
             if ($training->delete()) {
-                return $this->returnSuccessMessage(__('general.delete_success_message'));
+                return $this->returnSuccessMessage(__('general.move_to_trash'));
             } else {
                 return $this->returnError(__('general.delete_error_message'), 400);
             }

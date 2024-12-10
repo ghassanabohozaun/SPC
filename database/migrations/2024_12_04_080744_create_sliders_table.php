@@ -15,18 +15,18 @@ class CreateSlidersTable extends Migration
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
-            $table->string('title_ar')->nullable();
             $table->string('title_en')->nullable();
-            $table->text('details_ar')->nullable();
+            $table->string('title_ar')->nullable();
             $table->text('details_en')->nullable();
+            $table->text('details_ar')->nullable();
             $table->integer('order')->nullable();
+            $table->string('url_en')->nullable();
+            $table->string('url_ar')->nullable();
             $table->enum('details_status', ['show', 'hide'])->default('hide');
             $table->enum('button_status', ['show', 'hide'])->default('hide');
-            $table->string('url_ar')->nullable();
-            $table->string('url_en')->nullable();
-            $table->string('photo')->nullable();
-            $table->enum('language',['ar','ar_en'])->default('ar');
             $table->string('status')->nullable();
+            $table->string('photo')->nullable();
+            $table->enum('language', ['en', 'ar_en'])->default('en');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -14,7 +14,7 @@ return [
     'permissions' => 'الصلاحيات',
     'add_new_permission' => 'إضافة صلاحية جديدة',
     'support_center' => 'مركز الدعم',
-    'landing_page' => 'صفحة الهبوط',
+    'landing_page' => 'صفحة الرئيسية الهبوط',
     'index' => 'رئيسية الموقع',
     'static_strings' => 'النصوص الثابتة',
 

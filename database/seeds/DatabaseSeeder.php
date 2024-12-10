@@ -1,6 +1,7 @@
 <?php
 
 use Database\Seeders\FaqSeeder;
+use Database\Seeders\PhotoAlbumSeeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\TrainingsSeeder;
 use Database\Seeders\VideosSeeder;
@@ -24,7 +25,7 @@ class DatabaseSeeder extends Seeder
             TrainingsSeeder::class,
             FaqSeeder::class,
             VideosSeeder::class,
-            // FixedTextsSeeder::class,
+            PhotoAlbumSeeder::class,
         ]);
 
 

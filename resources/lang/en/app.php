@@ -8,7 +8,7 @@ return [
     'users' => 'Users Management',
     'support-center' => 'Support Center Management',
     'articles' => 'Articles Management',
-    'landing-page' => 'Landing Page Management',
+    'home' => 'Home Page Management',
     'projects' => 'Projects Management',
     'testimonials' => 'Testimonials Management',
     'publications' => 'Publications Management',

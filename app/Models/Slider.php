@@ -2,17 +2,29 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Slider extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'sliders';
     protected $fillable = [
-        'title_ar', 'title_en', 'details_ar', 'details_en', 'order', 'status', 'details_status',
-        'button_status', 'url_ar', 'url_en', 'photo', 'status', 'language',
+
+        'title_en',
+        'title_ar',
+        'details_en',
+        'details_ar',
+        'order',
+        'url_en',
+        'url_ar',
+        'status',
+        'details_status',
+        'button_status',
+        'photo',
+        'language',
     ];
     protected $hidden = ['updated_at'];
 
@@ -26,7 +38,6 @@ class Slider extends Model
             return __('general.ar');
         } elseif ($value == 'ar_en') {
             return __('general.ar_en');
-
         }
     }
 
@@ -49,5 +60,4 @@ class Slider extends Model
             return __('sliders.hide');
         }
     }
-
 }

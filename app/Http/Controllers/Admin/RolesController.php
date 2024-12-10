@@ -18,7 +18,7 @@ class RolesController extends Controller
     public function index()
     {
         $title = __('menu.permissions');
-        $roles = Role::orderByDesc('created_at')->paginate();
+        $roles = Role::withoutTrashed()->orderByDesc('created_at')->paginate(15);
         return view('admin.roles.index', compact('title', 'roles'));
     }
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\FAQController;
 use App\Http\Controllers\Admin\PhotoAlbumsController;
+use App\Http\Controllers\Admin\SlidersController;
 use App\Http\Controllers\Admin\TrainingController;
 use App\Http\Controllers\Admin\VideosController;
 use Illuminate\Support\Facades\Route;
@@ -32,54 +33,22 @@ Route::group([
 
     /////////////////////////////////////////////////////////////////////////////////////////////
     /// settings
-    Route::get('settings', 'SettingsController@index')->name('get.admin.settings')->middleware('can:settings');
-    Route::post('settings', 'SettingsController@storeSettings')->name('store.admin.settings')->middleware('can:settings');
-    Route::post('switch-ar-lang', 'SettingsController@switchArabicLang')->name('switch.arabic.lang');
-    Route::post('switch-frontend-lang', 'SettingsController@switchFrontendLang')->name('switch.frontend.lang');
 
-    /////////////////////////////////////////////////////////////////////////////////////////////
-    /// Landing Page Routes
-    Route::group(['prefix' => 'landing-page', 'middleware' => 'can:landing-page'], function () {
-        /////////////////////////////////////////////////////////////////////////////////////////////
-        /// Sliders routes
-        Route::group(['prefix' => 'sliders'], function () {
-            Route::get('/', 'SlidersController@index')->name('admin.sliders');
-            Route::get('/create', 'SlidersController@create')->name('admin.sliders.create');
-            Route::post('/store', 'SlidersController@store')->name('admin.slider.store');
-            Route::get('/trashed', 'SlidersController@trashed')->name('admin.slider.trashed');
-            Route::post('/destroy', 'SlidersController@destroy')->name('admin.slider.destroy');
-            Route::post('/force-delete', 'SlidersController@forceDelete')->name('admin.slider.force.delete');
-            Route::post('/restore', 'SlidersController@restore')->name('admin.slider.restore');
-            Route::get('/edit/{id?}', 'SlidersController@edit')->name('admin.slider.edit');
-            Route::post('/update', 'SlidersController@update')->name('admin.slider.update');
-            Route::post('/change-status', 'SlidersController@changeStatus')->name('admin.slider.change.status');
-        });
-
-        /// fixed texts routes
-        Route::get('/', 'FixedTextsController@index')->name('admin.fixed.texts');
-        Route::post('/update', 'FixedTextsController@update')->name('admin.fixed.texts.update');
-
-        /////////////////////////////////////////////////////////////////////////////////////////////
-        /// Partners routes
-        Route::group(['prefix' => 'partners'], function () {
-            Route::get('/', 'PartnersController@index')->name('admin.partners');
-            Route::get('/create', 'PartnersController@create')->name('admin.partner.create');
-            Route::post('/store', 'PartnersController@store')->name('admin.partner.store');
-            Route::get('/trashed', 'PartnersController@trashed')->name('admin.partner.trashed');
-            Route::post('/destroy', 'PartnersController@destroy')->name('admin.partner.destroy');
-            Route::post('/force-delete', 'PartnersController@forceDelete')->name('admin.partner.force.delete');
-            Route::post('/restore', 'PartnersController@restore')->name('admin.partner.restore');
-            Route::get('/edit/{id?}', 'PartnersController@edit')->name('admin.partner.edit');
-            Route::post('/update', 'PartnersController@update')->name('admin.partner.update');
-            Route::post('/change-status', 'PartnersController@changeStatus')->name('admin.partner.change.status');
-        });
+    Route::group(['middleware' => 'can:settings'], function () {
+        Route::get('settings', 'SettingsController@index')->name('get.admin.settings')->middleware('can:settings');
+        Route::post('settings', 'SettingsController@storeSettings')->name('store.admin.settings')->middleware('can:settings');
+        Route::post('switch-ar-lang', 'SettingsController@switchArabicLang')->name('switch.arabic.lang');
+        Route::post('switch-frontend-lang', 'SettingsController@switchFrontendLang')->name('switch.frontend.lang');
     });
 
     /////////////////////////////////////////////////////////////////////////////////////////////
     /// admin routes
-    Route::get('/admin', 'AdminsController@index')->name('get.admin')->middleware('can:admins');
-    Route::get('/get-admin-by-id', 'AdminsController@getAdminById')->name('get.admin.by.id');
-    Route::post('/admin-update', 'AdminsController@adminUpdate')->name('admin.update');
+    Route::group(['middleware' => 'can:admins'], function () {
+        Route::get('/admin', 'AdminsController@index')->name('get.admin')->middleware('can:admins');
+        Route::get('/get-admin-by-id', 'AdminsController@getAdminById')->name('get.admin.by.id');
+        Route::post('/admin-update', 'AdminsController@adminUpdate')->name('admin.update');
+    });
+
 
     /////////////////////////////////////////////////////////////////////////////////////////////
     /// users routes
@@ -94,6 +63,25 @@ Route::group([
         Route::get('/trashed', 'UserController@trashed')->name('users.trashed');
         Route::post('/force-delete', 'UserController@forceDelete')->name('user.force.delete');
         Route::post('/restore', 'UserController@restore')->name('user.restore');
+    });
+
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    // home
+    Route::group(['prefix' => 'landing-page', 'middleware' => 'can:landing-page'], function () {
+
+        // sliders routes
+        Route::group(['prefix' => 'sliders',], function () {
+            Route::get('/', [SlidersController::class, 'index'])->name('admin.sliders');
+            Route::get('/create', [SlidersController::class, 'create'])->name('admin.sliders.create');
+            Route::post('/store', [SlidersController::class, 'store'])->name('admin.sliders.store');
+            Route::post('/destroy', [SlidersController::class, 'destroy'])->name('admin.sliders.destroy');
+            Route::get('/trashed', [SlidersController::class, 'trashed'])->name('admin.sliders.trashed');
+            Route::post('/restore', [SlidersController::class, 'restore'])->name('admin.sliders.restore');
+            Route::post('/force-delete', [SlidersController::class, 'forceDelete'])->name('admin.sliders.force.delete');
+            Route::get('/edit/{id}', [SlidersController::class, 'edit'])->name('admin.sliders.edit');
+            Route::post('/update', [SlidersController::class, 'update'])->name('admin.sliders.update');
+            Route::post('/change-status', [SlidersController::class, 'changeStatus'])->name('admin.sliders.change.status');
+        });
     });
 
     /////////////////////////////////////////////////////////////////////////////////////////////
@@ -112,7 +100,6 @@ Route::group([
     /// videos routes
     Route::group(['prefix' => 'videos', 'middleware' => 'can:videos'], function () {
         Route::get('/', [VideosController::class, 'index'])->name('admin.videos');
-        Route::get('/get-videos', [VideosController::class, 'getVideos'])->name('get.admin.video');
         Route::get('/create', [VideosController::class, 'create'])->name('admin.videos.create');
         Route::post('/store', [VideosController::class, 'store'])->name('admin.videos.store');
         Route::post('/destroy', [VideosController::class, 'destroy'])->name('admin.videos.destroy');
@@ -160,7 +147,6 @@ Route::group([
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // trainings routes
-
     Route::group(['prefix' => 'trainings', 'middllware' => 'can:trainings'], function () {
         Route::get('/', [TrainingController::class, 'index'])->name('admin.trainings');
         Route::post('/destroy', [TrainingController::class, 'destroy'])->name('admin.trainings.destroy');
@@ -174,6 +160,45 @@ Route::group([
         Route::post('/update', [TrainingController::class, 'update'])->name('admin.trainings.update');
     });
 
+
+
+    // /////////////////////////////////////////////////////////////////////////////////////////////
+    // /// Landing Page Routes
+    // Route::group(['prefix' => 'landing-page', 'middleware' => 'can:landing-page'], function () {
+    //     /////////////////////////////////////////////////////////////////////////////////////////////
+    //     /// Sliders routes
+    //     Route::group(['prefix' => 'sliders'], function () {
+    //         Route::get('/', 'SlidersController@index')->name('admin.sliders');
+    //         Route::get('/create', 'SlidersController@create')->name('admin.sliders.create');
+    //         Route::post('/store', 'SlidersController@store')->name('admin.slider.store');
+    //         Route::get('/trashed', 'SlidersController@trashed')->name('admin.slider.trashed');
+    //         Route::post('/destroy', 'SlidersController@destroy')->name('admin.slider.destroy');
+    //         Route::post('/force-delete', 'SlidersController@forceDelete')->name('admin.slider.force.delete');
+    //         Route::post('/restore', 'SlidersController@restore')->name('admin.slider.restore');
+    //         Route::get('/edit/{id?}', 'SlidersController@edit')->name('admin.slider.edit');
+    //         Route::post('/update', 'SlidersController@update')->name('admin.slider.update');
+    //         Route::post('/change-status', 'SlidersController@changeStatus')->name('admin.slider.change.status');
+    //     });
+
+    //     /// fixed texts routes
+    //     Route::get('/', 'FixedTextsController@index')->name('admin.fixed.texts');
+    //     Route::post('/update', 'FixedTextsController@update')->name('admin.fixed.texts.update');
+
+    //     /////////////////////////////////////////////////////////////////////////////////////////////
+    //     /// Partners routes
+    //     Route::group(['prefix' => 'partners'], function () {
+    //         Route::get('/', 'PartnersController@index')->name('admin.partners');
+    //         Route::get('/create', 'PartnersController@create')->name('admin.partner.create');
+    //         Route::post('/store', 'PartnersController@store')->name('admin.partner.store');
+    //         Route::get('/trashed', 'PartnersController@trashed')->name('admin.partner.trashed');
+    //         Route::post('/destroy', 'PartnersController@destroy')->name('admin.partner.destroy');
+    //         Route::post('/force-delete', 'PartnersController@forceDelete')->name('admin.partner.force.delete');
+    //         Route::post('/restore', 'PartnersController@restore')->name('admin.partner.restore');
+    //         Route::get('/edit/{id?}', 'PartnersController@edit')->name('admin.partner.edit');
+    //         Route::post('/update', 'PartnersController@update')->name('admin.partner.update');
+    //         Route::post('/change-status', 'PartnersController@changeStatus')->name('admin.partner.change.status');
+    //     });
+    // });
 
     /////////////////////////////////////////////////////////////////////////////////////////////
     /// testimonials routes

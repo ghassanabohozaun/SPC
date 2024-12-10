@@ -19,11 +19,11 @@ class TestimonialController extends Controller
     public function index()
     {
         $title = __('menu.testimonials');
-        $testimonials = testimonial::withoutTrashed()->orderByDesc('created_at')->paginate();
+        $testimonials = testimonial::withoutTrashed()->orderByDesc('created_at')->paginate(15);
         return view('admin.testimonials.index', compact('title', 'testimonials'));
     }
 
-     // create
+    // create
     public function create()
     {
         $title = __('menu.add_new_testimonial');
@@ -100,7 +100,6 @@ class TestimonialController extends Controller
                 $image = $request->file('photo');
                 $destinationPath = public_path('\adminBoard\uploadedImages\testimonials\\');
                 $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
-
             } else {
                 $image_path = public_path('\adminBoard\uploadedImages\testimonials\\') . $testimonial->photo;
                 if (File::exists($image_path)) {
@@ -137,7 +136,6 @@ class TestimonialController extends Controller
         ]);
 
         return $this->returnSuccessMessage(__('general.update_success_message'));
-
     }
 
 
@@ -175,7 +173,6 @@ class TestimonialController extends Controller
             $testimonial->restore();
             return $this->returnSuccessMessage(__('general.restore_success_message'));
         }
-
     }
 
     //  force delete
@@ -200,7 +197,6 @@ class TestimonialController extends Controller
             $testimonial->forceDelete();
             return $this->returnSuccessMessage(__('general.delete_success_message'));
         }
-
     }
 
     // change Status
@@ -217,5 +213,4 @@ class TestimonialController extends Controller
         }
         return $this->returnSuccessMessage(__('general.change_status_success_message'));
     }
-
 }

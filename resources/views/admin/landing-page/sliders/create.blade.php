@@ -1,13 +1,12 @@
 @extends('layouts.admin')
-@section('title') @endsection
+@section('title')
+@endsection
 @section('content')
-
-    <form class="form" action="{{route('admin.slider.store')}}" method="POST" id="form_sliders_add">
-    @csrf
-    <!--begin::Subheader-->
+    <form class="form" action="{{ route('admin.sliders.store') }}" method="POST" id="sliders_add_form">
+        @csrf
+        <!--begin::Subheader-->
         <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
-            <div
-                class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                 <!--begin::Info-->
                 <div class="d-flex align-items-center flex-wrap mr-2">
 
@@ -18,18 +17,18 @@
                     <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                         <li class="breadcrumb-item">
                             <a href="#" class="text-muted">
-                                {{__('menu.landing_page')}}
+                                {{ __('menu.landing_page') }}
                             </a>
                         </li>
 
                         <li class="breadcrumb-item">
-                            <a href="{{route('admin.sliders')}}" class="text-muted">
-                                {{__('menu.sliders')}}
+                            <a href="{{ route('admin.sliders') }}" class="text-muted">
+                                {{ __('menu.sliders') }}
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{route('admin.sliders.create')}}" class="text-muted">
-                                {{__('menu.add_new_slider')}}
+                            <a href="{{ route('admin.sliders.create') }}" class="text-muted">
+                                {{ __('menu.add_new_slider') }}
                             </a>
                         </li>
                     </ul>
@@ -41,10 +40,9 @@
                 <!--begin::Toolbar-->
                 <div class="d-flex align-items-center">
 
-                    <button type="submit"
-                            class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
+                    <button type="submit" class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
                         <i class="fa fa-save"></i>
-                        {{__('general.save')}}
+                        {{ __('general.save') }}
                     </button>
 
                 </div>
@@ -75,44 +73,48 @@
                                                 <!--begin::body-->
                                                 <div class="my-5">
 
+                                                    <!--begin::Group-->
+                                                    <div class="form-group row d-none">
+                                                        <input type="hidden" class="form-control" id='site_lang_ar'
+                                                            name="site_lang_ar" value="{!! setting()->site_lang_ar !!}">
+                                                    </div>
+                                                    <!--end::Group-->
 
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('sliders.photo')}}
+                                                            {{ __('sliders.photo') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <div
-                                                                class="image-input image-input-outline"
+                                                            <div class="image-input image-input-outline"
                                                                 id="kt_slider_photo">
-                                                            <!--  style="background-image: url({{--asset(Storage::url(setting()->site_icon))--}})"-->
-                                                                <div class="image-input-wrapper"
-                                                                     ></div>
+                                                                <!--  style="background-image: url({{-- asset(Storage::url(setting()->site_icon)) --}})"-->
+                                                                <div class="image-input-wrapper"></div>
                                                                 <label
                                                                     class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                                                    data-action="change" data-toggle="tooltip" title=""
-                                                                    data-original-title="{{__('general.change_image')}}">
+                                                                    data-action="change" data-toggle="tooltip"
+                                                                    title=""
+                                                                    data-original-title="{{ __('general.change_image') }}">
                                                                     <i class="fa fa-pen icon-sm text-muted"></i>
                                                                     <input type="file" name="photo" id="photo"
-                                                                           class="table-responsive-sm">
-                                                                    <input type="hidden" name="photo_remove"/>
+                                                                        class="table-responsive-sm">
+                                                                    <input type="hidden" name="photo_remove" />
                                                                 </label>
 
                                                                 <span
                                                                     class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
                                                                     data-action="cancel" data-toggle="tooltip"
                                                                     title="Cancel avatar">
-                                                                                <i class="ki ki-bold-close icon-xs text-muted"></i>
-                                                                 </span>
+                                                                    <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                                </span>
                                                             </div>
                                                             <span
-                                                                class="form-text text-muted">{{__('general.image_format_allow')}}
+                                                                class="form-text text-muted">{{ __('general.image_format_allow') }}
                                                             </span>
                                                             <span
-                                                                class="form-text text-info">{{__('sliders.slider_size')}}
+                                                                class="form-text text-info">{{ __('sliders.slider_size') }}
                                                             </span>
-                                                            <span class="form-text text-danger"
-                                                                  id="photo_error"></span>
+                                                            <span class="form-text text-danger" id="photo_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -120,19 +122,17 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('sliders.order')}}
+                                                            {{ __('sliders.order') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="order" id="order" type="text"
-                                                                placeholder=" {{__('sliders.enter_order')}}"
-                                                                autocomplete="off"/>
+                                                                placeholder=" {{ __('sliders.enter_order') }}"
+                                                                autocomplete="off" />
                                                             <span class="form-text text-muted">
-                                                             {{__('sliders.exist_number')}}
+                                                                {{ __('sliders.exist_number') }}
                                                                 &nbsp;
-                                                                {{App\Models\Slider::select('order')->orderBy('order','desc')->pluck('order')}}
-
+                                                                {{ App\Models\Slider::select('order')->orderBy('order', 'desc')->pluck('order') }}
                                                             </span>
 
                                                             <span class="form-text text-danger" id="order_error"></span>
@@ -145,23 +145,21 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('sliders.details_status')}}
+                                                            {{ __('sliders.details_status') }}
                                                         </label>
                                                         <div class="col-lg-9 col-md-9" style="margin-top: 10px">
                                                             <div class="form-check pl-0 radio-inline">
                                                                 <label class="radio radio-outline">
                                                                     <input type="radio" id="details_status"
-                                                                           name="details_status"
-                                                                           value="show"/>
+                                                                        name="details_status" value="show" />
                                                                     <span></span>
-                                                                    {{__('sliders.show')}}
+                                                                    {{ __('sliders.show') }}
                                                                 </label>
                                                                 <label class="radio radio-outline">
                                                                     <input type="radio" id="details_status"
-                                                                           name="details_status" checked
-                                                                           value="hide"/>
+                                                                        name="details_status" checked value="hide" />
                                                                     <span></span>
-                                                                    {{__('sliders.hide')}}
+                                                                    {{ __('sliders.hide') }}
                                                                 </label>
 
                                                             </div>
@@ -171,42 +169,19 @@
                                                     </div>
                                                     <!--end::Group-->
 
-
-
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('sliders.title_ar')}}
+                                                            {{ __('sliders.title_en') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
-                                                                name="title_ar" id="title_ar" type="text"
-                                                                placeholder=" {{__('sliders.enter_title_ar')}}"
-                                                                autocomplete="off"/>
-
-                                                            <span class="form-text text-danger"
-                                                                  id="title_ar_error"></span>
-
-                                                        </div>
-                                                    </div>
-                                                    <!--end::Group-->
-
-
-                                                    <!--begin::Group-->
-                                                    <div class="form-group row">
-                                                        <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('sliders.title_en')}}
-                                                        </label>
-                                                        <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="title_en" id="title_en" type="text"
-                                                                placeholder=" {{__('sliders.enter_title_en')}}"
-                                                                autocomplete="off"/>
+                                                                placeholder=" {{ __('sliders.enter_title_en') }}"
+                                                                autocomplete="off" />
 
                                                             <span class="form-text text-danger"
-                                                                  id="title_en_error"></span>
+                                                                id="title_en_error"></span>
 
                                                         </div>
                                                     </div>
@@ -216,16 +191,47 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('sliders.details_ar')}}
+                                                            {{ __('sliders.title_ar') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <textarea rows="5"
-                                                                      class="form-control form-control-solid form-control-lg"
-                                                                      name="details_ar" id="details_ar" type="text"
-                                                                      placeholder=" {{__('sliders.enter_details_ar')}}"
-                                                                      autocomplete="off"></textarea>
+                                                            <input class="form-control form-control-solid form-control-lg"
+                                                                name="title_ar" id="title_ar" type="text"
+                                                                placeholder=" {{ __('sliders.enter_title_ar') }}"
+                                                                autocomplete="off" />
+
                                                             <span class="form-text text-danger"
-                                                                  id="details_ar_error"></span>
+                                                                id="title_ar_error"></span>
+
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Group-->
+
+                                                    <!--begin::Group-->
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label">
+                                                            {{ __('sliders.details_en') }}
+                                                        </label>
+                                                        <div class="col-lg-9 col-xl-9">
+                                                            <textarea rows="5" class="form-control form-control-solid form-control-lg" name="details_en" id="details_en"
+                                                                type="text" placeholder=" {{ __('sliders.enter_details_en') }}" autocomplete="off"></textarea>
+
+                                                            <span class="form-text text-danger"
+                                                                id="details_en_error"></span>
+
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Group-->
+
+                                                    <!--begin::Group-->
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label">
+                                                            {{ __('sliders.details_ar') }}
+                                                        </label>
+                                                        <div class="col-lg-9 col-xl-9">
+                                                            <textarea rows="5" class="form-control form-control-solid form-control-lg" name="details_ar" id="details_ar"
+                                                                type="text" placeholder=" {{ __('sliders.enter_details_ar') }}" autocomplete="off"></textarea>
+                                                            <span class="form-text text-danger"
+                                                                id="details_ar_error"></span>
 
                                                         </div>
                                                     </div>
@@ -235,21 +241,36 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('sliders.details_en')}}
+                                                            {{ __('sliders.url_en') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <textarea rows="5"
-                                                                      class="form-control form-control-solid form-control-lg"
-                                                                      name="details_en" id="details_en" type="text"
-                                                                      placeholder=" {{__('sliders.enter_details_en')}}"
-                                                                      autocomplete="off"></textarea>
+                                                            <input class="form-control form-control-solid form-control-lg"
+                                                                name="url_en" id="url_en" type="text"
+                                                                placeholder=" {{ __('sliders.enter_url_en') }}"
+                                                                autocomplete="off" />
 
-                                                            <span class="form-text text-danger"
-                                                                  id="details_en_error"></span>
+                                                            <span class="form-text text-danger" id="url_en_error"></span>
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Group-->
+
+                                                    <!--begin::Group-->
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label">
+                                                            {{ __('sliders.url_ar') }}
+                                                        </label>
+                                                        <div class="col-lg-9 col-xl-9">
+                                                            <input class="form-control form-control-solid form-control-lg"
+                                                                name="url_ar" id="url_ar" type="text"
+                                                                placeholder=" {{ __('sliders.enter_url_ar') }}"
+                                                                autocomplete="off" />
+
+                                                            <span class="form-text text-danger" id="url_ar_error"></span>
 
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
+
 
                                                 </div>
                                                 <!--begin::body-->
@@ -276,25 +297,27 @@
 
 @push('js')
     <script type="text/javascript">
-
         var slider_photo = new KTImageInput('kt_slider_photo');
 
-        $('#form_sliders_add').on('submit', function (e) {
+        $('#sliders_add_form').on('submit', function(e) {
             e.preventDefault();
             //////////////////////////////////////////////////////////////
             $('#title_ar').css('border-color', '');
             $('#title_en').css('border-color', '');
             $('#details_ar').css('border-color', '');
             $('#details_en').css('border-color', '');
+            $('#url_en').css('border-color', '');
+            $('#url_ar').css('border-color', '');
             $('#order').css('border-color', '');
             $('#photo').css('border-color', '');
-
 
 
             $('#title_ar_error').text('');
             $('#title_en_error').text('');
             $('#details_ar_error').text('');
             $('#details_en_error').text('');
+            $('#url_en_error').text('');
+            $('#url_ar_error').text('');
             $('#order_error').text('');
             $('#photo_error').text('');
 
@@ -311,14 +334,14 @@
                 contentType: false,
                 cache: false,
                 processData: false,
-                beforeSend: function () {
+                beforeSend: function() {
                     KTApp.blockPage({
                         overlayColor: '#000000',
                         state: 'danger',
-                        message: "{{__('general.please_wait')}}",
+                        message: "{{ __('general.please_wait') }}",
                     });
-                },//end beforeSend
-                success: function (data) {
+                }, //end beforeSend
+                success: function(data) {
                     KTApp.unblockPage();
                     if (data.status == true) {
                         Swal.fire({
@@ -326,33 +349,35 @@
                             text: "",
                             icon: "success",
                             allowOutsideClick: false,
-                            customClass: {confirmButton: 'add_user_button'}
+                            customClass: {
+                                confirmButton: 'add_user_button'
+                            }
                         });
-                        $('.add_user_button').click(function () {
-                            window.location.href = "{{route('admin.sliders')}}";
+                        $('.add_user_button').click(function() {
+                            window.location.href = "{{ route('admin.sliders') }}";
                         });
                     }
-                },//end success
+                }, //end success
 
-                error: function (reject) {
+                error: function(reject) {
                     var response = $.parseJSON(reject.responseText);
-                    $.each(response.errors, function (key, value) {
+                    $.each(response.errors, function(key, value) {
                         $('#' + key + '_error').text(value[0]);
                         $('#' + key).css('border-color', '#F64E60');
-                        $('html, body').animate({scrollTop: 20}, 300);
+                        $('html, body').animate({
+                            scrollTop: 20
+                        }, 300);
 
                     });
 
-                },//end error
+                }, //end error
 
-                complete: function () {
+                complete: function() {
                     KTApp.unblockPage();
-                },//end complete
+                }, //end complete
 
             });
 
-        });//end submit
-
-
+        }); //end submit
     </script>
 @endpush

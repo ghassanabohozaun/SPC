@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PhotoAlbum;
 use App\Models\Video;
 use App\Traits\GeneralTrait;
-use App\Upload_Files;
+use App\UploadFile;
 
 class MediaController extends Controller
 {
@@ -29,12 +29,12 @@ class MediaController extends Controller
         $title = returnSpaceBetweenString($title);
 
         $photoAlbum = PhotoAlbum::orderByDesc('id')->where('title_' . Lang(), $title)->where('status', 'on')->first();
-        if(!$photoAlbum){
+        if (!$photoAlbum) {
             return  redirect()->route('index');
         }
 
         $photoAlbumID = $photoAlbum->id;
-        $photos = Upload_Files::where('relation_id', $photoAlbumID)->orderByDesc('created_at')->get();
+        $photos = UploadFile::where('relation_id', $photoAlbumID)->orderByDesc('created_at')->get();
 
 
         if ($photoAlbum) {
@@ -53,6 +53,4 @@ class MediaController extends Controller
         $videos = Video::orderByDesc('id')->where('status', 'on')->paginate(8);
         return view('site.videos', compact('title', 'videos'));
     }
-
-
 }

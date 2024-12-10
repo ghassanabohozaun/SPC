@@ -3,7 +3,6 @@
 return [
 
     'video_update' => 'Video Update',
-    'url_invalid' => 'Youtube Url Invalid',
 
     'title_ar' => 'Video Title | ar',
     'title_en' => 'Video Title | en',
@@ -13,7 +12,6 @@ return [
     'photo' => 'Video Photo',
     'duration' => 'Video Duration',
     'added_date' => 'Added Date',
-
 
     'enter_title_ar' => 'Enter Arabic Video Title',
     'enter_title_en' => 'Enter English Video Title ',
@@ -30,6 +28,7 @@ return [
     'mimes' => 'Photo with jpeg, jpg, png formats only',
     'image_max' => 'Max allow photo size 1 mega',
     'photo_required' => 'Photo required',
+    'url_invalid' => 'Youtube Url Invalid',
 
-    'no_videos_found' => 'No Videos Found'
+    'no_videos_found' => 'No Videos Found',
 ];

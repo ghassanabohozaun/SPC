@@ -91,7 +91,7 @@
                                                                 @if (setting()->site_lang_ar == 'on')
                                                                     <td>{{ $video->title_ar }}</td>
                                                                 @endif
-                                                                <td>{{ $video->duration }}</td>
+                                                                <td>@include('admin.videos.parts.duration')</td>
                                                                 <td>
                                                                     <div class="cst-switch switch-sm">
                                                                         <input type="checkbox" id="change_status"

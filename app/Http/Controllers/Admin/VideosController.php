@@ -17,7 +17,7 @@ class VideosController extends Controller
     public function index()
     {
         $title = __('menu.videos');
-        $videos = Video::orderByDesc('created_at')->paginate(15);
+        $videos = Video::withoutTrashed()->orderByDesc('created_at')->paginate(15);
         return view('admin.videos.index', compact('title', 'videos'));
     }
 
@@ -173,7 +173,7 @@ class VideosController extends Controller
                 return redirect()->route('admin.not.found');
             }
             if ($video->delete()) {
-                return $this->returnSuccessMessage(__('general.delete_success_message'));
+                return $this->returnSuccessMessage(__('general.move_to_trash'));
             } else {
                 return $this->returnError(__('general.delete_error_message'), 400);
             }

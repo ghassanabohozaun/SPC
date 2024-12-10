@@ -53,20 +53,20 @@ class SlidersController extends Controller
             $photo_path = '';
         }
 
-        $lang_en = setting()->site_lang_en;
+        $site_lang_ar = setting()->site_lang_ar;
 
         Slider::create([
-            'photo' => $photo_path,
-            'language' => $lang_en == 'on' ? 'ar_en' : 'ar',
-            'title_ar' => $request->title_ar,
-            'title_en' => $lang_en == 'on' ? $request->title_en : null,
-            'details_ar' => $request->details_ar,
-            'details_en' => $lang_en == 'on' ? $request->details_en : null,
+            'title_en' => $request->title_en,
+            'title_ar' => $site_lang_ar == 'on' ? $request->title_ar : null,
+            'details_en' => $request->details_en,
+            'details_ar' => $site_lang_ar == 'on' ? $request->details_ar : null,
             'details_status' => $request->details_status,
-            'url_ar' => null,
-            'url_en' => null,
+            'url_ar' => $request->url_ar,
+            'url_en' => $request->url_en,
             'order' => $request->order,
             'status' => 'on',
+            'photo' => $photo_path,
+            'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
         ]);
 
         return $this->returnSuccessMessage(__('general.add_success_message'));
@@ -129,18 +129,18 @@ class SlidersController extends Controller
             }
         }
 
-        $lang_en = setting()->site_lang_en;
+        $site_lang_ar = setting()->site_lang_en;
         $slider->update([
-            'photo' => $photo_path,
-            'language' => $lang_en == 'on' ? 'ar_en' : 'ar',
-            'title_ar' => $request->title_ar,
-            'title_en' => $lang_en == 'on' ? $request->title_en : null,
-            'details_ar' => $request->details_ar,
-            'details_en' => $lang_en == 'on' ? $request->details_en : null,
+            'title_en' => $request->title_en,
+            'title_ar' => $site_lang_ar == 'on' ? $request->title_ar : null,
+            'details_en' => $request->details_en,
+            'details_ar' => $site_lang_ar == 'on' ? $request->details_ar : null,
             'details_status' => $request->details_status,
-            'url_ar' => null,
-            'url_en' => null,
+            'url_ar' => $request->url_ar,
+            'url_en' => $request->url_en,
             'order' => $request->order,
+            'photo' => $photo_path,
+            'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
         ]);
 
         return $this->returnSuccessMessage(__('general.update_success_message'));
@@ -162,8 +162,11 @@ class SlidersController extends Controller
             if (!$slider) {
                 return redirect()->route('admin.not.found');
             }
-            $slider->delete();
-            return $this->returnSuccessMessage(__('general.move_to_trash'));
+            if ($slider->delete()) {
+                return $this->returnSuccessMessage(__('general.move_to_trash'));
+            } else {
+                return $this->returnError('general.destroy_error_message', 404);
+            }
         }
     }
 
@@ -176,10 +179,12 @@ class SlidersController extends Controller
             if (!$slider) {
                 return redirect()->route('admin.not.found');
             }
-            $slider->restore();
-            return $this->returnSuccessMessage(__('general.restore_success_message'));
+            if ($slider->restore()) {
+                return $this->returnSuccessMessage(__('general.restore_success_message'));
+            } else {
+                return $this->returnError('general.restore_error_message', 404);
+            }
         }
-
     }
 
     //  force delete
@@ -196,8 +201,11 @@ class SlidersController extends Controller
                     File::delete($image_path);
                 }
             }
-            $slider->forceDelete();
-            return $this->returnSuccessMessage(__('general.delete_success_message'));
+            if ($slider->forceDelete()) {
+                return $this->returnSuccessMessage(__('general.delete_success_message'));
+            } else {
+                return $this->returnError(__('general.delete_error_message'), 404);
+            }
         }
     }
 
@@ -214,5 +222,4 @@ class SlidersController extends Controller
         }
         return $this->returnSuccessMessage(__('general.change_status_success_message'));
     }
-
 }

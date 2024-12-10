@@ -12,7 +12,7 @@ return [
         'photos' => 'app.photos',
         'faqs' => 'app.faqs',
         'trainings' => 'app.trainings',
-
+        'landing-page' => 'app.landing-page',
 
         // 'support-center' => 'app.support-center',
         // 'reports' => 'app.reports',

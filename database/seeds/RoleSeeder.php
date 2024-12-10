@@ -29,6 +29,7 @@ class RoleSeeder extends Seeder
                 'trainings',
                 'videos',
                 'photos',
+                'landing-page',
 
                 // 'support-center',
                 // 'reports',

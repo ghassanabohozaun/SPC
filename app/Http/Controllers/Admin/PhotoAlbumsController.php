@@ -18,7 +18,7 @@ class PhotoAlbumsController extends Controller
     public function index()
     {
         $title = __('menu.photo_albums');
-        $photoAlbums = PhotoAlbum::orderByDesc('created_at')->paginate();
+        $photoAlbums = PhotoAlbum::withoutTrashed()->orderByDesc('created_at')->paginate(15);
         return view('admin.photo-albums.index', compact('title', 'photoAlbums'));
     }
 
@@ -131,7 +131,11 @@ class PhotoAlbumsController extends Controller
 
 
             $photoAlbum->delete();
-            return $this->returnSuccessMessage(__('general.delete_success_message'));
+            if ($photoAlbum->delete()) {
+                return $this->returnSuccessMessage(__('general.move_to_trash'));
+            } else {
+                return $this->returnError('general.delete_error_message', 404);
+            }
         }
     }
 

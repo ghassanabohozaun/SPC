@@ -16,7 +16,7 @@ class FAQController extends Controller
     public function index()
     {
         $title = __('menu.faqs');
-        $faqs = FAQ::orderByDesc('created_at')->paginate(15);
+        $faqs = FAQ::withoutTrashed()->orderByDesc('created_at')->paginate(15);
         return view('admin.faq.index', compact('faqs', 'title'));
     }
 

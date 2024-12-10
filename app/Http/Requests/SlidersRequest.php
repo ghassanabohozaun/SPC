@@ -23,29 +23,21 @@ class SlidersRequest extends FormRequest
      */
     public function rules()
     {
-        if (setting()->site_lang_en == 'on') {
-            return [
-                'photo' => 'required_without:hidden_photo|image|mimes:jpeg,jpg,png|max:1024',
-                'title_ar' => 'required',
-                'title_en' => 'required',
-                'details_ar' => 'required',
-                'details_en' => 'required',
-                'order' => 'required|numeric',
-            ];
-        } else {
-            return [
-                'photo' => 'required_without:hidden_photo|image|mimes:jpeg,jpg,png|max:1024',
-                'title_ar' => 'required',
-                'details_ar' => 'required',
-                'order' => 'sometimes|numeric',
-            ];
-        }
+        return [
+            'title_en' => 'required',
+            'title_ar' => 'required_if:site_lang_ar,on',
+            'details_en' => 'required',
+            'details_ar' => 'required_if:site_lang_ar,on',
+            'order' => 'required|numeric',
+            'photo' => 'required_without:hidden_photo|image|mimes:jpeg,jpg,png|max:2048',
+        ];
     }
 
     public function messages()
     {
         return [
             'required' => __('sliders.required'),
+            'required_if' => __('sliders.required'),
             'in' => __('sliders.in'),
             'numeric' => __('sliders.numeric'),
             'image' => __('sliders.image'),
