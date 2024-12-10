@@ -34,14 +34,16 @@ return [
     'trashed_photo_albums' => 'البومات الصور المحذوفة',
     'add_new_photo_album' => 'إضافة البوم الصور',
 
-
-
-
-
-
     'sliders' => 'السلايدر',
     'trashed_sliders' => 'السلايدرات المحذوفة',
     'add_new_slider' => 'إضافة سلايدر جديد',
+
+    'services' => 'الخدمات',
+    'trashed_services' => 'الخدمات المحذوفة',
+    'add_new_service' => 'إضافة خدمة جديد',
+
+
+
 
     'articles' => 'المقالات',
     'trashed_articles' => 'المقالات المحذوفة',

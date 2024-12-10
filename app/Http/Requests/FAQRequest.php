@@ -26,8 +26,8 @@ class FAQRequest extends FormRequest
 
         return [
             'question_en' =>  ['required'],
-            'question_ar' => ['required_if:arabic,on'],
             'answer_en' =>  ['required'],
+            'question_ar' => ['required_if:arabic,on'],
             'answer_ar' => ['required_if:arabic,on'],
         ];
     }

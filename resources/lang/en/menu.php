@@ -38,11 +38,17 @@ return [
     'trashed_photo_albums' => 'Trashed Photo Albums',
     'add_new_photo_album' => 'Add New Photo Album',
 
-
-
     'sliders' => 'Sliders',
     'trashed_sliders' => 'Trashed Sliders',
     'add_new_slider' => 'Add New Slider',
+
+    'services' => 'Services',
+    'trashed_services' => 'Trashed Services',
+    'add_new_service' => 'Add New Service',
+
+
+
+
 
     'articles' => 'Articles',
     'trashed_articles' => 'Trashed Articles',

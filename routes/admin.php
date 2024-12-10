@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\FAQController;
 use App\Http\Controllers\Admin\PhotoAlbumsController;
+use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Admin\SlidersController;
 use App\Http\Controllers\Admin\TrainingController;
 use App\Http\Controllers\Admin\VideosController;
@@ -159,6 +160,23 @@ Route::group([
         Route::get("/edit/{id}", [TrainingController::class, 'edit'])->name('admin.trainings.edit');
         Route::post('/update', [TrainingController::class, 'update'])->name('admin.trainings.update');
     });
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // services routes
+    Route::group(['prefix' => 'services', 'middllware' => 'can:services'], function () {
+        Route::get('/', [ServicesController::class, 'index'])->name('admin.services');
+        Route::post('/destroy', [ServicesController::class, 'destroy'])->name('admin.services.destroy');
+        Route::post('/change-status', [ServicesController::class, 'changeStatus'])->name('admin.services.change.status');
+        Route::get('/trashed', [ServicesController::class, 'getTrashed'])->name('admin.services.trashed');
+        Route::post('/restore', [ServicesController::class, 'restore'])->name('admin.services.restore');
+        Route::post('/force-delete', [ServicesController::class, 'forceDelete'])->name('admin.services.force.delete');
+        Route::get('/create', [ServicesController::class, 'create'])->name('admin.services.create');
+        Route::post('/store', [ServicesController::class, 'store'])->name('admin.services.store');
+        Route::get("/edit/{id}", [ServicesController::class, 'edit'])->name('admin.services.edit');
+        Route::post('/update', [ServicesController::class, 'update'])->name('admin.services.update');
+    });
+
 
 
 

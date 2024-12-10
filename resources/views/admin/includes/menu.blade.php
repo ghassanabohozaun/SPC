@@ -329,7 +329,7 @@
                         </span>
                         <span class="menu-text">{{ __('menu.photo_albums') }}</span>
                         <span class="menu-label">
-                            <span class="label label-rounded label-danger">
+                            <span class="label label-rounded label-info">
                                 {{ App\Models\PhotoAlbum::withoutTrashed()->count() }}
 
                             </span>
@@ -338,12 +338,14 @@
                 </li>
             @endcan
 
-            <!------------------------------------ Testimonials  ---------------------------------------------------->
-            {{-- @can('testimonials')
+
+            <!------------------------------------ services  ---------------------------------------------------->
+            @can('services')
                 <li class="menu-item  menu-item-submenu
-                         @if (str_contains(url()->current(), '/testimonials')) menu-item-open @endif"
+                                @if (str_contains(url()->current(), '/services')) menu-item-open @endif"
                     aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="{{ route('admin.testimonials') }}" class="menu-link menu-toggle">
+                    <a href="{{ route('admin.services') }}" class="menu-link menu-toggle">
+
                         <span class="svg-icon menu-icon">
                             <span
                                 class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Text\Article.svg--><svg
@@ -358,16 +360,17 @@
                                     </g>
                                 </svg><!--end::Svg Icon--></span>
                         </span>
-                        <span class="menu-text">{{ __('menu.testimonials') }}</span>
+                        <span class="menu-text">{{ __('menu.services') }}</span>
                         <span class="menu-label">
-                            <span class="label label-rounded label-info">
-                                {{ App\Models\testimonial::count() }}
+                            <span class="label label-rounded label-warning">
+                                {{ App\Models\Service::withoutTrashed()->count() }}
                             </span>
                         </span>
                     </a>
                 </li>
             @endcan
- --}}
+
+
 
 
 

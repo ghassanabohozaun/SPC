@@ -30,19 +30,8 @@ class RoleSeeder extends Seeder
                 'videos',
                 'photos',
                 'landing-page',
+                'services',
 
-                // 'support-center',
-                // 'reports',
-                // 'articles',
-                // 'landing-page',
-                // 'projects',
-                // 'testimonials',
-                // 'publications',
-                //
-                //
-                // 'yearly-reports',
-                // 'abouts',
-                // 'teams',
 
             ]),
         ]);

@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ServiceRequest;
 use App\Http\Requests\TrainingRequest;
+use App\Models\Service;
 use App\Models\Training;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use File;
+use GuzzleHttp\Psr7\ServerRequest;
 
-class TrainingController extends Controller
+class ServicesController extends Controller
 {
 
     use GeneralTrait;
@@ -17,40 +20,44 @@ class TrainingController extends Controller
     // index
     public function index()
     {
-        $title = __('menu.trainings');
-        $trainings = Training::withoutTrashed()->orderBy('created_at', 'desc')->paginate(15);
-        return view('admin.trainings.index', compact('title', 'trainings'));
+        $title = __('menu.services');
+        $services = Service::withoutTrashed()->orderByDesc('created_at')->paginate(15);
+        return view('admin.services.index', compact('title', 'services'));
     }
 
     // create
     public function create()
     {
-        $title = __('menu.add_new_training');
-        return view('admin.trainings.create', compact('title'));
+        $title = __('menu.add_new_service');
+        return view('admin.services.create', compact('title'));
     }
 
     // store
-    public function store(TrainingRequest $request)
+    public function store(ServiceRequest $request)
     {
-        $site_lang = setting()->site_lang_ar;
 
         if ($request->hasFile('photo')) {
             $photo_file  = $request->file('photo');
-            $path_destination = public_path('/adminBoard/uploadedImages/trainings//');
-            $photo = $this->saveResizeImage($photo_file, $path_destination, 200, 200);
+            $path_destination = public_path('/adminBoard/uploadedImages/services//');
+            $photo = $this->saveResizeImage($photo_file, $path_destination, 400, 400);
         } else {
             $photo = '';
         }
 
-        $training =  Training::create(
+        $site_lang_ar = setting()->site_lang_ar;
+
+        $training =  Service::create(
             [
                 'title_en' => $request->title_en,
-                'title_ar' => $site_lang == 'on' ? $request->title_ar : '',
+                'title_ar' => $site_lang_ar == 'on' ? $request->title_ar : '',
+                'summary_en' => $request->summary_en,
+                'summary_ar' => $site_lang_ar == 'on' ? $request->summary_ar : '',
+                'details_en' => $request->details_en,
+                'details_ar' => $site_lang_ar == 'on' ? $request->details_ar : '',
+                'is_treatment_area' => $request->is_treatment_area,
                 'status' => 'on',
                 'photo' => $photo,
-                'started_date' => $request->started_date,
                 'language' =>  'ar_en',
-
             ]
         );
 
@@ -62,7 +69,7 @@ class TrainingController extends Controller
     // edit
     public function edit($id)
     {
-        $title = __('trainings.update_training');
+        $title = 'Edit Training';
         $training = Training::find($id);
         if (!$training) {
             return redirect()->route('admin.not.found');
@@ -188,19 +195,16 @@ class TrainingController extends Controller
     public function changeStatus(Request $request)
     {
         if ($request->ajax()) {
-            $training  = Training::find($request->id);
-            if (!$training) {
+            $service  = Service::find($request->id);
+            if (!$service) {
                 return redirect()->route('admin.not.found');
             }
-
-            //return response()->json($request->id, 200);
-
             if ($request->statusSwitch == 'true') {
-                $training->status = 'on';
-                $training->save();
+                $service->status = 'on';
+                $service->save();
             } else {
-                $training->status = '';
-                $training->save();
+                $service->status = '';
+                $service->save();
             }
 
             return $this->returnSuccessMessage(__('general.change_status_success_message'));

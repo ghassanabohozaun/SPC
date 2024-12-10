@@ -4,11 +4,12 @@ return [
 
     'update' => 'تعديل السؤال ',
 
-    'question_ar' => 'سؤال  |عربي ',
-    'question_en' => ' سؤال |انجليزي',
+
     'details_ar_tab' => ' تفاصيل السؤال بالعربي ',
     'details_en_tab' => 'تفاصيل السؤال بالانجليزي ',
 
+    'question_ar' => 'سؤال  |عربي ',
+    'question_en' => ' سؤال |انجليزي',
     'answer_ar' => ' الجواب |عربي ',
     'answer_en' => 'الجواب  |انجليزي',
     'status' => 'الحالة',

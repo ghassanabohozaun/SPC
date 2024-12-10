@@ -3,6 +3,7 @@
 use Database\Seeders\FaqSeeder;
 use Database\Seeders\PhotoAlbumSeeder;
 use Database\Seeders\RoleSeeder;
+use Database\Seeders\SlidersSeeder;
 use Database\Seeders\TrainingsSeeder;
 use Database\Seeders\VideosSeeder;
 use Illuminate\Database\Seeder;
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
             FaqSeeder::class,
             VideosSeeder::class,
             PhotoAlbumSeeder::class,
+            SlidersSeeder::class,
         ]);
 
 

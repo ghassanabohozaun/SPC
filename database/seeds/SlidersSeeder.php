@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Publications;
+use App\Models\Slider;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PublicationsSeeder extends Seeder
+class SlidersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class PublicationsSeeder extends Seeder
      */
     public function run()
     {
-        Publications::factory()->count(20)->create();
+        Slider::factory()->count(15)->create();
     }
 }

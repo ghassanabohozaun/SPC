@@ -2,8 +2,6 @@
 
 return [
     'update' => 'Update Question',
-
-
     'details_ar_tab' => 'Arabic Question Details ',
     'details_en_tab' => 'English Question Details',
 
@@ -23,8 +21,8 @@ return [
 
 
     // validate message
-    'question_ar_required' => 'Arabic question is required',
-    'quetoin_en_required' => 'English question is required',
+    'question_ar_required' => 'Arabic Question is required',
+    'quetoin_en_required' => 'English Question is required',
     'answer_ar_required' => 'Arabic Answer is required',
     'answer_en_required' => 'English Answer is required',
 

@@ -12,7 +12,6 @@ class Slider extends Model
 
     protected $table = 'sliders';
     protected $fillable = [
-
         'title_en',
         'title_ar',
         'details_en',
