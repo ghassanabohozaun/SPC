@@ -12,14 +12,14 @@
                 <!--begin::Actions-->
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item">
-                        <a href="{{ route('admin.videos') }}" class="text-muted">
-                            {{ __('menu.videos') }}
+                        <a href="{{ route('admin.services') }}" class="text-muted">
+                            {{ __('menu.services') }}
                         </a>
                     </li>
 
                     <li class="breadcrumb-item">
                         <a href="#" class="text-muted">
-                            {{ __('menu.trashed_videos') }}
+                            {{ __('menu.trashed_services') }}
                         </a>
                     </li>
 
@@ -36,10 +36,10 @@
 
             <!--begin::Toolbar-->
             <div class="d-flex align-items-center">
-                <a href="{{ route('admin.videos.create') }}"
+                <a href="{{ route('admin.services.create') }}"
                     class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
                     <i class="fa fa-plus-square"></i>
-                    {{ __('menu.add_new_video') }}
+                    {{ __('menu.add_new_service') }}
                 </a>
                 &nbsp;
             </div>
@@ -69,37 +69,37 @@
                                                     <thead>
                                                         <tr>
                                                             <th>#</th>
-                                                            <th>{!! __('videos.photo') !!}</th>
-                                                            <th>{!! __('videos.title_en') !!}</th>
+                                                            <th>{!! __('services.photo') !!}</th>
+                                                            <th>{!! __('services.title_en') !!}</th>
                                                             @if (setting()->site_lang_ar == 'on')
-                                                                <th>{!! __('videos.title_ar') !!}</th>
+                                                                <th>{!! __('services.title_ar') !!}</th>
                                                             @endif
-                                                            <th>{!! __('videos.duration') !!}</th>
+                                                            <th>{!! __('services.is_treatment_area') !!}</th>
                                                             <th class="text-center" style="width: 100px;">
                                                                 {!! __('general.actions') !!}
                                                             </th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @forelse($videos as $video)
+                                                        @forelse($services as $service)
                                                             <tr>
                                                                 <td>{!! $loop->iteration !!}</td>
-                                                                <td>@include('admin.videos.parts.photo')</td>
-                                                                <td>{{ $video->title_en }}</td>
+                                                                <td>@include('admin.services.parts.photo')</td>
+                                                                <td>{{ $service->title_en }}</td>
                                                                 @if (setting()->site_lang_ar == 'on')
-                                                                    <td>{{ $video->title_ar }}</td>
+                                                                    <td>{{ $service->title_ar }}</td>
                                                                 @endif
-                                                                <td>{{ $video->duration }}</td>
+                                                                <td>{{ $service->is_treatment_area }}</td>
                                                                 <td>
-                                                                    <a class="btn btn-hover-warning btn-icon btn-pill restore_video_btn"
-                                                                        data-id="{{ $video->id }}"
+                                                                    <a class="btn btn-hover-warning btn-icon btn-pill restore_service_btn"
+                                                                        data-id="{{ $service->id }}"
                                                                         title="{{ __('general.restore') }}">
                                                                         <i class="fa fa-trash-restore fa-1x"></i>
                                                                     </a>
 
                                                                     <a href="#"
-                                                                        class="btn btn-hover-danger btn-icon btn-pill force_delete_video_btn"
-                                                                        data-id="{{ $video->id }}"
+                                                                        class="btn btn-hover-danger btn-icon btn-pill force_delete_service_btn"
+                                                                        data-id="{{ $service->id }}"
                                                                         title="{{ __('general.force_delete') }}">
                                                                         <i class="fa fa-trash-alt fa-1x"></i>
                                                                     </a>
@@ -108,7 +108,7 @@
                                                         @empty
                                                             <tr>
                                                                 <td colspan="6" class="text-center">
-                                                                    {!! __('videos.no_videos_found') !!}
+                                                                    {!! __('services.no_services_found') !!}
                                                                 </td>
                                                             </tr>
                                                         @endforelse
@@ -117,7 +117,7 @@
                                                         <tr>
                                                             <td colspan="6">
                                                                 <div class="float-right">
-                                                                    {!! $videos->appends(request()->all())->links() !!}
+                                                                    {!! $services->appends(request()->all())->links() !!}
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -132,8 +132,8 @@
 
                         </div>
 
-                        <form class="d-none" id="form_video_delete">
-                            <input type="hidden" id="video_delete_id">
+                        <form class="d-none" id="form_service_delete">
+                            <input type="hidden" id="service_delete_id">
                         </form>
                         <!--end::Form-->
 
@@ -151,8 +151,8 @@
 @endsection
 @push('js')
     <script type="text/javascript">
-        // delete video
-        $(document).on('click', '.force_delete_video_btn', function(e) {
+        // delete service
+        $(document).on('click', '.force_delete_service_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
@@ -167,9 +167,9 @@
             }).then(function(result) {
                 if (result.value) {
                     //////////////////////////////////////
-                    // Delete User
+                    // delete services
                     $.ajax({
-                        url: "{!! route('admin.videos.force.delete') !!}",
+                        url: "{!! route('admin.services.force.delete') !!}",
                         data: {
                             id,
                             id
@@ -185,10 +185,10 @@
                                     icon: "success",
                                     allowOutsideClick: false,
                                     customClass: {
-                                        confirmButton: 'delete_video_button'
+                                        confirmButton: 'delete_service_button'
                                     }
                                 });
-                                $('.delete_video_button').click(function() {
+                                $('.delete_service_button').click(function() {
                                     $('#myTable').load(location.href + (' #myTable'));
                                 });
                             }
@@ -202,7 +202,7 @@
                         icon: "error",
                         allowOutsideClick: false,
                         customClass: {
-                            confirmButton: 'cancel_delete_video_button'
+                            confirmButton: 'cancel_delete_service_button'
                         }
                     })
                 }
@@ -210,13 +210,13 @@
         })
 
 
-        // restore video
-        $(document).on('click', '.restore_video_btn', function(e) {
+        // restore service
+        $(document).on('click', '.restore_service_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
             $.ajax({
-                url: "{{ route('admin.videos.restore') }}",
+                url: "{{ route('admin.services.restore') }}",
                 data: {
                     id,
                     id
@@ -240,10 +240,10 @@
                             icon: "success",
                             allowOutsideClick: false,
                             customClass: {
-                                confirmButton: 'restore_video_button'
+                                confirmButton: 'restore_service_button'
                             }
                         });
-                        $('.restore_video_button').click(function() {
+                        $('.restore_service_button').click(function() {
                             $('#myTable').load(location.href + (' #myTable'));
                         });
                     }

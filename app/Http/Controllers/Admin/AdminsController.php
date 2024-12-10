@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequest;
-use App\Http\Requests\AdminUpdateRequest;
 use App\Models\Admin;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;

@@ -4,13 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ServiceRequest;
-use App\Http\Requests\TrainingRequest;
 use App\Models\Service;
-use App\Models\Training;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use File;
-use GuzzleHttp\Psr7\ServerRequest;
 
 class ServicesController extends Controller
 {
@@ -46,7 +43,7 @@ class ServicesController extends Controller
 
         $site_lang_ar = setting()->site_lang_ar;
 
-        $training =  Service::create(
+        $service =  Service::create(
             [
                 'title_en' => $request->title_en,
                 'title_ar' => $site_lang_ar == 'on' ? $request->title_ar : '',
@@ -57,71 +54,81 @@ class ServicesController extends Controller
                 'is_treatment_area' => $request->is_treatment_area,
                 'status' => 'on',
                 'photo' => $photo,
-                'language' =>  'ar_en',
+                'language' =>   $site_lang_ar == 'on' ? 'ar_en'  : 'en',
             ]
         );
 
-        if ($training) {
+        if ($service) {
             return $this->returnSuccessMessage(__('general.add_success_message'));
+        } else {
+            return $this->returnError('general.add_error_message', 404);
         }
     }
 
     // edit
     public function edit($id)
     {
-        $title = 'Edit Training';
-        $training = Training::find($id);
-        if (!$training) {
+        $title = __('services.service_update');
+        $service = Service::find($id);
+        if (!$service) {
             return redirect()->route('admin.not.found');
         }
-        return view('admin.trainings.update', compact('title', 'training'));
+        return view('admin.services.update', compact('title', 'service'));
     }
 
     // update
-    public function update(TrainingRequest $request)
+    public function update(ServiceRequest $request)
     {
-        $training = Training::find($request->id);
-        if (!$training) {
+        $service = Service::find($request->id);
+        if (!$service) {
             return redirect()->route('admin.not.found');
         }
 
         if ($request->hasFile('photo')) {
-            if (!empty($training->photo)) {
+            if (!empty($service->photo)) {
 
                 //delete old photo
-                $public_path = public_path('/adminBoard/uploadedImages/trainings//') . $training->photo;
+                $public_path = public_path('/adminBoard/uploadedImages/services//') . $service->photo;
                 if (File::exists($public_path)) {
                     File::delete($public_path);
                 }
 
                 // upload new photo
                 $photo_file = $request->file('photo');
-                $photo_destination = public_path('/adminBoard/uploadedImages/trainings//');
-                $photo = $this->saveResizeImage($photo_file, $photo_destination, 200, 200);
+                $photo_destination = public_path('/adminBoard/uploadedImages/services//');
+                $photo = $this->saveResizeImage($photo_file, $photo_destination, 400, 400);
             } else {
 
                 $photo_file = $request->file('photo');
-                $photo_destination = public_path('/adminBoard/uploadedImages/trainings//');
-                $photo  = $this->saveResizeImage($photo_file, $photo_destination, 200, 200);
+                $photo_destination = public_path('/adminBoard/uploadedImages/services//');
+                $photo  = $this->saveResizeImage($photo_file, $photo_destination, 400, 400);
             }
         } else {
-            if (!empty($training->photo)) {
-                $photo = $training->photo;
+            if (!empty($service->photo)) {
+                $photo = $service->photo;
             } else {
                 $photo = '';
             }
         }
 
 
-        $site_lang = setting()->site_lang_ar;
+        $site_lang_ar = setting()->site_lang_ar;
 
-        $training->update([
-            'title_ar' => $site_lang == 'on' ?  $request->title_ar : '',
-            'title_en' => $request->title_en,
-            'started_date' => $request->started_date,
-            'language' => $site_lang == 'on' ? 'ar_en' : 'en',
-            'photo' => $photo,
-        ]);
+        $service->update(
+            [
+                'title_en' => $request->title_en,
+                'title_ar' => $site_lang_ar == 'on' ? $request->title_ar : '',
+                'summary_en' => $request->summary_en,
+                'summary_ar' => $site_lang_ar == 'on' ? $request->summary_ar : '',
+                'details_en' => $request->details_en,
+                'details_ar' => $site_lang_ar == 'on' ? $request->details_ar : '',
+                'is_treatment_area' => $request->is_treatment_area,
+                'status' => 'on',
+                'photo' => $photo,
+                'language' =>   $site_lang_ar == 'on' ? 'ar_en'  : 'en',
+            ]
+        );
+
 
         return $this->returnSuccessMessage(__('general.update_success_message'));
     }
@@ -130,12 +137,12 @@ class ServicesController extends Controller
     public function destroy(Request $request)
     {
         if ($request->ajax()) {
-            $training = Training::find($request->id);
-            if (!$training) {
+            $service = Service::find($request->id);
+            if (!$service) {
                 return redirect()->route('admin.not.found');
             }
 
-            if ($training->delete()) {
+            if ($service->delete()) {
                 return $this->returnSuccessMessage(__('general.move_to_trash'));
             } else {
                 return $this->returnError(__('general.delete_error_message'), 400);
@@ -146,10 +153,9 @@ class ServicesController extends Controller
     // get trashed
     public function getTrashed()
     {
-        $title = 'Trashed';
-        $trainings   = Training::onlyTrashed()->orderByDesc('deleted_at')->paginate(15);
-
-        return view('admin.trainings.trashed', compact('title', 'trainings'));
+        $title =  __('general.trashed');
+        $services   = Service::onlyTrashed()->orderByDesc('deleted_at')->paginate(15);
+        return view('admin.services.trashed', compact('title', 'services'));
     }
 
 
@@ -157,14 +163,15 @@ class ServicesController extends Controller
     public function restore(Request $request)
     {
         if ($request->ajax()) {
-            $training = Training::onlyTrashed()->find($request->id);
-            if (!$training) {
+            $service = Service::onlyTrashed()->find($request->id);
+            if (!$service) {
                 return redirect()->route('admin.not.found');
             }
-            $training->restore();
-            //return response()->json($training, 200);
-            //return $this->returnData()
-            return $this->returnSuccessMessage(__('general.restore_success_message'));
+            if ($service->restore()) {
+                return $this->returnSuccessMessage(__('general.restore_success_message'));
+            } else {
+                return $this->returnError('general.restore_error_message', 404);
+            }
         }
     }
 
@@ -173,21 +180,24 @@ class ServicesController extends Controller
     public function forceDelete(Request $request)
     {
         if ($request->ajax()) {
-            $training = Training::onlyTrashed()->find($request->id);
+            $service = Service::onlyTrashed()->find($request->id);
 
-            if (!$training) {
+            if (!$service) {
                 return redirect()->route('admin.not.found');
             }
 
-            if (!empty($training->photo)) {
-                $public_path = public_path('/adminBoard/uploadedImages/trainings//') . $training->photo;
+            if (!empty($service->photo)) {
+                $public_path = public_path('/adminBoard/uploadedImages/services//') . $service->photo;
                 if (File::exists($public_path)) {
                     File::delete($public_path);
                 }
             }
 
-            $training->forceDelete();
-            return $this->returnSuccessMessage(__('general.delete_success_message'));
+            if ($service->forceDelete()) {
+                return $this->returnSuccessMessage(__('general.delete_success_message'));
+            } else {
+                return $this->returnError(__('general.delete_error_message'), 404);
+            }
         }
     }
 

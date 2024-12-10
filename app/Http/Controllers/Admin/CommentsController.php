@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CommentRequest;
-use App\Models\Article;
 use App\Models\Comment;
 use App\Traits\GeneralTrait;
 use File;
@@ -22,8 +21,8 @@ class CommentsController extends Controller
         }
 
         $title = __('menu.comments');
-        $comments = Comment::withoutTrashed()->orderByDesc('created_at')->where('post_id',$id)->paginate(15);
-        return view('admin.articles.comments.index', compact('title', 'comments','id'));
+        $comments = Comment::withoutTrashed()->orderByDesc('created_at')->where('post_id', $id)->paginate(15);
+        return view('admin.articles.comments.index', compact('title', 'comments', 'id'));
     }
 
     //  trashed articles
@@ -35,7 +34,7 @@ class CommentsController extends Controller
 
         $title = __('menu.trashed_articles');
         $trashedComments = Comment::onlyTrashed()->orderByDesc('created_at')->paginate(15);
-        return view('admin.articles.comments.trashed_comments', compact('title', 'trashedComments','id'));
+        return view('admin.articles.comments.trashed_comments', compact('title', 'trashedComments', 'id'));
     }
 
 
@@ -47,7 +46,7 @@ class CommentsController extends Controller
         }
 
         $title = __('menu.add_new_comment');
-        return view('admin.articles.comments.create', compact('title','id'));
+        return view('admin.articles.comments.create', compact('title', 'id'));
     }
 
 
@@ -59,7 +58,6 @@ class CommentsController extends Controller
             $image = $request->file('photo');
             $destinationPath = public_path('adminBoard/uploadedImages/articles/comments');
             $photo_path = $this->saveResizeImage($image, $destinationPath, 250, 250);
-
         } else {
             $photo_path = '';
         }
@@ -93,7 +91,7 @@ class CommentsController extends Controller
             }
         } catch (\Exception $exception) {
             return $this->returnError(__('general.try_catch_error_message'), 500);
-        }//end catch
+        } //end catch
     }
 
 
@@ -111,7 +109,7 @@ class CommentsController extends Controller
             }
         } catch (\Exception $exception) {
             return $this->returnError(__('general.try_catch_error_message'), 500);
-        }//end catch
+        } //end catch
     }
 
     //  force delete
@@ -139,7 +137,7 @@ class CommentsController extends Controller
             }
         } catch (\Exception $exception) {
             return $this->returnError(__('general.try_catch_error_message'), 500);
-        }//end catch
+        } //end catch
 
     }
 
@@ -159,5 +157,4 @@ class CommentsController extends Controller
 
         return $this->returnSuccessMessage(__('general.change_status_success_message'));
     }
-
 }

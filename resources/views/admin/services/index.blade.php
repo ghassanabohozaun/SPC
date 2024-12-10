@@ -90,7 +90,7 @@
                                                                 @if (setting()->site_lang_ar == 'on')
                                                                     <td>{{ $service->title_ar }}</td>
                                                                 @endif
-                                                                <td>{{ $service->is_treatment_area }}</td>
+                                                                <td>@include('admin.services.parts.is_treatment_area')</td>
                                                                 <td>@include('admin.services.parts.status')</td>
                                                                 <td> @include('admin.services.parts.options')</td>
                                                             </tr>

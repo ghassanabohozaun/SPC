@@ -9,13 +9,19 @@
                     <div class="my-5">
 
                         <!--begin::Group-->
-                        <div class=" form-group row  d-none">
+                        <div class=" form-group row d-none">
                             <label class="col-xl-3 col-lg-3 col-form-label">
                             </label>
                             <div class="col-lg-9 col-xl-9">
-                                <input type="hidden" value="{{ setting()->site_lang_ar }}"
-                                    class="form-control form-control-solid form-control-lg" name="site_lang_ar"
-                                    id="site_lang_ar" />
+                                <input type='hidden' class="form-control form-control-solid form-control-lg"
+                                    value='{!! $service->id !!}' id='id' name="id">
+
+                                <input type="hidden" class="form-control form-control-solid form-control-lg"
+                                    value="{{ setting()->site_lang_ar }}" name="site_lang_ar" id="site_lang_ar"
+                                    autocomplete="off" />
+
+                                <input type='hidden' class="form-control form-control-solid form-control-lg"
+                                    value='hidden_photo' id='hidden_photo' name="hidden_photo">
                             </div>
                         </div>
                         <!--end::Group-->
@@ -28,7 +34,10 @@
                             <div class="col-lg-9 col-xl-9">
                                 <div class="image-input image-input-outline" id="kt_service_photo">
 
-                                    <div class="image-input-wrapper"></div>
+                                    <div class="image-input-wrapper"
+                                        style="background-image: url({{ asset('adminBoard/uploadedImages/services/' . $service->photo) }})">
+                                    </div>
+
                                     <label
                                         class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
                                         data-action="change" data-toggle="tooltip" title=""
@@ -61,13 +70,13 @@
                                 <div class="form-check pl-0 radio-inline">
                                     <label class="radio radio-outline">
                                         <input type="radio" id="is_treatment_area" name="is_treatment_area"
-                                            value="no" checked />
+                                            value="no" {!! $service->is_treatment_area == 'no' ? 'checked' : '' !!} />
                                         <span></span>
                                         {{ __('general.no') }}
                                     </label>
                                     <label class="radio radio-outline">
                                         <input type="radio" id="is_treatment_area" name="is_treatment_area"
-                                            value="yes" />
+                                            value="yes" {!! $service->is_treatment_area == 'yes' ? 'checked' : '' !!} />
                                         <span></span>
                                         {{ __('general.yes') }}
                                     </label>

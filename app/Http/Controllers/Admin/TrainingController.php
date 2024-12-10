@@ -139,12 +139,10 @@ class TrainingController extends Controller
     // get trashed
     public function getTrashed()
     {
-        $title = 'Trashed';
+        $title = __("general.trashed");
         $trainings   = Training::onlyTrashed()->orderByDesc('deleted_at')->paginate(15);
-
         return view('admin.trainings.trashed', compact('title', 'trainings'));
     }
-
 
     // restore
     public function restore(Request $request)
@@ -160,7 +158,6 @@ class TrainingController extends Controller
             return $this->returnSuccessMessage(__('general.restore_success_message'));
         }
     }
-
 
     // force delete
     public function forceDelete(Request $request)

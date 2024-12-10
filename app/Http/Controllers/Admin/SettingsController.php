@@ -7,7 +7,6 @@ use App\Http\Requests\SettingRequest;
 use App\Models\Setting;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use File;
 
 class SettingsController extends Controller
