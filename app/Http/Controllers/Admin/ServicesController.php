@@ -47,6 +47,8 @@ class ServicesController extends Controller
             [
                 'title_en' => $request->title_en,
                 'title_ar' => $site_lang_ar == 'on' ? $request->title_ar : '',
+                'title_en_slug' => slug($request->title_en),
+                'title_ar_slug' => $site_lang_ar == 'on' ? slug($request->title_ar) : '',
                 'summary_en' => $request->summary_en,
                 'summary_ar' => $site_lang_ar == 'on' ? $request->summary_ar : '',
                 'details_en' => $request->details_en,
@@ -118,6 +120,8 @@ class ServicesController extends Controller
             [
                 'title_en' => $request->title_en,
                 'title_ar' => $site_lang_ar == 'on' ? $request->title_ar : '',
+                'title_en_slug' => slug($request->title_en),
+                'title_ar_slug' => $site_lang_ar == 'on' ? slug($request->title_ar) : '',
                 'summary_en' => $request->summary_en,
                 'summary_ar' => $site_lang_ar == 'on' ? $request->summary_ar : '',
                 'details_en' => $request->details_en,

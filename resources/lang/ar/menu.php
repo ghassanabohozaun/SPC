@@ -42,6 +42,9 @@ return [
     'trashed_services' => 'الخدمات المحذوفة',
     'add_new_service' => 'إضافة خدمة جديد',
 
+    'testimonials' => 'الشهادات والتوصيات',
+    'trashed_testimonials' => 'الشهادات والتوصيات المحذوفة',
+    'add_new_testimonial' => 'اضافة توصية جديدة',
 
 
 
@@ -53,9 +56,7 @@ return [
     'trashed_projects' => 'المشاريع المحذوفة',
     'add_new_project' => 'اضافة مشروع جديد',
 
-    'testimonials' => 'الشهادات والتوصيات',
-    'trashed_testimonials' => 'الشهادات والتوصيات المحذوفة',
-    'add_new_testimonial' => 'اضافة توصية جديدة',
+
 
     'publications' => 'المنشورات',
     'trashed_publications' => 'المنشورات المحذوفة',

@@ -31,8 +31,8 @@ class RoleSeeder extends Seeder
                 'photos',
                 'landing-page',
                 'services',
-
-
+                'testimonials',
+                'articles',
             ]),
         ]);
     }

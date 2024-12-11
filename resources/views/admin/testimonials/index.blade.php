@@ -1,11 +1,10 @@
 @extends('layouts.admin')
-@section('title') @endsection
+@section('title')
+@endsection
 @section('content')
-
     <!--begin::Subheader-->
     <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
-        <div
-            class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
             <!--begin::Info-->
             <div class="d-flex align-items-center flex-wrap mr-2">
 
@@ -14,13 +13,13 @@
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item">
                         <a href="#" class="text-muted">
-                            {{__('menu.testimonials')}}
+                            {{ __('menu.testimonials') }}
                         </a>
                     </li>
 
                     <li class="breadcrumb-item">
                         <a href="" class="text-muted">
-                            {{__('menu.show_all')}}
+                            {{ __('menu.show_all') }}
                         </a>
                     </li>
                 </ul>
@@ -31,16 +30,15 @@
 
             <!--begin::Toolbar-->
             <div class="d-flex align-items-center">
-                <a href="{!! route('admin.testimonial.trashed') !!}"
-                   class="btn btn-light-danger trash_btn" title="{{__('general.trash')}}">
+                <a href="{!! route('admin.testimonial.trashed') !!}" class="btn btn-light-danger trash_btn" title="{{ __('general.trash') }}">
                     <i class="fa fa-trash"></i>
                 </a>
                 &nbsp;
 
-                <a href="{{route('admin.testimonial.create')}}"
-                   class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
+                <a href="{{ route('admin.testimonial.create') }}"
+                    class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
                     <i class="fa fa-plus-square"></i>
-                    {{__('menu.add_new_testimonial')}}
+                    {{ __('menu.add_new_testimonial') }}
                 </a>
                 &nbsp;
             </div>
@@ -68,53 +66,56 @@
                                             <div class="table-responsive">
                                                 <table class="table myTable table-hover" id="myTable">
                                                     <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>{!! __('testimonials.photo') !!}</th>
-                                                        <th>{!! __('testimonials.opinion_ar') !!}</th>
-                                                        <th>{!! __('testimonials.opinion_en') !!}</th>
-                                                        <th>{!! __('testimonials.name_ar') !!}</th>
-                                                        <th>{!! __('testimonials.name_en') !!}</th>
-                                                        <th>{!! __('testimonials.rating') !!}</th>
-                                                        <th>{!! __('testimonials.status') !!}</th>
-                                                        <th  class="text-center" style="width: 100px;">{!! __('general.actions') !!}</th>
-                                                    </tr>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>{!! __('testimonials.photo') !!}</th>
+                                                            <th>{!! __('testimonials.opinion_en') !!}</th>
+                                                            @if (setting()->site_lang_ar == 'on')
+                                                                <th>{!! __('testimonials.opinion_ar') !!}</th>
+                                                            @endif
+                                                            <th>{!! __('testimonials.name_en') !!}</th>
+                                                            @if (setting()->site_lang_ar == 'on')
+                                                                <th>{!! __('testimonials.name_ar') !!}</th>
+                                                            @endif
+                                                            <th>{!! __('testimonials.rating') !!}</th>
+                                                            <th>{!! __('testimonials.status') !!}</th>
+                                                            <th class="text-center" style="width: 100px;">
+                                                                {!! __('general.actions') !!}</th>
+                                                        </tr>
                                                     </thead>
                                                     <tbody>
-                                                    @forelse($testimonials as $testimonial)
-                                                        <tr>
-                                                            <td>{!! $loop->iteration !!}</td>
-                                                            <td>@include('admin.testimonials.parts.photo')</td>
-                                                            <td>{{ $testimonial->opinion_ar }}</td>
-                                                            <td>{{ $testimonial->opinion_en }}</td>
-                                                            <td>{{ $testimonial->name_ar }}</td>
-                                                            <td>{{ $testimonial->name_en }}</td>
-                                                            <td>{{ $testimonial->rating }}</td>
-                                                            <td>
-                                                                <div class="cst-switch switch-sm">
-                                                                    <input type="checkbox"
-                                                                           {{$testimonial->status == 'on' ? 'checked':''}}  data-id="{{$testimonial->id}}"
-                                                                           class="change_status">
-                                                                </div>
-                                                            </td>
-                                                            <td>@include('admin.testimonials.parts.options')</td>
-                                                        </tr>
-                                                    @empty
-                                                        <tr>
-                                                            <td colspan="9" class="text-center">
-                                                                {!! __('testimonials.no_testimonials_found') !!}
-                                                            </td>
-                                                        </tr>
-                                                    @endforelse
+                                                        @forelse($testimonials as $testimonial)
+                                                            <tr>
+                                                                <td>{!! $loop->iteration !!}</td>
+                                                                <td>@include('admin.testimonials.parts.photo')</td>
+                                                                <td>{{ $testimonial->opinion_en }}</td>
+                                                                @if (setting()->site_lang_ar == 'on')
+                                                                    <td>{{ $testimonial->opinion_ar }}</td>
+                                                                @endif
+                                                                <td>{{ $testimonial->name_en }}</td>
+                                                                @if (setting()->site_lang_ar == 'on')
+                                                                    <td>{{ $testimonial->name_ar }}</td>
+                                                                @endif
+                                                                <td>{{ $testimonial->rating }}</td>
+                                                                <td>@include('admin.testimonials.parts.status')</td>
+                                                                <td>@include('admin.testimonials.parts.options')</td>
+                                                            </tr>
+                                                        @empty
+                                                            <tr>
+                                                                <td colspan="9" class="text-center">
+                                                                    {!! __('testimonials.no_testimonials_found') !!}
+                                                                </td>
+                                                            </tr>
+                                                        @endforelse
                                                     </tbody>
                                                     <tfoot>
-                                                    <tr>
-                                                        <td colspan="9">
-                                                            <div class="float-right">
-                                                                {!! $testimonials->appends(request()->all())->links() !!}
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                        <tr>
+                                                            <td colspan="9">
+                                                                <div class="float-right">
+                                                                    {!! $testimonials->appends(request()->all())->links() !!}
+                                                                </div>
+                                                            </td>
+                                                        </tr>
                                                     </tfoot>
                                                 </table>
                                             </div>
@@ -142,36 +143,35 @@
         <!--begin::Form-->
     </div>
     <!--end::content-->
-
-
-
 @endsection
 @push('js')
-
     <script type="text/javascript">
-        //Show user Delete Notify
-        $(document).on('click', '.delete_testimonial_btn', function (e) {
+        //delete testimonial
+        $(document).on('click', '.delete_testimonial_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
             Swal.fire({
-                title: "{{__('general.ask_delete_record')}}",
+                title: "{{ __('general.ask_delete_record') }}",
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonText: "{{__('general.yes')}}",
-                cancelButtonText: "{{__('general.no')}}",
+                confirmButtonText: "{{ __('general.yes') }}",
+                cancelButtonText: "{{ __('general.no') }}",
                 reverseButtons: false,
                 allowOutsideClick: false,
-            }).then(function (result) {
+            }).then(function(result) {
                 if (result.value) {
                     //////////////////////////////////////
                     // Delete User
                     $.ajax({
                         url: '{!! route('admin.testimonial.destroy') !!}',
-                        data: {id, id},
+                        data: {
+                            id,
+                            id
+                        },
                         type: 'post',
                         dataType: 'json',
-                        success: function (data) {
+                        success: function(data) {
                             console.log(data);
                             if (data.status == true) {
                                 Swal.fire({
@@ -179,13 +179,15 @@
                                     text: data.msg,
                                     icon: "success",
                                     allowOutsideClick: false,
-                                    customClass: {confirmButton: 'delete_testimonial_button'}
+                                    customClass: {
+                                        confirmButton: 'delete_testimonial_button'
+                                    }
                                 });
-                                $('.delete_testimonial_button').click(function () {
-                                    $('#myTable').load(location.href+(' #myTable'));
+                                $('.delete_testimonial_button').click(function() {
+                                    $('#myTable').load(location.href + (' #myTable'));
                                 });
                             }
-                        },//end success
+                        }, //end success
                     });
 
                 } else if (result.dismiss === "cancel") {
@@ -194,7 +196,9 @@
                         text: "{!! __('general.cancelled_message') !!}",
                         icon: "error",
                         allowOutsideClick: false,
-                        customClass: {confirmButton: 'cancel_delete_testimonial_button'}
+                        customClass: {
+                            confirmButton: 'cancel_delete_testimonial_button'
+                        }
                     })
                 }
             });
@@ -204,7 +208,7 @@
 
         // switch english language
         var switchStatus = false;
-        $('body').on('change', '.change_status', function (e) {
+        $('body').on('change', '.change_status', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
@@ -215,18 +219,21 @@
             }
 
             $.ajax({
-                url: "{{route('admin.testimonial.change-status')}}",
-                data: {switchStatus: switchStatus, id: id},
+                url: "{{ route('admin.testimonial.change-status') }}",
+                data: {
+                    switchStatus: switchStatus,
+                    id: id
+                },
                 type: 'post',
                 dataType: 'JSON',
-                beforeSend: function () {
+                beforeSend: function() {
                     KTApp.blockPage({
                         overlayColor: '#000000',
                         state: 'danger',
-                        message: "{{__('general.please_wait')}}",
+                        message: "{{ __('general.please_wait') }}",
                     });
-                },//end beforeSend
-                success: function (data) {
+                }, //end beforeSend
+                success: function(data) {
                     KTApp.unblockPage();
                     console.log(data);
                     if (data.status == true) {
@@ -235,15 +242,14 @@
                             text: "",
                             icon: "success",
                             allowOutsideClick: false,
-                            customClass: {confirmButton: 'switch_status_toggle'}
+                            customClass: {
+                                confirmButton: 'switch_status_toggle'
+                            }
                         });
-                        $('.switch_status_toggle').click(function () {
-                        });
+                        $('.switch_status_toggle').click(function() {});
                     }
-                },//end success
+                }, //end success
             })
         });
-
     </script>
 @endpush
-

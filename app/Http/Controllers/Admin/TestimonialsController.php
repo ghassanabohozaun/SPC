@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TestimonialRequest;
-use App\Models\Team;
-use App\Models\testimonial;
+use App\Models\Testimonial;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use File;
 
-class TestimonialController extends Controller
+class TestimonialsController extends Controller
 {
     use GeneralTrait;
 
@@ -19,7 +18,7 @@ class TestimonialController extends Controller
     public function index()
     {
         $title = __('menu.testimonials');
-        $testimonials = testimonial::withoutTrashed()->orderByDesc('created_at')->paginate(15);
+        $testimonials = Testimonial::withoutTrashed()->orderByDesc('created_at')->paginate(15);
         return view('admin.testimonials.index', compact('title', 'testimonials'));
     }
 
@@ -43,21 +42,23 @@ class TestimonialController extends Controller
         }
 
 
-        $lang_en = setting()->site_lang_en;
+        $site_lang_ar = setting()->site_lang_ar;
 
-        testimonial::create([
+        Testimonial::create([
+            'opinion_en' => $request->opinion_en,
+            'opinion_ar' => $site_lang_ar == 'on' ? $request->opinion_ar : '',
+            'name_en' => $request->name_en,
+            'name_ar' => $site_lang_ar == 'on' ? $request->name_ar : null,
+            'job_title_en' => $request->job_title_en,
+            'job_title_ar' => $site_lang_ar == 'on' ? $request->job_title_ar : null,
+            'age' => $request->age,
+            'gender' => $request->gender,
+            'country' => null,
+            'rating' => $request->rating,
+            'status' => '',
             'photo' => $photo_path,
             'language' => 'ar_en',
-            'opinion_ar' => $request->opinion_ar,
-            'opinion_en' => $lang_en == 'on' ? $request->opinion_en : null,
-            'name_ar' => $request->name_ar,
-            'name_en' => $lang_en == 'on' ? $request->name_en : null,
-            'age' => $request->age,
-            'country' => null,
-            'gender' => $request->gender,
-            'job_title_ar' => $request->job_title_ar,
-            'job_title_en' => $lang_en == 'on' ? $request->job_title_en : null,
-            'rating' => $request->rating,
+
         ]);
 
         return $this->returnSuccessMessage(__('general.add_success_message'));
@@ -70,7 +71,7 @@ class TestimonialController extends Controller
         if (!$id) {
             return redirect()->route('admin.not.found');
         }
-        $testimonial = testimonial::find($id);
+        $testimonial = Testimonial::find($id);
         if (!$testimonial) {
             return redirect()->route('admin.not.found');
         }
@@ -83,29 +84,23 @@ class TestimonialController extends Controller
     public function update(TestimonialRequest $request)
     {
 
-        $testimonial = testimonial::find($request->id);
+        $testimonial = Testimonial::find($request->id);
         if (!$testimonial) {
             return redirect()->route('admin.not.found');
         }
 
 
         if ($request->hasFile('photo')) {
-            if (!empty($testimonial->photo)) {
 
+            if (!empty($testimonial->photo)) {
                 $image_path = public_path('\adminBoard\uploadedImages\testimonials\\') . $testimonial->photo;
                 if (File::exists($image_path)) {
                     File::delete($image_path);
                 }
-
                 $image = $request->file('photo');
                 $destinationPath = public_path('\adminBoard\uploadedImages\testimonials\\');
                 $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
             } else {
-                $image_path = public_path('\adminBoard\uploadedImages\testimonials\\') . $testimonial->photo;
-                if (File::exists($image_path)) {
-                    File::delete($image_path);
-                }
-
                 $image = $request->file('photo');
                 $destinationPath = public_path('\adminBoard\uploadedImages\testimonials\\');
                 $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
@@ -119,20 +114,22 @@ class TestimonialController extends Controller
         }
 
 
-        $lang_en = setting()->site_lang_en;
+        $site_lang_ar = setting()->site_lang_en;
+
         $testimonial->update([
+            'opinion_en' => $request->opinion_en,
+            'opinion_ar' => $site_lang_ar == 'on' ? $request->opinion_ar : '',
+            'name_en' => $request->name_en,
+            'name_ar' => $site_lang_ar == 'on' ? $request->name_ar : null,
+            'job_title_en' => $request->job_title_en,
+            'job_title_ar' => $site_lang_ar == 'on' ? $request->job_title_ar : null,
+            'age' => $request->age,
+            'gender' => $request->gender,
+            'country' => null,
+            'rating' => $request->rating,
+            'status' => '',
             'photo' => $photo_path,
             'language' => 'ar_en',
-            'opinion_ar' => $request->opinion_ar,
-            'opinion_en' => $lang_en == 'on' ? $request->opinion_en : null,
-            'name_ar' => $request->name_ar,
-            'name_en' => $lang_en == 'on' ? $request->name_en : null,
-            'age' => $request->age,
-            'country' => null,
-            'gender' => $request->gender,
-            'job_title_ar' => $request->job_title_ar,
-            'job_title_en' => $lang_en == 'on' ? $request->job_title_en : null,
-            'rating' => $request->rating,
         ]);
 
         return $this->returnSuccessMessage(__('general.update_success_message'));
@@ -143,7 +140,7 @@ class TestimonialController extends Controller
     public function trashed()
     {
         $title = __('menu.trashed_testimonials');
-        $testimonials = testimonial::onlyTrashed()->orderByDesc('created_at')->paginate(15);
+        $testimonials = Testimonial::onlyTrashed()->orderByDesc('created_at')->paginate(15);
         return view('admin.testimonials.trashed', compact('title', 'testimonials'));
     }
 
@@ -152,26 +149,31 @@ class TestimonialController extends Controller
     public function destroy(Request $request)
     {
         if ($request->ajax()) {
-            $testimonial = testimonial::find($request->id);
+            $testimonial = Testimonial::find($request->id);
             if (!$testimonial) {
                 return redirect()->route('admin.not.found');
             }
-            $testimonial->delete();
-            return $this->returnSuccessMessage(__('general.move_to_trash'));
+            if ($testimonial->delete()) {
+                return $this->returnSuccessMessage(__('general.move_to_trash'));
+            } else {
+                return $this->returnError(__('general.delete_error_message'), 404);
+            }
         }
     }
 
     //  restore
     public function restore(Request $request)
     {
-
         if ($request->ajax()) {
-            $testimonial = testimonial::onlyTrashed()->find($request->id);
+            $testimonial = Testimonial::onlyTrashed()->find($request->id);
             if (!$testimonial) {
                 return redirect()->route('admin.not.found');
             }
-            $testimonial->restore();
-            return $this->returnSuccessMessage(__('general.restore_success_message'));
+            if ($testimonial->restore()) {
+                return $this->returnSuccessMessage(__('general.restore_success_message'));
+            } else {
+                return $this->returnError(__('general.restore_error_message'), 404);
+            }
         }
     }
 
@@ -181,7 +183,7 @@ class TestimonialController extends Controller
 
         if ($request->ajax()) {
 
-            $testimonial = testimonial::onlyTrashed()->find($request->id);
+            $testimonial = Testimonial::onlyTrashed()->find($request->id);
 
             if (!$testimonial) {
                 return redirect()->route('admin.not.found');
@@ -194,15 +196,18 @@ class TestimonialController extends Controller
                 }
             }
 
-            $testimonial->forceDelete();
-            return $this->returnSuccessMessage(__('general.delete_success_message'));
+            if ($testimonial->forceDelete()) {
+                return $this->returnSuccessMessage(__('general.delete_success_message'));
+            } else {
+                return $this->returnError(__('general.delete_error_message'), 404);
+            }
         }
     }
 
     // change Status
     public function changeStatus(Request $request)
     {
-        $testimonial = testimonial::find($request->id);
+        $testimonial = Testimonial::find($request->id);
 
         if ($request->switchStatus == 'false') {
             $testimonial->status = null;

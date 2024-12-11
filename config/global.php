@@ -14,5 +14,8 @@ return [
         'trainings' => 'app.trainings',
         'landing-page' => 'app.landing-page',
         'services' => 'app.services',
+        'testimonials' => 'app.testimonials',
+        'articles' => 'app.articles',
+
     ]
 ];

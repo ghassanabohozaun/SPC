@@ -1,12 +1,16 @@
 <?php
 
+use App\Http\Controllers\Admin\ArticlesController;
+use App\Http\Controllers\Admin\CommentsController;
 use App\Http\Controllers\Admin\FAQController;
 use App\Http\Controllers\Admin\PhotoAlbumsController;
 use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Admin\SlidersController;
+use App\Http\Controllers\Admin\TestimonialsController;
 use App\Http\Controllers\Admin\TrainingController;
 use App\Http\Controllers\Admin\VideosController;
 use Illuminate\Support\Facades\Route;
+
 
 
 /*
@@ -161,7 +165,6 @@ Route::group([
         Route::post('/update', [TrainingController::class, 'update'])->name('admin.trainings.update');
     });
 
-
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // services routes
     Route::group(['prefix' => 'services', 'middllware' => 'can:services'], function () {
@@ -177,7 +180,45 @@ Route::group([
         Route::post('/update', [ServicesController::class, 'update'])->name('admin.services.update');
     });
 
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    // testimonials routes
+    Route::group(['prefix' => 'testimonials', 'middleware' => 'can:testimonials'], function () {
+        Route::get('/', [TestimonialsController::class, 'index'])->name('admin.testimonials');
+        Route::get('/create', [TestimonialsController::class, 'create'])->name('admin.testimonial.create');
+        Route::post('/store', [TestimonialsController::class, 'store'])->name('admin.testimonial.store');
+        Route::get('/edit/{id?}', [TestimonialsController::class, 'edit'])->name('admin.testimonial.edit');
+        Route::post('/update', [TestimonialsController::class, 'update'])->name('admin.testimonial.update');
+        Route::post('/destroy', [TestimonialsController::class, 'destroy'])->name('admin.testimonial.destroy');
+        Route::get('/trashed', [TestimonialsController::class, 'trashed'])->name('admin.testimonial.trashed');
+        Route::post('/force-delete', [TestimonialsController::class, 'forceDelete'])->name('admin.testimonial.force.delete');
+        Route::post('/restore',  [TestimonialsController::class, 'restore'])->name('admin.testimonial.restore');
+        Route::post('/change-status',   [TestimonialsController::class, 'changeStatus'])->name('admin.testimonial.change-status');
+    });
 
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    /// articles  routes
+    Route::group(['prefix' => 'articles', 'middleware' => 'can:articles'], function () {
+        Route::get('/', [ArticlesController::class, 'index'])->name('admin.articles');
+        Route::get('/create', [ArticlesController::class, 'create'])->name('admin.articles.create');
+        Route::post('/store', [ArticlesController::class, 'store'])->name('admin.articles.store');
+        Route::get('/edit/{id?}', [ArticlesController::class, 'edit'])->name('admin.articles.edit');
+        Route::post('/update', [ArticlesController::class, 'update'])->name('admin.articles.update');
+        Route::post('/destroy', [ArticlesController::class, 'destroy'])->name('admin.articles.destroy');
+        Route::get('/trashed', [ArticlesController::class, 'trashed'])->name('admin.articles.trashed');
+        Route::post('/force-delete', [ArticlesController::class, 'forceDelete'])->name('admin.articles.force.delete');
+        Route::post('/restore', [ArticlesController::class, 'restore'])->name('admin.articles.restore');
+        Route::post('/change-status', [ArticlesController::class, 'changeStatus'])->name('admin.articles.change.status');
+
+        // comments
+        Route::get('/comments/{id}', [CommentsController::class, 'index'])->name('admin.comments');
+        Route::get('/create-comment/{id}', [CommentsController::class, 'create'])->name('admin.comments.create');
+        Route::post('/comment-store', [CommentsController::class, 'store'])->name('admin.comments.store');
+        Route::post('/comment-destroy', [CommentsController::class, 'destroy'])->name('admin.comments.destroy');
+        Route::get('/comment-trashed/{id}', [CommentsController::class, 'trashed'])->name('admin.comments.trashed');
+        Route::post('/comment-force-delete', [CommentsController::class, 'forceDelete'])->name('admin.comments.force.delete');
+        Route::post('/comment-restore', [CommentsController::class, 'restore'])->name('admin.comments.restore');
+        Route::post('/comment-change-status', [CommentsController::class, 'changeStatus'])->name('admin.comments.change.status');
+    });
 
 
     // /////////////////////////////////////////////////////////////////////////////////////////////
@@ -218,20 +259,7 @@ Route::group([
     //     });
     // });
 
-    /////////////////////////////////////////////////////////////////////////////////////////////
-    /// testimonials routes
-    // Route::group(['prefix' => 'testimonials', 'middleware' => 'can:testimonials'], function () {
-    //     Route::get('/', 'TestimonialController@index')->name('admin.testimonials');
-    //     Route::get('/create', 'TestimonialController@create')->name('admin.testimonial.create');
-    //     Route::post('/store', 'TestimonialController@store')->name('admin.testimonial.store');
-    //     Route::get('/edit/{id?}', 'TestimonialController@edit')->name('admin.testimonial.edit');
-    //     Route::post('/update', 'TestimonialController@update')->name('admin.testimonial.update');
-    //     Route::post('/destroy', 'TestimonialController@destroy')->name('admin.testimonial.destroy');
-    //     Route::get('/trashed', 'TestimonialController@trashed')->name('admin.testimonial.trashed');
-    //     Route::post('/force-delete', 'TestimonialController@forceDelete')->name('admin.testimonial.force.delete');
-    //     Route::post('/restore', 'TestimonialController@restore')->name('admin.testimonial.restore');
-    //     Route::post('/change-status', 'TestimonialController@changeStatus')->name('admin.testimonial.change-status');
-    // });
+
 
     // /////////////////////////////////////////////////////////////////////////////////////////////
     // /// support center routes
@@ -245,30 +273,7 @@ Route::group([
     //     Route::get('/get-one-message', 'SupportCenterController@getOneMessage')->name('admin.support.center.get.one.message');
     // });
 
-    // /////////////////////////////////////////////////////////////////////////////////////////////
-    // /// articles  routes
-    // Route::group(['prefix' => 'articles', 'middleware' => 'can:articles'], function () {
-    //     Route::get('/', 'ArticlesController@index')->name('admin.articles');
-    //     Route::get('/create', 'ArticlesController@create')->name('admin.articles.create');
-    //     Route::post('/store', 'ArticlesController@store')->name('admin.articles.store');
-    //     Route::get('/edit/{id?}', 'ArticlesController@edit')->name('admin.articles.edit');
-    //     Route::post('/update', 'ArticlesController@update')->name('admin.articles.update');
-    //     Route::post('/destroy', 'ArticlesController@destroy')->name('admin.articles.destroy');
-    //     Route::get('/trashed', 'ArticlesController@trashed')->name('admin.articles.trashed');
-    //     Route::post('/force-delete', 'ArticlesController@forceDelete')->name('admin.articles.force.delete');
-    //     Route::post('/restore', 'ArticlesController@restore')->name('admin.articles.restore');
-    //     Route::post('/change-status', 'ArticlesController@changeStatus')->name('admin.articles.change.status');
 
-    //     // comments
-    //     Route::get('/comments/{id}', 'CommentsController@index')->name('admin.comments');
-    //     Route::get('/create-comment/{id}', 'CommentsController@create')->name('admin.comments.create');
-    //     Route::post('/comment-store', 'CommentsController@store')->name('admin.comments.store');
-    //     Route::post('/comment-destroy', 'CommentsController@destroy')->name('admin.comments.destroy');
-    //     Route::get('/comment-trashed/{id}', 'CommentsController@trashed')->name('admin.comments.trashed');
-    //     Route::post('/comment-force-delete', 'CommentsController@forceDelete')->name('admin.comments.force.delete');
-    //     Route::post('/comment-restore', 'CommentsController@restore')->name('admin.comments.restore');
-    //     Route::post('/comment-change-status', 'CommentsController@changeStatus')->name('admin.comments.change.status');
-    // });
 
     // /////////////////////////////////////////////////////////////////////////////////////////////
     // /// project routes

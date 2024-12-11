@@ -24,41 +24,28 @@ class TestimonialRequest extends FormRequest
     public function rules()
     {
 
-        if (setting()->site_lang_en == 'on') {
-            return [
-                'photo' => 'sometimes|image|mimes:jpeg,jpg,png|max:1024',
-                'opinion_ar' => 'required',
-                'opinion_en' => 'required',
-                'name_ar' => 'required',
-                'name_en' => 'required',
-                'age' => 'required',
-//                'country' => 'required',
-                'gender' => 'required',
-                'rating' => 'required',
-            ];
-        } else {
-            return [
-                'photo' => 'sometimes|image|mimes:jpeg,jpg,png|max:1024',
-                'opinion_ar' => 'required',
-                'name_ar' => 'required',
-                'age' => 'required',
-//                'country' => 'required',
-                'gender' => 'required',
-                'rating' => 'required',
-            ];
-        }
-
+        return [
+            'opinion_en' => 'required',
+            'opinion_ar' => 'required_if:site_lang_ar,on',
+            'name_en' => 'required',
+            'name_ar' => 'required_if:site_lang_ar,on',
+            'age' => 'required',
+            //'country' => 'required',
+            'gender' => 'required',
+            'rating' => 'required',
+            'photo' => 'sometimes|image|mimes:jpeg,jpg,png|max:1024',
+        ];
     }
 
     public function messages()
     {
         return [
             'required' => __('testimonials.required'),
+            'required_if' => __('testimonials.required'),
             'in' => __('testimonials.in'),
             'image' => __('testimonials.image'),
             'mimes' => __('testimonials.mimes'),
             'max' => __('testimonials.image_max'),
-            'photo.required_without' => __('testimonials.photo_required'),
         ];
     }
 }

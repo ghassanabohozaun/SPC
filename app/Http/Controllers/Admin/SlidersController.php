@@ -108,11 +108,11 @@ class SlidersController extends Controller
         }
 
         if ($request->hasFile('photo')) {
-            $image_path = public_path("/adminBoard/uploadedImages/sliders//") . $slider->photo;
-            if (File::exists($image_path)) {
-                File::delete($image_path);
-            }
             if (!empty($slider->photo)) {
+                $image_path = public_path("/adminBoard/uploadedImages/sliders//") . $slider->photo;
+                if (File::exists($image_path)) {
+                    File::delete($image_path);
+                }
                 $image = $request->file('photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/sliders//');
                 $photo_path = $this->saveResizeImage($image, $destinationPath, 1920, 908);

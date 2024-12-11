@@ -3,7 +3,7 @@
 return [
 
     'service_update' => 'تعديل الخدمة',
-    'service_tab' => 'الخدمة',
+    'settings_tab' => 'الاعدادات',
     'details_ar_tab' => ' تفاصيل الخدمة بالعربي ',
     'details_en_tab' => 'تفاصيل الخدمة بالانجليزي ',
 

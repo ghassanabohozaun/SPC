@@ -46,6 +46,12 @@ return [
     'trashed_services' => 'Trashed Services',
     'add_new_service' => 'Add New Service',
 
+    'testimonials' => 'Testimonials',
+    'trashed_testimonials' => 'Trashed Testimonials',
+    'add_new_testimonial' => 'Add New Testimonial',
+
+
+
 
 
 
@@ -58,9 +64,7 @@ return [
     'trashed_projects' => 'Trashed Projects',
     'add_new_project' => 'Add New Project',
 
-    'testimonials' => 'Testimonials',
-    'trashed_testimonials' => 'Trashed Testimonials',
-    'add_new_testimonial' => 'Add New Testimonial',
+
 
     'reports' => 'Reports',
     'trashed_reports' => 'Trashed Reports',

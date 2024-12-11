@@ -21,4 +21,6 @@ return [
     'faqs' => 'FAQ Management',
     'trainings' => 'Trainings Management',
     'services' => 'Services Management',
+    'services' => 'Testimonials Management',
+
 ];

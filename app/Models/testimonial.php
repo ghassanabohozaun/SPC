@@ -2,17 +2,29 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class testimonial extends Model
+class Testimonial extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'testimonials';
     protected $fillable = [
-        'photo', 'language', 'opinion_ar', 'opinion_en', 'name_ar', 'name_en',
-        'age', 'country', 'gender', 'job_title_ar', 'job_title_en', 'rating', 'status',
+        'opinion_ar',
+        'opinion_en',
+        'name_ar',
+        'name_en',
+        'age',
+        'country',
+        'gender',
+        'job_title_ar',
+        'job_title_en',
+        'rating',
+        'status',
+        'photo',
+        'language',
     ];
     protected $hidden = ['updated_at'];
     //////////////////////////////////////////////////////////////

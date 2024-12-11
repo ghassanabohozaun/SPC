@@ -52,26 +52,26 @@ function returnSpaceBetweenString($string)
     return $string = str_replace('-', ' ', $string); // Replaces all spaces with hyphens.
 }
 
-function abouts_type()
-{
-    return AboutType::get();
-}
+// function abouts_type()
+// {
+//     return AboutType::get();
+// }
 
 
 
-function fixedTexts()
-{
-    return App\Models\FixedText::orderBy('id', 'desc')->first();
-}
+// function fixedTexts()
+// {
+//     return App\Models\FixedText::orderBy('id', 'desc')->first();
+// }
 
-function projects()
-{
-    return   Projects::orderByDesc('id')->where('status', 'on')->where('type', 'current')->where(function ($q) {
-        if (LaravelLocalization::getCurrentLocale() == 'ar') {
-            $q->where('language', 'ar')
-                ->orWhere('language', 'ar_en');
-        } else {
-            $q->orWhere('language', 'ar_en');
-        }
-    })->limit(4)->get();
-}
+// function projects()
+// {
+//     return   Projects::orderByDesc('id')->where('status', 'on')->where('type', 'current')->where(function ($q) {
+//         if (LaravelLocalization::getCurrentLocale() == 'ar') {
+//             $q->where('language', 'ar')
+//                 ->orWhere('language', 'ar_en');
+//         } else {
+//             $q->orWhere('language', 'ar_en');
+//         }
+//     })->limit(4)->get();
+// }

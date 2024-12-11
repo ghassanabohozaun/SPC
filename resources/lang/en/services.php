@@ -3,7 +3,7 @@
 return [
 
     'service_update' => 'Service Update',
-    'service_tab' => 'Service',
+    'settings_tab' => 'Settings',
     'details_ar_tab' => 'Arabic Service Details ',
     'details_en_tab' => 'English Service Details',
 

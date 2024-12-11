@@ -71,9 +71,9 @@
                                 <ul class="nav nav-tabs" id="myTab2" role="tablist">
 
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="service_tab" data-toggle="tab" href="#service">
+                                        <a class="nav-link active" id="settings_tab" data-toggle="tab" href="#settings">
                                             <span class="nav-icon"><i class="flaticon2-layers-1"></i></span>
-                                            <span class="nav-text">{{ __('services.service_tab') }}</span>
+                                            <span class="nav-text">{{ __('services.settings_tab') }}</span>
                                         </a>
                                     </li>
 
@@ -96,7 +96,7 @@
                                 </ul>
 
                                 <div class="tab-content mt-5">
-                                    @include('admin.services.update_tabs.service')
+                                    @include('admin.services.update_tabs.settings')
                                     @include('admin.services.update_tabs.details_en')
                                     @if (setting()->site_lang_ar == 'on')
                                         @include('admin.services.update_tabs.details_ar')

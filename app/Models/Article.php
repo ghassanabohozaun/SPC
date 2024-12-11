@@ -2,18 +2,28 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Article extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $table = "articles";
     protected $fillable = [
-        'photo', 'language', 'title_ar',
-        'title_en', 'abstract_ar', 'abstract_en',
-        'publish_date', 'publisher_name', 'status','views'
+        'title_en_slug',
+        'title_ar_slug',
+        'title_en',
+        'title_ar',
+        'abstract_en',
+        'abstract_ar',
+        'publish_date',
+        'publisher_name',
+        'status',
+        'views',
+        'photo',
+        'language',
     ];
     protected $hidden = ['updated_at'];
     //////////////////////////////////////////////////////////////
@@ -27,7 +37,8 @@ class Article extends Model
         }
     }
 
-    public function comments(){
-        return $this->hasMany(Comment::class , 'post_id')->where('status' , 'on');
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'post_id')->where('status', 'on');
     }
 }
