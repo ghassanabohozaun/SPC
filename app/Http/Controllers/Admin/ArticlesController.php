@@ -21,14 +21,12 @@ class ArticlesController extends Controller
         return view('admin.articles.index', compact('title', 'articles'));
     }
 
-
     // create
     public function create()
     {
         $title = __('menu.add_new_article');
         return view('admin.articles.create', compact('title'));
     }
-
 
     // store
     public function store(ArticleRequest $request)
@@ -60,7 +58,6 @@ class ArticlesController extends Controller
 
         return $this->returnSuccessMessage(__('general.add_success_message'));
     }
-
 
     // edit
     public function edit($id = null)
@@ -139,8 +136,12 @@ class ArticlesController extends Controller
                 if (!$article) {
                     return redirect()->route('admin.not.found');
                 }
-                $article->delete();
-                return $this->returnSuccessMessage(__('general.move_to_trash'));
+
+                if ($article->delete()) {
+                    return $this->returnSuccessMessage(__('general.move_to_trash'));
+                } else {
+                    return $this->returnError(__('general.delete_error_message'), 404);
+                }
             }
         } catch (\Exception $exception) {
             return $this->returnError(__('general.try_catch_error_message'), 500);
@@ -165,8 +166,11 @@ class ArticlesController extends Controller
                 if (!$article) {
                     return redirect()->route('admin.not.found');
                 }
-                $article->restore();
-                return $this->returnSuccessMessage(__('general.restore_success_message'));
+                if ($article->restore()) {
+                    return $this->returnSuccessMessage(__('general.restore_success_message'));
+                } else {
+                    return $this->returnError(__('general.restore_error_message'), 404);
+                }
             }
         } catch (\Exception $exception) {
             return $this->returnError(__('general.try_catch_error_message'), 500);
@@ -192,7 +196,11 @@ class ArticlesController extends Controller
                     }
                 }
 
-                $article->forceDelete();
+                if ($article->forceDelete()) {
+                    return $this->returnSuccessMessage(__('general.delete_success_message'));
+                } else {
+                    return $this->returnError(__('general.delete_error_message'), 404);
+                }
 
                 return $this->returnSuccessMessage(__('general.delete_success_message'));
             }

@@ -1,5 +1,6 @@
 <?php
 
+use Database\Seeders\ArticleSeeder;
 use Database\Seeders\FaqSeeder;
 use Database\Seeders\PhotoAlbumSeeder;
 use Database\Seeders\RoleSeeder;
@@ -32,6 +33,7 @@ class DatabaseSeeder extends Seeder
             SlidersSeeder::class,
             ServicesSeeder::class,
             TestimonialsSeeder::class,
+            ArticleSeeder::class,
         ]);
 
 

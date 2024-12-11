@@ -1,11 +1,10 @@
 @extends('layouts.admin')
-@section('title') @endsection
+@section('title')
+@endsection
 @section('content')
-
     <!--begin::Subheader-->
     <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
-        <div
-            class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
             <!--begin::Info-->
             <div class="d-flex align-items-center flex-wrap mr-2">
 
@@ -15,18 +14,18 @@
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item">
                         <a href="{!! route('admin.articles') !!}" class="text-muted">
-                            {{__('menu.articles')}}
+                            {{ __('menu.articles') }}
                         </a>
                     </li>
                     <li class="breadcrumb-item">
                         <a href="javascript(avoid);" class="text-muted">
-                            {{__('menu.trashed_articles')}}
+                            {{ __('menu.trashed_articles') }}
                         </a>
                     </li>
 
                     <li class="breadcrumb-item">
                         <a href="{!! route('admin.articles.trashed') !!}" class="text-muted">
-                            {{__('menu.show_all')}}
+                            {{ __('menu.show_all') }}
                         </a>
                     </li>
                 </ul>
@@ -37,10 +36,10 @@
 
             <!--begin::Toolbar-->
             <div class="d-flex align-items-center">
-                <a href="{{route('admin.articles.create')}}"
-                   class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
+                <a href="{{ route('admin.articles.create') }}"
+                    class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
                     <i class="fa fa-plus-square"></i>
-                    {{__('menu.add_new_article')}}
+                    {{ __('menu.add_new_article') }}
                 </a>
                 &nbsp;
             </div>
@@ -71,60 +70,55 @@
                                             <div class="table-responsive">
                                                 <table class="table myTable table-hover" id="myTable">
                                                     <thead>
-                                                    <tr>
-                                                        <th>@lang('articles.photo')</th>
-                                                        <th>{!! __('articles.title_ar') !!}</th>
-                                                        <th>{!! __('articles.title_en') !!}</th>
-                                                        <th>{!! __('articles.publisher_name') !!}</th>
-                                                        <th>{!! __('articles.publish_date') !!}</th>
-                                                        <th class="text-center"
-                                                            style="width: 100px;">{!! __('general.actions') !!}</th>
-                                                    </tr>
+                                                        <tr>
+                                                            <th>{!! __('articles.photo') !!}</th>
+                                                            <th>{!! __('articles.title_ar') !!}</th>
+                                                            <th>{!! __('articles.title_en') !!}</th>
+                                                            <th>{!! __('articles.publisher_name') !!}</th>
+                                                            <th>{!! __('articles.publish_date') !!}</th>
+                                                            <th class="text-center" style="width: 100px;">
+                                                                {!! __('general.actions') !!}</th>
+                                                        </tr>
                                                     </thead>
                                                     <tbody>
-                                                    @forelse($trashedArticles as $article)
-                                                        <tr>
-                                                            <td>
-                                                                <img
-                                                                    src="{{ asset('adminBoard/uploadedImages/articles/'.$article->photo) }}"
-                                                                    class="img-fluid img-thumbnail table-image "/>
-                                                            </td>
-                                                            <td>{{ $article->title_ar }}</td>
-                                                            <td>{{ $article->title_en }}</td>
-                                                            <td>{{ $article->publisher_name }}</td>
-                                                            <td>{{ $article->publish_date }}</td>
+                                                        @forelse($trashedArticles as $article)
+                                                            <tr>
+                                                                <td>@include('admin.articles.parts.photo')</td>
+                                                                <td>{{ $article->title_ar }}</td>
+                                                                <td>{{ $article->title_en }}</td>
+                                                                <td>{{ $article->publisher_name }}</td>
+                                                                <td>{{ $article->publish_date }}</td>
+                                                                <td>
+                                                                    <a class="btn btn-hover-warning btn-icon btn-pill restore_article_btn"
+                                                                        data-id="{{ $article->id }}"
+                                                                        title="{{ __('general.restore') }}">
+                                                                        <i class="fa fa-trash-restore fa-1x"></i>
+                                                                    </a>
 
-                                                            <td>
-                                                                <a class="btn btn-hover-warning btn-icon btn-pill restore_article_btn"
-                                                                   data-id="{{$article->id}}"
-                                                                   title="{{__('general.restore')}}">
-                                                                    <i class="fa fa-trash-restore fa-1x"></i>
-                                                                </a>
-
-                                                                <a href="#"
-                                                                   class="btn btn-hover-danger btn-icon btn-pill force_delete_article_btn"
-                                                                   data-id="{{$article->id}}"
-                                                                   title="{{__('general.force_delete')}}">
-                                                                    <i class="fa fa-trash-alt fa-1x"></i>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    @empty
-                                                        <tr>
-                                                            <td colspan="6" class="text-center">
-                                                                {!! __('articles.no_articles_found') !!}
-                                                            </td>
-                                                        </tr>
-                                                    @endforelse
+                                                                    <a href="#"
+                                                                        class="btn btn-hover-danger btn-icon btn-pill force_delete_article_btn"
+                                                                        data-id="{{ $article->id }}"
+                                                                        title="{{ __('general.force_delete') }}">
+                                                                        <i class="fa fa-trash-alt fa-1x"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        @empty
+                                                            <tr>
+                                                                <td colspan="6" class="text-center">
+                                                                    {!! __('articles.no_articles_found') !!}
+                                                                </td>
+                                                            </tr>
+                                                        @endforelse
                                                     </tbody>
                                                     <tfoot>
-                                                    <tr>
-                                                        <td colspan="6">
-                                                            <div class="float-right">
-                                                                {!! $trashedArticles->appends(request()->all())->links() !!}
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                        <tr>
+                                                            <td colspan="6">
+                                                                <div class="float-right">
+                                                                    {!! $trashedArticles->appends(request()->all())->links() !!}
+                                                                </div>
+                                                            </td>
+                                                        </tr>
                                                     </tfoot>
                                                 </table>
                                             </div>
@@ -164,32 +158,34 @@
     <!--end::content-->
 @endsection
 @push('js')
-
     <script type="text/javascript">
         ///////////////////////////////////////////////////
         /// delete article
-        $(document).on('click', '.force_delete_article_btn', function (e) {
+        $(document).on('click', '.force_delete_article_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
             Swal.fire({
-                title: "{{__('general.ask_permanent_delete_record')}}",
+                title: "{{ __('general.ask_permanent_delete_record') }}",
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonText: "{{__('general.yes')}}",
-                cancelButtonText: "{{__('general.no')}}",
+                confirmButtonText: "{{ __('general.yes') }}",
+                cancelButtonText: "{{ __('general.no') }}",
                 reverseButtons: false,
                 allowOutsideClick: false,
-            }).then(function (result) {
+            }).then(function(result) {
                 if (result.value) {
                     //////////////////////////////////////
                     // Delete User
                     $.ajax({
                         url: '{!! route('admin.articles.force.delete') !!}',
-                        data: {id, id},
+                        data: {
+                            id,
+                            id
+                        },
                         type: 'post',
                         dataType: 'json',
-                        success: function (data) {
+                        success: function(data) {
                             console.log(data);
                             if (data.status == true) {
                                 Swal.fire({
@@ -197,13 +193,15 @@
                                     text: "{!! __('general.delete_success_message') !!}",
                                     icon: "success",
                                     allowOutsideClick: false,
-                                    customClass: {confirmButton: 'delete_article_button'}
+                                    customClass: {
+                                        confirmButton: 'delete_article_button'
+                                    }
                                 });
-                                $('.delete_article_button').click(function () {
+                                $('.delete_article_button').click(function() {
                                     $('#myTable').load(location.href + (' #myTable'));
                                 });
                             }
-                        },//end success
+                        }, //end success
                     });
 
                 } else if (result.dismiss === "cancel") {
@@ -212,7 +210,9 @@
                         text: "{!! __('general.error_message') !!}",
                         icon: "error",
                         allowOutsideClick: false,
-                        customClass: {confirmButton: 'cancel_delete_article_button'}
+                        customClass: {
+                            confirmButton: 'cancel_delete_article_button'
+                        }
                     })
                 }
             });
@@ -221,23 +221,26 @@
 
         ////////////////////////////////////////////////////
         // restore article
-        $(document).on('click', '.restore_article_btn', function (e) {
+        $(document).on('click', '.restore_article_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
             $.ajax({
-                url: "{{route('admin.articles.restore')}}",
-                data: {id, id},
+                url: "{{ route('admin.articles.restore') }}",
+                data: {
+                    id,
+                    id
+                },
                 type: 'post',
                 dataType: 'JSON',
-                beforeSend: function () {
+                beforeSend: function() {
                     KTApp.blockPage({
                         overlayColor: '#000000',
                         state: 'danger',
-                        message: "{{__('general.please_wait')}}",
+                        message: "{{ __('general.please_wait') }}",
                     });
                 },
-                success: function (data) {
+                success: function(data) {
                     KTApp.unblockPage();
                     console.log(data);
                     if (data.status == true) {
@@ -246,16 +249,16 @@
                             text: "",
                             icon: "success",
                             allowOutsideClick: false,
-                            customClass: {confirmButton: 'restore_article_button'}
+                            customClass: {
+                                confirmButton: 'restore_article_button'
+                            }
                         });
-                        $('.restore_article_button').click(function () {
+                        $('.restore_article_button').click(function() {
                             $('#myTable').load(location.href + (' #myTable'));
                         });
                     }
-                },//end success
+                }, //end success
             })
         })
-
-
     </script>
 @endpush

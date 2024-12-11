@@ -11,12 +11,11 @@
                         <!--begin::Group-->
                         <div class="form-group">
                             <label>
-                                {{__('articles.title_ar')}}
+                                {{ __('articles.title_ar') }}
                             </label>
                             <input type="text" class="form-control form-control-solid form-control-lg"
-                                   name="title_ar" id="title_ar" value="{{$article->title_ar}}"
-                                   placeholder="{{__('articles.enter_title_ar')}}"
-                                   autocomplete="off">
+                                name="title_ar" id="title_ar" value="{{ $article->title_ar }}"
+                                placeholder="{{ __('articles.enter_title_ar') }}" autocomplete="off" readonly>
                             <span class="form-text text-danger" id="title_ar_error"></span>
 
                         </div>
@@ -24,13 +23,10 @@
 
                         <!--begin::Group-->
                         <div class="form-group">
-                            <label> {{__('articles.abstract_ar')}}</label>
+                            <label> {{ __('articles.abstract_ar') }}</label>
                             <textarea class="form-control form-control-solid form-control-lg summernote"
-                                      placeholder="{{__('articles.enter_abstract_ar')}}"
-                                      name="abstract_ar"
-                                      id="abstract_ar">{{$article->abstract_ar}}</textarea>
-                            <span class="form-text text-danger"
-                                  id="abstract_ar_error"></span>
+                                placeholder="{{ __('articles.enter_abstract_ar') }}" name="abstract_ar" id="abstract_ar">{{ $article->abstract_ar }}</textarea>
+                            <span class="form-text text-danger" id="abstract_ar_error"></span>
                         </div>
                         <!--end::Group-->
 

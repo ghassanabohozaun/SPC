@@ -11,27 +11,22 @@
                         <!--begin::Group-->
                         <div class="form-group">
                             <label>
-                                {{__('articles.title_en')}}
+                                {{ __('articles.title_en') }}
                             </label>
                             <input type="text" class="form-control form-control-solid form-control-lg"
-                                   name="title_en" id="title_en" value="{{$article->title_en}}"
-                                   placeholder="{{__('articles.enter_title_en')}}"
-                                   autocomplete="off">
-                            <span class="form-text text-danger"
-                                  id="title_en_error"></span>
+                                name="title_en" id="title_en" value="{{ $article->title_en }}"
+                                placeholder="{{ __('articles.enter_title_en') }}" autocomplete="off" readonly>
+                            <span class="form-text text-danger" id="title_en_error"></span>
 
                         </div>
                         <!--end::Group-->
 
                         <!--begin::Group-->
                         <div class="form-group">
-                            <label> {{__('articles.abstract_en')}}</label>
+                            <label> {{ __('articles.abstract_en') }}</label>
                             <textarea class="form-control form-control-solid form-control-lg summernote"
-                                      placeholder="{{__('articles.enter_abstract_en')}}"
-                                      name="abstract_en"
-                                      id="abstract_en">{{$article->abstract_en}}</textarea>
-                            <span class="form-text text-danger"
-                                  id="abstract_en_error"></span>
+                                placeholder="{{ __('articles.enter_abstract_en') }}" name="abstract_en" id="abstract_en">{{ $article->abstract_en }}</textarea>
+                            <span class="form-text text-danger" id="abstract_en_error"></span>
                         </div>
                         <!--end::Group-->
 
@@ -42,4 +37,3 @@
 
     </div>
 </div>
-
