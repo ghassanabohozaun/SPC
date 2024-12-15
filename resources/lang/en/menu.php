@@ -50,29 +50,17 @@ return [
     'trashed_testimonials' => 'Trashed Testimonials',
     'add_new_testimonial' => 'Add New Testimonial',
 
-
-
-
-
-
-
     'articles' => 'Articles',
     'trashed_articles' => 'Trashed Articles',
     'add_new_article' => 'Add New Article',
 
-    'projects' => 'Projects',
-    'trashed_projects' => 'Trashed Projects',
-    'add_new_project' => 'Add New Project',
-
-
-
-    'reports' => 'Reports',
-    'trashed_reports' => 'Trashed Reports',
-    'add_new_report' => 'Add New Report',
-
     'publications' => 'Publications',
     'trashed_publications' => 'Trashed Publications',
     'add_new_publication' => 'Add New Publication',
+
+
+
+
 
 
     'abouts' => 'Abouts',

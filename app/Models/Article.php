@@ -26,6 +26,13 @@ class Article extends Model
         'language',
     ];
     protected $hidden = ['updated_at'];
+
+
+    // relationship
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'article_id');
+    }
     //////////////////////////////////////////////////////////////
     /// language accessors
     public function getLanguageAttribute($value)
@@ -35,10 +42,5 @@ class Article extends Model
         } elseif ($value == 'ar_en') {
             return __('general.ar_en');
         }
-    }
-
-    public function comments()
-    {
-        return $this->hasMany(Comment::class, 'post_id')->where('status', 'on');
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ArticlesController;
 use App\Http\Controllers\Admin\CommentsController;
 use App\Http\Controllers\Admin\FAQController;
 use App\Http\Controllers\Admin\PhotoAlbumsController;
+use App\Http\Controllers\Admin\PublicationsController;
 use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Admin\SlidersController;
 use App\Http\Controllers\Admin\TestimonialsController;
@@ -53,7 +54,6 @@ Route::group([
         Route::get('/get-admin-by-id', 'AdminsController@getAdminById')->name('get.admin.by.id');
         Route::post('/admin-update', 'AdminsController@adminUpdate')->name('admin.update');
     });
-
 
     /////////////////////////////////////////////////////////////////////////////////////////////
     /// users routes
@@ -218,6 +218,22 @@ Route::group([
         Route::post('/comment-force-delete', [CommentsController::class, 'forceDelete'])->name('admin.comments.force.delete');
         Route::post('/comment-restore', [CommentsController::class, 'restore'])->name('admin.comments.restore');
         Route::post('/comment-change-status', [CommentsController::class, 'changeStatus'])->name('admin.comments.change.status');
+    });
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    // publications routes
+    Route::group(['prefix' => 'publications', 'middleware' => 'can:publications'], function () {
+        Route::get('/', [PublicationsController::class, 'index'])->name('admin.publications');
+        Route::get('/create', [PublicationsController::class, 'create'])->name('admin.publications.create');
+        Route::post('/store', [PublicationsController::class, 'store'])->name('admin.publications.store');
+        Route::get('/edit/{id?}', [PublicationsController::class, 'edit'])->name('admin.publications.edit');
+        Route::post('/update', [PublicationsController::class, 'update'])->name('admin.publications.update');
+        Route::post('/destroy', [PublicationsController::class, 'destroy'])->name('admin.publications.destroy');
+        Route::get('/trashed', [PublicationsController::class, 'trashed'])->name('admin.publications.trashed');
+        Route::post('/force-delete', [PublicationsController::class, 'forceDelete'])->name('admin.publications.force.delete');
+        Route::post('/restore',  [PublicationsController::class, 'restore'])->name('admin.publications.restore');
+        Route::post('/change-status',   [PublicationsController::class, 'changeStatus'])->name('admin.publications.change.status');
     });
 
 

@@ -33,6 +33,7 @@ class RoleSeeder extends Seeder
                 'services',
                 'testimonials',
                 'articles',
+                'publications',
             ]),
         ]);
     }

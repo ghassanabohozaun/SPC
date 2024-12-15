@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comment extends Model
@@ -16,12 +17,19 @@ class Comment extends Model
         'person_email',
         'commentary',
         'status',
-        'post_id',
+        'gender',
+        'article_id',
         'photo',
-        'gender'
     ];
     protected $hidden = ['updated_at'];
 
+
+    // relationship
+
+    public function article(): BelongsTo
+    {
+        return $this->belongsTo(Article::class);
+    }
 
     /// language accessors
     public function getGenderAttribute($value)
@@ -32,5 +40,4 @@ class Comment extends Model
             return __('general.female');
         }
     }
-
 }

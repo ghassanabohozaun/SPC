@@ -7,11 +7,7 @@ return [
     'roles' => 'Roles Management',
     'users' => 'Users Management',
     'support-center' => 'Support Center Management',
-    'articles' => 'Articles Management',
     'home' => 'Home Page Management',
-    'projects' => 'Projects Management',
-    'testimonials' => 'Testimonials Management',
-    'publications' => 'Publications Management',
     'videos' => 'Videos Management',
     'photos' => 'Photo Albums Management',
     'yearly-reports' => 'Publications Management',
@@ -22,5 +18,8 @@ return [
     'trainings' => 'Trainings Management',
     'services' => 'Services Management',
     'services' => 'Testimonials Management',
+    'articles' => 'Articles Management',
+    'testimonials' => 'Testimonials Management',
+    'publications' => 'Publications Management',
 
 ];

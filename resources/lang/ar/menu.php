@@ -46,21 +46,18 @@ return [
     'trashed_testimonials' => 'الشهادات والتوصيات المحذوفة',
     'add_new_testimonial' => 'اضافة توصية جديدة',
 
-
-
     'articles' => 'المقالات',
     'trashed_articles' => 'المقالات المحذوفة',
     'add_new_article' => 'اضافة مقال جديد',
-
-    'projects' => 'المشاريع',
-    'trashed_projects' => 'المشاريع المحذوفة',
-    'add_new_project' => 'اضافة مشروع جديد',
-
 
 
     'publications' => 'المنشورات',
     'trashed_publications' => 'المنشورات المحذوفة',
     'add_new_publication' => 'إضافة منشور جديد',
+
+
+
+
 
     'reports' => 'التقارير',
     'trashed_reports' => 'التقارير المحذوفة',

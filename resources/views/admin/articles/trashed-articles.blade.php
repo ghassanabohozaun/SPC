@@ -18,7 +18,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="javascript(avoid);" class="text-muted">
+                        <a href="#" class="text-muted">
                             {{ __('menu.trashed_articles') }}
                         </a>
                     </li>

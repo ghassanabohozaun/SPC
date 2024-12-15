@@ -3,6 +3,7 @@
 use Database\Seeders\ArticleSeeder;
 use Database\Seeders\FaqSeeder;
 use Database\Seeders\PhotoAlbumSeeder;
+use Database\Seeders\PublicationsSeeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\ServicesSeeder;
 use Database\Seeders\SlidersSeeder;
@@ -21,7 +22,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-
         $this->call([
             SettingsSeeder::class,
             RoleSeeder::class,
@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             ServicesSeeder::class,
             TestimonialsSeeder::class,
             ArticleSeeder::class,
+            PublicationsSeeder::class,
         ]);
 
 

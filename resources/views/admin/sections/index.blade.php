@@ -13,14 +13,8 @@
 
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item">
-                        <a href="{!! route('admin.articles') !!}" class="text-muted">
-                            {{ __('menu.articles') }}
-                        </a>
-                    </li>
-
-                    <li class="breadcrumb-item">
                         <a href="#" class="text-muted">
-                            {{ __('menu.comments') }}
+                            {{ __('menu.services') }}
                         </a>
                     </li>
                     <li class="breadcrumb-item">
@@ -36,15 +30,15 @@
 
             <!--begin::Toolbar-->
             <div class="d-flex align-items-center">
-                <a href="{!! route('admin.comments.trashed', $id) !!}" class="btn btn-light-danger trash_btn" title="{{ __('general.trash') }}">
+                <a href="{!! route('admin.services.trashed') !!}" class="btn btn-light-danger trash_btn" title="{{ __('general.trash') }}">
                     <i class="fa fa-trash"></i>
                 </a>
                 &nbsp;
 
-                <a href="{{ route('admin.comments.create', $id) }}"
+                <a href="{{ route('admin.services.create') }}"
                     class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
                     <i class="fa fa-plus-square"></i>
-                    {{ __('menu.add_new_comment') }}
+                    {{ __('menu.add_new_service') }}
                 </a>
                 &nbsp;
             </div>
@@ -57,6 +51,7 @@
     <div class="d-flex flex-column-fluid">
         <!--begin::Container-->
         <div class=" container-fluid ">
+
 
             <!--begin::Row-->
             <div class="row">
@@ -75,56 +70,43 @@
                                                 <table class="table myTable table-hover" id="myTable">
                                                     <thead>
                                                         <tr>
-                                                            <th>{{ __('articles.person_photo') }}</th>
-                                                            <th>{{ __('articles.person_ip') }}</th>
-                                                            <th>{{ __('articles.person_name') }}</th>
-                                                            <th>{{ __('articles.person_email') }}</th>
-                                                            <th>{{ __('articles.gender') }}</th>
-                                                            <th>{{ __('articles.commentary') }}</th>
-                                                            <th>{{ __('articles.status') }}</th>
-                                                            <th class="text-center" style="width: 150px;">
-                                                                {{ __('general.actions') }}</th>
+                                                            <th>{!! __('services.photo') !!}</th>
+                                                            <th>{!! __('services.title_en') !!}</th>
+                                                            @if (setting()->site_lang_ar == 'on')
+                                                                <th>{!! __('services.title_ar') !!}</th>
+                                                            @endif
+                                                            <th>{!! __('services.is_treatment_area') !!}</th>
+                                                            <th>{!! __('services.status') !!}</th>
+                                                            <th class="text-center" style="width: 100px;">
+                                                                {!! __('general.actions') !!}
+                                                            </th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @forelse($comments as $comment)
+                                                        @forelse($services as $service)
                                                             <tr>
-                                                                <td>@include('admin.articles.comments.parts.photo')</td>
-                                                                <td>{{ $comment->person_ip }}</td>
-                                                                <td>{{ $comment->person_name }}</td>
-                                                                <td>{{ $comment->person_email }}</td>
-                                                                <td>{{ $comment->gender }}</td>
-                                                                <td>{{ $comment->commentary }}</td>
-                                                                <td>
-                                                                    <div class="cst-switch switch-sm">
-                                                                        <input type="checkbox"
-                                                                            {{ $comment->status == 'on' ? 'checked' : '' }}
-                                                                            data-id="{{ $comment->id }}"
-                                                                            class="change_status">
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <a href="#"
-                                                                        class="btn btn-hover-danger btn-icon btn-pill delete_comment_btn"
-                                                                        data-id="{{ $comment->id }}"
-                                                                        title="{{ __('general.delete') }}">
-                                                                        <i class="fa fa-trash fa-1x"></i>
-                                                                    </a>
-                                                                </td>
+                                                                <td>@include('admin.services.parts.photo')</td>
+                                                                <td>{{ $service->title_en }}</td>
+                                                                @if (setting()->site_lang_ar == 'on')
+                                                                    <td>{{ $service->title_ar }}</td>
+                                                                @endif
+                                                                <td>@include('admin.services.parts.is_treatment_area')</td>
+                                                                <td>@include('admin.services.parts.status')</td>
+                                                                <td> @include('admin.services.parts.options')</td>
                                                             </tr>
                                                         @empty
                                                             <tr>
-                                                                <td colspan="8" class="text-center">
-                                                                    {{ __('articles.no_comments_found') }}
+                                                                <td colspan="7" class="text-center">
+                                                                    {!! __('services.no_services_found') !!}
                                                                 </td>
                                                             </tr>
                                                         @endforelse
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
-                                                            <td colspan="8">
+                                                            <td colspan="7">
                                                                 <div class="float-right">
-                                                                    {!! $comments->appends(request()->all())->links() !!}
+                                                                    {!! $services->appends(request()->all())->links() !!}
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -140,8 +122,8 @@
 
                         </div>
 
-                        <form class="d-none" id="form_comment_delete">
-                            <input type="hidden" id="comment_delete_id">
+                        <form class="d-none" id="form_service_delete">
+                            <input type="hidden" id="service_delete_id">
                         </form>
                         <!--end::Form-->
 
@@ -153,6 +135,7 @@
 
             </div>
             <!--end::Row-->
+
 
         </div>
         <!--end::Container-->
@@ -168,8 +151,8 @@
 @push('js')
     <script type="text/javascript">
         /////////////////////////////////////////////////////////////////
-        ///  article Delete
-        $(document).on('click', '.delete_comment_btn', function(e) {
+        ///  delete service
+        $(document).on('click', '.delete_service_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
@@ -184,9 +167,9 @@
             }).then(function(result) {
                 if (result.value) {
                     //////////////////////////////////////
-                    // Delete User
+                    // Delete faq
                     $.ajax({
-                        url: '{!! route('admin.comments.destroy') !!}',
+                        url: '{!! route('admin.services.destroy') !!}',
                         data: {
                             id,
                             id
@@ -202,10 +185,10 @@
                                     icon: "success",
                                     allowOutsideClick: false,
                                     customClass: {
-                                        confirmButton: 'delete_comment_button'
+                                        confirmButton: 'delete_faq_button'
                                     }
                                 });
-                                $('.delete_comment_button').click(function() {
+                                $('.delete_faq_button').click(function() {
                                     $('#myTable').load(location.href + (' #myTable'));
                                 });
                             } else if (data.status == false) {
@@ -215,10 +198,10 @@
                                     icon: "warning",
                                     allowOutsideClick: false,
                                     customClass: {
-                                        confirmButton: 'delete_comment_button'
+                                        confirmButton: 'delete_service_button'
                                     }
                                 });
-                                $('.delete_comment_button').click(function() {});
+                                $('.delete_service_button').click(function() {});
                             }
                         }, //end success
                     });
@@ -230,7 +213,7 @@
                         icon: "error",
                         allowOutsideClick: false,
                         customClass: {
-                            confirmButton: 'cancel_delete_comment_button'
+                            confirmButton: 'cancel_delete_service_button'
                         }
                     })
                 }
@@ -238,23 +221,30 @@
 
         })
 
+
         /////////////////////////////////////////////////////////////////
         // switch status
-        var switchStatus = false;
+        var statusSwitch = false;
         $('body').on('change', '.change_status', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
+
+
+
             if ($(this).is(':checked')) {
-                switchStatus = $(this).is(':checked');
+                statusSwitch = $(this).is(':checked');
             } else {
-                switchStatus = $(this).is(':checked');
+                statusSwitch = false;
             }
 
+
+
+
             $.ajax({
-                url: "{{ route('admin.comments.change.status') }}",
+                url: "{{ route('admin.services.change.status') }}",
                 data: {
-                    switchStatus: switchStatus,
+                    statusSwitch: statusSwitch,
                     id: id
                 },
                 type: 'post',

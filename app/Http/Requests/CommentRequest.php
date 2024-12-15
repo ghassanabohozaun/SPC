@@ -23,12 +23,11 @@ class CommentRequest extends FormRequest
             'person_name' => 'required',
             'person_email' => 'required',
             'commentary' => 'required',
-//            'gender' => 'required|in:male,female,others',
+            'gender' => 'required|in:male,female,others',
             'photo' => 'sometimes|image|mimes:jpeg,jpg,png|max:1024',
         ];
 
         return $rules;
-
     }
 
     public function messages()

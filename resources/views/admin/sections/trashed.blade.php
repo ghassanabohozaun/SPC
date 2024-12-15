@@ -8,21 +8,21 @@
             <!--begin::Info-->
             <div class="d-flex align-items-center flex-wrap mr-2">
 
-                <!--begin::Actions-->
                 <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
-
+                <!--begin::Actions-->
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item">
-                        <a href="{!! route('admin.articles') !!}" class="text-muted">
-                            {{ __('menu.articles') }}
+                        <a href="{{ route('admin.services') }}" class="text-muted">
+                            {{ __('menu.services') }}
                         </a>
                     </li>
 
                     <li class="breadcrumb-item">
                         <a href="#" class="text-muted">
-                            {{ __('menu.comments') }}
+                            {{ __('menu.trashed_services') }}
                         </a>
                     </li>
+
                     <li class="breadcrumb-item">
                         <a href="" class="text-muted">
                             {{ __('menu.show_all') }}
@@ -36,15 +36,10 @@
 
             <!--begin::Toolbar-->
             <div class="d-flex align-items-center">
-                <a href="{!! route('admin.comments.trashed', $id) !!}" class="btn btn-light-danger trash_btn" title="{{ __('general.trash') }}">
-                    <i class="fa fa-trash"></i>
-                </a>
-                &nbsp;
-
-                <a href="{{ route('admin.comments.create', $id) }}"
+                <a href="{{ route('admin.services.create') }}"
                     class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
                     <i class="fa fa-plus-square"></i>
-                    {{ __('menu.add_new_comment') }}
+                    {{ __('menu.add_new_service') }}
                 </a>
                 &nbsp;
             </div>
@@ -57,7 +52,6 @@
     <div class="d-flex flex-column-fluid">
         <!--begin::Container-->
         <div class=" container-fluid ">
-
             <!--begin::Row-->
             <div class="row">
                 <div class="col-lg-12">
@@ -69,62 +63,61 @@
                             <div class="portlet-body">
                                 <div class="row">
                                     <div class="col-12">
-
                                         <div class="scroll">
                                             <div class="table-responsive">
                                                 <table class="table myTable table-hover" id="myTable">
                                                     <thead>
                                                         <tr>
-                                                            <th>{{ __('articles.person_photo') }}</th>
-                                                            <th>{{ __('articles.person_ip') }}</th>
-                                                            <th>{{ __('articles.person_name') }}</th>
-                                                            <th>{{ __('articles.person_email') }}</th>
-                                                            <th>{{ __('articles.gender') }}</th>
-                                                            <th>{{ __('articles.commentary') }}</th>
-                                                            <th>{{ __('articles.status') }}</th>
-                                                            <th class="text-center" style="width: 150px;">
-                                                                {{ __('general.actions') }}</th>
+                                                            <th>#</th>
+                                                            <th>{!! __('services.photo') !!}</th>
+                                                            <th>{!! __('services.title_en') !!}</th>
+                                                            @if (setting()->site_lang_ar == 'on')
+                                                                <th>{!! __('services.title_ar') !!}</th>
+                                                            @endif
+                                                            <th>{!! __('services.is_treatment_area') !!}</th>
+                                                            <th class="text-center" style="width: 100px;">
+                                                                {!! __('general.actions') !!}
+                                                            </th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @forelse($comments as $comment)
+                                                        @forelse($services as $service)
                                                             <tr>
-                                                                <td>@include('admin.articles.comments.parts.photo')</td>
-                                                                <td>{{ $comment->person_ip }}</td>
-                                                                <td>{{ $comment->person_name }}</td>
-                                                                <td>{{ $comment->person_email }}</td>
-                                                                <td>{{ $comment->gender }}</td>
-                                                                <td>{{ $comment->commentary }}</td>
+                                                                <td>{!! $loop->iteration !!}</td>
+                                                                <td>@include('admin.services.parts.photo')</td>
+                                                                <td>{{ $service->title_en }}</td>
+                                                                @if (setting()->site_lang_ar == 'on')
+                                                                    <td>{{ $service->title_ar }}</td>
+                                                                @endif
+                                                                <td>{{ $service->is_treatment_area }}</td>
                                                                 <td>
-                                                                    <div class="cst-switch switch-sm">
-                                                                        <input type="checkbox"
-                                                                            {{ $comment->status == 'on' ? 'checked' : '' }}
-                                                                            data-id="{{ $comment->id }}"
-                                                                            class="change_status">
-                                                                    </div>
-                                                                </td>
-                                                                <td>
+                                                                    <a class="btn btn-hover-warning btn-icon btn-pill restore_service_btn"
+                                                                        data-id="{{ $service->id }}"
+                                                                        title="{{ __('general.restore') }}">
+                                                                        <i class="fa fa-trash-restore fa-1x"></i>
+                                                                    </a>
+
                                                                     <a href="#"
-                                                                        class="btn btn-hover-danger btn-icon btn-pill delete_comment_btn"
-                                                                        data-id="{{ $comment->id }}"
-                                                                        title="{{ __('general.delete') }}">
-                                                                        <i class="fa fa-trash fa-1x"></i>
+                                                                        class="btn btn-hover-danger btn-icon btn-pill force_delete_service_btn"
+                                                                        data-id="{{ $service->id }}"
+                                                                        title="{{ __('general.force_delete') }}">
+                                                                        <i class="fa fa-trash-alt fa-1x"></i>
                                                                     </a>
                                                                 </td>
                                                             </tr>
                                                         @empty
                                                             <tr>
-                                                                <td colspan="8" class="text-center">
-                                                                    {{ __('articles.no_comments_found') }}
+                                                                <td colspan="6" class="text-center">
+                                                                    {!! __('services.no_services_found') !!}
                                                                 </td>
                                                             </tr>
                                                         @endforelse
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
-                                                            <td colspan="8">
+                                                            <td colspan="6">
                                                                 <div class="float-right">
-                                                                    {!! $comments->appends(request()->all())->links() !!}
+                                                                    {!! $services->appends(request()->all())->links() !!}
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -132,7 +125,6 @@
                                                 </table>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -140,41 +132,32 @@
 
                         </div>
 
-                        <form class="d-none" id="form_comment_delete">
-                            <input type="hidden" id="comment_delete_id">
+                        <form class="d-none" id="form_service_delete">
+                            <input type="hidden" id="service_delete_id">
                         </form>
                         <!--end::Form-->
 
                     </div>
                     <!--end::Card-->
-
-
                 </div>
-
             </div>
             <!--end::Row-->
-
         </div>
         <!--end::Container-->
 
         <!--begin::Form-->
-
-
     </div>
-
-
     <!--end::content-->
 @endsection
 @push('js')
     <script type="text/javascript">
-        /////////////////////////////////////////////////////////////////
-        ///  article Delete
-        $(document).on('click', '.delete_comment_btn', function(e) {
+        // delete service
+        $(document).on('click', '.force_delete_service_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
             Swal.fire({
-                title: "{{ __('general.ask_delete_record') }}",
+                title: "{{ __('general.ask_permanent_delete_record') }}",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonText: "{{ __('general.yes') }}",
@@ -184,9 +167,9 @@
             }).then(function(result) {
                 if (result.value) {
                     //////////////////////////////////////
-                    // Delete User
+                    // delete services
                     $.ajax({
-                        url: '{!! route('admin.comments.destroy') !!}',
+                        url: "{!! route('admin.services.force.delete') !!}",
                         data: {
                             id,
                             id
@@ -198,27 +181,16 @@
                             if (data.status == true) {
                                 Swal.fire({
                                     title: "{!! __('general.deleted') !!}",
-                                    text: data.msg,
+                                    text: "{!! __('general.delete_success_message') !!}",
                                     icon: "success",
                                     allowOutsideClick: false,
                                     customClass: {
-                                        confirmButton: 'delete_comment_button'
+                                        confirmButton: 'delete_service_button'
                                     }
                                 });
-                                $('.delete_comment_button').click(function() {
+                                $('.delete_service_button').click(function() {
                                     $('#myTable').load(location.href + (' #myTable'));
                                 });
-                            } else if (data.status == false) {
-                                Swal.fire({
-                                    title: "{!! __('general.deleted') !!}",
-                                    text: data.msg,
-                                    icon: "warning",
-                                    allowOutsideClick: false,
-                                    customClass: {
-                                        confirmButton: 'delete_comment_button'
-                                    }
-                                });
-                                $('.delete_comment_button').click(function() {});
                             }
                         }, //end success
                     });
@@ -226,36 +198,28 @@
                 } else if (result.dismiss === "cancel") {
                     Swal.fire({
                         title: "{!! __('general.cancelled') !!}",
-                        text: "{!! __('general.cancelled_message') !!}",
+                        text: "{!! __('general.error_message') !!}",
                         icon: "error",
                         allowOutsideClick: false,
                         customClass: {
-                            confirmButton: 'cancel_delete_comment_button'
+                            confirmButton: 'cancel_delete_service_button'
                         }
                     })
                 }
             });
-
         })
 
-        /////////////////////////////////////////////////////////////////
-        // switch status
-        var switchStatus = false;
-        $('body').on('change', '.change_status', function(e) {
+
+        // restore service
+        $(document).on('click', '.restore_service_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
-            if ($(this).is(':checked')) {
-                switchStatus = $(this).is(':checked');
-            } else {
-                switchStatus = $(this).is(':checked');
-            }
-
             $.ajax({
-                url: "{{ route('admin.comments.change.status') }}",
+                url: "{{ route('admin.services.restore') }}",
                 data: {
-                    switchStatus: switchStatus,
-                    id: id
+                    id,
+                    id
                 },
                 type: 'post',
                 dataType: 'JSON',
@@ -265,7 +229,7 @@
                         state: 'danger',
                         message: "{{ __('general.please_wait') }}",
                     });
-                }, //end beforeSend
+                },
                 success: function(data) {
                     KTApp.unblockPage();
                     console.log(data);
@@ -276,15 +240,15 @@
                             icon: "success",
                             allowOutsideClick: false,
                             customClass: {
-                                confirmButton: 'switch_status_toggle'
+                                confirmButton: 'restore_service_button'
                             }
                         });
-                        $('.switch_status_toggle').click(function() {
+                        $('.restore_service_button').click(function() {
                             $('#myTable').load(location.href + (' #myTable'));
                         });
                     }
                 }, //end success
             })
-        });
+        })
     </script>
 @endpush

@@ -13,18 +13,18 @@
 
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item">
-                        <a href="{!! route('admin.articles') !!}" class="text-muted">
-                            {{ __('menu.articles') }}
+                        <a href="{!! route('admin.publications') !!}" class="text-muted">
+                            {{ __('menu.publications') }}
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#" class="text-muted">
+                            {{ __('menu.trashed_publications') }}
                         </a>
                     </li>
 
                     <li class="breadcrumb-item">
-                        <a href="#" class="text-muted">
-                            {{ __('menu.comments') }}
-                        </a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a href="" class="text-muted">
+                        <a href="{!! route('admin.publications.trashed') !!}" class="text-muted">
                             {{ __('menu.show_all') }}
                         </a>
                     </li>
@@ -36,15 +36,10 @@
 
             <!--begin::Toolbar-->
             <div class="d-flex align-items-center">
-                <a href="{!! route('admin.comments.trashed', $id) !!}" class="btn btn-light-danger trash_btn" title="{{ __('general.trash') }}">
-                    <i class="fa fa-trash"></i>
-                </a>
-                &nbsp;
-
-                <a href="{{ route('admin.comments.create', $id) }}"
+                <a href="{{ route('admin.publications.create') }}"
                     class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
                     <i class="fa fa-plus-square"></i>
-                    {{ __('menu.add_new_comment') }}
+                    {{ __('menu.add_new_publication') }}
                 </a>
                 &nbsp;
             </div>
@@ -57,6 +52,7 @@
     <div class="d-flex flex-column-fluid">
         <!--begin::Container-->
         <div class=" container-fluid ">
+
 
             <!--begin::Row-->
             <div class="row">
@@ -75,56 +71,49 @@
                                                 <table class="table myTable table-hover" id="myTable">
                                                     <thead>
                                                         <tr>
-                                                            <th>{{ __('articles.person_photo') }}</th>
-                                                            <th>{{ __('articles.person_ip') }}</th>
-                                                            <th>{{ __('articles.person_name') }}</th>
-                                                            <th>{{ __('articles.person_email') }}</th>
-                                                            <th>{{ __('articles.gender') }}</th>
-                                                            <th>{{ __('articles.commentary') }}</th>
-                                                            <th>{{ __('articles.status') }}</th>
-                                                            <th class="text-center" style="width: 150px;">
-                                                                {{ __('general.actions') }}</th>
+                                                            <th>{!! __('publications.photo') !!}</th>
+                                                            <th>{!! __('publications.title_ar') !!}</th>
+                                                            <th>{!! __('publications.title_en') !!}</th>
+                                                            <th>{!! __('publications.added_date') !!}</th>
+                                                            <th class="text-center" style="width: 100px;">
+                                                                {!! __('general.actions') !!}</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @forelse($comments as $comment)
+                                                        @forelse($trashedPublications as $publication)
                                                             <tr>
-                                                                <td>@include('admin.articles.comments.parts.photo')</td>
-                                                                <td>{{ $comment->person_ip }}</td>
-                                                                <td>{{ $comment->person_name }}</td>
-                                                                <td>{{ $comment->person_email }}</td>
-                                                                <td>{{ $comment->gender }}</td>
-                                                                <td>{{ $comment->commentary }}</td>
+                                                                <td>@include('admin.publications.parts.photo')</td>
+                                                                <td>{{ $publication->title_ar }}</td>
+                                                                <td>{{ $publication->title_en }}</td>
+                                                                <td>{{ $publication->added_date }}</td>
                                                                 <td>
-                                                                    <div class="cst-switch switch-sm">
-                                                                        <input type="checkbox"
-                                                                            {{ $comment->status == 'on' ? 'checked' : '' }}
-                                                                            data-id="{{ $comment->id }}"
-                                                                            class="change_status">
-                                                                    </div>
-                                                                </td>
-                                                                <td>
+                                                                    <a class="btn btn-hover-warning btn-icon btn-pill restore_publication_btn"
+                                                                        data-id="{{ $publication->id }}"
+                                                                        title="{{ __('general.restore') }}">
+                                                                        <i class="fa fa-trash-restore fa-1x"></i>
+                                                                    </a>
+
                                                                     <a href="#"
-                                                                        class="btn btn-hover-danger btn-icon btn-pill delete_comment_btn"
-                                                                        data-id="{{ $comment->id }}"
-                                                                        title="{{ __('general.delete') }}">
-                                                                        <i class="fa fa-trash fa-1x"></i>
+                                                                        class="btn btn-hover-danger btn-icon btn-pill force_delete_publication_btn"
+                                                                        data-id="{{ $publication->id }}"
+                                                                        title="{{ __('general.force_delete') }}">
+                                                                        <i class="fa fa-trash-alt fa-1x"></i>
                                                                     </a>
                                                                 </td>
                                                             </tr>
                                                         @empty
                                                             <tr>
-                                                                <td colspan="8" class="text-center">
-                                                                    {{ __('articles.no_comments_found') }}
+                                                                <td colspan="6" class="text-center">
+                                                                    {!! __('publications.no_publications_found') !!}
                                                                 </td>
                                                             </tr>
                                                         @endforelse
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
-                                                            <td colspan="8">
+                                                            <td colspan="6">
                                                                 <div class="float-right">
-                                                                    {!! $comments->appends(request()->all())->links() !!}
+                                                                    {!! $trashedPublications->appends(request()->all())->links() !!}
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -140,8 +129,8 @@
 
                         </div>
 
-                        <form class="d-none" id="form_comment_delete">
-                            <input type="hidden" id="comment_delete_id">
+                        <form class="d-none" id="form_publication_delete">
+                            <input type="hidden" id="publication_delete_id">
                         </form>
                         <!--end::Form-->
 
@@ -153,6 +142,7 @@
 
             </div>
             <!--end::Row-->
+
 
         </div>
         <!--end::Container-->
@@ -167,14 +157,14 @@
 @endsection
 @push('js')
     <script type="text/javascript">
-        /////////////////////////////////////////////////////////////////
-        ///  article Delete
-        $(document).on('click', '.delete_comment_btn', function(e) {
+        ///////////////////////////////////////////////////
+        /// delete publication
+        $(document).on('click', '.force_delete_publication_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
             Swal.fire({
-                title: "{{ __('general.ask_delete_record') }}",
+                title: "{{ __('general.ask_permanent_delete_record') }}",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonText: "{{ __('general.yes') }}",
@@ -186,7 +176,7 @@
                     //////////////////////////////////////
                     // Delete User
                     $.ajax({
-                        url: '{!! route('admin.comments.destroy') !!}',
+                        url: '{!! route('admin.publications.force.delete') !!}',
                         data: {
                             id,
                             id
@@ -198,27 +188,16 @@
                             if (data.status == true) {
                                 Swal.fire({
                                     title: "{!! __('general.deleted') !!}",
-                                    text: data.msg,
+                                    text: "{!! __('general.delete_success_message') !!}",
                                     icon: "success",
                                     allowOutsideClick: false,
                                     customClass: {
-                                        confirmButton: 'delete_comment_button'
+                                        confirmButton: 'delete_publication_button'
                                     }
                                 });
-                                $('.delete_comment_button').click(function() {
+                                $('.delete_publication_button').click(function() {
                                     $('#myTable').load(location.href + (' #myTable'));
                                 });
-                            } else if (data.status == false) {
-                                Swal.fire({
-                                    title: "{!! __('general.deleted') !!}",
-                                    text: data.msg,
-                                    icon: "warning",
-                                    allowOutsideClick: false,
-                                    customClass: {
-                                        confirmButton: 'delete_comment_button'
-                                    }
-                                });
-                                $('.delete_comment_button').click(function() {});
                             }
                         }, //end success
                     });
@@ -226,36 +205,29 @@
                 } else if (result.dismiss === "cancel") {
                     Swal.fire({
                         title: "{!! __('general.cancelled') !!}",
-                        text: "{!! __('general.cancelled_message') !!}",
+                        text: "{!! __('general.error_message') !!}",
                         icon: "error",
                         allowOutsideClick: false,
                         customClass: {
-                            confirmButton: 'cancel_delete_comment_button'
+                            confirmButton: 'cancel_delete_publication_button'
                         }
                     })
                 }
             });
-
         })
 
-        /////////////////////////////////////////////////////////////////
-        // switch status
-        var switchStatus = false;
-        $('body').on('change', '.change_status', function(e) {
+
+        ////////////////////////////////////////////////////
+        // restore publication
+        $(document).on('click', '.restore_publication_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
-            if ($(this).is(':checked')) {
-                switchStatus = $(this).is(':checked');
-            } else {
-                switchStatus = $(this).is(':checked');
-            }
-
             $.ajax({
-                url: "{{ route('admin.comments.change.status') }}",
+                url: "{{ route('admin.publications.restore') }}",
                 data: {
-                    switchStatus: switchStatus,
-                    id: id
+                    id,
+                    id
                 },
                 type: 'post',
                 dataType: 'JSON',
@@ -265,7 +237,7 @@
                         state: 'danger',
                         message: "{{ __('general.please_wait') }}",
                     });
-                }, //end beforeSend
+                },
                 success: function(data) {
                     KTApp.unblockPage();
                     console.log(data);
@@ -276,15 +248,15 @@
                             icon: "success",
                             allowOutsideClick: false,
                             customClass: {
-                                confirmButton: 'switch_status_toggle'
+                                confirmButton: 'restore_publication_button'
                             }
                         });
-                        $('.switch_status_toggle').click(function() {
+                        $('.restore_publication_button').click(function() {
                             $('#myTable').load(location.href + (' #myTable'));
                         });
                     }
                 }, //end success
             })
-        });
+        })
     </script>
 @endpush

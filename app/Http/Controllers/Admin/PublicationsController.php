@@ -4,53 +4,57 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\PublicationRequest;
 use App\Models\Article;
+use App\Models\Publication;
+use App\Models\Publications;
 use App\Traits\GeneralTrait;
 use File;
 use Illuminate\Http\Request;
 
-class ArticlesController extends Controller
+class PublicationsController extends Controller
 {
     use GeneralTrait;
 
     // index
     public function index()
     {
-        $title = __('menu.articles');
-        $articles = Article::withoutTrashed()->orderByDesc('created_at')->paginate(15);
-        return view('admin.articles.index', compact('title', 'articles'));
+        $title = __('menu.publications');
+        $publications = Publication::withoutTrashed()->orderByDesc('created_at')->paginate(15);
+        return view('admin.publications.index', compact('title', 'publications'));
     }
 
     // create
     public function create()
     {
-        $title = __('menu.add_new_article');
-        return view('admin.articles.create', compact('title'));
+        $title = __('menu.add_new_publication');
+        return view('admin.publications.create', compact('title'));
     }
 
     // store
-    public function store(ArticleRequest $request)
+    public function store(PublicationRequest $request)
     {
 
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
-            $destinationPath = public_path('adminBoard/uploadedImages/articles');
+            $destinationPath = public_path('adminBoard/uploadedImages/publications');
             $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
         } else {
             $photo_path = '';
         }
 
-        $site_lang_ar = setting()->site_lang_ar;
-        Article::create([
 
+        $site_lang_ar = setting()->site_lang_ar;
+
+        Publication::create([
+            'section_id' => '1',
             'title_en_slug' => slug($request->title_en),
             'title_ar_slug' => $site_lang_ar == 'on' ? slug($request->title_ar) : null,
             'title_en' => $request->title_en,
             'title_ar' => $site_lang_ar == 'on' ? $request->title_ar : null,
-            'abstract_en' => $request->abstract_en,
-            'abstract_ar' => $site_lang_ar == 'on' ? $request->abstract_ar : null,
-            'publish_date' => $request->publish_date,
-            'publisher_name' => $request->publisher_name,
+            'details_en' => $request->details_en,
+            'details_ar' => $site_lang_ar == 'on' ? $request->details_ar : null,
+            'added_date' => $request->added_date,
             'status' => 'on',
             'photo' => $photo_path,
             'language' => 'ar_en',
@@ -65,44 +69,44 @@ class ArticlesController extends Controller
         if (!$id) {
             return redirect()->route('admin.not.found');
         }
-        $title = __('articles.update_article');
-        $article = Article::find($id);
+        $title = __('publications.update_publication');
+        $publication = Publication::find($id);
 
-        if (!$article) {
+        if (!$publication) {
             return redirect()->route('admin.not.found');
         }
-        return view('admin.articles.update', compact('title', 'article'));
+        return view('admin.publications.update', compact('title', 'publication'));
     }
 
     // update
-    public function update(ArticleRequest $request)
+    public function update(PublicationRequest $request)
     {
 
-        $article = Article::find($request->id);
+        $publication = Publication::find($request->id);
 
-        if (!$article) {
+        if (!$publication) {
             return redirect()->route('admin.not.found');
         }
 
         if ($request->hasFile('photo')) {
 
-            $image_path = public_path("/adminBoard/uploadedImages/articles//") . $article->photo;
+            $image_path = public_path("/adminBoard/uploadedImages/publications//") . $publication->photo;
             if (File::exists($image_path)) {
                 File::delete($image_path);
             }
 
-            if (!empty($article->photo)) {
+            if (!empty($publication->photo)) {
                 $image = $request->file('photo');
-                $destinationPath = public_path('/adminBoard/uploadedImages/articles//');
+                $destinationPath = public_path('/adminBoard/uploadedImages/publications//');
                 $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
             } else {
                 $image = $request->file('photo');
-                $destinationPath = public_path('/adminBoard/uploadedImages/articles//');
+                $destinationPath = public_path('/adminBoard/uploadedImages/publications//');
                 $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
             }
         } else {
-            if (!empty($article->photo)) {
-                $photo_path = $article->photo;
+            if (!empty($publication->photo)) {
+                $photo_path = $publication->photo;
             } else {
                 $photo_path = '';
             }
@@ -110,15 +114,15 @@ class ArticlesController extends Controller
 
 
         $site_lang_ar = setting()->site_lang_ar;
-        $article->update([
+        $publication->update([
+            'section_id' => '1',
             'title_en_slug' => slug($request->title_en),
             'title_ar_slug' => $site_lang_ar == 'on' ? slug($request->title_ar) : null,
             'title_en' => $request->title_en,
             'title_ar' => $site_lang_ar == 'on' ? $request->title_ar : null,
-            'abstract_en' => $request->abstract_en,
-            'abstract_ar' => $site_lang_ar == 'on' ? $request->abstract_ar : null,
-            'publish_date' => $request->publish_date,
-            'publisher_name' => $request->publisher_name,
+            'details_en' => $request->details_en,
+            'details_ar' => $site_lang_ar == 'on' ? $request->details_ar : null,
+            'added_date' => $request->added_date,
             'status' => 'on',
             'photo' => $photo_path,
             'language' => 'ar_en',
@@ -132,12 +136,12 @@ class ArticlesController extends Controller
     {
         try {
             if ($request->ajax()) {
-                $article = Article::find($request->id);
-                if (!$article) {
+                $publication = Publication::find($request->id);
+                if (!$publication) {
                     return redirect()->route('admin.not.found');
                 }
 
-                if ($article->delete()) {
+                if ($publication->delete()) {
                     return $this->returnSuccessMessage(__('general.move_to_trash'));
                 } else {
                     return $this->returnError(__('general.delete_error_message'), 404);
@@ -151,9 +155,9 @@ class ArticlesController extends Controller
     //  trashed
     public function trashed()
     {
-        $title = __('menu.trashed_articles');
-        $trashedArticles = Article::onlyTrashed()->orderByDesc('created_at')->paginate(15);
-        return view('admin.articles.trashed-articles', compact('title', 'trashedArticles'));
+        $title = __('menu.trashed_publications');
+        $trashedPublications = Publication::onlyTrashed()->orderByDesc('created_at')->paginate(15);
+        return view('admin.publications.trashed', compact('title', 'trashedPublications'));
     }
 
 
@@ -162,11 +166,11 @@ class ArticlesController extends Controller
     {
         try {
             if ($request->ajax()) {
-                $article = Article::onlyTrashed()->find($request->id);
-                if (!$article) {
+                $publication = Publication::onlyTrashed()->find($request->id);
+                if (!$publication) {
                     return redirect()->route('admin.not.found');
                 }
-                if ($article->restore()) {
+                if ($publication->restore()) {
                     return $this->returnSuccessMessage(__('general.restore_success_message'));
                 } else {
                     return $this->returnError(__('general.restore_error_message'), 404);
@@ -183,31 +187,21 @@ class ArticlesController extends Controller
         try {
             if ($request->ajax()) {
 
-                $article = Article::onlyTrashed()->find($request->id);
+                $publication = Publication::onlyTrashed()->find($request->id);
 
-                if (!$article) {
+                if (!$publication) {
                     return redirect()->route('admin.not.found');
                 }
 
-                if (!empty($article->photo)) {
-                    $image_path = public_path("/adminBoard/uploadedImages/articles//") . $article->photo;
+                if (!empty($publication->photo)) {
+                    $image_path = public_path("/adminBoard/uploadedImages/publications//") . $publication->photo;
                     if (File::exists($image_path)) {
                         File::delete($image_path);
                     }
                 }
 
-                // delete comments
-                $comments =  $article->comments;
-                foreach ($comments as $comment) {
-                    $public_path =  public_path("/adminBoard/uploadedImages/articles/comments//") . $comment->photo;
-                    if (File::exists($public_path)) {
-                        File::delete($public_path);
-                        $comment->forceDelete();
-                    }
-                }
-
                 //  delete articles
-                if ($article->forceDelete()) {
+                if ($publication->forceDelete()) {
                     return $this->returnSuccessMessage(__('general.delete_success_message'));
                 } else {
                     return $this->returnError(__('general.delete_error_message'), 404);
@@ -223,14 +217,14 @@ class ArticlesController extends Controller
     // change Status
     public function changeStatus(Request $request)
     {
-        $article = Article::find($request->id);
+        $publication = Publication::find($request->id);
 
         if ($request->switchStatus == 'false') {
-            $article->status = null;
-            $article->save();
+            $publication->status = null;
+            $publication->save();
         } else {
-            $article->status = 'on';
-            $article->save();
+            $publication->status = 'on';
+            $publication->save();
         }
 
         return $this->returnSuccessMessage(__('general.change_status_success_message'));

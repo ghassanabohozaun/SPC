@@ -13,14 +13,8 @@
 
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item">
-                        <a href="{!! route('admin.articles') !!}" class="text-muted">
-                            {{ __('menu.articles') }}
-                        </a>
-                    </li>
-
-                    <li class="breadcrumb-item">
                         <a href="#" class="text-muted">
-                            {{ __('menu.comments') }}
+                            {{ __('menu.publications') }}
                         </a>
                     </li>
                     <li class="breadcrumb-item">
@@ -36,15 +30,15 @@
 
             <!--begin::Toolbar-->
             <div class="d-flex align-items-center">
-                <a href="{!! route('admin.comments.trashed', $id) !!}" class="btn btn-light-danger trash_btn" title="{{ __('general.trash') }}">
+                <a href="{!! route('admin.publications.trashed') !!}" class="btn btn-light-danger trash_btn" title="{{ __('general.trash') }}">
                     <i class="fa fa-trash"></i>
                 </a>
                 &nbsp;
 
-                <a href="{{ route('admin.comments.create', $id) }}"
+                <a href="{{ route('admin.publications.create') }}"
                     class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
                     <i class="fa fa-plus-square"></i>
-                    {{ __('menu.add_new_comment') }}
+                    {{ __('menu.add_new_publication') }}
                 </a>
                 &nbsp;
             </div>
@@ -57,7 +51,6 @@
     <div class="d-flex flex-column-fluid">
         <!--begin::Container-->
         <div class=" container-fluid ">
-
             <!--begin::Row-->
             <div class="row">
                 <div class="col-lg-12">
@@ -75,56 +68,44 @@
                                                 <table class="table myTable table-hover" id="myTable">
                                                     <thead>
                                                         <tr>
-                                                            <th>{{ __('articles.person_photo') }}</th>
-                                                            <th>{{ __('articles.person_ip') }}</th>
-                                                            <th>{{ __('articles.person_name') }}</th>
-                                                            <th>{{ __('articles.person_email') }}</th>
-                                                            <th>{{ __('articles.gender') }}</th>
-                                                            <th>{{ __('articles.commentary') }}</th>
-                                                            <th>{{ __('articles.status') }}</th>
+                                                            <th>#</th>
+                                                            <th>{{ __('publications.photo') }}</th>
+                                                            <th>{{ __('publications.title_en') }}</th>
+                                                            @if (setting()->site_lang_ar == 'on')
+                                                                <th>{{ __('publications.title_ar') }}</th>
+                                                            @endif
+                                                            <th>{{ __('publications.added_date') }}</th>
+                                                            <th>{{ __('publications.status') }}</th>
                                                             <th class="text-center" style="width: 150px;">
                                                                 {{ __('general.actions') }}</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @forelse($comments as $comment)
+                                                        @forelse($publications as $publication)
                                                             <tr>
-                                                                <td>@include('admin.articles.comments.parts.photo')</td>
-                                                                <td>{{ $comment->person_ip }}</td>
-                                                                <td>{{ $comment->person_name }}</td>
-                                                                <td>{{ $comment->person_email }}</td>
-                                                                <td>{{ $comment->gender }}</td>
-                                                                <td>{{ $comment->commentary }}</td>
-                                                                <td>
-                                                                    <div class="cst-switch switch-sm">
-                                                                        <input type="checkbox"
-                                                                            {{ $comment->status == 'on' ? 'checked' : '' }}
-                                                                            data-id="{{ $comment->id }}"
-                                                                            class="change_status">
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <a href="#"
-                                                                        class="btn btn-hover-danger btn-icon btn-pill delete_comment_btn"
-                                                                        data-id="{{ $comment->id }}"
-                                                                        title="{{ __('general.delete') }}">
-                                                                        <i class="fa fa-trash fa-1x"></i>
-                                                                    </a>
-                                                                </td>
+                                                                <td>{!! $loop->iteration !!}</td>
+                                                                <td>@include('admin.publications.parts.photo')</td>
+                                                                <td>{{ $publication->title_en }}</td>
+                                                                @if (setting()->site_lang_ar == 'on')
+                                                                    <td>{{ $publication->title_ar }}</td>
+                                                                @endif
+                                                                <td>{{ $publication->added_date }}</td>
+                                                                <td>@include('admin.publications.parts.status')</td>
+                                                                <td>@include('admin.publications.parts.options')</td>
                                                             </tr>
                                                         @empty
                                                             <tr>
-                                                                <td colspan="8" class="text-center">
-                                                                    {{ __('articles.no_comments_found') }}
+                                                                <td colspan="7" class="text-center">
+                                                                    {{ __('publications.no_publications_found') }}
                                                                 </td>
                                                             </tr>
                                                         @endforelse
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
-                                                            <td colspan="8">
+                                                            <td colspan="7">
                                                                 <div class="float-right">
-                                                                    {!! $comments->appends(request()->all())->links() !!}
+                                                                    {!! $publications->appends(request()->all())->links() !!}
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -140,8 +121,8 @@
 
                         </div>
 
-                        <form class="d-none" id="form_comment_delete">
-                            <input type="hidden" id="comment_delete_id">
+                        <form class="d-none" id="form_publication_delete">
+                            <input type="hidden" id="publication_delete_id">
                         </form>
                         <!--end::Form-->
 
@@ -153,6 +134,7 @@
 
             </div>
             <!--end::Row-->
+
 
         </div>
         <!--end::Container-->
@@ -168,8 +150,8 @@
 @push('js')
     <script type="text/javascript">
         /////////////////////////////////////////////////////////////////
-        ///  article Delete
-        $(document).on('click', '.delete_comment_btn', function(e) {
+        ///  publication Delete
+        $(document).on('click', '.delete_publication_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
@@ -186,7 +168,7 @@
                     //////////////////////////////////////
                     // Delete User
                     $.ajax({
-                        url: '{!! route('admin.comments.destroy') !!}',
+                        url: '{!! route('admin.publications.destroy') !!}',
                         data: {
                             id,
                             id
@@ -202,10 +184,10 @@
                                     icon: "success",
                                     allowOutsideClick: false,
                                     customClass: {
-                                        confirmButton: 'delete_comment_button'
+                                        confirmButton: 'delete_publication_button'
                                     }
                                 });
-                                $('.delete_comment_button').click(function() {
+                                $('.delete_publication_button').click(function() {
                                     $('#myTable').load(location.href + (' #myTable'));
                                 });
                             } else if (data.status == false) {
@@ -215,10 +197,10 @@
                                     icon: "warning",
                                     allowOutsideClick: false,
                                     customClass: {
-                                        confirmButton: 'delete_comment_button'
+                                        confirmButton: 'delete_publication_button'
                                     }
                                 });
-                                $('.delete_comment_button').click(function() {});
+                                $('.delete_publication_button').click(function() {});
                             }
                         }, //end success
                     });
@@ -230,13 +212,14 @@
                         icon: "error",
                         allowOutsideClick: false,
                         customClass: {
-                            confirmButton: 'cancel_delete_comment_button'
+                            confirmButton: 'cancel_delete_publication_button'
                         }
                     })
                 }
             });
 
         })
+
 
         /////////////////////////////////////////////////////////////////
         // switch status
@@ -252,7 +235,7 @@
             }
 
             $.ajax({
-                url: "{{ route('admin.comments.change.status') }}",
+                url: "{{ route('admin.publications.change.status') }}",
                 data: {
                     switchStatus: switchStatus,
                     id: id

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CommentRequest;
+use App\Models\Article;
 use App\Models\Comment;
 use App\Traits\GeneralTrait;
 use File;
@@ -16,24 +17,36 @@ class CommentsController extends Controller
     // index
     public function index($id)
     {
+        $title = __('menu.comments');
         if (!$id) {
             return redirect()->route('admin.not.found');
         }
 
-        $title = __('menu.comments');
-        $comments = Comment::withoutTrashed()->orderByDesc('created_at')->where('post_id', $id)->paginate(15);
+        $article = Article::find($id);
+        if (!$article) {
+            return redirect()->route('admin.not.found');
+        }
+
+        $comments  = $article->comments()->withoutTrashed()->orderByDesc('created_at')->paginate(15);
+        //$comments = Comment::withoutTrashed()->orderByDesc('created_at')->where('post_id', $id)->paginate(15);
         return view('admin.articles.comments.index', compact('title', 'comments', 'id'));
     }
 
     //  trashed articles
     public function trashed($id)
     {
+        $title = __('menu.trashed_articles');
         if (!$id) {
             return redirect()->route('admin.not.found');
         }
 
-        $title = __('menu.trashed_articles');
-        $trashedComments = Comment::onlyTrashed()->orderByDesc('created_at')->paginate(15);
+        $article = Article::find($id);
+        if (!$article) {
+            return redirect()->route('admin.not.found');
+        }
+
+        $trashedComments  = $article->comments()->onlyTrashed()->orderByDesc('created_at')->paginate(15);
+        //$trashedComments = Comment::onlyTrashed()->orderByDesc('created_at')->paginate(15);
         return view('admin.articles.comments.trashed_comments', compact('title', 'trashedComments', 'id'));
     }
 
@@ -64,13 +77,13 @@ class CommentsController extends Controller
 
         Comment::create([
             'person_ip' => $request->ip(),
-            'photo' => $photo_path,
             'person_name' => $request->person_name,
             'person_email' => $request->person_email,
             'commentary' => $request->commentary,
-            'post_id' => 1,
+            'status' => 'on',
             'gender' => $request->gender,
-
+            'article_id' => $request->id,
+            'photo' => $photo_path,
         ]);
 
         return $this->returnSuccessMessage(__('general.add_success_message'));
@@ -86,8 +99,11 @@ class CommentsController extends Controller
                 if (!$comment) {
                     return redirect()->route('admin.not.found');
                 }
-                $comment->delete();
-                return $this->returnSuccessMessage(__('general.move_to_trash'));
+                if ($comment->delete()) {
+                    return $this->returnSuccessMessage(__('general.move_to_trash'));
+                } else {
+                    return $this->returnError(__('general.delete_error_message'), 404);
+                }
             }
         } catch (\Exception $exception) {
             return $this->returnError(__('general.try_catch_error_message'), 500);
@@ -104,8 +120,12 @@ class CommentsController extends Controller
                 if (!$comment) {
                     return redirect()->route('admin.not.found');
                 }
-                $comment->restore();
-                return $this->returnSuccessMessage(__('general.restore_success_message'));
+
+                if ($comment->restore()) {
+                    return $this->returnSuccessMessage(__('general.restore_success_message'));
+                } else {
+                    return $this->returnError(__('general.restore_error_message'), 404);
+                }
             }
         } catch (\Exception $exception) {
             return $this->returnError(__('general.try_catch_error_message'), 500);
@@ -131,9 +151,11 @@ class CommentsController extends Controller
                     }
                 }
 
-                $comment->forceDelete();
-
-                return $this->returnSuccessMessage(__('general.delete_success_message'));
+                if ($comment->forceDelete()) {
+                    return $this->returnSuccessMessage(__('general.delete_success_message'));
+                } else {
+                    return $this->returnError(__('general.delete_error_message'), 404);
+                }
             }
         } catch (\Exception $exception) {
             return $this->returnError(__('general.try_catch_error_message'), 500);
