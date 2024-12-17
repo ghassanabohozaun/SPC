@@ -82,6 +82,28 @@
                         </div>
                         <!--end::Group-->
 
+                        <!--begin::Group-->
+                        <div class="form-group row">
+                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                {{ __('publications.section_id') }}
+                            </label>
+                            <div class="col-lg-9 col-xl-9">
+                                <div class="input-group">
+                                    <select name='section_id' id="section_id"
+                                        class="form-control form-control-solid form-control-lg">
+                                        <option value="">{!! __('general.select_from_list') !!}</option>
+                                        @foreach ($sections as $section)
+                                            <option value="{!! $section->id !!}" {!! $section->id == $publication->section_id ? 'selected' : '' !!}>
+                                                {!! Lang() == 'ar' ? $section->title_ar : $section->title_en !!}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <span class="form-text text-danger" id="section_id_error"></span>
+                            </div>
+                            <!--end::Group-->
+                        </div>
+                        <!--end::Group-->
+
                     </div>
                 </div>
             </div>

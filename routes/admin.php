@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ArticlesController;
 use App\Http\Controllers\Admin\CommentsController;
 use App\Http\Controllers\Admin\FAQController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PhotoAlbumsController;
 use App\Http\Controllers\Admin\PublicationsController;
 use App\Http\Controllers\Admin\ServicesController;
@@ -220,7 +221,6 @@ Route::group([
         Route::post('/comment-change-status', [CommentsController::class, 'changeStatus'])->name('admin.comments.change.status');
     });
 
-
     ///////////////////////////////////////////////////////////////////////////////////////////
     // publications routes
     Route::group(['prefix' => 'publications', 'middleware' => 'can:publications'], function () {
@@ -234,6 +234,21 @@ Route::group([
         Route::post('/force-delete', [PublicationsController::class, 'forceDelete'])->name('admin.publications.force.delete');
         Route::post('/restore',  [PublicationsController::class, 'restore'])->name('admin.publications.restore');
         Route::post('/change-status',   [PublicationsController::class, 'changeStatus'])->name('admin.publications.change.status');
+    });
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    // news routes
+    Route::group(['prefix' => 'news', 'middleware' => 'can:news'], function () {
+        Route::get('/', [NewsController::class, 'index'])->name('admin.news');
+        Route::get('/create', [NewsController::class, 'create'])->name('admin.news.create');
+        Route::post('/store', [NewsController::class, 'store'])->name('admin.news.store');
+        Route::get('/edit/{id?}', [NewsController::class, 'edit'])->name('admin.news.edit');
+        Route::post('/update', [NewsController::class, 'update'])->name('admin.news.update');
+        Route::post('/destroy', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+        Route::get('/trashed', [NewsController::class, 'trashed'])->name('admin.news.trashed');
+        Route::post('/force-delete', [NewsController::class, 'forceDelete'])->name('admin.news.force.delete');
+        Route::post('/restore',  [NewsController::class, 'restore'])->name('admin.news.restore');
+        Route::post('/change-status',   [NewsController::class, 'changeStatus'])->name('admin.news.change.status');
     });
 
 

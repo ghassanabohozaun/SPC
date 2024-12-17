@@ -2,9 +2,11 @@
 
 use Database\Seeders\ArticleSeeder;
 use Database\Seeders\FaqSeeder;
+use Database\Seeders\MyNewsSeeder;
 use Database\Seeders\PhotoAlbumSeeder;
 use Database\Seeders\PublicationsSeeder;
 use Database\Seeders\RoleSeeder;
+use Database\Seeders\SectionsSeeder;
 use Database\Seeders\ServicesSeeder;
 use Database\Seeders\SlidersSeeder;
 use Database\Seeders\TestimonialsSeeder;
@@ -35,18 +37,8 @@ class DatabaseSeeder extends Seeder
             TestimonialsSeeder::class,
             ArticleSeeder::class,
             PublicationsSeeder::class,
+            SectionsSeeder::class,
+            MyNewsSeeder::class,
         ]);
-
-
-        // // create about types
-        // $abouts_en = ['Rationale', 'Who We Are', 'Work Ethics', 'Constitution'];
-        // $abouts_ar = ['المنطق', 'من نحن', 'اخلاقيات العمل', 'الدستور'];
-
-        // for ($i = 0; $i < count($abouts_en); $i++) {
-        //     AboutType::create([
-        //         'name_en' => $abouts_en[$i],
-        //         'name_ar' => $abouts_ar[$i],
-        //     ]);
-        // }
     }
 }

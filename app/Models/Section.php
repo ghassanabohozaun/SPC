@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Section extends Model
@@ -22,8 +23,8 @@ class Section extends Model
 
 
     // relationship
-    public function publication()
+    public function publications(): HasMany
     {
-        return $this->belongsTo(Publication::class);
+        return $this->hasMany(Publication::class);
     }
 }

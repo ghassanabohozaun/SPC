@@ -15,6 +15,6 @@ class PhotoAlbumSeeder extends Seeder
      */
     public function run()
     {
-        PhotoAlbum::factory()->count(10)->create();
+        PhotoAlbum::factory()->count(20)->create();
     }
 }

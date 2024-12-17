@@ -74,6 +74,7 @@
                                                             @if (setting()->site_lang_ar == 'on')
                                                                 <th>{{ __('publications.title_ar') }}</th>
                                                             @endif
+                                                            <th>{{ __('publications.section_id') }}</th>
                                                             <th>{{ __('publications.added_date') }}</th>
                                                             <th>{{ __('publications.status') }}</th>
                                                             <th class="text-center" style="width: 150px;">
@@ -89,6 +90,7 @@
                                                                 @if (setting()->site_lang_ar == 'on')
                                                                     <td>{{ $publication->title_ar }}</td>
                                                                 @endif
+                                                                <td>{!! Lang() == 'en' ? $publication->section->title_en : $publication->section->title_ar !!}</td>
                                                                 <td>{{ $publication->added_date }}</td>
                                                                 <td>@include('admin.publications.parts.status')</td>
                                                                 <td>@include('admin.publications.parts.options')</td>

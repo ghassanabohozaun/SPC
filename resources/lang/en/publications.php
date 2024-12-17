@@ -8,6 +8,7 @@ return [
     'publication_details_en_tab' => 'English Publication Details',
 
 
+    'section_id' => 'Section',
     'title_ar' => 'Publication Title | Arabic',
     'title_en' => 'Publication Title | English',
     'details_ar' => 'Publication Details | Arabic',
@@ -17,6 +18,7 @@ return [
     'photo' => 'Publication photo',
     'language' => 'Publication Language',
 
+    'enter_section_id' => 'Select Section',
     'enter_photo' => 'Enter Publication photo',
     'enter_language' => 'Enter Publication Language',
     'enter_title_ar' => 'Enter Arabic Publication Title',
@@ -26,6 +28,7 @@ return [
     'enter_added_date' => 'Enter Publication Added Date',
     'enter_status' => 'Enter Status',
 
+    'section_id_required' => 'Section Required',
     'title_ar_required' => 'Arabic Publication Title Required',
     'title_en_required' => 'English Publication Title Required',
     'details_ar_required' => 'Arabic Publication Details Required',

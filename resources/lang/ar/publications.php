@@ -7,6 +7,7 @@ return [
     'publication_details_ar_tab' => 'تفاصيل المنشور بالعربي',
     'publication_details_en_tab' => 'تفاصيل المنشور بالانجليزي',
 
+    'section_id' => 'القسم',
     'title_ar' => 'عنوان المنشور | عربي',
     'title_en' => 'عنوان المنشور | انجليزي',
     'details_ar' => 'تفاصيل المنشور | عربي',
@@ -16,6 +17,7 @@ return [
     'photo' => 'صورة المنشور',
     'language' => 'لغة المنشور ',
 
+    'enter_section_id' => 'ادخل القسم',
     'enter_title_ar' => 'ادخل عنوان المنشور بالعربي',
     'enter_title_en' => 'ادخل عنوان المنشور بالانجليزي',
     'enter_details_ar' => 'ادخل تفاصيل المنشور بالعربي',
@@ -25,6 +27,7 @@ return [
     'enter_photo' => 'ادخل صورة المنشور',
     'enter_language' => 'ادخل لغة المنشور ',
 
+    'section_id_required' => 'القسم مطلوب',
     'title_ar_required' => 'عنوان المنشور بالعربي مطلوب',
     'title_en_required' => 'عنوان المنشور بالانجليزي مطلوب',
     'details_ar_required' => 'تفاصيل المنشور بالعربي مطلوبة',

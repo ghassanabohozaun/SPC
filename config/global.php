@@ -17,6 +17,6 @@ return [
         'testimonials' => 'app.testimonials',
         'articles' => 'app.articles',
         'publications' => 'app.publications',
-
+        'news' => 'app.news',
     ]
 ];

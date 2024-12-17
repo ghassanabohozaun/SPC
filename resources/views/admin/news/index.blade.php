@@ -14,7 +14,7 @@
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item">
                         <a href="#" class="text-muted">
-                            {{ __('menu.services') }}
+                            {{ __('menu.news') }}
                         </a>
                     </li>
                     <li class="breadcrumb-item">
@@ -30,15 +30,15 @@
 
             <!--begin::Toolbar-->
             <div class="d-flex align-items-center">
-                <a href="{!! route('admin.services.trashed') !!}" class="btn btn-light-danger trash_btn" title="{{ __('general.trash') }}">
+                <a href="{!! route('admin.news.trashed') !!}" class="btn btn-light-danger trash_btn" title="{{ __('general.trash') }}">
                     <i class="fa fa-trash"></i>
                 </a>
                 &nbsp;
 
-                <a href="{{ route('admin.services.create') }}"
+                <a href="{{ route('admin.news.create') }}"
                     class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
                     <i class="fa fa-plus-square"></i>
-                    {{ __('menu.add_new_service') }}
+                    {{ __('menu.add_new_new') }}
                 </a>
                 &nbsp;
             </div>
@@ -51,8 +51,6 @@
     <div class="d-flex flex-column-fluid">
         <!--begin::Container-->
         <div class=" container-fluid ">
-
-
             <!--begin::Row-->
             <div class="row">
                 <div class="col-lg-12">
@@ -70,34 +68,35 @@
                                                 <table class="table myTable table-hover" id="myTable">
                                                     <thead>
                                                         <tr>
-                                                            <th>{!! __('services.photo') !!}</th>
-                                                            <th>{!! __('services.title_en') !!}</th>
+                                                            <th>#</th>
+                                                            <th>{{ __('news.photo') }}</th>
+                                                            <th>{{ __('news.title_en') }}</th>
                                                             @if (setting()->site_lang_ar == 'on')
-                                                                <th>{!! __('services.title_ar') !!}</th>
+                                                                <th>{{ __('news.title_ar') }}</th>
                                                             @endif
-                                                            <th>{!! __('services.is_treatment_area') !!}</th>
-                                                            <th>{!! __('services.status') !!}</th>
-                                                            <th class="text-center" style="width: 100px;">
-                                                                {!! __('general.actions') !!}
-                                                            </th>
+                                                            <th>{{ __('news.added_date') }}</th>
+                                                            <th>{{ __('news.status') }}</th>
+                                                            <th class="text-center" style="width: 150px;">
+                                                                {{ __('general.actions') }}</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @forelse($services as $service)
+                                                        @forelse($news as $new)
                                                             <tr>
-                                                                <td>@include('admin.services.parts.photo')</td>
-                                                                <td>{{ $service->title_en }}</td>
+                                                                <td>{!! $loop->iteration !!}</td>
+                                                                <td>@include('admin.news.parts.photo')</td>
+                                                                <td>{{ $new->title_en }}</td>
                                                                 @if (setting()->site_lang_ar == 'on')
-                                                                    <td>{{ $service->title_ar }}</td>
+                                                                    <td>{{ $new->title_ar }}</td>
                                                                 @endif
-                                                                <td>@include('admin.services.parts.is_treatment_area')</td>
-                                                                <td>@include('admin.services.parts.status')</td>
-                                                                <td> @include('admin.services.parts.options')</td>
+                                                                <td>{{ $new->added_date }}</td>
+                                                                <td>@include('admin.news.parts.status')</td>
+                                                                <td>@include('admin.news.parts.options')</td>
                                                             </tr>
                                                         @empty
                                                             <tr>
                                                                 <td colspan="7" class="text-center">
-                                                                    {!! __('services.no_services_found') !!}
+                                                                    {{ __('news.no_news_found') }}
                                                                 </td>
                                                             </tr>
                                                         @endforelse
@@ -106,7 +105,7 @@
                                                         <tr>
                                                             <td colspan="7">
                                                                 <div class="float-right">
-                                                                    {!! $services->appends(request()->all())->links() !!}
+                                                                    {!! $news->appends(request()->all())->links() !!}
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -122,37 +121,29 @@
 
                         </div>
 
-                        <form class="d-none" id="form_service_delete">
-                            <input type="hidden" id="service_delete_id">
+                        <form class="d-none" id="form_new_delete">
+                            <input type="hidden" id="new_delete_id">
                         </form>
                         <!--end::Form-->
 
                     </div>
                     <!--end::Card-->
 
-
                 </div>
-
             </div>
             <!--end::Row-->
 
-
         </div>
         <!--end::Container-->
-
-        <!--begin::Form-->
-
-
     </div>
-
 
     <!--end::content-->
 @endsection
 @push('js')
     <script type="text/javascript">
         /////////////////////////////////////////////////////////////////
-        ///  delete service
-        $(document).on('click', '.delete_service_btn', function(e) {
+        ///  new delete
+        $(document).on('click', '.delete_new_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
@@ -167,9 +158,9 @@
             }).then(function(result) {
                 if (result.value) {
                     //////////////////////////////////////
-                    // Delete faq
+                    // Delete User
                     $.ajax({
-                        url: '{!! route('admin.services.destroy') !!}',
+                        url: '{!! route('admin.news.destroy') !!}',
                         data: {
                             id,
                             id
@@ -185,10 +176,10 @@
                                     icon: "success",
                                     allowOutsideClick: false,
                                     customClass: {
-                                        confirmButton: 'delete_faq_button'
+                                        confirmButton: 'delete_new_button'
                                     }
                                 });
-                                $('.delete_faq_button').click(function() {
+                                $('.delete_new_button').click(function() {
                                     $('#myTable').load(location.href + (' #myTable'));
                                 });
                             } else if (data.status == false) {
@@ -198,10 +189,10 @@
                                     icon: "warning",
                                     allowOutsideClick: false,
                                     customClass: {
-                                        confirmButton: 'delete_service_button'
+                                        confirmButton: 'delete_new_button'
                                     }
                                 });
-                                $('.delete_service_button').click(function() {});
+                                $('.delete_new_button').click(function() {});
                             }
                         }, //end success
                     });
@@ -213,7 +204,7 @@
                         icon: "error",
                         allowOutsideClick: false,
                         customClass: {
-                            confirmButton: 'cancel_delete_service_button'
+                            confirmButton: 'cancel_delete_new_button'
                         }
                     })
                 }
@@ -224,27 +215,21 @@
 
         /////////////////////////////////////////////////////////////////
         // switch status
-        var statusSwitch = false;
+        var switchStatus = false;
         $('body').on('change', '.change_status', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
-
-
-
             if ($(this).is(':checked')) {
-                statusSwitch = $(this).is(':checked');
+                switchStatus = $(this).is(':checked');
             } else {
-                statusSwitch = false;
+                switchStatus = $(this).is(':checked');
             }
 
-
-
-
             $.ajax({
-                url: "{{ route('admin.services.change.status') }}",
+                url: "{{ route('admin.news.change.status') }}",
                 data: {
-                    statusSwitch: statusSwitch,
+                    switchStatus: switchStatus,
                     id: id
                 },
                 type: 'post',

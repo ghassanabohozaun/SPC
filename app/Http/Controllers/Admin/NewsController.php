@@ -3,44 +3,38 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PublicationRequest;
-use App\Models\Publication;
-use App\Models\Section;
+use App\Http\Requests\NewRequest;
+use App\Models\MyNew;
 use App\Traits\GeneralTrait;
 use File;
 use Illuminate\Http\Request;
 
-class PublicationsController extends Controller
+class NewsController extends Controller
 {
     use GeneralTrait;
 
     // index
     public function index()
     {
-        $title = __('menu.publications');
-        $publications = Publication::withoutTrashed()->with('section')->orderByDesc('created_at')->paginate(15);
-        return view('admin.publications.index', compact('title', 'publications'));
-
-
-        // $publications = Publication::withoutTrashed()->orderByDesc('created_at')->paginate(15);
-        // return view('admin.publications.index', compact('title', 'publications'));
+        $title = __('menu.news');
+        $news = MyNew::withoutTrashed()->orderByDesc('created_at')->paginate(15);
+        return view('admin.news.index', compact('title', 'news'));
     }
 
     // create
     public function create()
     {
-        $title = __('menu.add_new_publication');
-        $sections = Section::get();
-        return view('admin.publications.create', compact('title', 'sections'));
+        $title = __('menu.add_new_new');
+        return view('admin.news.create', compact('title'));
     }
 
     // store
-    public function store(PublicationRequest $request)
+    public function store(NewRequest $request)
     {
 
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
-            $destinationPath = public_path('adminBoard/uploadedImages/publications');
+            $destinationPath = public_path('adminBoard/uploadedImages/news');
             $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
         } else {
             $photo_path = '';
@@ -49,8 +43,7 @@ class PublicationsController extends Controller
 
         $site_lang_ar = setting()->site_lang_ar;
 
-        Publication::create([
-            'section_id' => $request->section_id,
+        MyNew::create([
             'title_en_slug' => slug($request->title_en),
             'title_ar_slug' => $site_lang_ar == 'on' ? slug($request->title_ar) : null,
             'title_en' => $request->title_en,
@@ -72,48 +65,45 @@ class PublicationsController extends Controller
         if (!$id) {
             return redirect()->route('admin.not.found');
         }
-        $title = __('publications.update_publication');
-        $publication = Publication::find($id);
+        $title = __('news.update_new');
+        $new = MyNew::find($id);
 
-        if (!$publication) {
+        if (!$new) {
             return redirect()->route('admin.not.found');
         }
 
-        $sections = Section::get();
-
-
-        return view('admin.publications.update', compact('title', 'publication', 'sections'));
+        return view('admin.news.update', compact('title', 'new'));
     }
 
     // update
-    public function update(PublicationRequest $request)
+    public function update(NewRequest $request)
     {
 
-        $publication = Publication::find($request->id);
+        $new = MyNew::find($request->id);
 
-        if (!$publication) {
+        if (!$new) {
             return redirect()->route('admin.not.found');
         }
 
         if ($request->hasFile('photo')) {
 
-            $image_path = public_path("/adminBoard/uploadedImages/publications//") . $publication->photo;
+            $image_path = public_path("/adminBoard/uploadedImages/news//") . $new->photo;
             if (File::exists($image_path)) {
                 File::delete($image_path);
             }
 
-            if (!empty($publication->photo)) {
+            if (!empty($new->photo)) {
                 $image = $request->file('photo');
-                $destinationPath = public_path('/adminBoard/uploadedImages/publications//');
+                $destinationPath = public_path('/adminBoard/uploadedImages/news//');
                 $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
             } else {
                 $image = $request->file('photo');
-                $destinationPath = public_path('/adminBoard/uploadedImages/publications//');
+                $destinationPath = public_path('/adminBoard/uploadedImages/news//');
                 $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
             }
         } else {
-            if (!empty($publication->photo)) {
-                $photo_path = $publication->photo;
+            if (!empty($new->photo)) {
+                $photo_path = $new->photo;
             } else {
                 $photo_path = '';
             }
@@ -121,8 +111,7 @@ class PublicationsController extends Controller
 
 
         $site_lang_ar = setting()->site_lang_ar;
-        $publication->update([
-            'section_id' => $request->section_id,
+        $new->update([
             'title_en_slug' => slug($request->title_en),
             'title_ar_slug' => $site_lang_ar == 'on' ? slug($request->title_ar) : null,
             'title_en' => $request->title_en,
@@ -143,12 +132,12 @@ class PublicationsController extends Controller
     {
         try {
             if ($request->ajax()) {
-                $publication = Publication::find($request->id);
-                if (!$publication) {
+                $new = MyNew::find($request->id);
+                if (!$new) {
                     return redirect()->route('admin.not.found');
                 }
 
-                if ($publication->delete()) {
+                if ($new->delete()) {
                     return $this->returnSuccessMessage(__('general.move_to_trash'));
                 } else {
                     return $this->returnError(__('general.delete_error_message'), 404);
@@ -162,9 +151,9 @@ class PublicationsController extends Controller
     //  trashed
     public function trashed()
     {
-        $title = __('menu.trashed_publications');
-        $trashedPublications = Publication::onlyTrashed()->orderByDesc('created_at')->paginate(15);
-        return view('admin.publications.trashed', compact('title', 'trashedPublications'));
+        $title = __('menu.trashed_news');
+        $trashedNews = MyNew::onlyTrashed()->orderByDesc('created_at')->paginate(15);
+        return view('admin.news.trashed', compact('title', 'trashedNews'));
     }
 
 
@@ -173,11 +162,11 @@ class PublicationsController extends Controller
     {
         try {
             if ($request->ajax()) {
-                $publication = Publication::onlyTrashed()->find($request->id);
-                if (!$publication) {
+                $new = MyNew::onlyTrashed()->find($request->id);
+                if (!$new) {
                     return redirect()->route('admin.not.found');
                 }
-                if ($publication->restore()) {
+                if ($new->restore()) {
                     return $this->returnSuccessMessage(__('general.restore_success_message'));
                 } else {
                     return $this->returnError(__('general.restore_error_message'), 404);
@@ -194,21 +183,21 @@ class PublicationsController extends Controller
         try {
             if ($request->ajax()) {
 
-                $publication = Publication::onlyTrashed()->find($request->id);
+                $new = MyNew::onlyTrashed()->find($request->id);
 
-                if (!$publication) {
+                if (!$new) {
                     return redirect()->route('admin.not.found');
                 }
 
-                if (!empty($publication->photo)) {
-                    $image_path = public_path("/adminBoard/uploadedImages/publications//") . $publication->photo;
+                if (!empty($new->photo)) {
+                    $image_path = public_path("/adminBoard/uploadedImages/news//") . $new->photo;
                     if (File::exists($image_path)) {
                         File::delete($image_path);
                     }
                 }
 
-                //  delete articles
-                if ($publication->forceDelete()) {
+                //  delete new
+                if ($new->forceDelete()) {
                     return $this->returnSuccessMessage(__('general.delete_success_message'));
                 } else {
                     return $this->returnError(__('general.delete_error_message'), 404);
@@ -224,14 +213,14 @@ class PublicationsController extends Controller
     // change Status
     public function changeStatus(Request $request)
     {
-        $publication = Publication::find($request->id);
+        $new = MyNew::find($request->id);
 
         if ($request->switchStatus == 'false') {
-            $publication->status = null;
-            $publication->save();
+            $new->status = null;
+            $new->save();
         } else {
-            $publication->status = 'on';
-            $publication->save();
+            $new->status = 'on';
+            $new->save();
         }
 
         return $this->returnSuccessMessage(__('general.change_status_success_message'));

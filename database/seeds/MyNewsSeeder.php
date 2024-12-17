@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Service;
+use App\Models\MyNew;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ServicesSeeder extends Seeder
+class MyNewsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class ServicesSeeder extends Seeder
      */
     public function run()
     {
-        Service::factory()->count(20)->create();
+        MyNew::factory()->count(20)->create();
     }
 }

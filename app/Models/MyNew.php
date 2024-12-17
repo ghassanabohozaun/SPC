@@ -4,17 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Publication extends Model
+class MyNew extends Model
 {
     use HasFactory, SoftDeletes;
-
-    protected $table = 'publications';
-
+    protected $tabl = 'my_news';
     protected $fillable = [
-        'section_id',
         'title_en_slug',
         'title_ar_slug',
         'title_en',
@@ -23,14 +19,8 @@ class Publication extends Model
         'details_ar',
         'added_date',
         'status',
-        'photo',
         'language',
+        'photo'
     ];
-    protected $hidden = ['updated_at'];
-
-    // relationship
-    public function section(): BelongsTo
-    {
-        return $this->belongsTo(Section::class);
-    }
+    protected $hidden = ['updated_date'];
 }

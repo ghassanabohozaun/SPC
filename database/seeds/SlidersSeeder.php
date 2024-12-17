@@ -15,6 +15,6 @@ class SlidersSeeder extends Seeder
      */
     public function run()
     {
-        Slider::factory()->count(15)->create();
+        Slider::factory()->count(20)->create();
     }
 }

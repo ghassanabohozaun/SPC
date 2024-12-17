@@ -21,5 +21,6 @@ return [
     'articles' => 'Articles Management',
     'testimonials' => 'Testimonials Management',
     'publications' => 'Publications Management',
+    'news' => 'News Management',
 
 ];

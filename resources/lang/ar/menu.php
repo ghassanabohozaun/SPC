@@ -50,29 +50,23 @@ return [
     'trashed_articles' => 'المقالات المحذوفة',
     'add_new_article' => 'اضافة مقال جديد',
 
-
     'publications' => 'المنشورات',
     'trashed_publications' => 'المنشورات المحذوفة',
     'add_new_publication' => 'إضافة منشور جديد',
 
-
-
-
+    'news' => 'اخباري',
+    'trashed_news' => 'أخباري المحذوفة',
+    'add_new_new' => 'إضافة خبر جديد',
 
     'reports' => 'التقارير',
     'trashed_reports' => 'التقارير المحذوفة',
     'add_new_report' => 'إضافة تقرير جديد',
-
 
     'abouts' => 'حول الموقع',
     'trashed_abouts' => 'المحذوفات',
     'add_new_about' => 'إضافة حول الموقع جديد',
 
 
-
-    'teams' => 'اعضاء الفريق',
-    'trashed_teams' => ' اعضاء الفريق المحذوفة',
-    'add_new_team_member' => 'إضافة عضو للفريق',
 
 
 

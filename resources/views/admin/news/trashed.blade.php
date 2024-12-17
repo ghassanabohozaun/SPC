@@ -8,23 +8,23 @@
             <!--begin::Info-->
             <div class="d-flex align-items-center flex-wrap mr-2">
 
-                <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
                 <!--begin::Actions-->
+                <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item">
-                        <a href="{{ route('admin.services') }}" class="text-muted">
-                            {{ __('menu.services') }}
+                        <a href="{!! route('admin.news') !!}" class="text-muted">
+                            {{ __('menu.news') }}
                         </a>
                     </li>
-
                     <li class="breadcrumb-item">
                         <a href="#" class="text-muted">
-                            {{ __('menu.trashed_services') }}
+                            {{ __('menu.trashed_news') }}
                         </a>
                     </li>
 
                     <li class="breadcrumb-item">
-                        <a href="" class="text-muted">
+                        <a href="{!! route('admin.news.trashed') !!}" class="text-muted">
                             {{ __('menu.show_all') }}
                         </a>
                     </li>
@@ -36,10 +36,10 @@
 
             <!--begin::Toolbar-->
             <div class="d-flex align-items-center">
-                <a href="{{ route('admin.services.create') }}"
+                <a href="{{ route('admin.news.create') }}"
                     class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
                     <i class="fa fa-plus-square"></i>
-                    {{ __('menu.add_new_service') }}
+                    {{ __('menu.add_new_new') }}
                 </a>
                 &nbsp;
             </div>
@@ -52,6 +52,8 @@
     <div class="d-flex flex-column-fluid">
         <!--begin::Container-->
         <div class=" container-fluid ">
+
+
             <!--begin::Row-->
             <div class="row">
                 <div class="col-lg-12">
@@ -63,43 +65,37 @@
                             <div class="portlet-body">
                                 <div class="row">
                                     <div class="col-12">
+
                                         <div class="scroll">
                                             <div class="table-responsive">
                                                 <table class="table myTable table-hover" id="myTable">
                                                     <thead>
                                                         <tr>
-                                                            <th>#</th>
-                                                            <th>{!! __('services.photo') !!}</th>
-                                                            <th>{!! __('services.title_en') !!}</th>
-                                                            @if (setting()->site_lang_ar == 'on')
-                                                                <th>{!! __('services.title_ar') !!}</th>
-                                                            @endif
-                                                            <th>{!! __('services.is_treatment_area') !!}</th>
+                                                            <th>{!! __('news.photo') !!}</th>
+                                                            <th>{!! __('news.title_ar') !!}</th>
+                                                            <th>{!! __('news.title_en') !!}</th>
+                                                            <th>{!! __('news.added_date') !!}</th>
                                                             <th class="text-center" style="width: 100px;">
-                                                                {!! __('general.actions') !!}
-                                                            </th>
+                                                                {!! __('general.actions') !!}</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @forelse($services as $service)
+                                                        @forelse($trashedNews as $new)
                                                             <tr>
-                                                                <td>{!! $loop->iteration !!}</td>
-                                                                <td>@include('admin.services.parts.photo')</td>
-                                                                <td>{{ $service->title_en }}</td>
-                                                                @if (setting()->site_lang_ar == 'on')
-                                                                    <td>{{ $service->title_ar }}</td>
-                                                                @endif
-                                                                <td>{{ $service->is_treatment_area }}</td>
+                                                                <td>@include('admin.news.parts.photo')</td>
+                                                                <td>{{ $new->title_ar }}</td>
+                                                                <td>{{ $new->title_en }}</td>
+                                                                <td>{{ $new->added_date }}</td>
                                                                 <td>
-                                                                    <a class="btn btn-hover-warning btn-icon btn-pill restore_service_btn"
-                                                                        data-id="{{ $service->id }}"
+                                                                    <a class="btn btn-hover-warning btn-icon btn-pill restore_new_btn"
+                                                                        data-id="{{ $new->id }}"
                                                                         title="{{ __('general.restore') }}">
                                                                         <i class="fa fa-trash-restore fa-1x"></i>
                                                                     </a>
 
                                                                     <a href="#"
-                                                                        class="btn btn-hover-danger btn-icon btn-pill force_delete_service_btn"
-                                                                        data-id="{{ $service->id }}"
+                                                                        class="btn btn-hover-danger btn-icon btn-pill force_delete_new_btn"
+                                                                        data-id="{{ $new->id }}"
                                                                         title="{{ __('general.force_delete') }}">
                                                                         <i class="fa fa-trash-alt fa-1x"></i>
                                                                     </a>
@@ -107,17 +103,17 @@
                                                             </tr>
                                                         @empty
                                                             <tr>
-                                                                <td colspan="6" class="text-center">
-                                                                    {!! __('services.no_services_found') !!}
+                                                                <td colspan="5" class="text-center">
+                                                                    {!! __('news.no_news_found') !!}
                                                                 </td>
                                                             </tr>
                                                         @endforelse
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
-                                                            <td colspan="6">
+                                                            <td colspan="5">
                                                                 <div class="float-right">
-                                                                    {!! $services->appends(request()->all())->links() !!}
+                                                                    {!! $trashedNews->appends(request()->all())->links() !!}
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -125,6 +121,7 @@
                                                 </table>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -132,27 +129,37 @@
 
                         </div>
 
-                        <form class="d-none" id="form_service_delete">
-                            <input type="hidden" id="service_delete_id">
+                        <form class="d-none" id="form_new_delete">
+                            <input type="hidden" id="new_delete_id">
                         </form>
                         <!--end::Form-->
 
                     </div>
                     <!--end::Card-->
+
+
                 </div>
+
             </div>
             <!--end::Row-->
+
+
         </div>
         <!--end::Container-->
 
         <!--begin::Form-->
+
+
     </div>
+
+
     <!--end::content-->
 @endsection
 @push('js')
     <script type="text/javascript">
-        // delete service
-        $(document).on('click', '.force_delete_service_btn', function(e) {
+        ///////////////////////////////////////////////////
+        /// delete new
+        $(document).on('click', '.force_delete_new_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
@@ -167,9 +174,9 @@
             }).then(function(result) {
                 if (result.value) {
                     //////////////////////////////////////
-                    // delete services
+                    // Delete User
                     $.ajax({
-                        url: "{!! route('admin.services.force.delete') !!}",
+                        url: '{!! route('admin.news.force.delete') !!}',
                         data: {
                             id,
                             id
@@ -185,10 +192,10 @@
                                     icon: "success",
                                     allowOutsideClick: false,
                                     customClass: {
-                                        confirmButton: 'delete_service_button'
+                                        confirmButton: 'delete_new_button'
                                     }
                                 });
-                                $('.delete_service_button').click(function() {
+                                $('.delete_new_button').click(function() {
                                     $('#myTable').load(location.href + (' #myTable'));
                                 });
                             }
@@ -202,7 +209,7 @@
                         icon: "error",
                         allowOutsideClick: false,
                         customClass: {
-                            confirmButton: 'cancel_delete_service_button'
+                            confirmButton: 'cancel_delete_new_button'
                         }
                     })
                 }
@@ -210,13 +217,14 @@
         })
 
 
-        // restore service
-        $(document).on('click', '.restore_service_btn', function(e) {
+        ////////////////////////////////////////////////////
+        // restore new
+        $(document).on('click', '.restore_new_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
             $.ajax({
-                url: "{{ route('admin.services.restore') }}",
+                url: "{{ route('admin.news.restore') }}",
                 data: {
                     id,
                     id
@@ -240,10 +248,10 @@
                             icon: "success",
                             allowOutsideClick: false,
                             customClass: {
-                                confirmButton: 'restore_service_button'
+                                confirmButton: 'restore_new_button'
                             }
                         });
-                        $('.restore_service_button').click(function() {
+                        $('.restore_new_button').click(function() {
                             $('#myTable').load(location.href + (' #myTable'));
                         });
                     }

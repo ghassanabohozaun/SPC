@@ -120,6 +120,7 @@
             e.preventDefault();
 
             ////////////////////////////////////////////////////////////////////
+            $('#section_id_error').text('');
             $('#photo_error').text('');
             $('#added_date_error').text('');
             $('#title_ar_error').text('');
@@ -127,6 +128,7 @@
             $('#details_ar_error').text('');
             $('#details_en_error').text('');
 
+            $('#section_id').css('border-color', '');
             $('#photo').css('border-color', '');
             $('#added_date').css('border-color', '');
             $('#title_en').css('border-color', '');
@@ -182,7 +184,7 @@
                         $('#' + key + '_error').text(value[0])
                         $('#' + key).css('border-color', '#F64E60 ')
                     });
-                    ArticlePrintErrors(response.errors)
+                    PublicationPrintErrors(response.errors)
                 }, //end error
                 complete: function() {
                     KTApp.unblockPage();
@@ -192,7 +194,7 @@
         }); //end submit
         ////////////////////////////////////
         ////// Print Errors Function
-        function ArticlePrintErrors(msg) {
+        function PublicationPrintErrors(msg) {
 
             $('.alert_errors').find('ul').empty();
             $('.alert_errors').removeClass('d-none');

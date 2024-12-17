@@ -21,7 +21,6 @@ return [
     'index' => 'Website Index',
     'static_strings' => 'Static Strings',
 
-
     'faqs' => 'FAQ',
     'trashed_faq' => 'Trashed FAQ',
     'add_new_faq' => 'Add New FAQ',
@@ -58,7 +57,9 @@ return [
     'trashed_publications' => 'Trashed Publications',
     'add_new_publication' => 'Add New Publication',
 
-
+    'news' => 'News',
+    'trashed_news' => 'Trashed News',
+    'add_new_new' => 'Add New New',
 
 
 

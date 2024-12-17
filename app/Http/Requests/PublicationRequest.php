@@ -23,6 +23,7 @@ class PublicationRequest extends FormRequest
 
 
         $rules = [
+            'section_id' => 'required',
             'details_en' => 'required',
             'details_ar' => 'required_if:site_lang_ar,on',
             'added_date' => 'required|date',
@@ -45,6 +46,7 @@ class PublicationRequest extends FormRequest
     public function messages()
     {
         return [
+            'section_id.required' => __('publications.section_id_required'),
             'language.required' => __('publications.language_required'),
             'title_ar.required' => __('publications.title_ar_required'),
             'title_ar.required_if' => __('publications.title_ar_required'),
