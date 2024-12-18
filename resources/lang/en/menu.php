@@ -61,6 +61,9 @@ return [
     'trashed_news' => 'Trashed News',
     'add_new_new' => 'Add New New',
 
+    'posters' => 'Posters',
+    'trashed_posters' => 'Trashed Posters',
+    'add_new_poster' => 'Add New Poster',
 
 
 

@@ -36,6 +36,7 @@ return [
     'actions' => 'الإجراءات',
     'choose_photo' => 'اختار الصورة ..',
     'choose_file' => 'اختار الملف ..',
+    'no_file_found' => 'لا يوجد ملف',
     'not_found' => 'غير متاحة',
     'example' => 'مثال',
     'financial' => 'مالي',

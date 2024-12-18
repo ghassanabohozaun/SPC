@@ -22,5 +22,6 @@ return [
     'testimonials' => 'Testimonials Management',
     'publications' => 'Publications Management',
     'news' => 'News Management',
+    'posters' => 'Posters Management',
 
 ];

@@ -3,7 +3,7 @@
 @endsection
 
 @section('content')
-    <form class="form" action="{{ route('admin.trainings.update') }}" method="POST" id="training_update_form">
+    <form class="form" action="{{ route('admin.posters.update') }}" method="POST" id="poster_update_form">
         @csrf
         <!--begin::Subheader-->
         <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
@@ -17,14 +17,14 @@
 
                     <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                         <li class="breadcrumb-item">
-                            <a href="{{ route('admin.trainings') }}" class="text-muted">
-                                {{ __('menu.trainings') }}
+                            <a href="{{ route('admin.posters') }}" class="text-muted">
+                                {{ __('menu.posters') }}
                             </a>
                         </li>
 
                         <li class="breadcrumb-item">
                             <a href="" class="text-muted">
-                                {{ __('trainings.update_training') }}
+                                {{ __('posters.update_poster') }}
                             </a>
                         </li>
                     </ul>
@@ -70,15 +70,19 @@
                                                 <div class="my-5">
 
                                                     <!--begin::Group-->
-                                                    <div class="form-group row">
+                                                    <div class="form-group row d-none">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            ID
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input class="form-control form-control-solid form-control-lg"
-                                                                name="id" id="id" type="text"
-                                                                value="{{ $training->id }}" />
-                                                            <input type="hidden" name="hidden_photo" value="hidden_photo">
+                                                            <input type="hidden"
+                                                                class="form-control form-control-solid form-control-lg"
+                                                                name="id" id="id" value="{{ $poster->id }}" />
+                                                            <input type="hidden"
+                                                                class="form-control form-control-solid form-control-lg"
+                                                                name="hidden_photo" value="hidden_photo">
+                                                            <input type="hidden"
+                                                                class="form-control form-control-solid form-control-lg"
+                                                                name="hidden_file" value="hidden_file">
                                                         </div>
 
                                                     </div>
@@ -87,14 +91,14 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{ __('trainings.photo') }}
+                                                            {{ __('posters.photo') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
                                                             <div class="image-input image-input-outline"
-                                                                id="kt_training_photo">
+                                                                id="kt_poster_photo">
 
                                                                 <div class="image-input-wrapper"
-                                                                    style="background-image: url({{ asset('adminBoard/uploadedImages/trainings/' . $training->photo) }})">
+                                                                    style="background-image: url({{ asset('adminBoard/uploadedImages/posters/' . $poster->photo) }})">
                                                                 </div>
 
                                                                 <label
@@ -127,13 +131,13 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{ __('trainings.title_en') }}
+                                                            {{ __('posters.title_en') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
                                                             <input class="form-control form-control-solid form-control-lg"
                                                                 name="title_en" id="title_en" type="text"
-                                                                placeholder=" {{ __('trainings.enter_title_en') }}"
-                                                                autocomplete="off" value="{{ $training->title_en }}" />
+                                                                placeholder=" {{ __('posters.enter_title_en') }}"
+                                                                autocomplete="off" value="{{ $poster->title_en }}" />
                                                             <span class="form-text text-danger" id="title_en_error"></span>
 
                                                         </div>
@@ -144,13 +148,13 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{ __('trainings.title_ar') }}
+                                                            {{ __('posters.title_ar') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
                                                             <input class="form-control form-control-solid form-control-lg"
                                                                 name="title_ar" id="title_ar" type="text"
-                                                                placeholder=" {{ __('trainings.enter_title_ar') }}"
-                                                                autocomplete="off" value="{{ $training->title_ar }}" />
+                                                                placeholder=" {{ __('posters.enter_title_ar') }}"
+                                                                autocomplete="off" value="{{ $poster->title_ar }}" />
                                                             <span class="form-text text-danger" id="title_ar_error"></span>
 
                                                         </div>
@@ -161,15 +165,15 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{ __('trainings.started_date') }}
+                                                            {{ __('posters.added_date') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
                                                             <div class="input-group date">
                                                                 <input type="text"
                                                                     class="form-control form-control-solid form-control-lg"
-                                                                    id="started_date" name="started_date" readonly
-                                                                    placeholder="{{ __('trainings.enter_started_date') }}"
-                                                                    value="{!! $training->started_date !!}" />
+                                                                    id="added_date" name="added_date" readonly
+                                                                    placeholder="{{ __('posters.enter_added_date') }}"
+                                                                    value="{!! $poster->added_date !!}" />
                                                                 <div class="input-group-append">
                                                                     <span class="input-group-text">
                                                                         <i class="la la-calendar-check-o"></i>
@@ -177,11 +181,60 @@
                                                                 </div>
                                                             </div>
                                                             <span class="form-text text-danger"
-                                                                id="started_date_error"></span>
+                                                                id="added_date_error"></span>
                                                         </div>
                                                         <!--end::Group-->
                                                     </div>
                                                     <!--end::Group-->
+
+
+                                                    <!--begin::Group-->
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label">
+                                                            {{ __('posters.publisher_name') }}
+                                                        </label>
+                                                        <div class="col-lg-9 col-xl-9">
+                                                            <input class="form-control form-control-solid form-control-lg"
+                                                                name="publisher_name" id="publisher_name" type="text"
+                                                                placeholder=" {{ __('posters.enter_publisher_name') }}"
+                                                                autocomplete="off"
+                                                                value="{{ $poster->publisher_name }}" />
+                                                            <span class="form-text text-danger"
+                                                                id="publisher_name_error"></span>
+
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Group-->
+
+
+                                                    <!--begin::Group-->
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label">
+                                                            {{ __('posters.file') }}
+                                                        </label>
+                                                        <div class="col-lg-9 col-xl-9">
+
+                                                            <div class="custom-file">
+                                                                <input type="file" class="custom-file-input"
+                                                                    id="file" name="file">
+                                                                <label class="custom-file-label" choose=""
+                                                                    file="">
+                                                                </label>
+                                                            </div>
+                                                            <span class="form-text text-muted">
+                                                                {{ __('general.file_format_allow') }}
+                                                            </span>
+                                                            <span class="form-text text-danger" id="file_error"></span>
+
+                                                            @if ($poster->file)
+                                                                <a class="form-text text-info"
+                                                                    style="font-size: 14px ;font-weight: bolder"
+                                                                    href="{!! asset('adminBoard/uploadedFiles/posters/' . $poster->file) !!}">{!! __('general.download') !!}</a>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Group-->
+
 
                                                 </div>
                                                 <!--begin::body-->
@@ -209,10 +262,10 @@
 @push('js')
     <script type="text/javascript">
         ////////////////////////////////////////////////////
-        var training_photo = new KTImageInput('kt_training_photo');
+        var poster_photo = new KTImageInput('kt_poster_photo');
 
         //Datepicker
-        $('#started_date').datepicker({
+        $('#added_date').datepicker({
             format: "yyyy-mm-dd",
             todayBtn: true,
             clearBtn: false,
@@ -223,19 +276,22 @@
         });
 
 
-        $('#training_update_form').on('submit', function(e) {
+        $('#poster_update_form').on('submit', function(e) {
             e.preventDefault();
             //////////////////////////////////////////////////////////////
             $('#photo').css('border-color', '');
             $('#title_en').css('border-color', '');
             $('#title_ar').css('border-color', '');
-            $('#started_date').css('border-color', '');
+            $('#added_date').css('border-color', '');
+            $('#publisher_name').css('border-color', '');
+            $('#file').css('border-color', '');
 
             $('#photo_error').text('');
             $('#title_en_error').text('');
             $('#title_arn_error').text('');
-            $('#started_date_error').text('');
-
+            $('#added_date_error').text('');
+            $('#publisher_name_error').text('');
+            $('#file_error').text('');
             /////////////////////////////////////////////////////////////
             var data = new FormData(this);
             var type = $(this).attr('method');
@@ -265,11 +321,11 @@
                             icon: "success",
                             allowOutsideClick: false,
                             customClass: {
-                                confirmButton: 'update_training_button'
+                                confirmButton: 'update_poster_button'
                             }
                         });
-                        $('.update_training_button').click(function() {
-                            window.location.href = "{{ route('admin.trainings') }}";
+                        $('.update_poster_button').click(function() {
+                            window.location.href = "{{ route('admin.posters') }}";
                         });
                     }
                 }, //end success

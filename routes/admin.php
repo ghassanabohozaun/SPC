@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CommentsController;
 use App\Http\Controllers\Admin\FAQController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PhotoAlbumsController;
+use App\Http\Controllers\Admin\PostersController;
 use App\Http\Controllers\Admin\PublicationsController;
 use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Admin\SlidersController;
@@ -249,6 +250,36 @@ Route::group([
         Route::post('/force-delete', [NewsController::class, 'forceDelete'])->name('admin.news.force.delete');
         Route::post('/restore',  [NewsController::class, 'restore'])->name('admin.news.restore');
         Route::post('/change-status',   [NewsController::class, 'changeStatus'])->name('admin.news.change.status');
+    });
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    // posters routes
+    Route::group(['prefix' => 'posters', 'middleware' => 'can:posters'], function () {
+        Route::get('/', [PostersController::class, 'index'])->name('admin.posters');
+        Route::get('/create', [PostersController::class, 'create'])->name('admin.posters.create');
+        Route::post('/store', [PostersController::class, 'store'])->name('admin.posters.store');
+        Route::get('/edit/{id?}', [PostersController::class, 'edit'])->name('admin.posters.edit');
+        Route::post('/update', [PostersController::class, 'update'])->name('admin.posters.update');
+        Route::post('/destroy', [PostersController::class, 'destroy'])->name('admin.posters.destroy');
+        Route::get('/trashed', [PostersController::class, 'trashed'])->name('admin.posters.trashed');
+        Route::post('/force-delete', [PostersController::class, 'forceDelete'])->name('admin.posters.force.delete');
+        Route::post('/restore',  [PostersController::class, 'restore'])->name('admin.posters.restore');
+        Route::post('/change-status',   [PostersController::class, 'changeStatus'])->name('admin.posters.change.status');
+    });
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    // books routes
+    Route::group(['prefix' => 'books', 'middleware' => 'can:books'], function () {
+        Route::get('/', [PostersController::class, 'index'])->name('admin.books');
+        Route::get('/create', [PostersController::class, 'create'])->name('admin.books.create');
+        Route::post('/store', [PostersController::class, 'store'])->name('admin.books.store');
+        Route::get('/edit/{id?}', [PostersController::class, 'edit'])->name('admin.books.edit');
+        Route::post('/update', [PostersController::class, 'update'])->name('admin.books.update');
+        Route::post('/destroy', [PostersController::class, 'destroy'])->name('admin.books.destroy');
+        Route::get('/trashed', [PostersController::class, 'trashed'])->name('admin.books.trashed');
+        Route::post('/force-delete', [PostersController::class, 'forceDelete'])->name('admin.books.force.delete');
+        Route::post('/restore',  [PostersController::class, 'restore'])->name('admin.books.restore');
+        Route::post('/change-status',   [PostersController::class, 'changeStatus'])->name('admin.books.change.status');
     });
 
 

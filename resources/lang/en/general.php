@@ -32,6 +32,8 @@ return [
     'actions' => 'Action',
     'choose_photo' => 'Choose Photo ..',
     'choose_file' => 'Choose File ..',
+    'no_file_found' => 'No File Found',
+
     'not_found' => 'Not Found',
     'example' => 'Example',
     'financial' => 'Financial',

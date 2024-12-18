@@ -4,6 +4,7 @@ use Database\Seeders\ArticleSeeder;
 use Database\Seeders\FaqSeeder;
 use Database\Seeders\MyNewsSeeder;
 use Database\Seeders\PhotoAlbumSeeder;
+use Database\Seeders\PostersSeeder;
 use Database\Seeders\PublicationsSeeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\SectionsSeeder;
@@ -39,6 +40,7 @@ class DatabaseSeeder extends Seeder
             PublicationsSeeder::class,
             SectionsSeeder::class,
             MyNewsSeeder::class,
+            PostersSeeder::class,
         ]);
     }
 }

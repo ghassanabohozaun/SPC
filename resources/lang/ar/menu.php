@@ -58,6 +58,14 @@ return [
     'trashed_news' => 'أخباري المحذوفة',
     'add_new_new' => 'إضافة خبر جديد',
 
+    'posters' => 'البوسترات',
+    'trashed_posters' => 'البوسترات المحذوفة',
+    'add_new_poster' => 'إضافة بوستر جديد',
+
+
+
+
+
     'reports' => 'التقارير',
     'trashed_reports' => 'التقارير المحذوفة',
     'add_new_report' => 'إضافة تقرير جديد',

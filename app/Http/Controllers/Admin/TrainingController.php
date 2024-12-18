@@ -50,7 +50,6 @@ class TrainingController extends Controller
                 'photo' => $photo,
                 'started_date' => $request->started_date,
                 'language' =>  'ar_en',
-
             ]
         );
 

@@ -18,5 +18,7 @@ return [
         'articles' => 'app.articles',
         'publications' => 'app.publications',
         'news' => 'app.news',
+        'posters' => 'app.posters',
+
     ]
 ];

@@ -35,6 +35,7 @@ class RoleSeeder extends Seeder
                 'articles',
                 'publications',
                 'news',
+                'posters',
             ]),
         ]);
     }
