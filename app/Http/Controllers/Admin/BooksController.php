@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PosterRequest;
-use App\Models\Poster;
+use App\Http\Requests\BookRequest;
+use App\Models\Book;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use File;
@@ -17,48 +17,51 @@ class BooksController extends Controller
     // index
     public function index()
     {
-        $title = __('menu.posters');
-        $posters = Poster::withoutTrashed()->orderBy('created_at', 'desc')->paginate(15);
-        return view('admin.posters.index', compact('title', 'posters'));
+        $title = __('menu.books');
+        $books = Book::withoutTrashed()->orderBy('created_at', 'desc')->paginate(15);
+        return view('admin.books.index', compact('title', 'books'));
     }
 
     // create
     public function create()
     {
-        $title = __('menu.add_new_poster');
-        return view('admin.posters.create', compact('title'));
+        $title = __('menu.add_new_book');
+        return view('admin.books.create', compact('title'));
     }
 
     // store
-    public function store(PosterRequest $request)
+    public function store(BookRequest $request)
     {
 
-
-        // poster photo
+        // book photo
         if ($request->hasFile('photo')) {
             $photo_name  = $request->file('photo');
-            $photo_path_destination = public_path('/adminBoard/uploadedImages/posters//');
+            $photo_path_destination = public_path('/adminBoard/uploadedImages/books//');
             $photo = $this->saveResizeImage($photo_name, $photo_path_destination, 500, 500);
         } else {
             $photo = '';
         }
 
 
-        // poster file
+        // book file
         if ($request->hasFile('file')) {
             $file_name = $request->file('file');
-            $file_public_path =  public_path('/adminBoard/uploadedFiles/posters//');
+            $file_public_path =  public_path('/adminBoard/uploadedFiles/books//');
             $file = $this->saveFile($file_name, $file_public_path);
         } else {
             $file = '';
         }
 
         $site_lang = setting()->site_lang_ar;
-        $poster =  Poster::create(
+        $book =  Book::create(
             [
+                'title_en_slug' => slug($request->title_en),
+                'title_ar_slug' => $site_lang == 'on' ? slug($request->title_ar) : '',
                 'title_en' => $request->title_en,
                 'title_ar' => $site_lang == 'on' ? $request->title_ar : '',
-                'added_date' => $request->added_date,
+                'abstract_en' => $request->abstract_en,
+                'abstract_ar' => $site_lang == 'on' ? $request->abstract_ar : '',
+                'publish_date' => $request->publish_date,
                 'publisher_name' => $request->publisher_name,
                 'status' => 'on',
                 'photo' => $photo,
@@ -67,7 +70,7 @@ class BooksController extends Controller
             ]
         );
 
-        if ($poster) {
+        if ($book) {
             return $this->returnSuccessMessage(__('general.add_success_message'));
         }
     }
@@ -75,45 +78,48 @@ class BooksController extends Controller
     // edit
     public function edit($id)
     {
-        $title = __('posters.update_poster');
-        $poster = Poster::find($id);
-        if (!$poster) {
+        $title = __('books.update_book');
+        $book = Book::find($id);
+        if (!$book) {
             return redirect()->route('admin.not.found');
         }
-        return view('admin.posters.update', compact('title', 'poster'));
+        return view('admin.books.update', compact('title', 'book'));
     }
 
     // update
-    public function update(PosterRequest $request)
+    public function update(BookRequest $request)
     {
-        $poster = Poster::find($request->id);
-        if (!$poster) {
+
+        //return response()->json($request->all(), 200);
+
+        $book = Book::find($request->id);
+        if (!$book) {
             return redirect()->route('admin.not.found');
         }
 
         // photo upload
         if ($request->hasFile('photo')) {
-            if (!empty($poster->photo)) {
+            if (!empty($book->photo)) {
 
                 //delete old photo
-                $photo_public_path = public_path('/adminBoard/uploadedImages/posters//') . $poster->photo;
+                $photo_public_path = public_path('/adminBoard/uploadedImages/books//') . $book->photo;
                 if (File::exists($photo_public_path)) {
                     File::delete($photo_public_path);
                 }
 
                 // upload new photo
                 $photo_name = $request->file('photo');
-                $photo_destination = public_path('/adminBoard/uploadedImages/posters//');
+                $photo_destination = public_path('/adminBoard/uploadedImages/books//');
                 $photo = $this->saveResizeImage($photo_name, $photo_destination, 200, 200);
             } else {
 
                 $photo_name = $request->file('photo');
-                $photo_destination = public_path('/adminBoard/uploadedImages/posters//');
+                $photo_destination = public_path('/adminBoard/uploadedImages/books//');
                 $photo  = $this->saveResizeImage($photo_name, $photo_destination, 200, 200);
             }
         } else {
-            if (!empty($poster->photo)) {
-                $photo = $poster->photo;
+            if (!empty($book->photo)) {
+                $photo = $book->photo;
             } else {
                 $photo = '';
             }
@@ -123,26 +129,26 @@ class BooksController extends Controller
 
         // file upload
         if ($request->hasFile('file')) {
-            if (!empty($poster->file)) {
+            if (!empty($book->file)) {
 
                 //delete old file
-                $file_public_path = public_path('/adminBoard/uploadedFiles/posters//') . $poster->file;
+                $file_public_path = public_path('/adminBoard/uploadedFiles/books//') . $book->file;
                 if (File::exists($file_public_path)) {
                     File::delete($file_public_path);
                 }
 
                 // upload new file
                 $file_name = $request->file('file');
-                $file_destination = public_path('/adminBoard/uploadedFiles/posters//');
+                $file_destination = public_path('/adminBoard/uploadedFiles/books//');
                 $file = $this->saveFile($file_name, $file_destination);
             } else {
                 $file_name = $request->file('file');
-                $file_destination = public_path('/adminBoard/uploadedFiles/posters//');
+                $file_destination = public_path('/adminBoard/uploadedFiles/books//');
                 $file  = $this->saveFile($file_name, $file_destination);
             }
         } else {
-            if (!empty($poster->file)) {
-                $file = $poster->file;
+            if (!empty($book->file)) {
+                $file = $book->file;
             } else {
                 $file = '';
             }
@@ -151,15 +157,19 @@ class BooksController extends Controller
 
 
         $site_lang = setting()->site_lang_ar;
-
-        $poster->update([
-            'title_ar' => $site_lang == 'on' ?  $request->title_ar : '',
+        $book->update([
+            'title_en_slug' => slug($request->title_en),
+            'title_ar_slug' => $site_lang == 'on' ? slug($request->title_ar) : '',
             'title_en' => $request->title_en,
-            'added_date' => $request->added_date,
+            'title_ar' => $site_lang == 'on' ? $request->title_ar : '',
+            'abstract_en' => $request->abstract_en,
+            'abstract_ar' => $site_lang == 'on' ? $request->abstract_ar : '',
+            'publish_date' => $request->publish_date,
             'publisher_name' => $request->publisher_name,
+            'status' => 'on',
             'photo' => $photo,
             'file' => $file,
-            'language' => $site_lang == 'on' ? 'ar_en' : 'en',
+            'language' =>  'ar_en',
         ]);
 
         return $this->returnSuccessMessage(__('general.update_success_message'));
@@ -169,12 +179,12 @@ class BooksController extends Controller
     public function destroy(Request $request)
     {
         if ($request->ajax()) {
-            $poster = Poster::find($request->id);
-            if (!$poster) {
+            $book = Book::find($request->id);
+            if (!$book) {
                 return redirect()->route('admin.not.found');
             }
 
-            if ($poster->delete()) {
+            if ($book->delete()) {
                 return $this->returnSuccessMessage(__('general.move_to_trash'));
             } else {
                 return $this->returnError(__('general.delete_error_message'), 400);
@@ -186,21 +196,19 @@ class BooksController extends Controller
     public function trashed()
     {
         $title = __("general.trashed");
-        $trashedPosters   = Poster::onlyTrashed()->orderByDesc('deleted_at')->paginate(15);
-        return view('admin.posters.trashed', compact('title', 'trashedPosters'));
+        $trashedBooks   = Book::onlyTrashed()->orderByDesc('deleted_at')->paginate(15);
+        return view('admin.books.trashed', compact('title', 'trashedBooks'));
     }
 
     // restore
     public function restore(Request $request)
     {
         if ($request->ajax()) {
-            $poster = Poster::onlyTrashed()->find($request->id);
-            if (!$poster) {
+            $book = Book::onlyTrashed()->find($request->id);
+            if (!$book) {
                 return redirect()->route('admin.not.found');
             }
-            $poster->restore();
-            //return response()->json($poster, 200);
-            //return $this->returnData()
+            $book->restore();
             return $this->returnSuccessMessage(__('general.restore_success_message'));
         }
     }
@@ -209,27 +217,27 @@ class BooksController extends Controller
     public function forceDelete(Request $request)
     {
         if ($request->ajax()) {
-            $poster = Poster::onlyTrashed()->find($request->id);
+            $book = Book::onlyTrashed()->find($request->id);
 
-            if (!$poster) {
+            if (!$book) {
                 return redirect()->route('admin.not.found');
             }
 
-            if (!empty($poster->photo)) {
-                $photo_public_path = public_path('/adminBoard/uploadedImages/posters//') . $poster->photo;
+            if (!empty($book->photo)) {
+                $photo_public_path = public_path('/adminBoard/uploadedImages/books//') . $book->photo;
                 if (File::exists($photo_public_path)) {
                     File::delete($photo_public_path);
                 }
             }
 
-            if (!empty($poster->file)) {
-                $file_public_path = public_path('/adminBoard/uploadedFiles/posters//') . $poster->file;
+            if (!empty($book->file)) {
+                $file_public_path = public_path('/adminBoard/uploadedFiles/books//') . $book->file;
                 if (File::exists($file_public_path)) {
                     File::delete($file_public_path);
                 }
             }
 
-            $poster->forceDelete();
+            $book->forceDelete();
             return $this->returnSuccessMessage(__('general.delete_success_message'));
         }
     }
@@ -238,17 +246,17 @@ class BooksController extends Controller
     public function changeStatus(Request $request)
     {
         if ($request->ajax()) {
-            $poster  = Poster::find($request->id);
-            if (!$poster) {
+            $book  = Book::find($request->id);
+            if (!$book) {
                 return redirect()->route('admin.not.found');
             }
 
             if ($request->statusSwitch == 'true') {
-                $poster->status = 'on';
-                $poster->save();
+                $book->status = 'on';
+                $book->save();
             } else {
-                $poster->status = '';
-                $poster->save();
+                $book->status = '';
+                $book->save();
             }
 
             return $this->returnSuccessMessage(__('general.change_status_success_message'));

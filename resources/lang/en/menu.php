@@ -65,6 +65,12 @@ return [
     'trashed_posters' => 'Trashed Posters',
     'add_new_poster' => 'Add New Poster',
 
+    'books' => 'Books',
+    'trashed_books' => 'Trashed Books',
+    'add_new_book' => 'Add New Book',
+
+
+
 
 
     'abouts' => 'Abouts',

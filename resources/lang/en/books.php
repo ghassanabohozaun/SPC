@@ -34,7 +34,7 @@ return [
     'title_ar_required' => 'Arabic Book Title Required',
     'abstract_en_required' => 'English Book Abstract Required',
     'abstract_ar_required' => ' Arabic Book Abstract  Required',
-    'publisher_date_required' => 'Publish Date Required',
+    'publish_date_required' => 'Publish Date Required',
     'publisher_name_required' => 'Publish Name Required',
     'status_required' => 'status Required',
     'language_required' => 'Book Language Required',

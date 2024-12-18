@@ -62,6 +62,12 @@ return [
     'trashed_posters' => 'البوسترات المحذوفة',
     'add_new_poster' => 'إضافة بوستر جديد',
 
+    'books' => 'الكتب',
+    'trashed_books' => 'الكتب المحذوفة',
+    'add_new_book' => 'إضافة كتاب جديد',
+
+
+
 
 
 
@@ -73,11 +79,6 @@ return [
     'abouts' => 'حول الموقع',
     'trashed_abouts' => 'المحذوفات',
     'add_new_about' => 'إضافة حول الموقع جديد',
-
-
-
-
-
 
 
     'comments' => 'التعليقات',

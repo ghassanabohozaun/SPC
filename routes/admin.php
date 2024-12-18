@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ArticlesController;
+use App\Http\Controllers\Admin\BooksController;
 use App\Http\Controllers\Admin\CommentsController;
 use App\Http\Controllers\Admin\FAQController;
 use App\Http\Controllers\Admin\NewsController;
@@ -270,58 +271,17 @@ Route::group([
     ///////////////////////////////////////////////////////////////////////////////////////////
     // books routes
     Route::group(['prefix' => 'books', 'middleware' => 'can:books'], function () {
-        Route::get('/', [PostersController::class, 'index'])->name('admin.books');
-        Route::get('/create', [PostersController::class, 'create'])->name('admin.books.create');
-        Route::post('/store', [PostersController::class, 'store'])->name('admin.books.store');
-        Route::get('/edit/{id?}', [PostersController::class, 'edit'])->name('admin.books.edit');
-        Route::post('/update', [PostersController::class, 'update'])->name('admin.books.update');
-        Route::post('/destroy', [PostersController::class, 'destroy'])->name('admin.books.destroy');
-        Route::get('/trashed', [PostersController::class, 'trashed'])->name('admin.books.trashed');
-        Route::post('/force-delete', [PostersController::class, 'forceDelete'])->name('admin.books.force.delete');
-        Route::post('/restore',  [PostersController::class, 'restore'])->name('admin.books.restore');
-        Route::post('/change-status',   [PostersController::class, 'changeStatus'])->name('admin.books.change.status');
+        Route::get('/', [BooksController::class, 'index'])->name('admin.books');
+        Route::get('/create', [BooksController::class, 'create'])->name('admin.books.create');
+        Route::post('/store', [BooksController::class, 'store'])->name('admin.books.store');
+        Route::get('/edit/{id?}', [BooksController::class, 'edit'])->name('admin.books.edit');
+        Route::post('/update', [BooksController::class, 'update'])->name('admin.books.update');
+        Route::post('/destroy', [BooksController::class, 'destroy'])->name('admin.books.destroy');
+        Route::get('/trashed', [BooksController::class, 'trashed'])->name('admin.books.trashed');
+        Route::post('/force-delete', [BooksController::class, 'forceDelete'])->name('admin.books.force.delete');
+        Route::post('/restore',  [BooksController::class, 'restore'])->name('admin.books.restore');
+        Route::post('/change-status',   [BooksController::class, 'changeStatus'])->name('admin.books.change.status');
     });
-
-
-    // /////////////////////////////////////////////////////////////////////////////////////////////
-    // /// Landing Page Routes
-    // Route::group(['prefix' => 'landing-page', 'middleware' => 'can:landing-page'], function () {
-    //     /////////////////////////////////////////////////////////////////////////////////////////////
-    //     /// Sliders routes
-    //     Route::group(['prefix' => 'sliders'], function () {
-    //         Route::get('/', 'SlidersController@index')->name('admin.sliders');
-    //         Route::get('/create', 'SlidersController@create')->name('admin.sliders.create');
-    //         Route::post('/store', 'SlidersController@store')->name('admin.slider.store');
-    //         Route::get('/trashed', 'SlidersController@trashed')->name('admin.slider.trashed');
-    //         Route::post('/destroy', 'SlidersController@destroy')->name('admin.slider.destroy');
-    //         Route::post('/force-delete', 'SlidersController@forceDelete')->name('admin.slider.force.delete');
-    //         Route::post('/restore', 'SlidersController@restore')->name('admin.slider.restore');
-    //         Route::get('/edit/{id?}', 'SlidersController@edit')->name('admin.slider.edit');
-    //         Route::post('/update', 'SlidersController@update')->name('admin.slider.update');
-    //         Route::post('/change-status', 'SlidersController@changeStatus')->name('admin.slider.change.status');
-    //     });
-
-    //     /// fixed texts routes
-    //     Route::get('/', 'FixedTextsController@index')->name('admin.fixed.texts');
-    //     Route::post('/update', 'FixedTextsController@update')->name('admin.fixed.texts.update');
-
-    //     /////////////////////////////////////////////////////////////////////////////////////////////
-    //     /// Partners routes
-    //     Route::group(['prefix' => 'partners'], function () {
-    //         Route::get('/', 'PartnersController@index')->name('admin.partners');
-    //         Route::get('/create', 'PartnersController@create')->name('admin.partner.create');
-    //         Route::post('/store', 'PartnersController@store')->name('admin.partner.store');
-    //         Route::get('/trashed', 'PartnersController@trashed')->name('admin.partner.trashed');
-    //         Route::post('/destroy', 'PartnersController@destroy')->name('admin.partner.destroy');
-    //         Route::post('/force-delete', 'PartnersController@forceDelete')->name('admin.partner.force.delete');
-    //         Route::post('/restore', 'PartnersController@restore')->name('admin.partner.restore');
-    //         Route::get('/edit/{id?}', 'PartnersController@edit')->name('admin.partner.edit');
-    //         Route::post('/update', 'PartnersController@update')->name('admin.partner.update');
-    //         Route::post('/change-status', 'PartnersController@changeStatus')->name('admin.partner.change.status');
-    //     });
-    // });
-
-
 
     // /////////////////////////////////////////////////////////////////////////////////////////////
     // /// support center routes
@@ -334,87 +294,6 @@ Route::group([
     //     Route::post('/change-status', 'SupportCenterController@changeStatus')->name('admin.support.center.change.status');
     //     Route::get('/get-one-message', 'SupportCenterController@getOneMessage')->name('admin.support.center.get.one.message');
     // });
-
-
-
-    // /////////////////////////////////////////////////////////////////////////////////////////////
-    // /// project routes
-    // Route::group(['prefix' => 'project', 'middleware' => 'can:projects'], function () {
-    //     Route::get('/', [ProjectsController::class, 'index'])->name('admin.project.index');
-    //     Route::get('/create', [ProjectsController::class, 'create'])->name('admin.project.create');
-    //     Route::post('/store', [ProjectsController::class, 'store'])->name('admin.project.store');
-    //     Route::get('/edit/{id}', [ProjectsController::class, 'edit'])->name('admin.project.edit');
-    //     Route::post('/update', [ProjectsController::class, 'update'])->name('admin.project.update');
-    //     Route::get('/trashed-project', [ProjectsController::class, 'trashed'])->name('admin.project.trashed');
-    //     Route::post('/destroy', [ProjectsController::class, 'destroy'])->name('admin.project.destroy');
-    //     Route::post('/force-delete', [ProjectsController::class, 'forceDelete'])->name('admin.project.force.delete');
-    //     Route::post('/restore', [ProjectsController::class, 'restore'])->name('admin.project.restore');
-    //     Route::post('/change-status', [ProjectsController::class, 'changeStatus'])->name('admin.project.change.status');
-    // });
-
-
-    // /////////////////////////////////////////////////////////////////////////////////////////////
-    // /// publication routes
-    // Route::group(['prefix' => 'publication', 'middleware' => 'can:publications'], function () {
-    //     Route::get('/', [PublicationsController::class, 'index'])->name('admin.publication.index');
-    //     Route::get('/create', [PublicationsController::class, 'create'])->name('admin.publication.create');
-    //     Route::post('/store', [PublicationsController::class, 'store'])->name('admin.publication.store');
-    //     Route::get('/edit/{id}', [PublicationsController::class, 'edit'])->name('admin.publication.edit');
-    //     Route::post('/update', [PublicationsController::class, 'update'])->name('admin.publication.update');
-    //     Route::get('/trashed', [PublicationsController::class, 'trashed'])->name('admin.publication.trashed');
-    //     Route::post('/destroy', [PublicationsController::class, 'destroy'])->name('admin.publication.destroy');
-    //     Route::post('/force-delete', [PublicationsController::class, 'forceDelete'])->name('admin.publication.force.delete');
-    //     Route::post('/restore', [PublicationsController::class, 'restore'])->name('admin.publication.restore');
-    //     Route::post('/change-status', [PublicationsController::class, 'changeStatus'])->name('admin.publication.change.status');
-    // });
-
-    // /////////////////////////////////////////////////////////////////////////////////////////////
-    // /// report routes
-    // Route::group(['prefix' => 'report', 'middleware' => 'can:yearly-reports'], function () {
-    //     Route::get('/', [ReportController::class, 'index'])->name('admin.report.index');
-    //     Route::get('/create', [ReportController::class, 'create'])->name('admin.report.create');
-    //     Route::post('/store', [ReportController::class, 'store'])->name('admin.report.store');
-    //     Route::get('/edit/{id}', [ReportController::class, 'edit'])->name('admin.report.edit');
-    //     Route::post('/update', [ReportController::class, 'update'])->name('admin.report.update');
-    //     Route::get('/trashed', [ReportController::class, 'trashed'])->name('admin.report.trashed');
-    //     Route::post('/destroy', [ReportController::class, 'destroy'])->name('admin.report.destroy');
-    //     Route::post('/force-delete', [ReportController::class, 'forceDelete'])->name('admin.report.force.delete');
-    //     Route::post('/restore', [ReportController::class, 'restore'])->name('admin.report.restore');
-    //     Route::post('/change-status', [ReportController::class, 'changeStatus'])->name('admin.report.change.status');
-    // });
-
-
-    // /////////////////////////////////////////////////////////////////////////////////////////////
-    // /// about routes
-    // Route::group(['prefix' => 'about', 'middleware' => 'can:abouts'], function () {
-    //     Route::get('/', [AboutController::class, 'index'])->name('admin.about.index');
-    //     Route::get('/create', [AboutController::class, 'create'])->name('admin.about.create');
-    //     Route::post('/store', [AboutController::class, 'store'])->name('admin.about.store');
-    //     Route::get('/edit/{id}', [AboutController::class, 'edit'])->name('admin.about.edit');
-    //     Route::post('/update', [AboutController::class, 'update'])->name('admin.about.update');
-    //     Route::get('/trashed', [AboutController::class, 'trashed'])->name('admin.about.trashed');
-    //     Route::post('/destroy', [AboutController::class, 'destroy'])->name('admin.about.destroy');
-    //     Route::post('/force-delete', [AboutController::class, 'forceDelete'])->name('admin.about.force.delete');
-    //     Route::post('/restore', [AboutController::class, 'restore'])->name('admin.about.restore');
-    //     Route::post('/change-status', [AboutController::class, 'changeStatus'])->name('admin.about.change.status');
-    // });
-
-
-    // ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // /// team routes
-    // Route::group(['prefix' => 'teams', 'middleware' => 'can:teams'], function () {
-    //     Route::get('/', 'TeamController@index')->name('admin.teams');
-    //     Route::get('/create', 'TeamController@create')->name('admin.team.member.create');
-    //     Route::post('store', 'TeamController@store')->name('admin.team.member.store');
-    //     route::get('/edit/{id?}', 'TeamController@edit')->name('admin.team.member.edit');
-    //     route::post('/update', 'TeamController@update')->name('admin.team.member.update');
-    //     Route::get('/trashed', 'TeamController@trashed')->name('admin.team.member.trashed');
-    //     Route::post('/destroy', 'TeamController@destroy')->name('admin.destroy.team.member');
-    //     Route::post('/force-delete', 'TeamController@forceDelete')->name('admin.team.member.force.delete');
-    //     Route::post('/restore', 'TeamController@restore')->name('admin.team.member.restore');
-    //     Route::post('/change-status', 'TeamController@changeStatus')->name('admin.team.member.change.status');
-    // });
-
 
 });
 

@@ -23,5 +23,6 @@ return [
     'publications' => 'Publications Management',
     'news' => 'News Management',
     'posters' => 'Posters Management',
+    'books' => 'Books Management',
 
 ];

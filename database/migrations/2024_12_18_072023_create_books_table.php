@@ -19,14 +19,15 @@ return new class extends Migration
             $table->string('title_ar_slug')->nullable();
             $table->string('title_en')->nullable();
             $table->string('title_ar')->nullable();
-            $table->string('abstract_en')->nullable();
-            $table->string('abstract_ar')->nullable();
+            $table->longText('abstract_en')->nullable();
+            $table->longText('abstract_ar')->nullable();
             $table->string('publish_date')->nullable();
             $table->string('publisher_name')->nullable();
             $table->string('status')->nullable();
             $table->string('photo')->nullable();
             $table->string('file')->nullable();
             $table->enum('language', ['en', 'ar_en'])->default('en');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

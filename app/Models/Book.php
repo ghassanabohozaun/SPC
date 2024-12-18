@@ -11,6 +11,7 @@ class Book extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'books';
+
     protected $fillable = [
         'title_en_slug',
         'title_ar_slug',
@@ -25,5 +26,6 @@ class Book extends Model
         'file',
         'language',
     ];
+
     protected $hidden = ['updated_at'];
 }
