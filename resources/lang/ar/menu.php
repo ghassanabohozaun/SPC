@@ -66,13 +66,15 @@ return [
     'trashed_books' => 'الكتب المحذوفة',
     'add_new_book' => 'إضافة كتاب جديد',
 
-    //
+    ////// About
     'about' => 'حول الموقع',
 
+    // about spc
     'about_spc' => 'حول المركز',
     'add_new_about_spc' => 'اضافة حول المركز جديد',
 
-
+    // about site
+    'about_site'=>'عن الموقع',
 
 
 

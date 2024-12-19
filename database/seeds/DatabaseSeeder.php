@@ -1,5 +1,6 @@
 <?php
 
+use Database\Seeders\AboutSiteSeeder;
 use Database\Seeders\AboutSpcSeeder;
 use Database\Seeders\ArticleSeeder;
 use Database\Seeders\BooksSeeder;
@@ -45,6 +46,7 @@ class DatabaseSeeder extends Seeder
             PostersSeeder::class,
             BooksSeeder::class,
             AboutSpcSeeder::class,
+            AboutSiteSeeder::class,
         ]);
     }
 }

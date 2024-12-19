@@ -70,11 +70,15 @@ return [
     'add_new_book' => 'Add New Book',
 
 
-    /// about
+    ////// about
     'about' => 'About',
 
+    // about spc
     'about_spc' => 'About SPC',
     'add_new_about_spc' => 'Add New About SPC',
+
+    // about site
+    'about_site'=>'About Site',
 
 
 

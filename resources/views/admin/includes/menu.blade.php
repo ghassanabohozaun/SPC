@@ -212,8 +212,6 @@
                 </li>
             @endcan
 
-
-
             <!------------------------------------ About    ---------------------------------------------------->
             @can('about')
                 <li class="menu-item  menu-item-submenu
@@ -258,11 +256,17 @@
                                 </a>
                             </li>
 
+                            <li class="menu-item  menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                                <a href="{!! route('admin.about.site') !!}" class="menu-link menu-toggle">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i>
+                                    <span class="menu-text">{{ __('menu.about_site') }}</span>
+                                </a>
+                            </li>
+
                         </ul>
                     </div>
                 </li>
             @endcan
-
 
             <!------------------------------------ faqs ---------------------------------------------------->
             @can('faqs')

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AboutSite;
 use App\Models\AboutType;
 use App\Models\Projects;
 use App\Models\Setting;
@@ -51,6 +52,17 @@ function returnSpaceBetweenString($string)
 {
     return $string = str_replace('-', ' ', $string); // Replaces all spaces with hyphens.
 }
+
+
+
+//  about site Helper Function
+if (!function_exists('aboutSite')) {
+    function aboutSite()
+    {
+        return AboutSite::orderBy('id', 'desc')->first();
+    }
+}
+
 
 // function abouts_type()
 // {
