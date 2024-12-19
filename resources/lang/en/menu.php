@@ -70,25 +70,13 @@ return [
     'add_new_book' => 'Add New Book',
 
 
+    /// about
+    'about' => 'About',
+
+    'about_spc' => 'About SPC',
+    'add_new_about_spc' => 'Add New About SPC',
 
 
-
-    'abouts' => 'Abouts',
-    'trashed_abouts' => 'Trashed Abouts',
-    'add_new_about' => 'Add New About',
-
-    'teams' => 'Teams',
-    'trashed_teams' => 'Trashed Teams',
-    'add_new_team_member' => 'Add New Team Member',
-
-    'comments' => 'Comments',
-    'trashed_comments' => 'Trashed Comments',
-    'add_new_comment' => 'Add New Comment',
-
-    'partners' => 'Partners',
-    'trashed_partners' => 'Trashed Partners',
-    'add_new_partner' => 'Add New Partner',
 
     'fixed_texts' => 'Fixed Texts',
-
 ];

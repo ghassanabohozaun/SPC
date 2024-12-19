@@ -66,28 +66,12 @@ return [
     'trashed_books' => 'الكتب المحذوفة',
     'add_new_book' => 'إضافة كتاب جديد',
 
+    //
+    'about' => 'حول الموقع',
 
+    'about_spc' => 'حول المركز',
+    'add_new_about_spc' => 'اضافة حول المركز جديد',
 
-
-
-
-
-    'reports' => 'التقارير',
-    'trashed_reports' => 'التقارير المحذوفة',
-    'add_new_report' => 'إضافة تقرير جديد',
-
-    'abouts' => 'حول الموقع',
-    'trashed_abouts' => 'المحذوفات',
-    'add_new_about' => 'إضافة حول الموقع جديد',
-
-
-    'comments' => 'التعليقات',
-    'trashed_comments' => 'التعليقات المحذوفة',
-    'add_new_comment' => 'اضافة تعليق جديد',
-
-    'partners' => 'الشركاء',
-    'trashed_partners' => 'الشركاء المحذوفة',
-    'add_new_partner' => 'اضافة شريك جديد',
 
 
 

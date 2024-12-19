@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutSpcController;
 use App\Http\Controllers\Admin\ArticlesController;
 use App\Http\Controllers\Admin\BooksController;
 use App\Http\Controllers\Admin\CommentsController;
@@ -91,6 +92,24 @@ Route::group([
             Route::post('/change-status', [SlidersController::class, 'changeStatus'])->name('admin.sliders.change.status');
         });
     });
+
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    // about
+    Route::group(['prefix' => 'about', 'middleware' => 'can:about'], function () {
+
+        // about spc routes
+        Route::group(['prefix' => 'about-spc',], function () {
+            Route::get('/', [AboutSpcController::class, 'index'])->name('admin.about.spc');
+            Route::get('/create', [AboutSpcController::class, 'create'])->name('admin.about.spc.create');
+            Route::post('/store', [AboutSpcController::class, 'store'])->name('admin.about.spc.store');
+            Route::post('/destroy', [AboutSpcController::class, 'destroy'])->name('admin.about.spc.destroy');
+            Route::get('/edit/{id}', [AboutSpcController::class, 'edit'])->name('admin.about.spc.edit');
+            Route::post('/update', [AboutSpcController::class, 'update'])->name('admin.about.spc.update');
+            Route::post('/change-status', [AboutSpcController::class, 'changeStatus'])->name('admin.about.spc.change.status');
+        });
+
+    });
+
 
     /////////////////////////////////////////////////////////////////////////////////////////////
     /// roles routes

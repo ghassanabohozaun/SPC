@@ -24,5 +24,7 @@ return [
     'news' => 'News Management',
     'posters' => 'Posters Management',
     'books' => 'Books Management',
+    'about' => 'About Management',
+    'about_spc' => 'About SPC Management',
 
 ];
