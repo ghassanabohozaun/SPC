@@ -3,6 +3,9 @@
 return [
 
     'whom_tab' => 'Whom Tab',
+    'who_are_you_tab' => 'Who are you Tab',
+    'about_doctor_tab' => 'About Doctor Tab',
+    'why_chose_us_tab' => 'Why Chose us Tab',
 
     // whom
     'whom_en' => 'Whom | English',
@@ -71,4 +74,11 @@ return [
     'whom_brochure_mimes' =>  'Whom Profile with PDF format only',
     'whom_brochure_max' => 'Max allow Whom Profile size 10 mega',
 
+    'who_are_we_profile_mimes' =>  'Who Are We Profile with PDF format only',
+    'who_are_we_profile_max' => 'Max allow Who Are We Profile size 10 mega',
+
+    'why_chose_us_photo_image' => 'Why Chose Us must be image ',
+    'why_chose_us_photo_mimes' =>  'Why Chose Us Photo with jpeg , jpg,png format only',
+    'why_chose_us_photo_max' => 'Max allow Why Chose Us Photo size 10 mega',
 ];
+

@@ -11,13 +11,13 @@ class AboutSite extends Model
 
     protected $table = 'about_sites';
     protected $fillable = [
-        'whom_ar',
         'whom_en',
-        'contact_us_ar',
+        'whom_ar',
         'contact_us_en',
+        'contact_us_ar',
         'whom_brochure',
-        'who_are_we_ar',
         'who_are_we_en',
+        'who_are_we_ar',
         'who_are_we_profile', //borchure
         'about_doctor_en',
         'about_doctor_ar',

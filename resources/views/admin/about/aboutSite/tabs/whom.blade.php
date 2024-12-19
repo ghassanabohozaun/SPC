@@ -6,10 +6,6 @@
                 <div class="col-xl-9">
                     <!--begin::body-->
                     <div class="my-5">
-                        <div class="form-group">
-                            <input type="hidden" class="form-control form-control-solid form-control-lg"
-                                id="site_lang_ar" name="site_lang_ar" value="{!! setting()->site_lang_ar !!}">
-                        </div>
 
                         <!--begin::Group-->
                         <div class="form-group row">

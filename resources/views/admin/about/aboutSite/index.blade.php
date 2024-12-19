@@ -77,10 +77,34 @@
                                         </a>
                                     </li>
 
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="who_are_you_tab" data-toggle="tab" href="#who_are_you">
+                                            <span class="nav-icon"><i class="flaticon2-layers-2"></i></span>
+                                            <span class="nav-text">{{ __('aboutSite.who_are_you_tab') }}</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="about_doctor_tab" data-toggle="tab" href="#about_doctor">
+                                            <span class="nav-icon"><i class="flaticon2-layers-2"></i></span>
+                                            <span class="nav-text">{{ __('aboutSite.about_doctor_tab') }}</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="why_chose_us_tab" data-toggle="tab" href="#why_chose_us">
+                                            <span class="nav-icon"><i class="flaticon2-layers-2"></i></span>
+                                            <span class="nav-text">{{ __('aboutSite.why_chose_us_tab') }}</span>
+                                        </a>
+                                    </li>
+
                                 </ul>
 
                                 <div class="tab-content mt-5">
                                     @include('admin.about.aboutSite.tabs.whom')
+                                    @include('admin.about.aboutSite.tabs.who_are_you')
+                                    @include('admin.about.aboutSite.tabs.about_doctor')
+                                    @include('admin.about.aboutSite.tabs.why_chose_us')
                                 </div>
 
                             </div>
@@ -112,15 +136,9 @@
         $('#about_site_update_from').on('submit', function(e) {
             e.preventDefault();
             ////////////////////////////////////////////////////////////////////
-            $('#title_en_error').text('');
-            $('#title_ar_error').text('');
-            $('#details_ar_error').text('');
-            $('#details_en_error').text('');
+            $('#whom_brochure_error').text('');
 
-            $('#title_en').css('border-color', '');
-            $('#title_ar').css('border-color', '');
-            $('#details_en').css('border-color', '');
-            $('#details_ar').css('border-color', '');
+            $('#whom_brochure').css('border-color', '');
             ///////////////////////////////////////////////////////////////////
 
             var data = new FormData(this);

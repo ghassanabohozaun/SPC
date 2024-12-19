@@ -1,7 +1,12 @@
 <?php
 
 return [
-    'whom_tab' => 'من',
+    'whom_tab' => 'تبويب من ',
+    'who_are_you_tab' => 'تبويب من نحن',
+    'about_doctor_tab' => 'تبويب عن الدكتور',
+    'why_chose_us_tab' => 'تبويب بماذا تختارنا',
+
+
 
     // whom
     'whom_en' => 'من | انجليزي',
@@ -59,5 +64,12 @@ return [
 
     'whom_brochure_mimes' => 'يجب ان يكون بروفايل من  بصيغة  pdf',
     'whom_brochure_max' => 'حجم بروفايل من المسموح به  10 ميجا فقط',
+
+    'who_are_we_profile_mimes' => 'يجب ان يكون بروفايل من نحن من  بصيغة  pdf',
+    'who_are_we_profile_max' => 'حجم بروفايل من نحن  المسموح به  10 ميجا فقط',
+
+    'why_chose_us_photo_image' => 'بروفايل لماذا اخترتنا يجب ان تكون صورة',
+    'why_chose_us_photo_mimes' => 'يجب ان يكون بروفايل لماذا اخترتنا من  بصيغة  jpeg , jpg,png',
+    'why_chose_us_photo_max' => 'حجم بروفايل لماذا اخترتنا المسموح به  10 ميجا فقط',
 
 ];
