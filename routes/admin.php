@@ -1,21 +1,31 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutSiteController;
 use App\Http\Controllers\Admin\AboutSpcController;
+use App\Http\Controllers\Admin\AdminsController;
 use App\Http\Controllers\Admin\ArticlesController;
 use App\Http\Controllers\Admin\BooksController;
 use App\Http\Controllers\Admin\CommentsController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FAQController;
+use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PhotoAlbumsController;
 use App\Http\Controllers\Admin\PostersController;
 use App\Http\Controllers\Admin\PublicationsController;
 use App\Http\Controllers\Admin\ServicesController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\SlidersController;
+use App\Http\Controllers\Admin\Test\TestAnswerController;
+use App\Http\Controllers\Admin\Test\TestQuestionController;
+use App\Http\Controllers\Admin\Test\TestScaleController;
+use App\Http\Controllers\Admin\Test\TestsController;
 use App\Http\Controllers\Admin\TestimonialsController;
 use App\Http\Controllers\Admin\TrainingController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VideosController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AboutSiteController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,48 +44,58 @@ Route::group(
     function () {
         //////////////////////////////////////////////////////////////////
         /// not found page
-        Route::get('/notFound', 'DashboardController@notFound')->name('admin.not.found');
 
+        Route::get('/notFound', [DashboardController::class, 'notFound'])->name('admin.not.found');
         /////////////////////////////////////////////////////////////////////////////////////////////
         /// dashboard
-        Route::get('/', 'DashboardController@index')->name('admin.dashboard')->middleware('can:dashboard');
-        Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard')->middleware('can:dashboard');
+        Route::get('/', [DashboardController::class, 'index'])
+            ->name('admin.dashboard')
+            ->middleware('can:dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'index'])
+            ->name('admin.dashboard')
+            ->middleware('can:dashboard');
 
         /////////////////////////////////////////////////////////////////////////////////////////////
         /// settings
 
         Route::group(['middleware' => 'can:settings'], function () {
-            Route::get('settings', 'SettingsController@index')->name('get.admin.settings')->middleware('can:settings');
-            Route::post('settings', 'SettingsController@storeSettings')->name('store.admin.settings')->middleware('can:settings');
-            Route::post('switch-ar-lang', 'SettingsController@switchArabicLang')->name('switch.arabic.lang');
-            Route::post('switch-frontend-lang', 'SettingsController@switchFrontendLang')->name('switch.frontend.lang');
+            Route::get('settings', [SettingsController::class, 'index'])
+                ->name('get.admin.settings')
+                ->middleware('can:settings');
+            Route::post('settings', [SettingsController::class, 'storeSettings'])
+                ->name('store.admin.settings')
+                ->middleware('can:settings');
+            Route::post('switch-ar-lang', [SettingsController::class, 'switchArabicLang'])->name('switch.arabic.lang');
+            Route::post('switch-frontend-lang', [SettingsController::class, 'switchFrontendLang'])->name('switch.frontend.lang');
         });
 
         /////////////////////////////////////////////////////////////////////////////////////////////
         /// admin routes
-        Route::group(['middleware' => 'can:admins'], function () {
-            Route::get('/admin', 'AdminsController@index')->name('get.admin')->middleware('can:admins');
-            Route::get('/get-admin-by-id', 'AdminsController@getAdminById')->name('get.admin.by.id');
-            Route::post('/admin-update', 'AdminsController@adminUpdate')->name('admin.update');
-        });
 
+        Route::group(['middleware' => 'can:admins'], function () {
+            Route::get('/admin', [AdminsController::class, 'index'])->name('get.admin');
+            Route::get('/get-admin-by-id', [AdminsController::class, 'getAdminById'])->name('get.admin.by.id');
+            Route::post('/admin-update', [AdminsController::class, 'adminUpdate'])->name('admin.update');
+        });
         /////////////////////////////////////////////////////////////////////////////////////////////
         /// users routes
+
         Route::group(['prefix' => 'users', 'middleware' => 'can:users'], function () {
-            Route::get('/', 'UserController@index')->name('users');
-            Route::post('/destroy', 'UserController@destroy')->name('user.destroy');
-            Route::post('/change-status', 'UserController@changeStatus')->name('user.change.status');
-            Route::get('/create', 'UserController@create')->name('user.create');
-            Route::post('store', 'UserController@store')->name('user.store');
-            Route::get('/edit/{id?}', 'UserController@edit')->name('user.edit');
-            Route::post('update', 'UserController@update')->name('user.update');
-            Route::get('/trashed', 'UserController@trashed')->name('users.trashed');
-            Route::post('/force-delete', 'UserController@forceDelete')->name('user.force.delete');
-            Route::post('/restore', 'UserController@restore')->name('user.restore');
+            Route::get('/', [UserController::class, 'index'])->name('users');
+            Route::post('/destroy', [UserController::class, 'destroy'])->name('user.destroy');
+            Route::post('/change-status', [UserController::class, 'changeStatus'])->name('user.change.status');
+            Route::get('/create', [UserController::class, 'create'])->name('user.create');
+            Route::post('store', [UserController::class, 'store'])->name('user.store');
+            Route::get('/edit/{id?}', [UserController::class, 'edit'])->name('user.edit');
+            Route::post('update', [UserController::class, 'update'])->name('user.update');
+            Route::get('/trashed', [UserController::class, 'trashed'])->name('users.trashed');
+            Route::post('/force-delete', [UserController::class, 'forceDelete'])->name('user.force.delete');
+            Route::post('/restore', [UserController::class, 'restore'])->name('user.restore');
         });
 
         /////////////////////////////////////////////////////////////////////////////////////////////
         // home
+
         Route::group(['prefix' => 'landing-page', 'middleware' => 'can:landing-page'], function () {
             // sliders routes
             Route::group(['prefix' => 'sliders'], function () {
@@ -94,6 +114,7 @@ Route::group(
 
         /////////////////////////////////////////////////////////////////////////////////////////////
         // about
+
         Route::group(['prefix' => 'about', 'middleware' => 'can:about'], function () {
             // about spc routes
             Route::group(['prefix' => 'about-spc'], function () {
@@ -109,12 +130,12 @@ Route::group(
             Route::group(['prefix' => 'about-site'], function () {
                 Route::get('/', [AboutSiteController::class, 'index'])->name('admin.about.site');
                 Route::post('/update', [AboutSiteController::class, 'update'])->name('admin.about.site.update');
-
             });
         });
 
         /////////////////////////////////////////////////////////////////////////////////////////////
         /// roles routes
+
         Route::group(['prefix' => 'roles', 'middleware' => 'can:roles'], function () {
             Route::get('/', 'RolesController@index')->name('admin.roles');
             Route::get('/get-roles', 'RolesController@getRoles')->name('get.admin.roles');
@@ -304,6 +325,41 @@ Route::group(
             Route::post('/change-status', [BooksController::class, 'changeStatus'])->name('admin.books.change.status');
         });
 
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        // tests routes
+        Route::group(['prefix' => 'tests', 'middleware' => 'can:tests'], function () {
+            Route::get('/', [TestsController::class, 'index'])->name('admin.tests');
+            Route::get('/create', [TestsController::class, 'create'])->name('admin.tests.create');
+            Route::post('/store', [TestsController::class, 'store'])->name('admin.tests.store');
+            Route::get('/trashed', [TestsController::class, 'trashed'])->name('admin.tests.trashed');
+            Route::post('/destroy', [TestsController::class, 'destroy'])->name('admin.tests.destroy');
+            Route::post('/restore', [TestsController::class, 'restore'])->name('admin.tests.restore');
+            Route::post('/force-delete', [TestsController::class, 'forceDelete'])->name('admin.tests.force.delete');
+            Route::get('/edit/{id?}', [TestsController::class, 'edit'])->name('admin.tests.edit');
+            Route::post('/update', [TestsController::class, 'update'])->name('admin.tests.update');
+            Route::post('/change-status', [TestsController::class, 'changeStatus'])->name('admin.tests.change.status');
+
+            Route::group(['prefix' => 'questions'], function () {
+                Route::post('/store', [TestQuestionController::class, 'store'])->name('admin.questions.store');
+                Route::get('/get-questions-by-test-id', [TestQuestionController::class, 'getQuestionsByTestId'])->name('admin.get.questions.by.test.id');
+                Route::post('/delete',[TestQuestionController::class, 'delete'])->name('admin.questions.delete');
+
+            });
+
+            Route::group(['prefix' => 'answers'], function () {
+                Route::post('/store', [TestAnswerController::class, 'store'])->name('admin.answers.store');
+                Route::get('/get-answers-by-test-id', [TestAnswerController::class, 'getAnswersByTestId'])->name('admin.get.answers.by.test.id');
+                Route::post('/delete',[TestAnswerController::class, 'delete'])->name('admin.answers.delete');
+            });
+
+            Route::group(['prefix' => 'scales'], function () {
+                Route::post('/store', [TestScaleController::class, 'store'])->name('admin.scales.store');
+                Route::get('/get-scales-by-test-id', [TestScaleController::class, 'getScalesByTestId'])->name('admin.get.scales.by.test.id');
+                Route::post('/delete',[TestScaleController::class, 'delete'])->name('admin.scales.delete');
+            });
+
+        });
+
         // /////////////////////////////////////////////////////////////////////////////////////////////
         // /// support center routes
         // Route::group(['prefix' => 'support-center', 'middleware' => 'can:support-center'], function () {
@@ -321,12 +377,9 @@ Route::group(
 /////////////////////////////////////////////////////////////////////////////////////////////
 /// Guest => that mean:must not be admin => because any one must be able to access login page
 Route::group(['namespace' => 'Admin', 'middleware' => 'guest:admin'], function () {
-    Route::get('/', 'LoginController@getLogin')->name('get.admin.login');
-    Route::post('/', 'LoginController@doLogin')->name('admin.login');
-    Route::get('/login2', function () {
-        return view('admin.auth.login2');
-    });
+    Route::get('/', [LoginController::class, 'getLogin'])->name('get.admin.login');
+    Route::post('/', [LoginController::class, 'doLogin'])->name('admin.login');
 });
 /////////////////////////////////////////////////////////////////////////////////////////////
 /// Logout
-Route::get('logout', 'Admin\LoginController@logout')->name('admin.logout');
+Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');

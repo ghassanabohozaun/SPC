@@ -80,6 +80,9 @@ return [
     // about site
     'about_site'=>'About Site',
 
+    'tests' => 'Tests',
+    'trashed_tests' => 'Trashed Tests',
+    'add_new_test' => 'Add New Test',
 
 
     'fixed_texts' => 'Fixed Texts',

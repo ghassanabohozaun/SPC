@@ -53,6 +53,7 @@ return [
     'restore' => 'Restore',
     'submit' => 'Submit',
     'download' => 'Download',
+    'flag' => 'Flag',
 
     'change_image' => 'Change image',
     'image_format_allow' => 'Allowed file types jpg,jpeg,png',

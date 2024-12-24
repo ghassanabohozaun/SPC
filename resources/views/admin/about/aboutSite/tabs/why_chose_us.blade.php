@@ -18,7 +18,7 @@
 
                                     @if (AboutSite()->why_chose_us_photo)
                                         <div class="image-input-wrapper"
-                                            style="background-image: url({{ asset('adminBoard/uploadedImages/AboutSites/' . AboutSite()->why_chose_us_photo) }})">
+                                            style="background-image: url({{ asset('adminBoard/uploadedImages/about_sites/' . AboutSite()->why_chose_us_photo) }})">
                                         </div>
                                     @else
                                         <div class="image-input-wrapper"></div>
@@ -59,13 +59,16 @@
 
 
                         <!--begin::Group-->
-                        <div class="form-group">
-                            <label>{{ __('aboutSite.why_chose_us_title_ar') }}</label>
-                            <input type="text" class="form-control form-control-solid form-control-lg"
-                                name="why_chose_us_title_ar" id="why_chose_us_title_ar" value="{!! AboutSite()->why_chose_us_title_ar !!}"
-                                placeholder="{{ __('aboutSite.enter_why_chose_us_title_ar') }}" autocomplete="off">
-                            <span class="form-text text-danger" id="why_chose_us_title_ar_error"></span>
-                        </div>
+                        @if (setting()->site_lang_ar == 'on')
+                            <div class="form-group">
+                                <label>{{ __('aboutSite.why_chose_us_title_ar') }}</label>
+                                <input type="text" class="form-control form-control-solid form-control-lg"
+                                    name="why_chose_us_title_ar" id="why_chose_us_title_ar"
+                                    value="{!! AboutSite()->why_chose_us_title_ar !!}"
+                                    placeholder="{{ __('aboutSite.enter_why_chose_us_title_ar') }}" autocomplete="off">
+                                <span class="form-text text-danger" id="why_chose_us_title_ar_error"></span>
+                            </div>
+                        @endif
                         <!--end::Group-->
 
 
@@ -78,11 +81,15 @@
                         <!--end::Group-->
 
                         <!--begin::Group-->
-                        <div class="form-group">
-                            <label> {{ __('aboutSite.why_chose_us_details_ar') }}</label>
-                            <textarea class="form-control summernote" name="why_chose_us_details_ar" id="why_chose_us_details_ar">{!! AboutSite()->why_chose_us_details_ar !!}</textarea>
-                            <span class="form-text text-danger" id="why_chose_us_details_ar_error"></span>
-                        </div>
+                        @if (setting()->site_lang_ar == 'on')
+                            <div class="form-group">
+                                <label> {{ __('aboutSite.why_chose_us_details_ar') }}</label>
+                                <textarea class="form-control summernote" name="why_chose_us_details_ar" id="why_chose_us_details_ar">
+                                    {!! AboutSite()->why_chose_us_details_ar !!}
+                                </textarea>
+                                <span class="form-text text-danger" id="why_chose_us_details_ar_error"></span>
+                            </div>
+                        @endif
                         <!--end::Group-->
 
                     </div>

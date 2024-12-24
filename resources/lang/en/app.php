@@ -26,5 +26,5 @@ return [
     'books' => 'Books Management',
     'about' => 'About Management',
     'about_spc' => 'About SPC Management',
-
+    'tests' => 'Tests Management',
 ];

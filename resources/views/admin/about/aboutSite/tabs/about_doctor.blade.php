@@ -16,11 +16,13 @@
                         <!--end::Group-->
 
                         <!--begin::Group-->
-                        <div class="form-group">
-                            <label> {{ __('aboutSite.about_doctor_ar') }}</label>
-                            <textarea class="form-control summernote" name="about_doctor_ar" id="about_doctor_ar">{!! AboutSite()->about_doctor_ar !!}</textarea>
-                            <span class="form-text text-danger" id="about_doctor_ar_error"></span>
-                        </div>
+                        @if (setting()->site_lang_ar == 'on')
+                            <div class="form-group">
+                                <label> {{ __('aboutSite.about_doctor_ar') }}</label>
+                                <textarea class="form-control summernote" name="about_doctor_ar" id="about_doctor_ar">{!! AboutSite()->about_doctor_ar !!}</textarea>
+                                <span class="form-text text-danger" id="about_doctor_ar_error"></span>
+                            </div>
+                        @endif
                         <!--end::Group-->
 
 

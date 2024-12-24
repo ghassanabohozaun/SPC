@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('about_spcs', function (Blueprint $table) {
+        Schema::create('test_scales', function (Blueprint $table) {
             $table->id();
-            $table->string('title_ar')->nullable();
-            $table->string('title_en')->nullable();
-            $table->longText('details_ar')->nullable();
-            $table->longText('details_en')->nullable();
-            $table->string('status')->nullable();
-            $table->enum('language', ['en', 'ar_en'])->default('en');
+            $table->text('statement')->nullable();
+            $table->longText('evaluation')->nullable();
+            $table->double('minimum')->nullable();
+            $table->double('maximum')->nullable();
+            $table->string('photo')->nullable();
+            $table->foreignId('test_id')->constrained('id')->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('about_spcs');
+        Schema::dropIfExists('test_scales');
     }
 };

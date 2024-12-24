@@ -41,11 +41,13 @@
                         <!--end::Group-->
 
                         <!--begin::Group-->
-                        <div class="form-group">
-                            <label> {{ __('aboutSite.whom_ar') }}</label>
-                            <textarea class="form-control summernote" name="whom_ar" id="whom_ar">{!! AboutSite()->whom_ar !!}</textarea>
-                            <span class="form-text text-danger" id="whom_ar_error"></span>
-                        </div>
+                        @if (setting()->site_lang_ar == 'on')
+                            <div class="form-group">
+                                <label> {{ __('aboutSite.whom_ar') }}</label>
+                                <textarea class="form-control summernote" name="whom_ar" id="whom_ar">{!! AboutSite()->whom_ar !!}</textarea>
+                                <span class="form-text text-danger" id="whom_ar_error"></span>
+                            </div>
+                        @endif
                         <!--end::Group-->
 
                         <!--begin::Group-->
@@ -57,11 +59,13 @@
                         <!--end::Group-->
 
                         <!--begin::Group-->
-                        <div class="form-group">
-                            <label> {{ __('aboutSite.contact_us_ar') }}</label>
-                            <textarea class="form-control summernote" name="contact_us_ar" id="contact_us_ar">{!! AboutSite()->contact_us_ar !!}</textarea>
-                            <span class="form-text text-danger" id="contact_us_ar_error"></span>
-                        </div>
+                        @if (setting()->site_lang_ar == 'on')
+                            <div class="form-group">
+                                <label> {{ __('aboutSite.contact_us_ar') }}</label>
+                                <textarea class="form-control summernote" name="contact_us_ar" id="contact_us_ar">{!! AboutSite()->contact_us_ar !!}</textarea>
+                                <span class="form-text text-danger" id="contact_us_ar_error"></span>
+                            </div>
+                        @endif
                         <!--end::Group-->
 
                     </div>

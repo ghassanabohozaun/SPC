@@ -106,27 +106,16 @@
                                     @include('admin.about.aboutSite.tabs.about_doctor')
                                     @include('admin.about.aboutSite.tabs.why_chose_us')
                                 </div>
-
                             </div>
 
                         </div>
                         <!--end::Card-->
-
-
                     </div>
-
                 </div>
                 <!--end::Row-->
-
-
             </div>
             <!--end::Container-->
-
-            <!--begin::Form-->
-
-
         </div>
-
         <!--end::content-->
 
     </form>

@@ -56,6 +56,7 @@ return [
     'restore' => 'استرجاع',
     'submit' => 'إرسال',
     'download' => 'التحميل',
+    'flag' => 'علم',
 
     'change_image' => 'تغير الصورة',
     'image_format_allow' => 'صيغ الصور المسموح بها هي jpg ,jpeg, png فقط',

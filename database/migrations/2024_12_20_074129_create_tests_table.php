@@ -13,13 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('about_spcs', function (Blueprint $table) {
+        Schema::create('tests', function (Blueprint $table) {
             $table->id();
-            $table->string('title_ar')->nullable();
-            $table->string('title_en')->nullable();
-            $table->longText('details_ar')->nullable();
-            $table->longText('details_en')->nullable();
+            $table->text('test_name_slug')->nullable();
+            $table->text('test_name')->nullable();
+            $table->longText('test_details')->nullable();
+            $table->integer('question_count')->default('0');
+            $table->integer('metrics_count')->default('0');
+            $table->string('added_date')->nullable();
+            $table->integer('number_times_of_use')->default('0');
             $table->string('status')->nullable();
+            $table->string('file')->nullable();
+            $table->string('test_photo')->nullable();
             $table->enum('language', ['en', 'ar_en'])->default('en');
             $table->softDeletes();
             $table->timestamps();
@@ -33,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('about_spcs');
+        Schema::dropIfExists('tests');
     }
 };

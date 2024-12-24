@@ -41,11 +41,13 @@
                         <!--end::Group-->
 
                         <!--begin::Group-->
-                        <div class="form-group">
-                            <label> {{ __('aboutSite.who_are_we_ar') }}</label>
-                            <textarea class="form-control summernote" name="who_are_we_ar" id="who_are_we_ar">{!! AboutSite()->who_are_we_ar !!}</textarea>
-                            <span class="form-text text-danger" id="who_are_we_ar_error"></span>
-                        </div>
+                        @if (setting()->site_lang_ar == 'on')
+                            <div class="form-group">
+                                <label> {{ __('aboutSite.who_are_we_ar') }}</label>
+                                <textarea class="form-control summernote" name="who_are_we_ar" id="who_are_we_ar">{!! AboutSite()->who_are_we_ar !!}</textarea>
+                                <span class="form-text text-danger" id="who_are_we_ar_error"></span>
+                            </div>
+                        @endif
                         <!--end::Group-->
 
 

@@ -28,6 +28,7 @@ class RoleSeeder extends Seeder
                 'landing-page',
                 'about',
                 'about_spc',
+                'tests',
                 'faqs',
                 'trainings',
                 'videos',

@@ -30,13 +30,13 @@ trait GeneralTrait
         ];
     }
     ////////////////////////////////////////////////////////////////////////
-    public function returnData($msg = "", $key, $value)
+    public function returnData($msg = "", $data)
     {
         return response()->json([
             'status' => true,
             'errNum' => "",
             'msg' => $msg,
-            $key => $value
+            'data' => $data
         ]);
     }
     ////////////////////////////////////////////////////////////////////////

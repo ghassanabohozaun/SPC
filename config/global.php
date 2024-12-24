@@ -22,6 +22,6 @@ return [
         'news' => 'app.news',
         'posters' => 'app.posters',
         'books' => 'app.books',
-
+        'tests' => 'app.tests',
     ]
 ];

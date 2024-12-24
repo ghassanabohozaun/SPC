@@ -137,19 +137,19 @@ class AboutSiteController extends Controller
             if (!empty($aboutSite->why_chose_us_photo)) {
 
                 //delete old photo
-                $public_path = public_path('/adminBoard/uploadedImages/AboutSites//') . $aboutSite->why_chose_us_photo;
+                $public_path = public_path('/adminBoard/uploadedImages/about_sites//') . $aboutSite->why_chose_us_photo;
                 if (File::exists($public_path)) {
                     File::delete($public_path);
                 }
 
                 // upload new photo
                 $photo_file = $request->file('why_chose_us_photo');
-                $photo_destination = public_path('/adminBoard/uploadedImages/AboutSites//');
+                $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
                 $photo = $this->saveResizeImage($photo_file, $photo_destination, 400, 400);
             } else {
 
                 $photo_file = $request->file('why_chose_us_photo');
-                $photo_destination = public_path('/adminBoard/uploadedImages/AboutSites//');
+                $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
                 $photo  = $this->saveResizeImage($photo_file, $photo_destination, 400, 400);
             }
         } else {
