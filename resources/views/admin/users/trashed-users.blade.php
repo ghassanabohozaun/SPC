@@ -1,11 +1,11 @@
 @extends('layouts.admin')
-@section('title') @endsection
+@section('title')
+@endsection
 @section('content')
 
     <!--begin::Subheader-->
     <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
-        <div
-            class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
             <!--begin::Info-->
             <div class="d-flex align-items-center flex-wrap mr-2">
 
@@ -14,18 +14,18 @@
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item">
                         <a href="{!! route('users') !!}" class="text-muted">
-                            {{__('menu.users')}}
+                            {{ __('menu.users') }}
                         </a>
                     </li>
                     <li class="breadcrumb-item">
                         <a href="#" class="text-muted">
-                            {{__('menu.trashed_users')}}
+                            {{ __('menu.trashed_users') }}
                         </a>
                     </li>
 
                     <li class="breadcrumb-item">
                         <a href="{!! route('users.trashed') !!}" class="text-muted">
-                            {{__('menu.show_all')}}
+                            {{ __('menu.show_all') }}
                         </a>
                     </li>
                 </ul>
@@ -37,10 +37,9 @@
 
             <!--begin::Toolbar-->
             <div class="d-flex align-items-center">
-                <a href="{!! route('user.create') !!}"
-                   class="btn btn-primary btn-sm font-weight-bold font-size-base mr-1">
+                <a href="{!! route('user.create') !!}" class="btn btn-primary btn-sm font-weight-bold font-size-base mr-1">
                     <i class="fa fa-plus-square"></i>
-                    {{__('menu.add_new_user')}}
+                    {{ __('menu.add_new_user') }}
                 </a>
                 &nbsp;
             </div>
@@ -69,84 +68,82 @@
                                             <div class="table-responsive">
                                                 <table class="table myTable table-hover" id="myTable">
                                                     <thead>
-                                                    <tr>
-                                                        <th>{!! __('users.photo') !!}</th>
-                                                        <th>{!! __('users.name') !!}</th>
-                                                        <th>{!! __('users.email') !!}</th>
-                                                        <th>{!! __('users.mobile') !!}</th>
-                                                        <th>{!! __('users.role_id') !!}</th>
-                                                        <th class="text-center"
-                                                            style="width: 100px;">{!! __('general.actions') !!}</th>
-                                                    </tr>
+                                                        <tr>
+                                                            <th>{!! __('users.photo') !!}</th>
+                                                            <th>{!! __('users.name') !!}</th>
+                                                            <th>{!! __('users.email') !!}</th>
+                                                            <th>{!! __('users.mobile') !!}</th>
+                                                            <th>{!! __('users.role_id') !!}</th>
+                                                            <th class="text-center" style="width: 100px;">
+                                                                {!! __('general.actions') !!}</th>
+                                                        </tr>
                                                     </thead>
                                                     <tbody>
-                                                    @forelse($trashedUsers as $user)
-                                                        <tr>
-                                                            <td>
-                                                                @if($user->photo == null)
-                                                                    @if($user->gender == __('general.male'))
-                                                                        <img
-                                                                            src="{{asset('adminBoard/images/male.jpeg')}}"
-                                                                            class="img-fluid img-thumbnail table-image "/>
+                                                        @forelse($trashedUsers as $user)
+                                                            <tr>
+                                                                <td>
+                                                                    @if ($user->photo == null)
+                                                                        @if ($user->gender == __('general.male'))
+                                                                            <img src="{{ asset('adminBoard/images/male.jpeg') }}"
+                                                                                class="img-fluid img-thumbnail table-image " />
+                                                                        @else
+                                                                            <img src="{{ asset('adminBoard/images/female.jpeg') }}"
+                                                                                class="img-fluid img-thumbnail table-image " />
+                                                                        @endif
                                                                     @else
-                                                                        <img
-                                                                            src="{{asset('adminBoard/images/female.jpeg')}}"
-                                                                            class="img-fluid img-thumbnail table-image "/>
+                                                                        <img src="{{ asset('adminBoard/uploadedImages/admin/' . $user->photo) }}"
+                                                                            class="img-fluid img-thumbnail table-image " />
                                                                     @endif
-                                                                @else
-                                                                    <img src="{{asset('adminBoard/uploadedImages/users/'.$user->photo)}}"
-                                                                         class="img-fluid img-thumbnail table-image "/>
-                                                                @endif
-                                                            </td>
+                                                                </td>
 
-                                                            <td>{{ $user->name }}</td>
-                                                            <td>{{ $user->email }}</td>
-                                                            <td>{{ $user->mobile }}</td>
+                                                                <td>{{ $user->name }}</td>
+                                                                <td>{{ $user->email }}</td>
+                                                                <td>{{ $user->mobile }}</td>
 
-                                                            <td>
-                                                                @if(Lang()=='ar')
-                                                                    <span class="text-info">
-                                                                        {!! $user->role->role_name_ar !!}
-                                                                    </span>
-                                                                @else
-                                                                    <span class="text-info">
-                                                                        {!! $user->role->role_name_en !!}
-                                                                    </span>
-                                                                @endif
-                                                            </td>
+                                                                <td>
+                                                                    @if (Lang() == 'ar')
+                                                                        <span class="text-info">
+                                                                            {!! $user->role->role_name_ar !!}
+                                                                        </span>
+                                                                    @else
+                                                                        <span class="text-info">
+                                                                            {!! $user->role->role_name_en !!}
+                                                                        </span>
+                                                                    @endif
+                                                                </td>
 
-                                                            <td>
-                                                                <a class="btn btn-hover-warning btn-icon btn-pill restore_user_btn"
-                                                                   data-id="{{$user->id}}"
-                                                                   title="{{__('general.restore')}}">
-                                                                    <i class="fa fa-trash-restore fa-1x"></i>
-                                                                </a>
+                                                                <td>
+                                                                    <a class="btn btn-hover-warning btn-icon btn-pill restore_user_btn"
+                                                                        data-id="{{ $user->id }}"
+                                                                        title="{{ __('general.restore') }}">
+                                                                        <i class="fa fa-trash-restore fa-1x"></i>
+                                                                    </a>
 
-                                                                <a href="#"
-                                                                   class="btn btn-hover-danger btn-icon btn-pill force_delete_user_btn"
-                                                                   data-id="{{$user->id}}"
-                                                                   title="{{__('general.force_delete')}}">
-                                                                    <i class="fa fa-trash-alt fa-1x"></i>
-                                                                </a>
+                                                                    <a href="#"
+                                                                        class="btn btn-hover-danger btn-icon btn-pill force_delete_user_btn"
+                                                                        data-id="{{ $user->id }}"
+                                                                        title="{{ __('general.force_delete') }}">
+                                                                        <i class="fa fa-trash-alt fa-1x"></i>
+                                                                    </a>
 
-                                                            </td>
-                                                        </tr>
-                                                    @empty
-                                                        <tr>
-                                                            <td colspan="6" class="text-center">
-                                                                {!! __('users.no_users_found') !!}
-                                                            </td>
-                                                        </tr>
-                                                    @endforelse
+                                                                </td>
+                                                            </tr>
+                                                        @empty
+                                                            <tr>
+                                                                <td colspan="6" class="text-center">
+                                                                    {!! __('users.no_users_found') !!}
+                                                                </td>
+                                                            </tr>
+                                                        @endforelse
                                                     </tbody>
                                                     <tfoot>
-                                                    <tr>
-                                                        <td colspan="6">
-                                                            <div class="float-right">
-                                                                {!! $trashedUsers->appends(request()->all())->links() !!}
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                        <tr>
+                                                            <td colspan="6">
+                                                                <div class="float-right">
+                                                                    {!! $trashedUsers->appends(request()->all())->links() !!}
+                                                                </div>
+                                                            </td>
+                                                        </tr>
                                                     </tfoot>
                                                 </table>
                                             </div>
@@ -177,32 +174,34 @@
 
 @endsection
 @push('js')
-
     <script type="text/javascript">
         ///////////////////////////////////////////////////
         /// Delete user
-        $(document).on('click', '.force_delete_user_btn', function (e) {
+        $(document).on('click', '.force_delete_user_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
             Swal.fire({
-                title: "{{__('general.ask_permanent_delete_record')}}",
+                title: "{{ __('general.ask_permanent_delete_record') }}",
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonText: "{{__('general.yes')}}",
-                cancelButtonText: "{{__('general.no')}}",
+                confirmButtonText: "{{ __('general.yes') }}",
+                cancelButtonText: "{{ __('general.no') }}",
                 reverseButtons: false,
                 allowOutsideClick: false,
-            }).then(function (result) {
+            }).then(function(result) {
                 if (result.value) {
                     //////////////////////////////////////
                     // Delete User
                     $.ajax({
                         url: '{!! route('user.force.delete') !!}',
-                        data: {id, id},
+                        data: {
+                            id,
+                            id
+                        },
                         type: 'post',
                         dataType: 'json',
-                        success: function (data) {
+                        success: function(data) {
                             console.log(data);
                             if (data.status == true) {
                                 Swal.fire({
@@ -210,13 +209,15 @@
                                     text: "{!! __('general.delete_success_message') !!}",
                                     icon: "success",
                                     allowOutsideClick: false,
-                                    customClass: {confirmButton: 'delete_user_button'}
+                                    customClass: {
+                                        confirmButton: 'delete_user_button'
+                                    }
                                 });
-                                $('.delete_user_button').click(function () {
+                                $('.delete_user_button').click(function() {
                                     $('#myTable').load(location.href + (' #myTable'));
                                 });
                             }
-                        },//end success
+                        }, //end success
                     });
 
                 } else if (result.dismiss === "cancel") {
@@ -225,7 +226,9 @@
                         text: "{!! __('general.error_message') !!}",
                         icon: "error",
                         allowOutsideClick: false,
-                        customClass: {confirmButton: 'cancel_delete_user_button'}
+                        customClass: {
+                            confirmButton: 'cancel_delete_user_button'
+                        }
                     })
                 }
             });
@@ -234,23 +237,26 @@
 
         ////////////////////////////////////////////////////
         // restore user
-        $(document).on('click', '.restore_user_btn', function (e) {
+        $(document).on('click', '.restore_user_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
             $.ajax({
-                url: "{{route('user.restore')}}",
-                data: {id, id},
+                url: "{{ route('user.restore') }}",
+                data: {
+                    id,
+                    id
+                },
                 type: 'post',
                 dataType: 'JSON',
-                beforeSend: function () {
+                beforeSend: function() {
                     KTApp.blockPage({
                         overlayColor: '#000000',
                         state: 'danger',
-                        message: "{{__('general.please_wait')}}",
+                        message: "{{ __('general.please_wait') }}",
                     });
                 },
-                success: function (data) {
+                success: function(data) {
                     KTApp.unblockPage();
                     console.log(data);
                     if (data.status == true) {
@@ -259,17 +265,16 @@
                             text: "",
                             icon: "success",
                             allowOutsideClick: false,
-                            customClass: {confirmButton: 'restore_user_button'}
+                            customClass: {
+                                confirmButton: 'restore_user_button'
+                            }
                         });
-                        $('.restore_user_button').click(function () {
+                        $('.restore_user_button').click(function() {
                             $('#myTable').load(location.href + (' #myTable'));
                         });
                     }
-                },//end success
+                }, //end success
             })
         })
-
-
     </script>
 @endpush
-
