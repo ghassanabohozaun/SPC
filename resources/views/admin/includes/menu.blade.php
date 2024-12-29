@@ -480,7 +480,7 @@
                         <span class="menu-text">{{ __('menu.testimonials') }}</span>
                         <span class="menu-label">
                             <span class="label label-rounded label-success">
-                                {{-- {{ App\Models\Testimonial::withoutTrashed()->count() }} --}}
+                                {{ App\Models\Testimonial::withoutTrashed()->count() }}
                             </span>
                         </span>
                     </a>
