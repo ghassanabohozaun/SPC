@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
             BooksSeeder::class,
             AboutSpcSeeder::class,
             AboutSiteSeeder::class,
-            TestimonialsSeeder::class,
+            //TestimonialsSeeder::class,
         ]);
     }
 }
