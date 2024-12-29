@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Traits\GeneralTrait;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Factory as Faker;
 
@@ -13,7 +12,6 @@ use Faker\Factory as Faker;
 class TestimonialFactory extends Factory
 {
 
-    use GeneralTrait;
     /**
      * Define the model's default state.
      *
