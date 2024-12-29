@@ -13,6 +13,7 @@ use Database\Seeders\RoleSeeder;
 use Database\Seeders\SectionsSeeder;
 use Database\Seeders\ServicesSeeder;
 use Database\Seeders\SlidersSeeder;
+use Database\Seeders\TestimonialSeeder;
 use Database\Seeders\TestimonialsSeeder;
 use Database\Seeders\TrainingsSeeder;
 use Database\Seeders\VideosSeeder;
@@ -38,7 +39,6 @@ class DatabaseSeeder extends Seeder
             PhotoAlbumSeeder::class,
             SlidersSeeder::class,
             ServicesSeeder::class,
-            //TestimonialsSeeder::class,
             ArticleSeeder::class,
             PublicationsSeeder::class,
             SectionsSeeder::class,
@@ -47,6 +47,7 @@ class DatabaseSeeder extends Seeder
             BooksSeeder::class,
             AboutSpcSeeder::class,
             AboutSiteSeeder::class,
+            TestimonialsSeeder::class,
         ]);
     }
 }
