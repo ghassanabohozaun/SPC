@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\PublicationsController;
 use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\SlidersController;
+use App\Http\Controllers\Admin\SupportCenterController;
 use App\Http\Controllers\Admin\Test\TestAnswerController;
 use App\Http\Controllers\Admin\Test\TestQuestionController;
 use App\Http\Controllers\Admin\Test\TestScaleController;
@@ -25,7 +26,6 @@ use App\Http\Controllers\Admin\TrainingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VideosController;
 use Illuminate\Support\Facades\Route;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -55,9 +55,9 @@ Route::group(
             ->name('admin.dashboard')
             ->middleware('can:dashboard');
 
+
         /////////////////////////////////////////////////////////////////////////////////////////////
         /// settings
-
         Route::group(['middleware' => 'can:settings'], function () {
             Route::get('settings', [SettingsController::class, 'index'])
                 ->name('get.admin.settings')
@@ -68,7 +68,6 @@ Route::group(
             Route::post('switch-ar-lang', [SettingsController::class, 'switchArabicLang'])->name('switch.arabic.lang');
             Route::post('switch-frontend-lang', [SettingsController::class, 'switchFrontendLang'])->name('switch.frontend.lang');
         });
-
         /////////////////////////////////////////////////////////////////////////////////////////////
         /// admin routes
 
@@ -342,35 +341,33 @@ Route::group(
             Route::group(['prefix' => 'questions'], function () {
                 Route::post('/store', [TestQuestionController::class, 'store'])->name('admin.questions.store');
                 Route::get('/get-questions-by-test-id', [TestQuestionController::class, 'getQuestionsByTestId'])->name('admin.get.questions.by.test.id');
-                Route::post('/delete',[TestQuestionController::class, 'delete'])->name('admin.questions.delete');
-
+                Route::post('/delete', [TestQuestionController::class, 'delete'])->name('admin.questions.delete');
             });
 
             Route::group(['prefix' => 'answers'], function () {
                 Route::post('/store', [TestAnswerController::class, 'store'])->name('admin.answers.store');
                 Route::get('/get-answers-by-test-id', [TestAnswerController::class, 'getAnswersByTestId'])->name('admin.get.answers.by.test.id');
-                Route::post('/delete',[TestAnswerController::class, 'delete'])->name('admin.answers.delete');
+                Route::post('/delete', [TestAnswerController::class, 'delete'])->name('admin.answers.delete');
             });
 
             Route::group(['prefix' => 'scales'], function () {
                 Route::post('/store', [TestScaleController::class, 'store'])->name('admin.scales.store');
                 Route::get('/get-scales-by-test-id', [TestScaleController::class, 'getScalesByTestId'])->name('admin.get.scales.by.test.id');
-                Route::post('/delete',[TestScaleController::class, 'delete'])->name('admin.scales.delete');
+                Route::post('/delete', [TestScaleController::class, 'delete'])->name('admin.scales.delete');
             });
-
         });
 
-        // /////////////////////////////////////////////////////////////////////////////////////////////
-        // /// support center routes
-        // Route::group(['prefix' => 'support-center', 'middleware' => 'can:support-center'], function () {
-        //     Route::get('/', 'SupportCenterController@index')->name('admin.support.center');
-        //     Route::get('/get-support-center', 'SupportCenterController@getSupportCenter')->name('get.admin.support.center');
-        //     Route::get('/create', 'SupportCenterController@create')->name('admin.support.center.create');
-        //     Route::post('/send', 'SupportCenterController@send')->name('admin.support.center.send');
-        //     Route::post('/destroy', 'SupportCenterController@destroy')->name('admin.support.center.message.destroy');
-        //     Route::post('/change-status', 'SupportCenterController@changeStatus')->name('admin.support.center.change.status');
-        //     Route::get('/get-one-message', 'SupportCenterController@getOneMessage')->name('admin.support.center.get.one.message');
-        // });
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        /// support center routes
+        Route::group(['prefix' => 'support-center', 'middleware' => 'can:support-center'], function () {
+            Route::get('/', [SupportCenterController::class, 'index'])->name('admin.support.center');
+            Route::get('/get-support-center', [SupportCenterController::class, 'getSupportCenter'])->name('get.admin.support.center');
+            Route::get('/create', [SupportCenterController::class, 'create'])->name('admin.support.center.create');
+            Route::post('/send', [SupportCenterController::class, 'send'])->name('admin.support.center.send');
+            Route::post('/destroy', [SupportCenterController::class, 'destroy'])->name('admin.support.center.message.destroy');
+            Route::post('/change-status', [SupportCenterController::class, 'changeStatus'])->name('admin.support.center.change.status');
+            Route::get('/get-one-message', [SupportCenterController::class, 'getOneMessage'])->name('admin.support.center.get.one.message');
+        });
     },
 );
 

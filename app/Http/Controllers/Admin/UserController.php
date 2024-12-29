@@ -19,8 +19,11 @@ class UserController extends Controller
     public function index()
     {
         $title = __('menu.users');
-        $users = Admin::with('role')->withoutTrashed()->orderByDesc('created_at')
-            ->where('id', '!=', \auth('admin')->user()->id)->paginate(15);
+        $users = Admin::with('role')
+            ->withoutTrashed()
+            ->orderByDesc('created_at')
+            ->where('id', '!=', \auth('admin')->user()->id)
+            ->paginate(15);
         return view('admin.users.index', compact('title', 'users'));
     }
 
@@ -43,7 +46,6 @@ class UserController extends Controller
     //  store
     public function store(UserRequest $request)
     {
-
         // save image
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
@@ -82,14 +84,13 @@ class UserController extends Controller
         return view('admin.users.update', compact('title', 'user', 'roles'));
     }
 
-
     //  Update
     public function update(UserUpdateRequest $request)
     {
         $user = Admin::find($request->id);
 
         if ($request->hasFile('photo')) {
-            $image_path = public_path("/adminBoard/uploadedImages/admin//") . $user->photo;
+            $image_path = public_path('/adminBoard/uploadedImages/admin//') . $user->photo;
             if (File::exists($image_path)) {
                 File::delete($image_path);
             }
@@ -128,7 +129,6 @@ class UserController extends Controller
 
         return $this->returnSuccessMessage(__('general.update_success_message'));
     }
-
 
     //  restore
     public function restore(Request $request)
@@ -170,7 +170,7 @@ class UserController extends Controller
             }
 
             if (!empty($user->photo)) {
-                $image_path = public_path("/adminBoard/uploadedImages/admin//") . $user->photo;
+                $image_path = public_path('/adminBoard/uploadedImages/admin//') . $user->photo;
                 if (File::exists($image_path)) {
                     File::delete($image_path);
                 }

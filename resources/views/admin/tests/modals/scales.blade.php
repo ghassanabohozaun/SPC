@@ -276,12 +276,14 @@
         // cancel test scale btn
         $('body').on('click', '#cancel_test_scale_btn', function(e) {
             resetTestScaleForm();
+            $('#myTable').load(location.href + (' #myTable'));
             $('#test_scales_modal').modal('hide');
         });
 
         // hide scale modal
         $('#test_scales_modal').on('hidden.bs.modal', function(e) {
             resetTestScaleForm();
+            $('#myTable').load(location.href + (' #myTable'));
             $('#test_scales_modal').modal('hide');
         });
 
@@ -339,7 +341,7 @@
                                 $('#test_scales_tbody').append(trHTML);
                             } else {
 
-                                $("#notfound").empty();
+                                $(".notfound").empty();
 
                                 // update
                                 if (scale_id_hidden) {

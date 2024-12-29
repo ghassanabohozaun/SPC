@@ -4,12 +4,17 @@ return [
     'admin_panel' => 'Admin Panel',
     'panels' => "Panels",
     'chart_article' => 'Article views Growth',
-    'chart_projects' => 'Project Views Growth',
+    'chart_tests' => 'Tests Views Growth',
 
-    'project_counter' => 'Number of Projects',
+    'test_counter' => 'Number of Tests',
     'article_counter' => 'Number of Articles',
-    'publication_counter' =>  'Number of Publication',
+    'publication_counter' =>  'Number of Publications',
     'report_counter' => 'Number of Reports',
+    'new_counter' => 'Number of News',
+    'poster_counter' => 'Number of Posters',
+    'book_counter' => 'Number of News',
+
+
 
     'last_articles' => 'Last Articles',
     'last_comments' => 'Last Comments',
@@ -34,6 +39,11 @@ return [
     'profile' => 'Profile',
     'sign_out' => 'Sign Out',
     'copy_rights' => 'SPCALTAWIL',
+
+    'return_to_dashboard' => 'Return To Dashboard',
+    'page_not_found' => 'Page Not Found',
+    'return_to_dashboard_message' => ' You can back or use our Help Center.',
+    'sorry'=>'Oops',
 
     /////////////////////////////////
     /// Upload Center

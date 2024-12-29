@@ -26,7 +26,6 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/';
     public const ADMIN = '/admin';
 
-
     /**
      * Define your route model bindings, pattern filters, etc.
      *
@@ -35,7 +34,6 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-
         parent::boot();
     }
 
@@ -47,13 +45,11 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         //// Solve problem in  filesystems.php
-        \Config::set('filesystems.disks.public.url',url('storage'));
+        \Config::set('filesystems.disks.public.url', url('storage'));
 
         $this->mapApiRoutes();
         $this->mapWebRoutes();
         $this->mapAdminRoutes();
-
-        //
     }
 
     /**
@@ -71,17 +67,13 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path('routes/web.php'));
     }
 
-
     protected function mapAdminRoutes()
     {
-        Route::prefix(LaravelLocalization::setLocale().'/admin')
+        Route::prefix(LaravelLocalization::setLocale() . '/admin')
             ->middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/admin.php'));
     }
-
-
-
 
     /**
      * Define the "api" routes for the application.

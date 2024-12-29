@@ -638,10 +638,8 @@
             @endcan
 
 
-
-
             <!------------------------------------ Support Center ---------------------------------------------------->
-            {{-- @can('support-center')
+            @can('support-center')
                 <li class="menu-item  menu-item-submenu
                   @if (str_contains(url()->current(), '/support-center')) menu-item-open @endif"
                     aria-haspopup="true" data-menu-toggle="hover">
@@ -670,7 +668,7 @@
                         </span>
                     </a>
                 </li>
-            @endcan --}}
+            @endcan
 
 
         </ul>

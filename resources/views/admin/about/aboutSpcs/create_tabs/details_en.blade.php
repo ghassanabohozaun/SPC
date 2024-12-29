@@ -6,11 +6,15 @@
                 <div class="col-xl-9">
 
                     <!--begin::body-->
-                    <div class="my-5 d-none">
-                        <div class="form-group">
+                    <div class="my-5 ">
+
+                        <!--begin::Group-->
+                        <div class="form-group d-none">
                             <input type="hidden" class="form-control form-control-solid form-control-lg"
                                 id="site_lang_ar" name="site_lang_ar" value="{!! setting()->site_lang_ar !!}">
                         </div>
+                        <!--end::Group-->
+
                         <!--begin::Group-->
                         <div class="form-group">
                             <label>

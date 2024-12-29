@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('test_name')->nullable();
             $table->longText('test_details')->nullable();
             $table->integer('question_count')->default('0');
-            $table->integer('metrics_count')->default('0');
+            $table->integer('scales_count')->default('0');
             $table->string('added_date')->nullable();
             $table->integer('number_times_of_use')->default('0');
             $table->string('status')->nullable();

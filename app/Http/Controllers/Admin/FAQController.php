@@ -53,8 +53,10 @@ class FAQController extends Controller
     // update
     public function update(FAQRequest $request)
     {
-        // return $request->all();
-        $faq = FAQ::findORFail($request->id);
+        $faq = FAQ::find($request->id);
+        if (!$faq) {
+            return redirect()->route('admin.not.found');
+        }
 
         $lang_ar = setting()->site_lang_ar;
         $faq->update([
@@ -118,11 +120,9 @@ class FAQController extends Controller
             if ($request->ajax()) {
 
                 $faq = FAQ::onlyTrashed()->find($request->id);
-
                 if (!$faq) {
                     return redirect()->route('admin.not.found');
                 }
-
 
                 $faq->forceDelete();
 

@@ -17,7 +17,7 @@ class Test extends Model
         'test_name',
         'test_details',
         'question_count', //
-        'metrics_count', //
+        'scales_count', //
         'added_date',
         'number_times_of_use',
         'status',

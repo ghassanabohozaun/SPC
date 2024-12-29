@@ -23,5 +23,6 @@ return [
         'posters' => 'app.posters',
         'books' => 'app.books',
         'tests' => 'app.tests',
+        'support-center' => 'app.support_center',
     ]
 ];

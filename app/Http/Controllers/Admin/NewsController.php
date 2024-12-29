@@ -62,12 +62,13 @@ class NewsController extends Controller
     // edit
     public function edit($id = null)
     {
+        $title = __('news.update_new');
+
         if (!$id) {
             return redirect()->route('admin.not.found');
         }
-        $title = __('news.update_new');
-        $new = MyNew::find($id);
 
+        $new = MyNew::find($id);
         if (!$new) {
             return redirect()->route('admin.not.found');
         }
@@ -80,7 +81,6 @@ class NewsController extends Controller
     {
 
         $new = MyNew::find($request->id);
-
         if (!$new) {
             return redirect()->route('admin.not.found');
         }

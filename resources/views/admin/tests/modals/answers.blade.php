@@ -250,7 +250,7 @@
                                 $('#test_answers_tbody').append(trHTML);
                             } else {
 
-                                $("#notfound").empty();
+                                $(".notfound").empty();
 
                                 // update
                                 if (answer_id_hidden) {

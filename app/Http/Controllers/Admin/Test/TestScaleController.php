@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Admin\Test;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Tests\ScaleRequest;
+use App\Models\Test;
 use App\Models\TestScale;
 use App\Traits\GeneralTrait;
-use Illuminate\Http\Request;
 use File;
+use Illuminate\Http\Request;
 
 class TestScaleController extends Controller
 {
@@ -38,6 +39,7 @@ class TestScaleController extends Controller
             ]);
 
             if ($scale) {
+                $this->increaseTestScalesCount($scale->test_id);
                 return $this->returnData(__('general.add_success_message'), $scale);
             } else {
                 return $this->returnError(__('general.add_error_message'), 404);
@@ -88,10 +90,30 @@ class TestScaleController extends Controller
                     }
                 }
 
+                $this->decreaseTestScalesCount($scale->test_id);
                 return $this->returnSuccessMessage(__('general.delete_success_message'));
             } else {
                 return $this->returnError(__('general.delete_error_message'), 400);
             }
         }
     }
+
+
+        // increase scales count
+        public function increaseTestScalesCount($id)
+        {
+            $test = Test::whereId($id)->first();
+            $scalesCount = $test->scales_count;
+            $testMetricsCount = $scalesCount + 1;
+            $test->update(['scales_count' => $testMetricsCount]);
+        }
+
+        // decrease scales count
+        public function decreaseTestScalesCount($id)
+        {
+            $test = Test::whereId($id)->first();
+            $scalesCount = $test->scales_count;
+            $testMetricsCount = $scalesCount - 1;
+            $test->update(['scales_count' => $testMetricsCount]);
+        }
 }

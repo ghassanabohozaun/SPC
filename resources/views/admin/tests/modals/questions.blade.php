@@ -171,12 +171,14 @@
         // cancel test question btn
         $('body').on('click', '#cancel_test_question_btn', function(e) {
             resetTestQuestionForm();
+            $('#myTable').load(location.href + (' #myTable'));
             $('#test_questions_modal').modal('hide');
         });
 
         // hide questions modal
         $('#test_questions_modal').on('hidden.bs.modal', function(e) {
             resetTestQuestionForm();
+            $('#myTable').load(location.href + (' #myTable'));
             $('#test_questions_modal').modal('hide');
         });
 
@@ -234,7 +236,7 @@
                                     '</tr>';
                                 $('#test_questions_tbody').append(trHTML);
                             } else {
-                                $("#notfound").empty();
+                                $(".notfound").empty();
 
                                 // update
                                 if (question_id_hidden) {

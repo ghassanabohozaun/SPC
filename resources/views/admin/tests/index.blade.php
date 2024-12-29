@@ -72,9 +72,10 @@
                                                             <th>{{ __('tests.test_photo') }}</th>
                                                             <th>{{ __('tests.test_name') }}</th>
                                                             <th>{{ __('tests.question_count') }}</th>
-                                                            <th>{{ __('tests.metrics_count') }}</th>
+                                                            <th>{{ __('tests.scales_count') }}</th>
                                                             <th>{{ __('tests.number_times_of_use') }}</th>
                                                             <th>{{ __('tests.added_date') }}</th>
+                                                            <th>{{ __('tests.file') }}</th>
                                                             <th>{{ __('tests.status') }}</th>
                                                             <th class="text-center" style="width: 150px;">
                                                                 {{ __('general.actions') }}</th>
@@ -86,17 +87,21 @@
                                                                 {{-- <td>{!! $loop->iteration !!}</td> --}}
                                                                 <td>{!! $test->id !!}</td>
                                                                 <td>@include('admin.tests.parts.photo')</td>
-                                                                <td>{!! $test->test_name !!}</td>
+                                                                <td>
+                                                                    {{-- {!! $test->test_name !!} --}}
+                                                                    @include('admin.tests.parts.external_link')
+                                                                </td>
                                                                 <td>{!! $test->question_count !!}</td>
-                                                                <td>{!! $test->metrics_count !!}</td>
+                                                                <td>{!! $test->scales_count !!}</td>
                                                                 <td>{!! $test->number_times_of_use !!}</td>
                                                                 <td>{!! $test->added_date !!}</td>
+                                                                <td>@include('admin.tests.parts.file')</td>
                                                                 <td>@include('admin.tests.parts.status')</td>
                                                                 <td>@include('admin.tests.parts.options')</td>
                                                             </tr>
                                                         @empty
                                                             <tr>
-                                                                <td colspan="9" class="text-center">
+                                                                <td colspan="10" class="text-center">
                                                                     {{ __('tests.no_tests_found') }}
                                                                 </td>
                                                             </tr>
@@ -104,7 +109,7 @@
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
-                                                            <td colspan="9">
+                                                            <td colspan="10">
                                                                 <div class="float-right">
                                                                     {!! $tests->appends(request()->all())->links() !!}
                                                                 </div>

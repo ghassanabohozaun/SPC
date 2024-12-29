@@ -13,7 +13,6 @@ return [
     'trashed_users' => 'المستخدمين المحذوفين',
     'permissions' => 'الصلاحيات',
     'add_new_permission' => 'إضافة صلاحية جديدة',
-    'support_center' => 'مركز الدعم',
     'landing_page' => 'صفحة الرئيسية الهبوط',
     'index' => 'رئيسية الموقع',
     'static_strings' => 'النصوص الثابتة',
@@ -81,6 +80,9 @@ return [
     'trashed_tests' => 'الاختبارات المحذوفة',
     'add_new_test' => 'إضافة اختبار جديد',
 
+
+    'support_center' => 'مركز الدعم',
+    'add_new_support_center' => 'اضافة طلب دعم',
 
     'fixed_texts' => 'النصوص الثابتة',
 ];

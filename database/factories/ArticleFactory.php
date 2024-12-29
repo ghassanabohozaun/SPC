@@ -30,7 +30,6 @@ class ArticleFactory extends Factory
         $title_ar = $faker->sentence();
 
         return [
-
             'title_en_slug' => slug($title_en),
             'title_ar_slug' => slug($title_ar),
             'title_en' => $title_en,

@@ -27,4 +27,5 @@ return [
     'about' => 'About Management',
     'about_spc' => 'About SPC Management',
     'tests' => 'Tests Management',
+    'support_center' => 'Support Center Management',
 ];

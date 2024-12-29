@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Test;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Tests\QuestionRequest;
+use App\Models\Test;
 use App\Models\TestQuestion;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
@@ -15,34 +16,35 @@ class TestQuestionController extends Controller
     // store
     public function store(QuestionRequest $request)
     {
-
-        if (!$request->question_id_hidden) { // create
+        if (!$request->question_id_hidden) {
+            // create
             $question = TestQuestion::create([
                 'question' => $request->question,
                 'test_id' => $request->question_test_id_hidden,
             ]);
 
-            if($question){
+            if ($question) {
+                // increase test question and metrics count
+                $this->increaseTestQuestionCount($question->test_id);
+
                 return $this->returnData(__('general.add_success_message'), $question);
-            }else{
+            } else {
                 return $this->returnError(__('general.add_error_message'), 404);
             }
-
-
-        } else {  // update
+        } else {
+            // update
 
             $question = TestQuestion::find($request->question_id_hidden);
             $question->update([
                 'question' => $request->question,
                 'test_id' => $request->question_test_id_hidden,
             ]);
-            if($question){
+            if ($question) {
                 return $this->returnData(__('general.update_success_message'), $question);
-            }else{
+            } else {
                 return $this->returnError(__('general.update_error_message'), 404);
             }
         }
-
     }
 
     // get questions by test id
@@ -65,10 +67,31 @@ class TestQuestionController extends Controller
             }
 
             if ($question->forceDelete()) {
+                // decrease test question count
+                $this->decreaseTestQuestionCount($question->test_id);
+
                 return $this->returnSuccessMessage(__('general.delete_success_message'));
             } else {
                 return $this->returnError(__('general.delete_error_message'), 400);
             }
         }
+    }
+
+    // increase question count
+    public function increaseTestQuestionCount($id)
+    {
+        $test = Test::whereId($id)->first();
+        $questionCount = $test->question_count;
+        $testQuestionCount = $questionCount + 1;
+        $test->update(['question_count' => $testQuestionCount]);
+    }
+
+    // decrease question count
+    public function decreaseTestQuestionCount($id)
+    {
+        $test = Test::whereId($id)->first();
+        $questionCount = $test->question_count;
+        $testQuestionCount = $questionCount - 1;
+        $test->update(['question_count' => $testQuestionCount]);
     }
 }

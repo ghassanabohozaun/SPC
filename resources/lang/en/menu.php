@@ -85,5 +85,11 @@ return [
     'add_new_test' => 'Add New Test',
 
 
+
+    'support_center' => 'Support Center',
+    'add_new_support_center' => 'Add New Support Center',
+
+
+
     'fixed_texts' => 'Fixed Texts',
 ];

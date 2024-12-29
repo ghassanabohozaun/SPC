@@ -5,12 +5,14 @@ return [
     'admin_panel' => 'لوحة تحكم الإدارة',
     'panels' => "لوحات التحكم",
     'chart_article' => 'نمو مشاهدات المقالات',
-    'chart_projects' => 'نمو مشاهدات المشاريع',
+    'chart_tests' => 'نمو مشاهدات الاختبارات',
 
-    'project_counter' => 'عدد المشاريع ',
+    'test_counter' => 'عدد الاختبارات ',
     'article_counter' => 'عدد المقالات',
     'publication_counter' =>  'عدد المنشورت ',
-    'report_counter' => 'عدد التقارير',
+    'new_counter' => 'عدد الأخبار',
+    'poster_counter' => 'عدد البوسترات',
+    'book_counter' => 'عدد الكتب',
 
     'last_articles' => 'اخر المقالات',
     'last_comments' => 'اخر التعليقات',
@@ -35,7 +37,10 @@ return [
     'profile' => 'الملف الشخصي',
     'sign_out' => 'تسجيل خروج',
     'copy_rights' => 'SPCALTAWIL',
-
+    'return_to_dashboard' => 'العودة الي لوحة التحكم',
+    'page_not_found' => 'الصفحة غير متاحة',
+    'return_to_dashboard_message' => 'يمكنك الرجوع الي الصفحة السابقة او التواصل مع الدعم الفني',
+     'sorry'=>'عذراً',
 
     /////////////////////////////////
     /// Upload Center

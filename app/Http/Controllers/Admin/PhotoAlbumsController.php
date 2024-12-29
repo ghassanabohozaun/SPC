@@ -129,7 +129,6 @@ class PhotoAlbumsController extends Controller
                 }
             }
 
-
             $photoAlbum->delete();
             if ($photoAlbum->delete()) {
                 return $this->returnSuccessMessage(__('general.move_to_trash'));

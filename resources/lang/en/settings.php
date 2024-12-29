@@ -38,7 +38,7 @@ return [
     'site_linkedin' => 'Linked In',
     'site_phone' => 'Phone',
     'site_mobile' => 'Whatsapp',
-    'lang_front_button_status' => 'Language button status in the frontend',
+    'lang_front_button_status' => 'Language button in the frontend',
 
 
     'enter_name' => 'Enter Language Name',
