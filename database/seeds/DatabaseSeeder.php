@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
             PhotoAlbumSeeder::class,
             SlidersSeeder::class,
             ServicesSeeder::class,
-            TestimonialsSeeder::class,
+            //TestimonialsSeeder::class,
             ArticleSeeder::class,
             PublicationsSeeder::class,
             SectionsSeeder::class,
