@@ -1,13 +1,12 @@
 @extends('layouts.admin')
-@section('title') @endsection
+@section('title')
+@endsection
 @section('content')
-
-    <form class="form" action="{{route('admin.testimonial.update')}}" method="POST" id="form_opinions_update">
+    <form class="form" action="{{ route('admin.testimonial.update') }}" method="POST" id="form_opinions_update">
         @csrf
         <!--begin::Subheader-->
         <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
-            <div
-                class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                 <!--begin::Info-->
                 <div class="d-flex align-items-center flex-wrap mr-2">
 
@@ -17,14 +16,14 @@
 
                     <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                         <li class="breadcrumb-item">
-                            <a href="{{route('admin.testimonials')}}" class="text-muted">
-                                {{__('menu.testimonials')}}
+                            <a href="{{ route('admin.testimonials') }}" class="text-muted">
+                                {{ __('menu.testimonials') }}
                             </a>
                         </li>
 
                         <li class="breadcrumb-item">
                             <a href="" class="text-muted">
-                                {{__('testimonials.update_testimonial')}}
+                                {{ __('testimonials.update_testimonial') }}
                             </a>
                         </li>
                     </ul>
@@ -36,10 +35,9 @@
                 <!--begin::Toolbar-->
                 <div class="d-flex align-items-center">
 
-                    <button type="submit"
-                            class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
+                    <button type="submit" class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
                         <i class="fa fa-save"></i>
-                        {{__('general.save')}}
+                        {{ __('general.save') }}
                     </button>
 
                 </div>
@@ -77,13 +75,11 @@
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
 
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="id" id="id" type="hidden"
-                                                                value="{{$testimonial->id}}"/>
+                                                                value="{{ $testimonial->id }}" />
 
-                                                            <input type="hidden" name="hidden_photo"
-                                                                   value="hidden_photo">
+                                                            <input type="hidden" name="hidden_photo" value="hidden_photo">
                                                         </div>
 
                                                     </div>
@@ -92,37 +88,37 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('testimonials.photo')}}
+                                                            {{ __('testimonials.photo') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <div
-                                                                class="image-input image-input-outline"
+                                                            <div class="image-input image-input-outline"
                                                                 id="kt_testimonial_photo">
 
                                                                 <div class="image-input-wrapper"
-                                                                     style="background-image: url({{asset('adminBoard/uploadedImages/testimonials/'.$testimonial->photo)}})"></div>
+                                                                    style="background-image: url({{ asset('adminBoard/uploadedImages/testimonials/' . $testimonial->photo) }})">
+                                                                </div>
                                                                 <label
                                                                     class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                                                    data-action="change" data-toggle="tooltip" title=""
-                                                                    data-original-title="{{__('general.change_image')}}">
+                                                                    data-action="change" data-toggle="tooltip"
+                                                                    title=""
+                                                                    data-original-title="{{ __('general.change_image') }}">
                                                                     <i class="fa fa-pen icon-sm text-muted"></i>
                                                                     <input type="file" name="photo" id="photo"
-                                                                           class="table-responsive-sm">
-                                                                    <input type="hidden" name="photo_remove"/>
+                                                                        class="table-responsive-sm">
+                                                                    <input type="hidden" name="photo_remove" />
                                                                 </label>
 
                                                                 <span
                                                                     class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
                                                                     data-action="cancel" data-toggle="tooltip"
                                                                     title="Cancel avatar">
-                                                                                <i class="ki ki-bold-close icon-xs text-muted"></i>
-                                                                 </span>
+                                                                    <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                                </span>
                                                             </div>
                                                             <span
-                                                                class="form-text text-muted">{{__('general.image_format_allow')}}
+                                                                class="form-text text-muted">{{ __('general.image_format_allow') }}
                                                             </span>
-                                                            <span class="form-text text-danger"
-                                                                  id="photo_error"></span>
+                                                            <span class="form-text text-danger" id="photo_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -130,17 +126,14 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('testimonials.name_ar')}}
+                                                            {{ __('testimonials.name_ar') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="name_ar" id="name_ar" type="text"
-                                                                placeholder=" {{__('testimonials.enter_name_ar')}}"
-                                                                autocomplete="off"
-                                                                value="{{$testimonial->name_ar}}"/>
-                                                            <span class="form-text text-danger"
-                                                                  id="name_ar_error"></span>
+                                                                placeholder=" {{ __('testimonials.enter_name_ar') }}"
+                                                                autocomplete="off" value="{{ $testimonial->name_ar }}" />
+                                                            <span class="form-text text-danger" id="name_ar_error"></span>
 
                                                         </div>
                                                     </div>
@@ -149,18 +142,15 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('testimonials.name_en')}}
+                                                            {{ __('testimonials.name_en') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="name_en" id="name_en" type="text"
-                                                                placeholder=" {{__('testimonials.enter_name_en')}}"
-                                                                autocomplete="off"
-                                                                value="{{$testimonial->name_en}}"/>
+                                                                placeholder=" {{ __('testimonials.enter_name_en') }}"
+                                                                autocomplete="off" value="{{ $testimonial->name_en }}" />
 
-                                                            <span class="form-text text-danger"
-                                                                  id="name_en_error"></span>
+                                                            <span class="form-text text-danger" id="name_en_error"></span>
 
                                                         </div>
                                                     </div>
@@ -169,15 +159,14 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('testimonials.age')}}
+                                                            {{ __('testimonials.age') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="age" id="age" type="text"
-                                                                value="{{$testimonial->age}}"
-                                                                placeholder=" {{__('testimonials.enter_age')}}"
-                                                                autocomplete="off"/>
+                                                                value="{{ $testimonial->age }}"
+                                                                placeholder=" {{ __('testimonials.enter_age') }}"
+                                                                autocomplete="off" />
 
                                                             <span class="form-text text-danger" id="age_error"></span>
 
@@ -188,27 +177,25 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('testimonials.gender')}}
+                                                            {{ __('testimonials.gender') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
 
-                                                            <select
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <select class="form-control form-control-solid form-control-lg"
                                                                 name="gender" id="gender" type="text">
                                                                 <option value="">
-                                                                    {{__('general.select_from_list')}}
+                                                                    {{ __('general.select_from_list') }}
                                                                 </option>
                                                                 <option value="male"
-                                                                    {{$testimonial->gender == __('general.male') ? 'selected':''}}>
-                                                                    {{__('testimonials.male')}}
+                                                                    {{ $testimonial->gender == 'male' ? 'selected' : '' }}>
+                                                                    {{ __('testimonials.male') }}
                                                                 </option>
                                                                 <option value="female"
-                                                                    {{$testimonial->gender == __('general.female') ? 'selected':''}}>
-                                                                    {{__('testimonials.female')}}
+                                                                    {{ $testimonial->gender == 'female' ? 'selected' : '' }}>
+                                                                    {{ __('testimonials.female') }}
                                                                 </option>
                                                             </select>
-                                                            <span class="form-text text-danger"
-                                                                  id="gender_error"></span>
+                                                            <span class="form-text text-danger" id="gender_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -216,18 +203,17 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('testimonials.job_title_ar')}}
+                                                            {{ __('testimonials.job_title_ar') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="job_title_ar" id="job_title_ar" type="text"
-                                                                placeholder=" {{__('testimonials.enter_job_title_ar')}}"
+                                                                placeholder=" {{ __('testimonials.enter_job_title_ar') }}"
                                                                 autocomplete="off"
-                                                                value="{{$testimonial->job_title_ar}}"/>
+                                                                value="{{ $testimonial->job_title_ar }}" />
 
                                                             <span class="form-text text-danger"
-                                                                  id="job_title_ar_error"></span>
+                                                                id="job_title_ar_error"></span>
 
                                                         </div>
                                                     </div>
@@ -236,17 +222,16 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('testimonials.job_title_en')}}
+                                                            {{ __('testimonials.job_title_en') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="job_title_en" id="job_title_en" type="text"
-                                                                placeholder=" {{__('testimonials.enter_job_title_en')}}"
+                                                                placeholder=" {{ __('testimonials.enter_job_title_en') }}"
                                                                 autocomplete="off"
-                                                                value="{{$testimonial->job_title_en}}"/>
+                                                                value="{{ $testimonial->job_title_en }}" />
                                                             <span class="form-text text-danger"
-                                                                  id="job_title_en_error"></span>
+                                                                id="job_title_en_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -254,44 +239,42 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('testimonials.rating')}}
+                                                            {{ __('testimonials.rating') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
 
-                                                            <select
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <select class="form-control form-control-solid form-control-lg"
                                                                 name="rating" id="rating" type="text">
 
                                                                 <option value="">
-                                                                    {{__('general.select_from_list')}}
+                                                                    {{ __('general.select_from_list') }}
                                                                 </option>
 
-                                                                <option
-                                                                    value="1" {{$testimonial->rating == '1'?'selected':''}} >
-                                                                    {{__('testimonials.one_star')}}
+                                                                <option value="1"
+                                                                    {{ $testimonial->rating == '1' ? 'selected' : '' }}>
+                                                                    {{ __('testimonials.one_star') }}
                                                                 </option>
 
-                                                                <option
-                                                                    value="2" {{$testimonial->rating == '2'?'selected':''}}>
-                                                                    {{__('testimonials.two_star')}}
+                                                                <option value="2"
+                                                                    {{ $testimonial->rating == '2' ? 'selected' : '' }}>
+                                                                    {{ __('testimonials.two_star') }}
                                                                 </option>
-                                                                <option
-                                                                    value="3" {{$testimonial->rating == '3'?'selected':''}}>
-                                                                    {{__('testimonials.three_star')}}
+                                                                <option value="3"
+                                                                    {{ $testimonial->rating == '3' ? 'selected' : '' }}>
+                                                                    {{ __('testimonials.three_star') }}
                                                                 </option>
-                                                                <option
-                                                                    value="4" {{$testimonial->rating == '4'?'selected':''}}>
-                                                                    {{__('testimonials.four_star')}}
+                                                                <option value="4"
+                                                                    {{ $testimonial->rating == '4' ? 'selected' : '' }}>
+                                                                    {{ __('testimonials.four_star') }}
                                                                 </option>
-                                                                <option
-                                                                    value="5" {{$testimonial->rating == '5'?'selected':''}}>
-                                                                    {{__('testimonials.five_star')}}
+                                                                <option value="5"
+                                                                    {{ $testimonial->rating == '5' ? 'selected' : '' }}>
+                                                                    {{ __('testimonials.five_star') }}
                                                                 </option>
 
 
                                                             </select>
-                                                            <span class="form-text text-danger"
-                                                                  id="rating_error"></span>
+                                                            <span class="form-text text-danger" id="rating_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -299,16 +282,13 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('testimonials.opinion_ar')}}
+                                                            {{ __('testimonials.opinion_ar') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <textarea rows="10"
-                                                                      class="form-control form-control-solid form-control-lg"
-                                                                      name="opinion_ar" id="opinion_ar" type="text"
-                                                                      placeholder=" {{__('testimonials.enter_opinion_ar')}}"
-                                                                      autocomplete="off">{{$testimonial->opinion_ar}}</textarea>
+                                                            <textarea rows="10" class="form-control form-control-solid form-control-lg" name="opinion_ar" id="opinion_ar"
+                                                                type="text" placeholder=" {{ __('testimonials.enter_opinion_ar') }}" autocomplete="off">{{ $testimonial->opinion_ar }}</textarea>
                                                             <span class="form-text text-danger"
-                                                                  id="opinion_ar_error"></span>
+                                                                id="opinion_ar_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -316,16 +296,13 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('testimonials.opinion_en')}}
+                                                            {{ __('testimonials.opinion_en') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <textarea rows="10"
-                                                                      class="form-control form-control-solid form-control-lg"
-                                                                      name="opinion_en" id="opinion_en" type="text"
-                                                                      placeholder=" {{__('testimonials.enter_opinion_en')}}"
-                                                                      autocomplete="off">{{$testimonial->opinion_en}}</textarea>
+                                                            <textarea rows="10" class="form-control form-control-solid form-control-lg" name="opinion_en" id="opinion_en"
+                                                                type="text" placeholder=" {{ __('testimonials.enter_opinion_en') }}" autocomplete="off">{{ $testimonial->opinion_en }}</textarea>
                                                             <span class="form-text text-danger"
-                                                                  id="opinion_en_error"></span>
+                                                                id="opinion_en_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -357,7 +334,7 @@
         ////////////////////////////////////////////////////
         var testimonial_photo = new KTImageInput('kt_testimonial_photo');
 
-        $('#form_opinions_update').on('submit', function (e) {
+        $('#form_opinions_update').on('submit', function(e) {
             e.preventDefault();
             //////////////////////////////////////////////////////////////
             $('#title_ar').css('border-color', '');
@@ -398,14 +375,14 @@
                 contentType: false,
                 cache: false,
                 processData: false,
-                beforeSend: function () {
+                beforeSend: function() {
                     KTApp.blockPage({
                         overlayColor: '#000000',
                         state: 'danger',
-                        message: "{{__('general.please_wait')}}",
+                        message: "{{ __('general.please_wait') }}",
                     });
-                },//end beforeSend
-                success: function (data) {
+                }, //end beforeSend
+                success: function(data) {
                     KTApp.unblockPage();
                     if (data.status == true) {
                         Swal.fire({
@@ -413,32 +390,34 @@
                             text: "",
                             icon: "success",
                             allowOutsideClick: false,
-                            customClass: {confirmButton: 'update_testimonials_button'}
+                            customClass: {
+                                confirmButton: 'update_testimonials_button'
+                            }
                         });
-                        $('.update_testimonials_button').click(function () {
-                            window.location.href = "{{route('admin.testimonials')}}";
+                        $('.update_testimonials_button').click(function() {
+                            window.location.href = "{{ route('admin.testimonials') }}";
                         });
                     }
-                },//end success
+                }, //end success
 
-                error: function (reject) {
+                error: function(reject) {
                     var response = $.parseJSON(reject.responseText);
-                    $.each(response.errors, function (key, value) {
+                    $.each(response.errors, function(key, value) {
                         $('#' + key + '_error').text(value[0]);
                         $('#' + key).css('border-color', '#F64E60');
-                        $('html, body').animate({scrollTop: 20}, 300);
+                        $('html, body').animate({
+                            scrollTop: 20
+                        }, 300);
                     });
 
-                },//end error
+                }, //end error
 
-                complete: function () {
+                complete: function() {
                     KTApp.unblockPage();
-                },//end complete
+                }, //end complete
 
             });
 
-        });//end submit
-
-
+        }); //end submit
     </script>
 @endpush
