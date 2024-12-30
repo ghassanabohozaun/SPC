@@ -56,508 +56,507 @@
                             <!--begin::Body-->
                             <div class="card-body p-0">
                                 <div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
-                                    <div class="col-xl-12 col-xxl-10">
-
+                                    <div class="col-xl-12 col-xxl-12">
+                                        <!--begin:: top cards-->
                                         <div class="row justify-content-center">
-                                            <div class="col-xl-9">
 
-                                                <!--begin::body-->
-                                                <div class="my-5">
-
-                                                    <div class="card my-2">
-                                                        <div class="card-body p-5">
-                                                            <h3>{{ __('settings.logo_and_icon') }} </h3>
-                                                            <hr />
-                                                            <br />
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label
-                                                                    class="col-xl-3 col-lg-3 col-form-label text-left">{{ __('settings.site_icon') }}</label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <div class="image-input image-input-outline"
-                                                                        id="kt_site_icon">
-                                                                        <div class="image-input-wrapper"
-                                                                            style="background-image: url({{ asset('adminBoard/uploadedImages/logos/' . setting()->site_icon) }});">
-                                                                        </div>
-                                                                        <label
-                                                                            class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                                                            data-action="change" data-toggle="tooltip"
-                                                                            title=""
-                                                                            data-original-title="{{ __('general.change_image') }}">
-                                                                            <i class="fa fa-pen icon-sm text-muted"></i>
-                                                                            <input type="file" name="site_icon"
-                                                                                id="site_icon" />
-                                                                            <input type="hidden" name="site_site_remove" />
-                                                                        </label>
-
-                                                                        <span
-                                                                            class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                                                            data-action="cancel" data-toggle="tooltip"
-                                                                            title="Cancel avatar">
-                                                                            <i
-                                                                                class="ki ki-bold-close icon-xs text-muted"></i>
-                                                                        </span>
+                                            <div class="col-xl-6">
+                                                <div class="card my-2">
+                                                    <div class="card-body p-5">
+                                                        <h3>{{ __('settings.logo_and_icon') }} </h3>
+                                                        <hr />
+                                                        <br />
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label
+                                                                class="col-xl-3 col-lg-3 col-form-label text-left">{{ __('settings.site_icon') }}</label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <div class="image-input image-input-outline"
+                                                                    id="kt_site_icon">
+                                                                    <div class="image-input-wrapper"
+                                                                        style="background-image: url({{ asset('adminBoard/uploadedImages/logos/' . setting()->site_icon) }});">
                                                                     </div>
+                                                                    <label
+                                                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                                                        data-action="change" data-toggle="tooltip"
+                                                                        title=""
+                                                                        data-original-title="{{ __('general.change_image') }}">
+                                                                        <i class="fa fa-pen icon-sm text-muted"></i>
+                                                                        <input type="file" name="site_icon"
+                                                                            id="site_icon" />
+                                                                        <input type="hidden" name="site_site_remove" />
+                                                                    </label>
+
                                                                     <span
-                                                                        class="form-text text-muted">{{ __('settings.image_format_allow') }}</span>
-                                                                    <span class="form-text text-danger"
-                                                                        id="site_icon_error"></span>
-                                                                </div>
-                                                            </div>
-                                                            <!--begin::Group-->
-
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label
-                                                                    class="col-xl-3 col-lg-3 col-form-label text-left">{{ __('settings.site_logo') }}</label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <div class="image-input image-input-outline "
-                                                                        id="kt_site_logo">
-                                                                        <div class="image-input-wrapper"
-                                                                            style="background-image: url({{ asset('adminBoard/uploadedImages/logos/' . setting()->site_logo) }})">
-                                                                        </div>
-                                                                        <label
-                                                                            class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                                                            data-action="change" data-toggle="tooltip"
-                                                                            title=""
-                                                                            data-original-title="{{ __('general.change_image') }}">
-                                                                            <i class="fa fa-pen icon-sm text-muted"></i>
-                                                                            <input type="file" name="site_logo"
-                                                                                id="site_logo" />
-                                                                            <input type="hidden" name="site_logo_remove" />
-                                                                        </label>
-
-                                                                        <span
-                                                                            class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                                                            data-action="cancel" data-toggle="tooltip"
-                                                                            title="Cancel avatar">
-                                                                            <i
-                                                                                class="ki ki-bold-close icon-xs text-muted"></i>
-                                                                        </span>
-                                                                    </div>
-                                                                    <span class="form-text text-muted">
-                                                                        {{ __('settings.image_format_allow') }}
-                                                                        <span class="form-text text-danger"
-                                                                            id="site_logo_error"></span>
+                                                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                                                        data-action="cancel" data-toggle="tooltip"
+                                                                        title="Cancel avatar">
+                                                                        <i class="ki ki-bold-close icon-xs text-muted"></i>
                                                                     </span>
                                                                 </div>
-
+                                                                <span
+                                                                    class="form-text text-muted">{{ __('settings.image_format_allow') }}</span>
+                                                                <span class="form-text text-danger"
+                                                                    id="site_icon_error"></span>
                                                             </div>
-                                                            <!--begin::Group-->
-
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('settings.site_name_ar') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <input
-                                                                        class="form-control form-control-solid form-control-lg"
-                                                                        name="site_name_ar" id="site_name_ar" type="text"
-                                                                        placeholder=" {{ __('settings.enter_site_name_ar') }}"
-                                                                        autocomplete="off"
-                                                                        value="{{ setting()->site_name_ar }}" />
-                                                                    <span class="form-text text-danger"
-                                                                        id="site_name_ar_error"></span>
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Group-->
-
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('settings.site_name_en') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <input
-                                                                        class="form-control form-control-solid  form-control-lg"
-                                                                        name="site_name_en" id="site_name_en"
-                                                                        type="text"
-                                                                        placeholder=" {{ __('settings.enter_site_name_en') }}"
-                                                                        autocomplete="off"
-                                                                        value="{{ setting()->site_name_en }}" />
-                                                                    <span class="form-text text-danger"
-                                                                        id="site_name_en_error"></span>
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Group-->
                                                         </div>
-                                                    </div>
-                                                    <br />
+                                                        <!--begin::Group-->
 
-
-                                                    <div class="card my-2">
-                                                        <div class="card-body p-5">
-                                                            <h3>{{ __('settings.contact_us') }} </h3>
-                                                            <hr />
-                                                            <br />
-                                                            <!--begin::Group-->
-                                                            <div class="d-none form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('settings.site_email') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <input
-                                                                        class="form-control form-control-solid form-control-lg"
-                                                                        name="site_email" id="site_email" type="text"
-                                                                        placeholder=" {{ __('settings.enter_site_email') }}"
-                                                                        autocomplete="off"
-                                                                        value="{{ setting()->site_email }}" />
-                                                                    <span class="form-text text-danger"
-                                                                        id="site_email_error"></span>
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Group-->
-
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('settings.site_gmail') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <input
-                                                                        class="form-control form-control-solid form-control-lg"
-                                                                        name="site_gmail" id="site_gmail" type="text"
-                                                                        placeholder=" {{ __('settings.enter_site_gmail') }}"
-                                                                        autocomplete="off"
-                                                                        value="{{ setting()->site_gmail }}" />
-                                                                    <span class="form-text text-danger"
-                                                                        id="site_gmail_error"></span>
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Group-->
-
-
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('settings.site_facebook') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <input
-                                                                        class="form-control form-control-solid form-control-lg"
-                                                                        name="site_facebook" id="site_facebook"
-                                                                        type="text"
-                                                                        placeholder=" {{ __('settings.enter_site_facebook') }}"
-                                                                        autocomplete="off"
-                                                                        value="{{ setting()->site_facebook }}" />
-                                                                    <span class="form-text text-danger"
-                                                                        id="site_facebook_error"></span>
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Group-->
-
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('settings.site_twitter') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <input
-                                                                        class="form-control form-control-solid form-control-lg"
-                                                                        name="site_twitter" id="site_twitter"
-                                                                        type="text"
-                                                                        placeholder=" {{ __('settings.enter_site_twitter') }}"
-                                                                        autocomplete="off"
-                                                                        value="{{ setting()->site_twitter }}" />
-                                                                    <span class="form-text text-danger"
-                                                                        id="site_twitter_error"></span>
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Group-->
-
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('settings.site_youtube') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <input
-                                                                        class="form-control form-control-solid  form-control-lg"
-                                                                        name="site_youtube" id="site_youtube"
-                                                                        type="text"
-                                                                        placeholder=" {{ __('settings.enter_site_youtube') }}"
-                                                                        autocomplete="off"
-                                                                        value="{{ setting()->site_youtube }}" />
-                                                                    <span class="form-text text-danger"
-                                                                        id="site_youtube_error"></span>
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Group-->
-
-
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('settings.site_instagram') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <input
-                                                                        class="form-control form-control-solid  form-control-lg"
-                                                                        name="site_instagram" id="site_instagram"
-                                                                        type="text"
-                                                                        placeholder=" {{ __('settings.enter_site_instagram') }}"
-                                                                        autocomplete="off"
-                                                                        value="{{ setting()->site_instagram }}" />
-                                                                    <span class="form-text text-danger"
-                                                                        id="site_instagram_error"></span>
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Group-->
-
-
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('settings.site_linkedin') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <input
-                                                                        class="form-control form-control-solid  form-control-lg"
-                                                                        name="site_linkedin" id="site_linkedin"
-                                                                        type="text"
-                                                                        placeholder=" {{ __('settings.enter_site_linkedin') }}"
-                                                                        autocomplete="off"
-                                                                        value="{{ setting()->site_linkedin }}" />
-                                                                    <span class="form-text text-danger"
-                                                                        id="site_linkedin_error"></span>
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Group-->
-
-
-                                                            <!--begin::Group-->
-                                                            <div class="d-none form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('settings.site_phone') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <input
-                                                                        class="form-control form-control-solid  form-control-lg"
-                                                                        name="site_phone" id="site_phone" type="text"
-                                                                        placeholder=" {{ __('settings.enter_site_phone') }}"
-                                                                        autocomplete="off"
-                                                                        value="{{ setting()->site_phone }}" />
-                                                                    <span class="form-text text-danger"
-                                                                        id="site_phone_error"></span>
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Group-->
-
-
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('settings.site_mobile') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <input
-                                                                        class="form-control form-control-solid  form-control-lg"
-                                                                        name="site_mobile" id="site_mobile"
-                                                                        type="text"
-                                                                        placeholder=" {{ __('settings.enter_site_mobile') }}"
-                                                                        autocomplete="off"
-                                                                        value="{{ setting()->site_mobile }}" />
-                                                                    <span class="form-text text-danger"
-                                                                        id="site_mobile_error"></span>
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Group-->
-
-                                                        </div>
-                                                    </div>
-                                                    <br />
-
-                                                    <div class="card my-2">
-                                                        <div class="card-body p-5">
-                                                            <h3>{{ __('settings.language_section') }} </h3>
-                                                            <hr />
-                                                            <br />
-
-
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('general.en') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9 " id="site_lang_en_section">
-                                                                    <div class="cst-switch switch-lg">
-                                                                        <input class="site_lang_en" checked
-                                                                            type="checkbox" name="site_lang_en"
-                                                                            id="site_lang_en">
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label
+                                                                class="col-xl-3 col-lg-3 col-form-label text-left">{{ __('settings.site_logo') }}</label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <div class="image-input image-input-outline "
+                                                                    id="kt_site_logo">
+                                                                    <div class="image-input-wrapper"
+                                                                        style="background-image: url({{ asset('adminBoard/uploadedImages/logos/' . setting()->site_logo) }})">
                                                                     </div>
+                                                                    <label
+                                                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                                                        data-action="change" data-toggle="tooltip"
+                                                                        title=""
+                                                                        data-original-title="{{ __('general.change_image') }}">
+                                                                        <i class="fa fa-pen icon-sm text-muted"></i>
+                                                                        <input type="file" name="site_logo"
+                                                                            id="site_logo" />
+                                                                        <input type="hidden" name="site_logo_remove" />
+                                                                    </label>
+
+                                                                    <span
+                                                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                                                        data-action="cancel" data-toggle="tooltip"
+                                                                        title="Cancel avatar">
+                                                                        <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                                    </span>
                                                                 </div>
+                                                                <span class="form-text text-muted">
+                                                                    {{ __('settings.image_format_allow') }}
+                                                                    <span class="form-text text-danger"
+                                                                        id="site_logo_error"></span>
+                                                                </span>
                                                             </div>
-                                                            <!--end::Group-->
-
-
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('general.ar') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <div class="cst-switch switch-lg">
-                                                                        <input class="site_lang_ar" type="checkbox"
-                                                                            {{ setting()->site_lang_ar == 'on' ? 'checked' : '' }}
-                                                                            name="site_lang_ar" id="site_lang_ar">
-                                                                    </div>
-
-                                                                </div>
-
-                                                            </div>
-                                                            <!--end::Group-->
-
-
-
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('settings.lang_front_button_status') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9 " id="site_lang_en_section">
-                                                                    <div class="cst-switch switch-lg">
-                                                                        <input class="lang_front_button_status"
-                                                                            type="checkbox"
-                                                                            {{ setting()->lang_front_button_status == 'on' ? 'checked' : '' }}
-                                                                            name="lang_front_button_status"
-                                                                            id="lang_front_button_status">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Group-->
-
 
                                                         </div>
-                                                    </div>
-                                                    <br />
+                                                        <!--begin::Group-->
 
-                                                    <div class="card my-2">
-                                                        <div class="card-body p-5">
-                                                            <h3>{{ __('settings.seo_section') }} </h3>
-                                                            <hr />
-                                                            <br />
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('settings.site_description_ar') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <textarea rows="3" class="form-control form-control-solid  form-control-lg" name="site_description_ar"
-                                                                        id="site_description_ar" type="text" placeholder=" {{ __('settings.enter_site_description_ar') }}"
-                                                                        autocomplete="off">{{ setting()->site_description_ar }}</textarea>
-
-                                                                    <span class="form-text text-danger"
-                                                                        id="site_description_ar_error"></span>
-                                                                </div>
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                {{ __('settings.site_name_ar') }}
+                                                            </label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <input
+                                                                    class="form-control form-control-solid form-control-lg"
+                                                                    name="site_name_ar" id="site_name_ar" type="text"
+                                                                    placeholder=" {{ __('settings.enter_site_name_ar') }}"
+                                                                    autocomplete="off"
+                                                                    value="{{ setting()->site_name_ar }}" />
+                                                                <span class="form-text text-danger"
+                                                                    id="site_name_ar_error"></span>
                                                             </div>
-                                                            <!--end::Group-->
-
-
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('settings.site_description_en') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <textarea rows="3" class="form-control form-control-solid form-control-lg" name="site_description_en"
-                                                                        id="site_description_en" type="text" placeholder=" {{ __('settings.enter_site_description_en') }}"
-                                                                        autocomplete="off">{{ setting()->site_description_en }}</textarea>
-
-                                                                    <span class="form-text text-danger"
-                                                                        id="site_description_en_error"></span>
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Group-->
-
-
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('settings.site_keywords_ar') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <textarea rows="5" class="form-control form-control-solid form-control-lg" name="site_keywords_ar"
-                                                                        id="site_keywords_ar" type="text" placeholder=" {{ __('settings.enter_site_keywords_ar') }}"
-                                                                        autocomplete="off">{{ setting()->site_keywords_ar }}</textarea>
-
-                                                                    <span class="form-text text-danger"
-                                                                        id="site_keywords_ar_error"></span>
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Group-->
-
-
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('settings.site_keywords_en') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <textarea rows="5" class="form-control form-control-solid form-control-lg" name="site_keywords_en"
-                                                                        id="site_keywords_en" type="text" placeholder=" {{ __('settings.enter_site_keywords_en') }}"
-                                                                        autocomplete="off">{{ setting()->site_keywords_en }}</textarea>
-
-                                                                    <span class="form-text text-danger"
-                                                                        id="site_keywords_en_error"></span>
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Group-->
-
-
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('settings.site_address_ar') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <textarea rows="5" class="form-control form-control-solid form-control-lg" name="site_address_ar"
-                                                                        id="site_address_ar" type="text" placeholder=" {{ __('settings.enter_site_address_ar') }}"
-                                                                        autocomplete="off">{{ setting()->site_address_ar }}</textarea>
-
-                                                                    <span class="form-text text-danger"
-                                                                        id="site_address_ar_error"></span>
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Group-->
-
-                                                            <!--begin::Group-->
-                                                            <div class="form-group row">
-                                                                <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                    {{ __('settings.site_address_en') }}
-                                                                </label>
-                                                                <div class="col-lg-9 col-xl-9">
-                                                                    <textarea rows="5" class="form-control form-control-solid form-control-lg" name="site_address_en"
-                                                                        id="site_address_en" type="text" placeholder=" {{ __('settings.enter_site_address_en') }}"
-                                                                        autocomplete="off">{{ setting()->site_address_en }}</textarea>
-
-                                                                    <span class="form-text text-danger"
-                                                                        id="site_address_en_error"></span>
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Group-->
-
-
                                                         </div>
+                                                        <!--end::Group-->
+
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                {{ __('settings.site_name_en') }}
+                                                            </label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <input
+                                                                    class="form-control form-control-solid  form-control-lg"
+                                                                    name="site_name_en" id="site_name_en" type="text"
+                                                                    placeholder=" {{ __('settings.enter_site_name_en') }}"
+                                                                    autocomplete="off"
+                                                                    value="{{ setting()->site_name_en }}" />
+                                                                <span class="form-text text-danger"
+                                                                    id="site_name_en_error"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
                                                     </div>
-                                                    <br />
                                                 </div>
-                                                <!--begin::body-->
+                                            </div>
+
+                                            <div class="col-xl-6">
+                                                <div class="card my-2 " style="padding-bottom: 10px">
+                                                    <div class="card-body p-5">
+                                                        <h3>{{ __('settings.contact_us') }} </h3>
+                                                        <hr />
+                                                        <br />
+                                                        <!--begin::Group-->
+                                                        <div class="d-none form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                {{ __('settings.site_email') }}
+                                                            </label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <input
+                                                                    class="form-control form-control-solid form-control-lg"
+                                                                    name="site_email" id="site_email" type="text"
+                                                                    placeholder=" {{ __('settings.enter_site_email') }}"
+                                                                    autocomplete="off"
+                                                                    value="{{ setting()->site_email }}" />
+                                                                <span class="form-text text-danger"
+                                                                    id="site_email_error"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                {{ __('settings.site_gmail') }}
+                                                            </label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <input
+                                                                    class="form-control form-control-solid form-control-lg"
+                                                                    name="site_gmail" id="site_gmail" type="text"
+                                                                    placeholder=" {{ __('settings.enter_site_gmail') }}"
+                                                                    autocomplete="off"
+                                                                    value="{{ setting()->site_gmail }}" />
+                                                                <span class="form-text text-danger"
+                                                                    id="site_gmail_error"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
 
 
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                {{ __('settings.site_facebook') }}
+                                                            </label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <input
+                                                                    class="form-control form-control-solid form-control-lg"
+                                                                    name="site_facebook" id="site_facebook"
+                                                                    type="text"
+                                                                    placeholder=" {{ __('settings.enter_site_facebook') }}"
+                                                                    autocomplete="off"
+                                                                    value="{{ setting()->site_facebook }}" />
+                                                                <span class="form-text text-danger"
+                                                                    id="site_facebook_error"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                {{ __('settings.site_twitter') }}
+                                                            </label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <input
+                                                                    class="form-control form-control-solid form-control-lg"
+                                                                    name="site_twitter" id="site_twitter" type="text"
+                                                                    placeholder=" {{ __('settings.enter_site_twitter') }}"
+                                                                    autocomplete="off"
+                                                                    value="{{ setting()->site_twitter }}" />
+                                                                <span class="form-text text-danger"
+                                                                    id="site_twitter_error"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                {{ __('settings.site_youtube') }}
+                                                            </label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <input
+                                                                    class="form-control form-control-solid  form-control-lg"
+                                                                    name="site_youtube" id="site_youtube" type="text"
+                                                                    placeholder=" {{ __('settings.enter_site_youtube') }}"
+                                                                    autocomplete="off"
+                                                                    value="{{ setting()->site_youtube }}" />
+                                                                <span class="form-text text-danger"
+                                                                    id="site_youtube_error"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+
+
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                {{ __('settings.site_instagram') }}
+                                                            </label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <input
+                                                                    class="form-control form-control-solid  form-control-lg"
+                                                                    name="site_instagram" id="site_instagram"
+                                                                    type="text"
+                                                                    placeholder=" {{ __('settings.enter_site_instagram') }}"
+                                                                    autocomplete="off"
+                                                                    value="{{ setting()->site_instagram }}" />
+                                                                <span class="form-text text-danger"
+                                                                    id="site_instagram_error"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+
+
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                {{ __('settings.site_linkedin') }}
+                                                            </label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <input
+                                                                    class="form-control form-control-solid  form-control-lg"
+                                                                    name="site_linkedin" id="site_linkedin"
+                                                                    type="text"
+                                                                    placeholder=" {{ __('settings.enter_site_linkedin') }}"
+                                                                    autocomplete="off"
+                                                                    value="{{ setting()->site_linkedin }}" />
+                                                                <span class="form-text text-danger"
+                                                                    id="site_linkedin_error"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+
+
+                                                        <!--begin::Group-->
+                                                        <div class="d-none form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                {{ __('settings.site_phone') }}
+                                                            </label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <input
+                                                                    class="form-control form-control-solid  form-control-lg"
+                                                                    name="site_phone" id="site_phone" type="text"
+                                                                    placeholder=" {{ __('settings.enter_site_phone') }}"
+                                                                    autocomplete="off"
+                                                                    value="{{ setting()->site_phone }}" />
+                                                                <span class="form-text text-danger"
+                                                                    id="site_phone_error"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+
+
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                {{ __('settings.site_mobile') }}
+                                                            </label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <input
+                                                                    class="form-control form-control-solid  form-control-lg"
+                                                                    name="site_mobile" id="site_mobile" type="text"
+                                                                    placeholder=" {{ __('settings.enter_site_mobile') }}"
+                                                                    autocomplete="off"
+                                                                    value="{{ setting()->site_mobile }}" />
+                                                                <span class="form-text text-danger"
+                                                                    id="site_mobile_error"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!--end:: top cards-->
+
+
+                                        <!--begin:: bottom cards-->
+                                        <div class="row justify-content-center">
+
+                                            <div class="col-xl-9">
+
+                                                <div class="card my-2">
+                                                    <div class="card-body p-5">
+                                                        <h3>{{ __('settings.seo_section') }} </h3>
+                                                        <hr />
+                                                        <br />
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                {{ __('settings.site_description_ar') }}
+                                                            </label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <textarea rows="3" class="form-control form-control-solid  form-control-lg" name="site_description_ar"
+                                                                    id="site_description_ar" type="text" placeholder=" {{ __('settings.enter_site_description_ar') }}"
+                                                                    autocomplete="off">{{ setting()->site_description_ar }}</textarea>
+
+                                                                <span class="form-text text-danger"
+                                                                    id="site_description_ar_error"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+
+
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                {{ __('settings.site_description_en') }}
+                                                            </label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <textarea rows="3" class="form-control form-control-solid form-control-lg" name="site_description_en"
+                                                                    id="site_description_en" type="text" placeholder=" {{ __('settings.enter_site_description_en') }}"
+                                                                    autocomplete="off">{{ setting()->site_description_en }}</textarea>
+
+                                                                <span class="form-text text-danger"
+                                                                    id="site_description_en_error"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+
+
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                {{ __('settings.site_keywords_ar') }}
+                                                            </label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <textarea rows="5" class="form-control form-control-solid form-control-lg" name="site_keywords_ar"
+                                                                    id="site_keywords_ar" type="text" placeholder=" {{ __('settings.enter_site_keywords_ar') }}"
+                                                                    autocomplete="off">{{ setting()->site_keywords_ar }}</textarea>
+
+                                                                <span class="form-text text-danger"
+                                                                    id="site_keywords_ar_error"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+
+
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                {{ __('settings.site_keywords_en') }}
+                                                            </label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <textarea rows="5" class="form-control form-control-solid form-control-lg" name="site_keywords_en"
+                                                                    id="site_keywords_en" type="text" placeholder=" {{ __('settings.enter_site_keywords_en') }}"
+                                                                    autocomplete="off">{{ setting()->site_keywords_en }}</textarea>
+
+                                                                <span class="form-text text-danger"
+                                                                    id="site_keywords_en_error"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+
+
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                {{ __('settings.site_address_ar') }}
+                                                            </label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <textarea rows="5" class="form-control form-control-solid form-control-lg" name="site_address_ar"
+                                                                    id="site_address_ar" type="text" placeholder=" {{ __('settings.enter_site_address_ar') }}"
+                                                                    autocomplete="off">{{ setting()->site_address_ar }}</textarea>
+
+                                                                <span class="form-text text-danger"
+                                                                    id="site_address_ar_error"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                {{ __('settings.site_address_en') }}
+                                                            </label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <textarea rows="5" class="form-control form-control-solid form-control-lg" name="site_address_en"
+                                                                    id="site_address_en" type="text" placeholder=" {{ __('settings.enter_site_address_en') }}"
+                                                                    autocomplete="off">{{ setting()->site_address_en }}</textarea>
+
+                                                                <span class="form-text text-danger"
+                                                                    id="site_address_en_error"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3">
+
+                                                <div class="card my-2">
+                                                    <div class="card-body p-5">
+                                                        <h3>{{ __('settings.language_section') }} </h3>
+                                                        <hr />
+                                                        <br />
+
+
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-8 col-lg-8 col-form-label">
+                                                                {{ __('general.en') }}
+                                                            </label>
+                                                            <div class="col-lg-4 col-xl-4 " id="site_lang_en_section">
+                                                                <div class="cst-switch switch-lg">
+                                                                    <input class="site_lang_en" checked type="checkbox"
+                                                                        title="{!! __('general.english_langauge_enabled_all_the_times') !!}"
+                                                                        name="site_lang_en" id="site_lang_en">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+
+
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-8 col-lg-8 col-form-label">
+                                                                {{ __('general.ar') }}
+                                                            </label>
+                                                            <div class="col-lg-4 col-xl-4">
+                                                                <div class="cst-switch switch-lg">
+                                                                    <input class="site_lang_ar" type="checkbox"
+                                                                        {{ setting()->site_lang_ar == 'on' ? 'checked' : '' }}
+                                                                        name="site_lang_ar" id="site_lang_ar">
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                        <!--end::Group-->
+
+
+
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-8 col-lg-8 col-form-label">
+                                                                {{ __('settings.lang_front_button_status') }}
+                                                            </label>
+                                                            <div class="col-lg-4 col-xl-4 " id="site_lang_en_section">
+                                                                <div class="cst-switch switch-lg">
+                                                                    <input class="lang_front_button_status"
+                                                                        type="checkbox"
+                                                                        {{ setting()->lang_front_button_status == 'on' ? 'checked' : '' }}
+                                                                        name="lang_front_button_status"
+                                                                        id="lang_front_button_status">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+
+
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-
+                                        <!--end:: bottom cards-->
                                     </div>
                                 </div>
-                            </div>
-                            <!--end::Body-->
-                        </div>
-                        <!--end::Card-->
-                    </div>
-                </div>
 
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Body-->
+                </div>
+                <!--end::Card-->
             </div>
+        </div>
+
+        </div>
         </div>
         <!--end::content-->
 
@@ -658,6 +657,7 @@
                             }
                         });
                         $('.update_settings_button').click(function() {
+                            $('.site_logo_div').load(location.href + ' .site_logo_div');
                             $('html, body').animate({
                                 scrollTop: 5
                             }, 300);

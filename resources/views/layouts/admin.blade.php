@@ -120,16 +120,19 @@
             <!--begin::Aside-->
             <div class="aside aside-left  aside-fixed  d-flex flex-column flex-row-auto" id="kt_aside">
                 <!--begin::Brand-->
-                <div class="brand flex-column-auto " id="kt_brand">
+                <div class="brand flex-column-auto" id="kt_brand">
                     <!--begin::Logo-->
-                    @if (!empty(setting()->site_logo))
-                        <a href="#" class="brand-logo">
-                            <img src="{{ asset('adminBoard/uploadedImages/logos/' . setting()->site_logo) }}"
-                                style="width: 80; height: 70px; border-radius: 50px">
-                        </a>
-                    @else
-                        LOGO
-                    @endif
+                    <div class="site_logo_div">
+                        @if (!empty(setting()->site_logo))
+                            <a href="#" class="brand-logo">
+                                <img src="{{ asset('adminBoard/uploadedImages/logos/' . setting()->site_logo) }}"
+                                    style="width: 80; height: 70px; border-radius: 50px">
+                            </a>
+                        @else
+                            LOGO
+                        @endif
+                    </div>
+
 
                     <!--end::Logo-->
 
@@ -198,11 +201,11 @@
         <!--end::Header-->
 
         <!--begin::Content-->
-        <div class="offcanvas-content pr-5 mr-n5">
+        <div class="offcanvas-content admin_offcanvas pr-5 mr-n5">
             <!--begin::Header-->
             <div class="d-flex align-items-center mt-5">
                 <div class="symbol symbol-100 mr-5">
-                    <a href="{!! route('get.admin') !!}">
+                    <a href="javascript:;">
                         <div class="symbol-label"
                             @if (empty(admin()->user()->photo)) style=" background-image: url('{{ asset('adminBoard/images/user.jpg') }}');"
                          @else
@@ -215,20 +218,22 @@
                 <div class="d-flex flex-column">
                     <a href="{!! route('get.admin') !!}"
                         class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">
-                        {{ admin()->user()->name }}
+                        {!! admin()->user()->name !!}
                     </a>
                     <div class="text-muted mt-1">
                     </div>
                     <div class="navi mt-2">
                         <a href="#" class="navi-item">
                             <span class="navi-link p-0 pb-2">
-
-                                <span
-                                    class="navi-text text-muted text-hover-primary">{{ admin()->user()->email }}</span>
+                                <span class="navi-text text-muted text-hover-primary">{!! admin()->user()->email !!}</span>
                             </span>
                         </a>
-                        <a href="{{ route('admin.logout') }}"
-                            class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">{{ __('dashboard.sign_out') }}</a>
+
+                        <a href="#" data-id="{!! admin()->user()->id !!}" id="admin_update_modal"
+                            class="btn btn-sm btn-light-info font-weight-bolder py-2 px-5">{{ __('general.update') }}</a>
+
+                        <a href="{!! route('admin.logout') !!}"
+                            class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">{{ __('general.sign_out') }}</a>
                     </div>
                 </div>
             </div>
@@ -244,7 +249,7 @@
     </div>
     <!-- end::User Panel-->
 
-    @include('admin.includes.modals')
+    @include('admin.includes.update_admin_modal')
 
 
     <!--begin::Scrolltop-->
@@ -339,7 +344,6 @@
     <!--begin::Page Vendors(used by this page)-->
     <script src="{{ asset('adminBoard/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
     <script src="{{ asset('adminBoard/assets/plugins/custom/jstree/jstree.bundle.js') }}"></script>
-
     <!--end::Page Vendors-->
 
     <!--begin::Page Scripts(used by this page)-->

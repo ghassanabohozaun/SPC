@@ -68,14 +68,14 @@
                             </li>
                         @endcan
 
-                        @can('admins')
+                        {{-- @can('admins')
                             <li class="menu-item  menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                 <a href="{{ route('get.admin') }}" class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i>
                                     <span class="menu-text">{{ __('menu.admin') }}</span>
                                 </a>
                             </li>
-                        @endcan
+                        @endcan --}}
 
                     </ul>
                 </div>

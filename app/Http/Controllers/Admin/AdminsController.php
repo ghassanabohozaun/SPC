@@ -30,7 +30,7 @@ class AdminsController extends Controller
         if (!$admin) {
             return redirect()->route('admin.not.found');
         }
-        return $this->returnData('OK', 'data', $admin);
+        return $this->returnData('OK', $admin);
     }
 
     // Admin Update

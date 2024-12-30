@@ -33,7 +33,7 @@ class AdminRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('login.name_requires'),
+            'name.required' => __('login.name_required'),
             'email.required' => __('login.email_required'),
             'email.email' => __('login.email_email'),
             'password.min' => __('login.password_min'),

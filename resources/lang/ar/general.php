@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'please_wait' => 'الرجاء الانتظار ...',
     'no_record_found' => 'لايوجد اي سجل',
     'first' => 'الأول',
@@ -37,6 +36,8 @@ return [
     'choose_photo' => 'اختار الصورة ..',
     'choose_file' => 'اختار الملف ..',
     'no_file_found' => 'لا يوجد ملف',
+    'english_langauge_enabled_all_the_times' => 'اللغة الانجليزية فعالة دائماً',
+
     'not_found' => 'غير متاحة',
     'example' => 'مثال',
     'financial' => 'مالي',
@@ -58,12 +59,16 @@ return [
     'download' => 'التحميل',
     'flag' => 'علم',
 
+    'user' => 'المستخدم',
+    'admin' => 'المدير',
+    'user_update' => 'تعديل المستخدم',
+    'admin_update' => 'تعديل المدير',
+    'sign_out' => 'تسجيل الخروج',
+
     'change_image' => 'تغير الصورة',
     'image_format_allow' => 'صيغ الصور المسموح بها هي jpg ,jpeg, png فقط',
     'file_format_allow' => 'صيغ الملفات المسموح بها pdf فقط',
     'word_format_allow' => 'صيغ الملفات المسموح بها word فقط',
-
-
 
     'add_success_message' => 'تمت عملية الحفظ بنجاح',
     'add_error_message' => 'لم تتم عملية الحفظ',
@@ -78,8 +83,6 @@ return [
     'upload_error_message' => 'لم تتم عملية الرفع ',
     'send_success_message' => 'تمت عملية الارسال بنجاح',
     'send_error_message' => 'لم تتم عملية الارسال',
-
-
 
     'internal_server_error_message' => 'عذراً , خطأ داخلي في الخادم ',
     'try_catch_error_message' => 'عذراً , هتالك خطأ ما يرجي المحاولة فيما بعد  ',
@@ -122,7 +125,6 @@ return [
     'inputTooLong' => 'الرجاء  عدد حروف البحث لا يتجاوز 20 حرف',
     'inputTooShort' => 'الرجاء قم بادخال حرف علي الاقل',
 
-
     'validation_error_message' => ' عذرا ,  يبدو انه تم اكتشاف بعد الاخطاء  , الرجاء المحاولة مرة اخري.',
     'ok_got_it' => 'حسناً, فهمتك! ',
     'required' => 'هذا الحقل مطلوب',
@@ -138,5 +140,4 @@ return [
     'character_limit_reached' => 'تم الوصول الي عدد الحروف المسموح به',
     'character_limit' => 'عدد الحروف المسموح بها',
     'remaining' => 'متبقي',
-
 ];

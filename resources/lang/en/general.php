@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'please_wait' => 'Please Wait ...',
     'no_record_found' => 'No records found',
     'prev' => 'Previous',
@@ -33,7 +32,7 @@ return [
     'choose_photo' => 'Choose Photo ..',
     'choose_file' => 'Choose File ..',
     'no_file_found' => 'No File',
-
+    'english_langauge_enabled_all_the_times' => 'English Langauge enabled all the times',
     'not_found' => 'Not Found',
     'example' => 'Example',
     'financial' => 'Financial',
@@ -55,11 +54,16 @@ return [
     'download' => 'Download',
     'flag' => 'Flag',
 
+    'user' => 'User',
+    'admin' => 'Admin',
+    'user_update' => 'User Update',
+    'admin_update' => 'Admin Update',
+    'sign_out' => 'Sign Out',
+
     'change_image' => 'Change image',
     'image_format_allow' => 'Allowed file types jpg,jpeg,png',
     'file_format_allow' => 'Allowed file types pdf',
     'word_format_allow' => 'Allowed file types Word',
-
 
     'add_success_message' => 'Added Successfully',
     'add_error_message' => 'Added Failed',
@@ -74,14 +78,11 @@ return [
     'send_success_message' => ' Send Successfully',
     'send_error_message' => ' Send Failed',
 
-
-
     'internal_server_error_message' => 'Sorry, Internal server Error ',
     'try_catch_error_message' => 'Sorry, There is an error, please try again later',
     'error_message' => 'Sorry, There is an error',
     'cancelled_message' => 'Sorry, You  canceled the order',
     'error' => 'Error',
-
 
     'ask_delete_record' => 'Do You Want To Delete This Record ? ',
     'ask_permanent_delete_record' => 'Do You Want To Permanent Delete This Record ? ',
@@ -124,7 +125,6 @@ return [
     'inputTooLong' => 'Please, the number of search characters does not exceed 20 characters',
     'inputTooShort' => 'Please enter at least one letter',
 
-
     'validation_error_message' => 'Sorry, looks like there are some errors detected, please try again.',
     'ok_got_it' => 'Ok, got it! ',
     'required' => 'This Field is Required ',
@@ -140,5 +140,4 @@ return [
     'character_limit_reached' => 'character limit reached',
     'character_limit' => 'character limit',
     'remaining' => 'remaining',
-
 ];

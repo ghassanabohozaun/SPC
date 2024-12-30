@@ -1,15 +1,14 @@
 <?php
 
 return [
-
     'admin_panel' => 'لوحة تحكم الإدارة',
-    'panels' => "لوحات التحكم",
+    'panels' => 'لوحات التحكم',
     'chart_article' => 'نمو مشاهدات المقالات',
     'chart_tests' => 'نمو مشاهدات الاختبارات',
 
     'test_counter' => 'عدد الاختبارات ',
     'article_counter' => 'عدد المقالات',
-    'publication_counter' =>  'عدد المنشورت ',
+    'publication_counter' => 'عدد المنشورت ',
     'new_counter' => 'عدد الأخبار',
     'poster_counter' => 'عدد البوسترات',
     'book_counter' => 'عدد الكتب',
@@ -40,7 +39,7 @@ return [
     'return_to_dashboard' => 'العودة الي لوحة التحكم',
     'page_not_found' => 'الصفحة غير متاحة',
     'return_to_dashboard_message' => 'يمكنك الرجوع الي الصفحة السابقة او التواصل مع الدعم الفني',
-     'sorry'=>'عذراً',
+    'sorry' => 'عذراً',
 
     /////////////////////////////////
     /// Upload Center
@@ -49,6 +48,4 @@ return [
     'file_mimes_type' => 'نوع الملف او الصورة',
     'full_path_after_upload' => 'المسار الكامل للملف او الصورة',
     'file_required' => 'الملف او الصورة مطلوبة',
-
-
 ];

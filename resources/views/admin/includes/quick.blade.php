@@ -30,13 +30,15 @@
 
                     <!--begin: Item-->
                     <div class="d-flex align-items-center bg-light-warning rounded p-5 mb-5">
-			            <span class="svg-icon svg-icon-warning mr-5">
-			                <span class="svg-icon svg-icon-lg">
+                        <span class="svg-icon svg-icon-warning mr-5">
+                            <span class="svg-icon svg-icon-lg">
                             </span>
                         </span>
 
                         <div class="d-flex flex-column flex-grow-1 mr-2">
-                            <a href="#" class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1">Another purpose persuade</a>
+                            <a href="#"
+                                class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1">Another
+                                purpose persuade</a>
                             <span class="text-muted font-size-sm">Due in 2 Days</span>
                         </div>
 

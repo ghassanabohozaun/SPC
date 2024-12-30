@@ -1,17 +1,16 @@
 <!-- begin Brochure Modal -->
 <div class="modal fade" id="modal_Brochure" data-backdrop="static" tabindex="-1" role="dialog"
-     aria-labelledby="staticBackdrop" aria-hidden="true">
+    aria-labelledby="staticBackdrop" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{__('aboutSite.brochure')}}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">{{ __('aboutSite.brochure') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
             </div>
 
-            <form action="" method="POST" enctype="multipart/form-data"
-                  id="form_brochure_store">
+            <form action="" method="POST" enctype="multipart/form-data" id="form_brochure_store">
                 @csrf
                 <div class="modal-body">
 
@@ -29,24 +28,19 @@
                                         <div>
                                             <div class="form-group row">
                                                 <label class="col-xl-3 col-lg-3 col-form-label">
-                                                    {{__('aboutSite.brochure')}}
+                                                    {{ __('aboutSite.brochure') }}
                                                 </label>
                                                 <div class="col-lg-9 col-xl-9">
-                                                    <input
-                                                        class="form-control form-control-solid form-control-lg"
-                                                        type="file" name="brochure"
-                                                        id="brochure"
-                                                        placeholder=""/>
-                                                    <span class="form-text text-danger"
-                                                          id="brochure_error"></span>
+                                                    <input class="form-control form-control-solid form-control-lg"
+                                                        type="file" name="brochure" id="brochure" placeholder="" />
+                                                    <span class="form-text text-danger" id="brochure_error"></span>
                                                 </div>
                                             </div>
                                             <div class="example-preview">
                                                 <div class="pt-4">
                                                     <div class="progress">
-                                                        <div class="progress-bar" role="progressbar"
-                                                             aria-valuenow="0" aria-valuemin="0"
-                                                             aria-valuemax="100"></div>
+                                                        <div class="progress-bar" role="progressbar" aria-valuenow="0"
+                                                            aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
                                                 <div id="uploadStatus"></div>
@@ -65,11 +59,11 @@
                 </div>
                 <div class="modal-footer">
                     <button type="" id="cancel_brochure_btn" class="btn btn-light-primary font-weight-bold">
-                        {{__('general.cancel')}}
+                        {{ __('general.cancel') }}
                     </button>
 
                     <button type="submit" id="save_brochure_btn" class="btn btn-primary font-weight-bold">
-                        {{__('general.save')}}
+                        {{ __('general.save') }}
                     </button>
                 </div>
             </form>
@@ -79,24 +73,18 @@
 <!-- end Brochure Add Modal-->
 
 @push('js')
-
-
     <script type="text/javascript">
         /////////////////////////////////////////////////////////////////////////////////////
         // close add brochure modal by cancel
-        $('body').on('click', '#cancel_brochure_btn', function (e) {
+        $('body').on('click', '#cancel_brochure_btn', function(e) {
             e.preventDefault();
             $('#modal_Brochure').modal('hide');
         });
         /////////////////////////////////////////////////////////////////////////////////////
         // Close add brochure modal By event
-        $('#modal_Brochure').on('hidden.bs.modal', function (e) {
+        $('#modal_Brochure').on('hidden.bs.modal', function(e) {
             e.preventDefault();
             $('#modal_Brochure').modal('hide');
         });
-
-
-
     </script>
 @endpush
-
