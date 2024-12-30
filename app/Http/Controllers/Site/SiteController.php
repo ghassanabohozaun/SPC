@@ -42,8 +42,8 @@ class SiteController extends Controller
             //         $q->where('language', 'ar_en');
             //     })->get();
         }
-
-        return view('site.index', compact('title'));
+        return redirect()->route('get.admin.login');
+        //return view('site.index', compact('title'));
     }
 
     // About

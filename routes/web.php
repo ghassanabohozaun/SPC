@@ -14,7 +14,7 @@ Route::group(
     ////////////////////////////////////////////////////////////
     /// any
     Route::get('', function () {
-        return view('site.index');
+        return redirect()->route('get.admin.login');
     })->where(['any' => '.*']);
 
     // index
