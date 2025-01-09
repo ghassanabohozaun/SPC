@@ -1,14 +1,17 @@
 @extends('layouts.site')
-@section('title') {!! trans('frontend.home') !!} @endsection
-@section('metaTags')
-    <meta name="description"
-          content="{!! Lang()=='ar' ? setting()->site_description_ar : setting()->site_description_en !!}">
-    <meta name="keywords"
-          content="{!! Lang()=='ar' ? setting()->site_keywords_ar : setting()->site_keywords_en !!}">
+@section('title')
+    {!! Lang() == 'ar' ? setting()->site_title_ar : setting()->site_title_en !!}
 @endsection
+@section('metaTags')
+    <meta name="description" content="{!! Lang() == 'ar' ? setting()->site_description_ar : setting()->site_description_en !!}">
+    <meta name="keywords" content="{!! Lang() == 'ar' ? setting()->site_keywords_ar : setting()->site_keywords_en !!}">
+    <meta name="application-name" content="{!! Lang() == 'ar' ? setting()->site_name_ar : setting()->site_name_en !!}" />
+    <meta name="author" content="{!! Lang() == 'ar' ? setting()->site_name_ar : setting()->site_name_en !!}" />
+@endsection
+@push('css')
+@endpush
 
 @section('content')
-
     <!-------------------------------------- Start Top Title Section  ------------------------------------->
     <div class="clearfix"></div>
     <div class="bradcam_area about_us_bg">
@@ -27,20 +30,20 @@
     <!-------------------------------------- Start wrapper  ------------------------------------->
     <div class="pricing-table-wrapper my-about-spc-section module">
         <main>
-            <div class="my_div my_lead" >
-                @foreach($aboutSpaItems as $aboutSpaItem)
-                    <section id="{!! Lang()=='ar'? $aboutSpaItem->title_ar:$aboutSpaItem->title_en !!}">
-                        <h2>{!! Lang()=='ar'? $aboutSpaItem->title_ar:$aboutSpaItem->title_en !!}</h2>
-                        <p>{!! Lang()=='ar'? $aboutSpaItem->details_ar:$aboutSpaItem->details_en !!}</p>
+            <div class="my_div my_lead" style="float: left">
+                @foreach ($aboutSpaItems as $aboutSpaItem)
+                    <section id="{!! $aboutSpaItem->{'title_' . Lang()} !!}">
+                        <h2>{!! $aboutSpaItem->{'title_' . Lang()} !!}</h2>
+                        <p>{!! $aboutSpaItem->{'details_' . Lang()} !!}</p>
                     </section>
                 @endforeach
             </div>
-            <nav class="section-nav">
+            <nav class="section-nav" style="float: right">
                 <ol>
-                    @foreach($aboutSpaItems as $aboutSpaItem)
+                    @foreach ($aboutSpaItems as $aboutSpaItem)
                         <li>
-                            <a href="#{!! Lang()=='ar'? $aboutSpaItem->title_ar:$aboutSpaItem->title_en !!}">
-                                {!! Lang()=='ar'? $aboutSpaItem->title_ar:$aboutSpaItem->title_en !!}
+                            <a href="#{!! $aboutSpaItem->{'title_' . Lang()} !!}">
+                                {!! $aboutSpaItem->{'title_' . Lang()} !!}
                             </a>
                         </li>
                     @endforeach
@@ -52,9 +55,8 @@
     <!-------------------------------------- End wrapper  --------------------------------------->
 
     <!-------------------------------------- Start Call to Action ------------------------------>
-    @include('site.include.call-to-action')
+    {{-- @include('site.include.call-to-action') --}}
     <!-------------------------------------- End Call to Action -------------------------------->
-
 @endsection
 @push('js')
     <script type="text/javascript">
@@ -64,9 +66,11 @@
                 entries.forEach(entry => {
                     const id = entry.target.getAttribute('id');
                     if (entry.intersectionRatio > 0) {
-                        document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add('active');
+                        document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList
+                            .add('active');
                     } else {
-                        document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.remove('active');
+                        document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList
+                            .remove('active');
                     }
                 });
             });

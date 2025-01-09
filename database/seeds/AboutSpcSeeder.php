@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\AboutSpc;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class AboutSpcSeeder extends Seeder
 {
@@ -15,6 +16,9 @@ class AboutSpcSeeder extends Seeder
      */
     public function run()
     {
+
+        $faker = Faker::create();
+
         $title_en = ['Definition', 'Aims', 'Methods', 'Sessions', 'Rationale', 'Success', 'Research'];
         $title_ar = ['تعريف', 'الأهداف', 'الأساليب', 'الجلسات', 'المنطق', 'النجاح', 'البحث'];
 
@@ -22,8 +26,8 @@ class AboutSpcSeeder extends Seeder
             AboutSpc::create([
                 'title_en' => $title_en[$i],
                 'title_ar' => $title_ar[$i],
-                'details_ar'=>'',
-                'details_en'=>'',
+                'details_ar'=>$faker->paragraph(50),
+                'details_en'=>$faker->paragraph(50),
                 'language' => 'ar_en',
                 'status' => 'on',
             ]);
