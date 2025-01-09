@@ -48,9 +48,9 @@ Route::group(
         Route::get('/notFound', [DashboardController::class, 'notFound'])->name('admin.not.found');
         /////////////////////////////////////////////////////////////////////////////////////////////
         /// dashboard
-        Route::get('/', [DashboardController::class, 'index'])
-            ->name('admin.dashboard')
-            ->middleware('can:dashboard');
+        // Route::get('/', [DashboardController::class, 'index'])
+        //     ->name('admin.dashboard')
+        //     ->middleware('can:dashboard');
         Route::get('/dashboard', [DashboardController::class, 'index'])
             ->name('admin.dashboard')
             ->middleware('can:dashboard');
