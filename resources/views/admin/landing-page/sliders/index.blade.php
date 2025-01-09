@@ -78,6 +78,7 @@
                                                             <th>{!! __('sliders.title_ar') !!}</th>
                                                             <th>{!! __('sliders.order') !!}</th>
                                                             <th>{!! __('sliders.details_status') !!}</th>
+                                                            <th>{!! __('sliders.button_status') !!}</th>
                                                             <th>{!! __('sliders.status') !!}</th>
                                                             <th class="text-center" style="width: 100px;">
                                                                 {!! __('general.actions') !!}</th>
@@ -97,6 +98,9 @@
                                                                     @include('admin.landing-page.sliders.parts.details-status')
                                                                 </td>
                                                                 <td>
+                                                                    @include('admin.landing-page.sliders.parts.button-status')
+                                                                </td>
+                                                                <td>
                                                                     @include('admin.landing-page.sliders.parts.status')
                                                                 </td>
                                                                 <td>
@@ -105,7 +109,7 @@
                                                             </tr>
                                                         @empty
                                                             <tr>
-                                                                <td colspan="8" class="text-center">
+                                                                <td colspan="9" class="text-center">
                                                                     {!! __('sliders.no_sliders_found') !!}
                                                                 </td>
                                                             </tr>
@@ -113,7 +117,7 @@
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
-                                                            <td colspan="8">
+                                                            <td colspan="9">
                                                                 <div class="float-right">
                                                                     {!! $sliders->appends(request()->all())->links() !!}
                                                                 </div>

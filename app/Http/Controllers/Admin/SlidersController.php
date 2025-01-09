@@ -61,6 +61,7 @@ class SlidersController extends Controller
             'details_en' => $request->details_en,
             'details_ar' => $site_lang_ar == 'on' ? $request->details_ar : null,
             'details_status' => $request->details_status,
+            'button_status' => $request->button_status,
             'url_ar' => $request->url_ar,
             'url_en' => $request->url_en,
             'order' => $request->order,
@@ -83,7 +84,6 @@ class SlidersController extends Controller
         return view('admin.landing-page.sliders.update', compact('title', 'slider'));
     }
 
-
     // update
     public function update(SlidersRequest $request)
     {
@@ -100,7 +100,6 @@ class SlidersController extends Controller
     // update
     protected function updateSlider(SlidersRequest $request)
     {
-
         $slider = Slider::find($request->id);
 
         if (!$slider) {
@@ -109,7 +108,7 @@ class SlidersController extends Controller
 
         if ($request->hasFile('photo')) {
             if (!empty($slider->photo)) {
-                $image_path = public_path("/adminBoard/uploadedImages/sliders//") . $slider->photo;
+                $image_path = public_path('/adminBoard/uploadedImages/sliders//') . $slider->photo;
                 if (File::exists($image_path)) {
                     File::delete($image_path);
                 }
@@ -136,6 +135,7 @@ class SlidersController extends Controller
             'details_en' => $request->details_en,
             'details_ar' => $site_lang_ar == 'on' ? $request->details_ar : null,
             'details_status' => $request->details_status,
+            'button_status' => $request->button_status,
             'url_ar' => $request->url_ar,
             'url_en' => $request->url_en,
             'order' => $request->order,
@@ -173,7 +173,6 @@ class SlidersController extends Controller
     //  restore
     public function restore(Request $request)
     {
-
         if ($request->ajax()) {
             $slider = Slider::onlyTrashed()->find($request->id);
             if (!$slider) {
@@ -196,7 +195,7 @@ class SlidersController extends Controller
                 return redirect()->route('admin.not.found');
             }
             if (!empty($slider->photo)) {
-                $image_path = public_path("/adminBoard/uploadedImages/sliders//") . $slider->photo;
+                $image_path = public_path('/adminBoard/uploadedImages/sliders//') . $slider->photo;
                 if (File::exists($image_path)) {
                     File::delete($image_path);
                 }

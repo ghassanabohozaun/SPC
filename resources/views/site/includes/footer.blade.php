@@ -1,4 +1,4 @@
-<div class="footer" style="margin-top:20px">
+<div class="footer">
     <!-- Footer Top /-->
     <div class="footer-top my-footer-dark-bg grey-bg my-footer-margin">
         <div class="grid-container grid-x grid-padding-x">

@@ -22,16 +22,16 @@ class SlidersSeeder extends Seeder
 
         for($i = 1 ; $i <= 2 ; $i++){
             Slider::create( [
-                'title_en' => $faker->sentence(10),
-                'title_ar' => $faker->sentence(10),
-                'details_en' => $faker->sentence(50),
-                'details_ar' => $faker->sentence(50),
+                'title_en' => $faker->sentence(5) . ' | ' .$i,
+                'title_ar' => $faker->sentence(5). ' | ' .$i,
+                'details_en' => $faker->sentence(20),
+                'details_ar' => $faker->sentence(20),
                 'order' => rand(1, 2),
                 'url_en' => '',
                 'url_ar' => '',
                 'status' => 'on',
-                'details_status' => 'hide',
-                'button_status' => 'hide',
+                'details_status' => 'show',
+                'button_status' => 'show',
                 'photo' => 'slider-'.$i.'.jpg',
                 'language' => 'ar_en',
             ]);

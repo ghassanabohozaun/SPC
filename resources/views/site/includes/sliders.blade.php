@@ -1,36 +1,40 @@
 <div>
-    <div class="main-banner-new">
-        @foreach ($sliders as $slider)
-            <!-- Start Slide  /-->
-            <div class="slide transparent-background my_slider"
-                @if ($slider->photo) style="background-image: url({!! asset('adminBoard/uploadedImages/sliders/' . $slider->photo) !!});"
-                  @else
-                     style="background-image: url({!! asset('site/assets/images/bg-1.jpg') !!});" @endif>
-                <div class="slide-text">
-                    @if ($slider->details_status == __('sliders.show'))
-                        <h2>
-                            @if (Lang() == 'ar')
-                                {!! $slider->title_ar !!}
-                            @else
-                                {!! $slider->title_en !!}
+    @if (!$sliders->isEmpty())
+        <!-- Main Banner /-->
+        <div class="main-banner-new">
+            @foreach ($sliders as $slider)
+                <!-- Start Slide  /-->
+                <div class="slide transparent-background my_slider"
+                    style="background-image: url({!! asset('adminBoard/uploadedImages/sliders/' . $slider->photo) !!});">
+                    <div class="slide-text">
+
+                        <!--slider details /-->
+                        @if ($slider->details_status == __('sliders.show'))
+                            <h2>
+                                {!! $slider->{'title_' . Lang()} !!}
+                            </h2>
+                        @endif
+
+                        <!--slider button /-->
+                        @if ($slider->button_status == __('sliders.show'))
+                            @if (!empty($slider->url_en) && Lang() == 'en')
+                                <a class="button primary" href="{!! $slider->url_en !!}" target="_blank">
+                                    {!! __('site.read_more') !!}</a>
                             @endif
-                        </h2>
-                    @endif
-                    {{-- @if ($slider->button_status == trans('sliders.show'))
-                        <a class="button primary" href="{!! route(
-                            'service',
-                            Lang() == 'ar'
-                                ? str_replace(' ', '-', $slider->service->title_ar)
-                                : str_replace(' ', '-', $slider->service->title_en),
-                        ) !!}">
-                            {!! trans('site.read_more') !!}</a>
-                    @endif --}}
 
+
+                            @if (!empty($slider->url_ar) && Lang() == 'ar')
+                                <a class="button primary" href="{!! $slider->url_ar !!}" target="_blank">
+                                    {!! __('site.read_more') !!}</a>
+                            @endif
+                        @endif
+
+                    </div>
                 </div>
-            </div>
-            <!-- End Slide  /-->
-        @endforeach
+                <!-- End Slide  /-->
+            @endforeach
 
-    </div><!-- Main Banner /-->
-
+        </div>
+        <!-- Main Banner /-->
+    @endif
 </div>

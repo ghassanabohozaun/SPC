@@ -172,6 +172,38 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
+                                                            {{ __('sliders.button_status') }}
+                                                        </label>
+                                                        <div class="col-lg-9 col-md-9" style="margin-top: 10px">
+                                                            <div class="form-check pl-0 radio-inline">
+                                                                <label class="radio radio-outline">
+                                                                    <input type="radio" id="button_status"
+                                                                        name="button_status"
+                                                                        {{ $slider->button_status == __('sliders.show') ? 'checked' : '' }}
+                                                                        value="show" />
+                                                                    <span></span>
+                                                                    {{ __('sliders.show') }}
+                                                                </label>
+                                                                <label class="radio radio-outline">
+                                                                    <input type="radio" id="button_status"
+                                                                        name="button_status"
+                                                                        {{ $slider->button_status == __('sliders.hide') ? 'checked' : '' }}
+                                                                        value="hide" />
+                                                                    <span></span>
+                                                                    {{ __('sliders.hide') }}
+                                                                </label>
+
+                                                            </div>
+                                                        </div>
+                                                        <!--begin::body-->
+
+                                                    </div>
+                                                    <!--end::Group-->
+
+
+                                                    <!--begin::Group-->
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label">
                                                             {{ __('sliders.order') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">

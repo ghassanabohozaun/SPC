@@ -14,7 +14,6 @@ class SiteController extends Controller
 {
     use GeneralTrait;
 
-
     ///index
     public function index()
     {
@@ -23,32 +22,36 @@ class SiteController extends Controller
         } else {
             $title = setting()->site_name_en;
         }
-        ////////////////////////////////////////////////////////////////////////////////////////////////
-        /// Arabic
-        // if (LaravelLocalization::getCurrentLocale() == 'ar') {
 
-        //     // Slider
-        //     $sliders = Slider::where('status', 'on')
-        //         ->orderBy('order', 'desc')
-        //         ->where(function ($q) {
-        //             $q->where('language', 'ar')
-        //                 ->orWhere('language', 'ar_en');
-        //         })->get();
+        $sliders = $this->getSliders();
 
-        // } else {
-        //     //Slider
-        //     $sliders = Slider::where('status', 'on')
-        //         ->orderBy('order', 'desc')
-        //         ->where(function ($q) {
-        //             $q->where('language', 'ar_en');
-        //         })->get();
-        // }
+        return view('site.index', compact('title', 'sliders'));
+    }
 
+    // get sliders
+    public function getSliders()
+    {
+        if (Lang() == 'ar') {
+            // Slider
+            $sliders = Slider::withoutTrashed()
+                ->whereStatus('on')
+                ->orderByDesc('order')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->get();
+        } else {
+            //Slider
+            $sliders = Slider::withoutTrashed()
+                ->whereStatus('on')
+                ->orderByDesc('order')
+                ->where(function ($q) {
+                    $q->where('language', 'en')->orWhere('language', 'ar_en');
+                })
+                ->get();
+        }
 
-
-        $sliders = Slider::withoutTrashed()->whereStatus('on')->get();
-
-        return view('site.index', compact('title' , 'sliders'));
+        return $sliders;
     }
 
     // About
@@ -69,8 +72,6 @@ class SiteController extends Controller
     //     }
     // }
 
-
-
     // Send Contact Message
     public function sendContactMessage(SupportCenterRequest $request)
     {
@@ -83,11 +84,9 @@ class SiteController extends Controller
         return $this->returnSuccessMessage(trans('index.send_success_message'));
     }
 
-
-        //  external link
-        public function externalLink($link,$id )
-        {
-            return view($link, compact('id'));
-        }
-
+    //  external link
+    public function externalLink($link, $id)
+    {
+        return view($link, compact('id'));
+    }
 }
