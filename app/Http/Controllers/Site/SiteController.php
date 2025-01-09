@@ -48,8 +48,6 @@ class SiteController extends Controller
 
         $sliders = Slider::withoutTrashed()->whereStatus('on')->get();
 
-
-
         return view('site.index', compact('title' , 'sliders'));
     }
 

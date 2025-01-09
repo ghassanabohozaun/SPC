@@ -2,7 +2,10 @@
     <div class="main-banner-new">
         @foreach ($sliders as $slider)
             <!-- Start Slide  /-->
-            <div class="slide transparent-background my_slider" style="background-image: url({!! asset('adminBoard/uploadedImages/sliders/' . $slider->photo) !!});">
+            <div class="slide transparent-background my_slider"
+                @if ($slider->photo) style="background-image: url({!! asset('adminBoard/uploadedImages/sliders/' . $slider->photo) !!});"
+                  @else
+                     style="background-image: url({!! asset('site/assets/images/bg-1.jpg') !!});" @endif>
                 <div class="slide-text">
                     @if ($slider->details_status == __('sliders.show'))
                         <h2>
