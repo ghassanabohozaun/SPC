@@ -36,7 +36,7 @@ class RoleSeeder extends Seeder
                 'services',
                 'testimonials',
                 'articles',
-                'publications',
+                // 'publications',
                 'news',
                 'posters',
                 'books',

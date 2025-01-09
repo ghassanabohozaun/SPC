@@ -18,7 +18,7 @@ return [
         'services' => 'app.services',
         'testimonials' => 'app.testimonials',
         'articles' => 'app.articles',
-        'publications' => 'app.publications',
+        // 'publications' => 'app.publications',
         'news' => 'app.news',
         'posters' => 'app.posters',
         'books' => 'app.books',

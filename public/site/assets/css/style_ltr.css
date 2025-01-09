@@ -1,0 +1,226 @@
+/****************  Top Header ***********************/
+.header-top{
+    direction: ltr;
+}
+/****************  Navbar ***********************/
+.my_navbar_section .grid-container{
+    direction: ltr;
+}
+
+.my_navbar_section .grid-container .top-bar{
+    float:left;
+}
+
+.top-bar-title .menu-icon {
+    float: left;
+}
+.dropdown.menu.large-horizontal>li.opens-right>.is-dropdown-submenu {
+    top: 100%;
+    right: auto;
+    left: 0;
+}
+.header_icons_div .social-icons{
+    direction: ltr;
+}
+
+.dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a,
+.dropdown.menu li a {
+    font-size: 0.9911rem;
+    font-weight: 500;
+}
+/****************  About SPC  ***********************/
+.my-about-section .about-section-text{
+    direction: ltr;
+}
+/****************  Tests  ***********************/
+
+.my_tests_section{
+    direction: ltr;
+}
+/****************  About SPC  ***********************/
+.achievement-counter .grid-container{
+    direction: ltr;
+}
+/****************  book preview  ***********************/
+
+.book-preview .book-text{
+    direction: ltr;
+}
+/****************  testimonials  ***********************/
+
+.my-testimonials-dark-bg .testimonial-text{
+    direction: ltr;
+}
+/****************  publications  ***********************/
+.my_publications_section .card-body{
+    direction: ltr;
+}
+/****************  news  ***********************/
+.my_news_section .col{
+    direction: ltr;
+}
+
+/****************  call to action  ***********************/
+
+
+
+/****************  footer  ***********************/
+
+.footer .footer-top{
+    direction: ltr;
+}
+
+.footer-box .links li:before {
+    content: "\f0da";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 0.9375rem;
+    margin-right: 7px;
+}
+.footer-box .contact-us ul li i {
+    margin-right: 11px;
+    width: 15px;
+    font-size: 0.9375rem;
+}
+
+.footer-box .border-btm {
+    float: left;
+}
+/****************  about spc page  ***********************/
+.my-about-spc-section {
+    direction: ltr;
+}
+
+.my-about-spc-section .section-nav {
+    padding-left: 0;
+    border-left: 1px solid #efefef;
+    border-right: 0px;
+}
+.my-about-spc-section .my_div {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.my-about-spc-section .section-nav a {
+    text-decoration: none;
+    display: block;
+    padding: .125rem 0;
+    color: #ccc;
+    transition: all 50ms ease-in-out;
+}
+
+.my-about-spc-section li {
+    margin-left: 1rem;
+}
+
+.my-about-spc-section main {
+    display: grid;
+    grid-template-columns: 1fr 5em;
+    max-width: 100em;
+    width: 90%;
+    margin: 0 auto;
+}
+/****************  service page  ***********************/
+.services-section .services-wrap{
+    direction: ltr;
+}
+
+.services-section .my_service_div {
+    direction: ltr;
+}
+
+.treatment_area_modal .modal-body{
+    direction: ltr;
+}
+
+/****************  trainings page  ***********************/
+.trainings_list .my_training_section{
+    direction: ltr;
+}
+
+.page-item:first-child .page-link {
+    border-top-left-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    border-top-right-radius: 0rem;
+    border-bottom-right-radius: 0rem;
+}
+
+.page-item:last-child .page-link {
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+    border-top-left-radius: .0rem;
+    border-bottom-left-radius:0rem;
+}
+.page-item:not(:first-child) .page-link {
+    margin-left: -1px;
+}
+
+/****************  blog page  ***********************/
+.blog-section .my_blog_section{
+    direction: ltr;
+}
+/****************  contact page  ***********************/
+.content-section .my_contact_section{
+    direction: ltr;
+}
+/****************  appointment page  ***********************/
+.appointment-page .form_book_appointment {
+    direction: ltr;
+}
+.appointment-page .appointment_hint {
+    direction: ltr;
+}
+/****************  testimonials page  ***********************/
+.testimonials .my_testimonials_section{
+    direction: ltr;
+}
+.testimonial-page .testimonial-text .my_testimonial_img {
+    float: left;
+}
+.testimonial-page .testimonial-text .my_testimonial_star_icon {
+    float: right;
+}
+.testimonial-page .testimonial-text h6 {
+    float: left;
+}
+.testimonial-page .testimonial-text .my_testimonial_img {
+    margin-right: 20px;
+    width: 85px;
+    height: 85px;
+}
+
+/****************  photo albums page  ***********************/
+.my_photo_albums_section{
+    direction: ltr;
+}
+/**************** videos page  ***********************/
+.videos_list{
+    direction: ltr;
+}
+.my_video_section .card-text img {
+    margin-left: -10px;
+}
+/**************** faq page  ***********************/
+.why-chose-us .my_faq_section{
+    direction: ltr;
+}
+
+.why-chose-us .accordion-title::before {
+    background-image: url(../images/help/icons/plus.png);
+    background-repeat: no-repeat;
+    right: 20px;
+    bottom: 0;
+    left: 93%;
+    content: '';
+}
+/**************** tests page  ***********************/
+.tests_list{
+    direction: ltr;
+}
+.my_test_question_section{
+    direction: ltr;
+}
+/**************** top menu  ***********************/
+.my_new_menu{
+    direction: ltr;
+}

@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html @if (Lang() == 'ar') lang="ar" dir="rtl" @else lang="en" dir="ltr" @endif>
 
 <head>
+    <!--title -->
+    <title>{{ !empty($title) ? $title : __('site.spc') }}</title>
 
-    <title> {{ !empty($title) ? $title : __('index.ethar') }} </title>
-
+    <!-- meta Icon -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,92 +13,117 @@
 
     @yield('metaTags')
 
-    <link rel="icon" type="image/jpg" href="{!! asset(Storage::url(setting()->site_icon)) !!}">
-    <link rel="shortcut icon" href="{!! asset(Storage::url(setting()->site_icon)) !!}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{!! asset(Storage::url(setting()->site_icon)) !!}">
+    <!-- Website Icon -->
+    <link rel="icon" type="image/jpg" href="{!! asset('adminBoard/uploadedImages/logos/' . setting()->site_icon) !!}">
+    <link rel="shortcut icon" href="{!! asset('adminBoard/uploadedImages/logos/' . setting()->site_icon) !!}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{!! asset('adminBoard/uploadedImages/logos/' . setting()->site_icon) !!}">
 
-    <!-- Fav Icon -->
-    <link rel="icon" href="{!! asset(Storage::url(setting()->site_icon)) !!}" type="image/x-icon">
+    <!-- Bootstrap CSS File -->
+    <link type="text/css" rel="stylesheet" href="{!! asset('site/assets/css/bootstrap.min.css') !!}">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    @stack('css')
 
-    <!-- Stylesheets -->
-    <link href="{!! asset('site/assets/css/font-awesome-all.css') !!}" rel="stylesheet">
-    <link href="{!! asset('site/assets/css/flaticon.css') !!}" rel="stylesheet">
-    <link href="{!! asset('site/assets/css/owl.css') !!}" rel="stylesheet">
-    <link href="{!! asset('site/assets/css/swiper.min.css') !!}" rel="stylesheet">
-    <link href="{!! asset('site/assets/css/bootstrap.css') !!}" rel="stylesheet">
-    <link href="{!! asset('site/assets/css/jquery.fancybox.min.css') !!}" rel="stylesheet">
-    <link href="{!! asset('site/assets/css/animate.css') !!}" rel="stylesheet">
-    <link href="{!! asset('site/assets/css/jquery.bootstrap-touchspin.css') !!}" rel="stylesheet">
-    <link href="{!! asset('site/assets/css/color.css') !!}" rel="stylesheet">
+    <!-- Theme Styles CSS File -->
+    <link rel="stylesheet" type="text/css" href="{!! asset('site/style.css') !!}" media="all" />
 
-    @if (Lang() == 'ar')
-        <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css"
-            integrity="sha384-JvExCACAZcHNJEc7156QaHXTnQL3hQBixvj5RV5buE7vgnNEzzskDtx9NQ4p6BJe" crossorigin="anonymous">
-        <link href="{!! asset('site/assets/css/rtl.css') !!}" rel="stylesheet">
+    @if (LaravelLocalization::getCurrentLocale() == 'ar')
+        <link rel="stylesheet" type="text/css" href="{!! asset('site/assets/css/style_rtl.css') !!}" media="all" />
+        <link rel="stylesheet" type="text/css" href="{!! asset('site/assets/css/media_rtl.css') !!}" media="all" />
+
+        <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet" />
+        <style>
+            body,
+            html {
+                font-family: 'Cairo', sans-serif;
+            }
+        </style>
     @else
-        <link href="{!! asset('site/assets/css/ltr.css') !!}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{!! asset('site/assets/css/style_ltr.css') !!}" media="all" />
+        <link rel="stylesheet" type="text/css" href="{!! asset('site/assets/css/media_ltr.css') !!}" media="all" />
     @endif
-    <link href="{!! asset('site/assets/css/style.css') !!}" rel="stylesheet">
-    <link href="{!! asset('site/assets/css/responsive.css') !!}" rel="stylesheet">
-    <link href="{!! asset('site/assets/css/my-responsive.css') !!}" rel="stylesheet">
-    <link href="{!! asset('site/assets/css/site-style.css') !!}" rel="stylesheet">
-
-    @stack('styles')
 
 </head>
 
-
-<!-- page wrapper -->
-
 <body>
 
+    <div class="main-container">
+        <!-------------------------------------- Start Header ---------------------------------------->
+        <div class="header header-tow">
+            <!-------------------------------------- Start Top Bar ----------------------------------->
+            @include('site.includes.top-header')
+            <!-------------------------------------- End Top Bar ------------------------------------->
+            <!-------------------------------------- Start Navbar ------------------------------------>
+            @include('site.includes.navbar')
+            <!-------------------------------------- End Navbar -------------------------------------->
+        </div>
 
-    @yield('content')
+        <!-------------------------------------- Start content ---------------------------------------->
+        @yield('content')
+        <!-------------------------------------- end content ---------------------------------------->
 
-    <!-- jquery plugins -->
-    <script src="{!! asset('site/assets/js/jquery.js') !!}"></script>
-    <script src="{!! asset('site/assets/js/popper.min.js') !!}"></script>
-    <script src="{!! asset('site/assets/js/bootstrap.min.js') !!}"></script>
-    <script src="{!! asset('site/assets/js/owl.js') !!}"></script>
-    <script src="{!! asset('site/assets/js/swiper.min.js') !!}"></script>
-    <script src="{!! asset('site/assets/js/wow.js') !!}"></script>
-    <script src="{!! asset('site/assets/js/validation.js') !!}"></script>
-    <script src="{!! asset('site/assets/js/jquery.fancybox.js') !!}"></script>
-    <script src="{!! asset('site/assets/js/appear.js') !!}"></script>
-    <script src="{!! asset('site/assets/js/scrollbar.js') !!}"></script>
-    <script src="{!! asset('site/assets/js/isotope.js') !!}"></script>
-    <script src="{!! asset('site/assets/js/nav-tool.js') !!}"></script>
-    <script src="{!! asset('site/assets/js/jquery.bootstrap-touchspin.js') !!}"></script>
-    <script src="{!! asset('site/assets/js/countdown.js') !!}"></script>
-    <script src="{!! asset('site/assets/js/plugins.js') !!}"></script>
-    <script src="{!! asset('site/assets/js/text_animation.js') !!}"></script>
-    <script src="{!! asset('site/assets/js/jquery.nice-select.min.js') !!}"></script>
+        <!-------------------------------------- Start Footer ---------------------------------------->
+        @include('site.includes.footer')
+        <!-------------------------------------- End Footer ------------------------------------------>
 
 
-    <!-- main-js -->
-    <script src="{!! asset('site/assets/js/script.js') !!}"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link href="{!! asset('site/assets/css/my-sweet-alert-style.css') !!}" rel="stylesheet">
+        <!-- Main Container /-->
 
+        <!-- Move to Top Icon Remove to Not Display /-->
+        <a href="#" id="top" title="Go to Top">
+            <i class="fas fa-arrow-alt-circle-up"></i>
+        </a>
 
-    @stack('scripts')
+        <!-- Page Preloader Delete to Remove Preloader /-->
+        <div class="preloader">
+            <div class="spinner animated infinite fadeIn">
+                <div class="preloader-img"></div>
+            </div>
+        </div><!-- Preloader /-->
 
-    <script type="text/javascript">
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-    </script>
+        {{-- <div class="modal fadeIn" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Services - Language</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body  my_lead">
+                        The team of SPC will be able to offer their assessment and therapeutic services in several
+                        languages
+                        such as English, Arabic, Italian, Urdu.
+                    </div>
+                </div>
 
-</body><!-- End of .page_wrapper -->
+            </div>
+        </div> --}}
+
+        <!-- Including Jquery so All js Can run -->
+        <script src="{!! asset('site/assets/js/jquery.js') !!}"></script>
+
+        <!-- Bootstrap JS File -->
+        <script src="{!! asset('site/assets/js/bootstrap.bundle.min.js') !!}" type="text/javascript"></script>
+
+        <!-- Including Foundation JS so Foundation function can work. -->
+        <script src="{!! asset('site/assets/js/foundation.min.js') !!}"></script>
+
+        <!-- Carousel JS -->
+        <script src="{!! asset('site/assets/js/owl.carousel.min.js') !!}"></script>
+
+        <!-- Web full JS -->
+        <script src="{!! asset('site/assets/js/template.js') !!}"></script>
+        <script src="{!! asset('site/assets/js/sweetalert.min.js') !!}"></script>
+
+        @stack('js')
+        <!----------------------- Start Scripts ----------------------------------------->
+        <script type="text/javascript">
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        </script>
+        <!----------------------- End Scripts ----------------------------------------->
+</body>
 
 </html>

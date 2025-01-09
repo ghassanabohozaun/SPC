@@ -15,6 +15,6 @@ class PostersSeeder extends Seeder
      */
     public function run()
     {
-        Poster::factory()->count(20)->create();
+        Poster::factory()->count(5)->create();
     }
 }

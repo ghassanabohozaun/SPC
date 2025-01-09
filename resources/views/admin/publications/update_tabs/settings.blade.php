@@ -10,20 +10,20 @@
                     <div class="my-5">
 
                         <!--begin::Group-->
-                        <div class=" form-group row">
+                        <div class=" form-group row d-none">
                             <label class="col-xl-3 col-lg-3 col-form-label">ID</label>
                             <div class="col-lg-9 col-xl-9">
-                                <input type="text" value="{{ $publication->id }}"
+                                <input type="hidden" value="{{ $publication->id }}"
                                     class="form-control form-control-solid form-control-lg" name="id"
                                     id="id" autocomplete="off" />
 
-                                <input type="text" class="form-control form-control-solid form-control-lg"
+                                <input type="hidden" class="form-control form-control-solid form-control-lg"
                                     name="hidden_photo" value="hidden_photo">
 
-                                <input type="text" class="form-control form-control-solid form-control-lg"
+                                <input type="hidden" class="form-control form-control-solid form-control-lg"
                                     name="action" value="update">
 
-                                <input type="text" class="form-control form-control-solid form-control-lg"
+                                <input type="hidden" class="form-control form-control-solid form-control-lg"
                                     id="site_lang_ar" name="site_lang_ar" value="{!! setting()->site_lang_ar !!}">
                             </div>
                         </div>

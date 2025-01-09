@@ -31,14 +31,14 @@ class Slider extends Model
     //////////////////////////////////////////////////////////////
     // accessors
     // language
-    public function getLanguageAttribute($value)
-    {
-        if ($value == 'ar') {
-            return __('general.ar');
-        } elseif ($value == 'ar_en') {
-            return __('general.ar_en');
-        }
-    }
+    // public function getLanguageAttribute($value)
+    // {
+    //     if ($value == 'ar') {
+    //         return __('general.ar');
+    //     } elseif ($value == 'ar_en') {
+    //         return __('general.ar_en');
+    //     }
+    // }
 
     // Details Status
     public function getDetailsStatusAttribute($value)

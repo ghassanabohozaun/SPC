@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\File;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SupportCenterRequest;
+use App\Models\Slider;
 use App\Models\SupportCenter;
 use App\Traits\GeneralTrait;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -24,26 +25,32 @@ class SiteController extends Controller
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////
         /// Arabic
-        if (LaravelLocalization::getCurrentLocale() == 'ar') {
+        // if (LaravelLocalization::getCurrentLocale() == 'ar') {
 
-            // // Slider
-            // $sliders = Slider::where('status', 'on')
-            //     ->orderBy('order', 'desc')
-            //     ->where(function ($q) {
-            //         $q->where('language', 'ar')
-            //             ->orWhere('language', 'ar_en');
-            //     })->get();
+        //     // Slider
+        //     $sliders = Slider::where('status', 'on')
+        //         ->orderBy('order', 'desc')
+        //         ->where(function ($q) {
+        //             $q->where('language', 'ar')
+        //                 ->orWhere('language', 'ar_en');
+        //         })->get();
 
-        } else {
-            // Slider
-            // $sliders = Slider::where('status', 'on')
-            //     ->orderBy('order', 'desc')
-            //     ->where(function ($q) {
-            //         $q->where('language', 'ar_en');
-            //     })->get();
-        }
-        return redirect()->route('get.admin.login');
-        //return view('site.index', compact('title'));
+        // } else {
+        //     //Slider
+        //     $sliders = Slider::where('status', 'on')
+        //         ->orderBy('order', 'desc')
+        //         ->where(function ($q) {
+        //             $q->where('language', 'ar_en');
+        //         })->get();
+        // }
+
+
+
+        $sliders = Slider::withoutTrashed()->whereStatus('on')->get();
+
+
+
+        return view('site.index', compact('title' , 'sliders'));
     }
 
     // About
