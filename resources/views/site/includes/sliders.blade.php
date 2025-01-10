@@ -18,20 +18,16 @@
                             <!--slider button /-->
                             @if ($slider->button_status == __('sliders.show'))
                                 @if (!empty($slider->url_en) && Lang() == 'en')
-                                    <button class="btn">
-                                        <a class="slider_anchor" href="{!! $slider->url_en !!}" target="_blank">
-                                            {!! __('site.read_more') !!}
-                                        </a>
-                                    </button>
+                                    <a class=" button primary " href="{!! $slider->url_en !!}" target="_blank">
+                                        {!! __('site.read_more') !!}
+                                    </a>
                                 @endif
 
 
                                 @if (!empty($slider->url_ar) && Lang() == 'ar')
-                                    <button class="btn">
-                                        <a class="slider_anchor" href="{!! $slider->url_ar !!}" target="_blank">
-                                            {!! __('site.read_more') !!}
-                                        </a>
-                                    </button>
+                                    <a class="button primary" href="{!! $slider->url_ar !!}" target="_blank">
+                                        {!! __('site.read_more') !!}
+                                    </a>
                                 @endif
                             @endif
                         </div>

@@ -159,16 +159,16 @@ iframe {
 
 a.button {
     min-width: 137px;
-    min-height: 30px;
-    padding: 6px 12px;
+    /* min-height: 30px;
+    padding: 6px 12px; */
 }
 
 .button {
     text-transform: uppercase;
-    font-size: 0.875rem;
+    font-size: 0.975rem;
     border-radius: 5px 5px 5px 5px;
     font-family: 'Poppins',"ArbFONTSBEINNormalAR", sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     margin-right: 12px;
 }
 

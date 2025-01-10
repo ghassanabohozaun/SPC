@@ -8,7 +8,7 @@
                 </div>
                 <div class="left-side-text">
                     <h4>{!! __('site.if_you_have_any_questions_schedule_an_appointment') !!}</h4>
-                    <h2>{!! __('site.or_call_us_on') !!} <span>{!! setting()->site_mobile !!}</span></h2>
+                    <h2>{!! __('site.or_call_us_on') !!} &nbsp;&nbsp;&nbsp; <span>{!! setting()->site_mobile !!}</span></h2>
                 </div>
             </div><!-- Left Side /-->
             <div class="right-side">

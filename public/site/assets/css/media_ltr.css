@@ -1,41 +1,50 @@
 /* Large only */
 @media screen and (min-width: 75em) and (max-width: 106em) {
-    /****************  footer ***********************/
-    .rating > label {
-        font-size: 3vw;
-    }
+/**************** footer ***********************/
+.rating > label {
+font-size: 3vw;
+}
 
 }
 
 /* Large only */
 @media screen and (min-width: 64em) and (max-width: 74.9375em) {
-    /****************  footer ***********************/
-    .rating > label {
-        font-size: 3vw;
-    }
+/**************** footer ***********************/
+.rating > label {
+font-size: 3vw;
+}
 }
 
 /* Large and up */
 @media screen and (min-width: 64em) {
-    /****************  footer ***********************/
-    .footer-box .links:last-child, .footer-box .links {
-        float: left;
-        margin-left: 0px;
-        margin-right: 50px;
+/**************** footer ***********************/
+.footer-box .links:last-child, .footer-box .links {
+float: left;
+margin-left: 0px;
+margin-right: 50px;
 
-    }
-    /****************  stars size ***********************/
-    .rating > label {
-        font-size: 3vw;
-    }
+}
+/**************** stars size ***********************/
+.rating > label {
+font-size: 3vw;
+}
 }
 
 /* Medium only */
 @media screen and (min-width: 40em) and (max-width: 63.9375em) {
-    /****************  stars size ***********************/
-    .rating > label {
-        font-size: 5vw;
-    }
+/**************** stars size ***********************/
+.rating > label {
+font-size: 5vw;
+}
+/**************** about section ***********************/
+
+.about-section.grey-bg {
+background: none;
+}
+
+.top-icon-transparent:before {
+background-image: none;
+}
 
 }
 
@@ -43,47 +52,60 @@
 /* Medium and up */
 @media screen and (min-width: 40em) {
 
-    /****************  stars size ***********************/
-    .rating > label {
-        font-size: 3vw;
-    }
+/**************** stars size ***********************/
+.rating > label {
+font-size: 3vw;
+}
 
 }
 
 /* Small only */
 @media screen and (max-width: 39.9375em) {
-    /****************  call to action ***********************/
-    .call-to-action .right-side, .call-to-action .left-side-img, .call-to-action .left-side-text, .call-to-action .left-side {
-        float: none;
-    }
 
-    /****************  footer ***********************/
-    .footer-box .links:last-child, .footer-box .links {
-        float: left;
-    }
-    /****************  top social media ***********************/
-    .header-top .info-container, .header {
-        text-align: left;
-    }
-    .info-container ul li a p {
-        font-size: 0.6rem;
-        font-weight: bold;
-    }
+/**************** about section ***********************/
 
-    .info-container ul li a img {
-        width: 30px;
-        font-weight: bolder;
-    }
+.about-section.grey-bg {
+background: none;
+}
 
-    #testimonials_icon {
-        width: 45px;
-    }
+.top-icon-transparent:before {
+background-image: none;
+}
 
-    /****************  stars size ***********************/
 
-    .rating > label {
-        font-size: 10vw;
-    }
+/**************** call to action ***********************/
+.call-to-action .right-side, .call-to-action .left-side-img, .call-to-action .left-side-text, .call-to-action .left-side
+{
+float: none;
+}
+
+/**************** footer ***********************/
+.footer-box .links:last-child, .footer-box .links {
+float: left;
+}
+/**************** top social media ***********************/
+.header-top .info-container, .header {
+text-align: left;
+}
+.info-container ul li a p {
+font-size: 0.6rem;
+font-weight: bold;
+}
+
+.info-container ul li a img {
+width: 30px;
+font-weight: bolder;
+}
+
+#testimonials_icon {
+width: 45px;
+}
+
+/**************** stars size ***********************/
+
+.rating > label {
+font-size: 10vw;
+}
 
 
 }
