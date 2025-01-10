@@ -43,7 +43,7 @@ return [
     'photo_required' => 'Slider Photo Required',
     'exist_number' => 'Exist Number',
 
-    'slider_size' => ' Slider Size :  1920 * 908',
+    'slider_size' => ' Slider Size :  1865 * 700',
 
     'no_sliders_found' => 'No Sliders Found',
 
