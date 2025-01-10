@@ -55,7 +55,7 @@
     <!-------------------------------------- End wrapper  --------------------------------------->
 
     <!-------------------------------------- Start Call to Action ------------------------------>
-    {{-- @include('site.include.call-to-action') --}}
+    @include('site.includes.call-to-action')
     <!-------------------------------------- End Call to Action -------------------------------->
 @endsection
 @push('js')
