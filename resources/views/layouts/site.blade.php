@@ -21,15 +21,14 @@
     <!-- Bootstrap CSS File -->
     <link type="text/css" rel="stylesheet" href="{!! asset('site/assets/css/bootstrap.min.css') !!}">
 
-    @stack('css')
-
     <!-- Theme Styles CSS File -->
     <link rel="stylesheet" type="text/css" href="{!! asset('site/style.css') !!}" media="all" />
+    <link type="text/css" rel="stylesheet" href="{!! asset('site/assets/css/swiper.min.css') !!}">
+    <link type="text/css" rel="stylesheet" href="{!! asset('site/assets/css/my-carousel.css') !!}">
 
-    @if (LaravelLocalization::getCurrentLocale() == 'ar')
+    @if (Lang() == 'ar')
         <link rel="stylesheet" type="text/css" href="{!! asset('site/assets/css/style_rtl.css') !!}" media="all" />
         <link rel="stylesheet" type="text/css" href="{!! asset('site/assets/css/media_rtl.css') !!}" media="all" />
-
         <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet" />
         <style>
             body,
@@ -42,6 +41,7 @@
         <link rel="stylesheet" type="text/css" href="{!! asset('site/assets/css/media_ltr.css') !!}" media="all" />
     @endif
 
+    @stack('css')
 </head>
 
 <body>
@@ -113,8 +113,9 @@
         <!-- Web full JS -->
         <script src="{!! asset('site/assets/js/template.js') !!}"></script>
         <script src="{!! asset('site/assets/js/sweetalert.min.js') !!}"></script>
+        <script src="{!! asset('site/assets/js/swiper.min.js') !!}"></script>
 
-        @stack('js')
+
         <!----------------------- Start Scripts ----------------------------------------->
         <script type="text/javascript">
             $.ajaxSetup({
@@ -124,6 +125,8 @@
             });
         </script>
         <!----------------------- End Scripts ----------------------------------------->
+
+        @stack('js')
 </body>
 
 </html>
