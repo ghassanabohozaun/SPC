@@ -27,19 +27,19 @@
 
 .swiper-slide:after {
     content: '';
-    background-image: linear-gradient(0deg, black, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+    background-image: linear-gradient(0deg, black, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
     position: absolute;
     width: 100%;
     height: 100%;
     bottom: 0;
     z-index: 1;
-    opacity: 0.3;
+    opacity: 0.1;
 }
 
 .swiper-slide:before {
     content: '';
-    background-color: rgba(69, 69, 78, 0.2);
-    background-image: linear-gradient(180deg, rgba(255, 234, 213, 0.3), rgba(241, 244, 255, 0.3));
+    background-color: rgba(69, 69, 78, 0.1);
+    background-image: linear-gradient(180deg, rgba(255, 234, 213, 0.1), rgba(241, 244, 255, 0.1));
     position: absolute;
     width: 100%;
     height: 100%;
@@ -225,12 +225,18 @@
     width: fit-content;
     font-size: 14px;
     letter-spacing: 2px;
-    color: white;
+    color: black;
     position: relative;
     border-radius: 80px;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
     cursor: pointer;
     margin-top: 20px;
+}
+
+.slider_anchor{
+    color: rgb(43, 40, 40);
+    font-weight: bolder;
+    font-size: 16px;
 }
 
 .slide-text .btn:after {
@@ -244,12 +250,12 @@
     left: 0px;
     top: 0px;
     border-radius: inherit;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 .slide-text .btn:hover::after {
-    left: 4px;
-    top: 5px;
+    left: 3px;
+    top: 3px;
     background-color: rgba(255, 255, 255, 0.3);
 }
 

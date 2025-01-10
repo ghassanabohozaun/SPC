@@ -10,7 +10,7 @@
                     <div class="swiper-slide" style="background-image: url({!! asset('adminBoard/uploadedImages/sliders/' . $slider->photo) !!});">
                         <div class="slide-text">
                             @if ($slider->details_status == __('sliders.show'))
-                                <h1>
+                                <h1 style="color: #ffffff">
                                     {!! $slider->{'title_' . Lang()} !!}
                                 </h1>
                             @endif
@@ -18,14 +18,20 @@
                             <!--slider button /-->
                             @if ($slider->button_status == __('sliders.show'))
                                 @if (!empty($slider->url_en) && Lang() == 'en')
-                                    <a class="button" href="{!! $slider->url_en !!}" target="_blank">
-                                        {!! __('site.read_more') !!}</a>
+                                    <button class="btn">
+                                        <a class="slider_anchor" href="{!! $slider->url_en !!}" target="_blank">
+                                            {!! __('site.read_more') !!}
+                                        </a>
+                                    </button>
                                 @endif
 
 
                                 @if (!empty($slider->url_ar) && Lang() == 'ar')
-                                    <a class="button" href="{!! $slider->url_ar !!}" target="_blank">
-                                        {!! __('site.read_more') !!}</a>
+                                    <button class="btn">
+                                        <a class="slider_anchor" href="{!! $slider->url_ar !!}" target="_blank">
+                                            {!! __('site.read_more') !!}
+                                        </a>
+                                    </button>
                                 @endif
                             @endif
                         </div>
