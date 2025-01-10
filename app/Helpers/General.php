@@ -64,17 +64,18 @@ if (!function_exists('aboutSite')) {
 }
 
 
+function fixedTexts()
+{
+    return App\Models\FixedText::orderBy('id', 'desc')->first();
+}
+
+
 // function abouts_type()
 // {
 //     return AboutType::get();
 // }
 
 
-
-// function fixedTexts()
-// {
-//     return App\Models\FixedText::orderBy('id', 'desc')->first();
-// }
 
 // function projects()
 // {

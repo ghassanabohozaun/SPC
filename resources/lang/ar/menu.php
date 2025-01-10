@@ -37,6 +37,8 @@ return [
     'trashed_sliders' => 'السلايدرات المحذوفة',
     'add_new_slider' => 'إضافة سلايدر جديد',
 
+    'fixed_texts' => 'النصوص الثابتة',
+
     'services' => 'الخدمات',
     'trashed_services' => 'الخدمات المحذوفة',
     'add_new_service' => 'إضافة خدمة جديد',

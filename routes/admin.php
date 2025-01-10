@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\BooksController;
 use App\Http\Controllers\Admin\CommentsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FAQController;
+use App\Http\Controllers\Admin\FixedTextsController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PhotoAlbumsController;
@@ -54,7 +55,6 @@ Route::group(
         Route::get('/dashboard', [DashboardController::class, 'index'])
             ->name('admin.dashboard')
             ->middleware('can:dashboard');
-
 
         /////////////////////////////////////////////////////////////////////////////////////////////
         /// settings
@@ -108,6 +108,12 @@ Route::group(
                 Route::get('/edit/{id}', [SlidersController::class, 'edit'])->name('admin.sliders.edit');
                 Route::post('/update', [SlidersController::class, 'update'])->name('admin.sliders.update');
                 Route::post('/change-status', [SlidersController::class, 'changeStatus'])->name('admin.sliders.change.status');
+            });
+
+            // fixed strings
+            Route::group(['prefix' => 'fixed_texts'], function () {
+                Route::get('/', [FixedTextsController::class, 'index'])->name('admin.fixed.texts');
+                Route::post('/', [FixedTextsController::class, 'update'])->name('admin.fixed.texts.update');
             });
         });
 

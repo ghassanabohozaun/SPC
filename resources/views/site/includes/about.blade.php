@@ -4,9 +4,9 @@
         <div class="large-6 medium-12 small-12 cell">
             <!-- Start about-section-text /-->
             <div class="about-section-text" dir="rtl">
-                <h2>{!! __('site.welcome_to') !!} <span>{!! __('site.spc_full_name') !!}</span></h2>
+                <h2>{!! __('site.welcome_to') !!} <span>{!! fixedTexts()->{'about_spc_title_' . Lang()} !!}</span></h2>
                 <p class="my_lead">
-                    {!! __('site.spc_definition') !!}
+                    {!! fixedTexts()->{'about_spc_details_' . Lang()} !!}
                 </p>
                 <div class="grid-container grid-x">
                     <h3>{!! __('site.sustainable_psychotherapy_goals') !!} </h3>
@@ -15,7 +15,7 @@
                         <div class="info-box">
                             <h6 class="my_lead">
                                 <i class="fa fa-square-full"></i>
-                                {!! __('site.first_goal') !!}
+                                {!! fixedTexts()->{'about_spc_goal_one_' . Lang()} !!}
                             </h6>
                         </div>
                     </div><!-- Cell /-->
@@ -24,7 +24,7 @@
                         <div class="info-box">
                             <h6 class="my_lead">
                                 <i class="fa fa-square-full"></i>
-                                {!! __('site.second_goal') !!}
+                                {!! fixedTexts()->{'about_spc_goal_two_' . Lang()} !!}
                             </h6>
                         </div>
                     </div><!-- Cell /-->
@@ -33,7 +33,8 @@
                         <div class="info-box">
                             <h6 class="my_lead">
                                 <i class="fa fa-square-full"></i>
-                                {!! __('site.third_goal') !!}
+                                {!! fixedTexts()->{'about_spc_goal_three_' . Lang()} !!}
+
                             </h6>
                         </div>
                     </div><!-- Cell /-->
@@ -42,7 +43,8 @@
                         <div class="info-box">
                             <h6 class="my_lead">
                                 <i class="fa fa-square-full"></i>
-                                {!! __('site.fourth_goal') !!}
+                                {!! fixedTexts()->{'about_spc_goal_four_' . Lang()} !!}
+
                             </h6>
                         </div>
                     </div><!-- Cell /-->
@@ -55,7 +57,7 @@
 
         <div class="large-6 medium-12 small-12 cell">
             <div class="about-section-img">
-                <img src="{!! asset('site/assets/images/doctor1.png') !!}" alt="">
+                <img src="{!! asset('adminBoard/uploadedImages/fixedTexts/' . fixedTexts()->about_spc_photo) !!}" alt="">
             </div><!-- About Section Img /-->
         </div><!-- Cell /-->
 

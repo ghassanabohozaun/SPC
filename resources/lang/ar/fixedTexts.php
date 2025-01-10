@@ -1,0 +1,47 @@
+<?php
+
+return [
+    'about_spc'=>' عن المركز',
+    'about_spc_title_en'=>'عنوان عن المركز | انجليزي',
+    'about_spc_title_ar'=>'عنوان عن المركز | عربي',
+    'about_spc_details_en'=>'تفاصيل عن المركز | انجليزي',
+    'about_spc_details_ar'=>'تفاصيل عن المركز | عربي',
+    'about_spc_goal_one_en'=>'الهدف الاول | انجليزي',
+    'about_spc_goal_two_en'=>'الهدف الثاني | انجليزي',
+    'about_spc_goal_three_en'=>'الهدف الثالت | انجليزي',
+    'about_spc_goal_four_en'=>'الهدف الرابع | انجليزي',
+    'about_spc_goal_one_ar'=>'الهدف الاول | انجليزي',
+    'about_spc_goal_two_ar'=>'الهدف الثاني | انجليزي',
+    'about_spc_goal_three_ar'=>'الهدف الثالت | انجليزي',
+    'about_spc_goal_four_ar'=>'الهدف الرابع | انجليزي',
+    'about_spc_photo'=>'صورة الدكتور',
+
+    'enter_about_spc_title_en'=>'ادخل عنوان عن المركز | انجليزي',
+    'enter_about_spc_title_ar'=>' ادخل عنوان عن المركز | عربي',
+    'enter_about_spc_details_en'=>'ادخل تفاصيل عن المركز | انجليزي',
+    'enter_about_spc_details_ar'=>'ادخل تفاصيل عن المركز | عربي',
+    'enter_about_spc_goal_one_en'=>'ادخل الهدف الاول | انجليزي',
+    'enter_about_spc_goal_two_en'=>'ادخل الهدف الثاني | انجليزي',
+    'enter_about_spc_goal_three_en'=>'ادخل الهدف الثالت | انجليزي',
+    'enter_about_spc_goal_four_en'=>'ادخل الهدف الرابع | انجليزي',
+    'enter_about_spc_goal_one_ar'=>'ادخل الهدف الاول | انجليزي',
+    'enter_about_spc_goal_two_ar'=>'ادخل الهدف الثاني | انجليزي',
+    'enter_about_spc_goal_three_ar'=>'ادخل الهدف الثالت | انجليزي',
+    'enter_about_spc_goal_four_ar'=>'ادخل الهدف الرابع | انجليزي',
+
+
+    'required' => 'هذا الحقل مطلوب',
+    'max' => 'الحد الاقصي المسموح به للحروف 100',
+    'in' => 'القيمة المدخلة غير صحيحة',
+    'image' => 'يجب ان تكون صورة',
+    'photo_max' => 'حجم الصورة المسموح به 1 ميجا فقط',
+    'photo_mimes' => 'يجب ان تكون صورة بصيغة الصيغ png,jpg,jpeg',
+    'file_mimes' => 'يجب ان تكون الملف بصيغة  pdf',
+    'file_max' => 'حجم الملف المسموح به  10 ميجا فقط',
+    'photo_required' => 'الصورة مطلوبة',
+    'file_required' => 'الملف مطلوبة',
+
+    'about_spc_photo_image' => 'صورة الدكتور يجب ان تكون صورة',
+    'about_spc_photo_mimes' => 'يجب ان يكون صورة الدطتور  من  بصيغة  jpeg , jpg,png',
+    'about_spc_photo_max' => 'حجم صورة الدكتور المسموح به  10 ميجا فقط',
+];

@@ -41,6 +41,8 @@ return [
     'trashed_sliders' => 'Trashed Sliders',
     'add_new_slider' => 'Add New Slider',
 
+    'fixed_texts' => 'Fixed Texts',
+
     'services' => 'Services',
     'trashed_services' => 'Trashed Services',
     'add_new_service' => 'Add New Service',
