@@ -38,7 +38,7 @@
     <!-------------------------------------- End Book Section ----------------------------------->
 
     <!-------------------------------------- Start Services Section ----------------------------->
-    {{-- @include('site.includes.services') --}}
+    @include('site.includes.services')
     <!-------------------------------------- End Services Section ------------------------------->
 
     <!-------------------------------------- Start client opinions Testimonials ----------------->

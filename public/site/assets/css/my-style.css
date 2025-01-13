@@ -718,17 +718,19 @@ html {
 .services-section .service-icon img {
     border-radius: 2px;
     margin-bottom: 24px;
-    height: 100px;
-    width: 100px;
+    height: 100%;
+    width: 100%;
+}
 
-
+.services-section .service-text a {
+    font-size: 16px;
 }
 
 .my_services_section .service-icon img {
     border-radius: 2px;
     margin-bottom: 24px;
-    height: 100px;
-    width: 100px;
+    height: 100%;
+    width: 100%;
 }
 
 .my_treatment_areas_section .service-icon img {

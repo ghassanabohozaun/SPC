@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SupportCenterRequest;
 use App\Models\AboutSpc;
+use App\Models\Service;
 use App\Models\Slider;
 use App\Models\SupportCenter;
 use App\Traits\GeneralTrait;
@@ -23,8 +24,8 @@ class SiteController extends Controller
         }
 
         $sliders = $this->getSliders();
-
-        return view('site.index', compact('title', 'sliders'));
+        $services = $this->getServices();
+        return view('site.index', compact('title', 'sliders', 'services'));
     }
 
     // get sliders
@@ -53,6 +54,35 @@ class SiteController extends Controller
         return $sliders;
     }
 
+    // get services
+    public function getServices()
+    {
+        // is_treatment_area => 1  Offers
+        // is_treatment_area => 0   services
+
+        if (Lang() == 'ar') {
+            $services = Service::withoutTrashed()
+                ->whereStatus('on')
+                ->orderByAsc('created_at')
+                ->whereIsTreatmentArea('no')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->get();
+        } else {
+            $services = Service::withoutTrashed()
+                ->whereStatus('on')
+                ->orderByDesc('created_at')
+                ->whereIsTreatmentArea('no')
+                ->where(function ($q) {
+                    $q->where('language', 'en')->orWhere('language', 'ar_en');
+                })
+                ->get();
+        }
+
+        return $services;
+    }
+
     // about spc
     public function aboutSpa()
     {
@@ -75,6 +105,51 @@ class SiteController extends Controller
         return view('site.about-spa', compact('title', 'aboutSpaItems'));
     }
 
+    public function services()
+    {
+        $title = __('site.services');
+
+        if (Lang() == 'ar') {
+            $services = Service::whereStatus('on')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->get();
+        } else {
+            $services = Service::whereStatus('on')
+                ->where(function ($q) {
+                    $q->where('language', 'en')->orWhere('language', 'ar_en');
+                })
+                ->get();
+        }
+
+        return view('site.services', compact('title', 'services'));
+    }
+
+    public function service($serviceTitle = null)
+    {
+
+        if (!$serviceTitle) {
+            return redirect()->route('index');
+        }
+
+        if(Lang() == 'ar'){
+            $service = Service::where('title_ar_slug', '=', $serviceTitle)->first();
+            if(!$service){
+                return redirect()->route('index');
+            }
+            $title = $service->title_ar;
+        }else{
+            $service = Service::where('title_en_slug', '=', $serviceTitle)->first();
+            if(!$service){
+                return redirect()->route('index');
+            }
+            $title = $service->title_en;
+        }
+
+
+        return view('site.service', compact('title', 'service'));
+    }
 
     // Send Contact Message
     public function sendContactMessage(SupportCenterRequest $request)

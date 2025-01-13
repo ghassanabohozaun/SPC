@@ -1,14 +1,17 @@
 @extends('layouts.site')
-@section('title') {!! trans('frontend.home') !!} @endsection
-@section('metaTags')
-    <meta name="description"
-          content="{!! Lang()=='ar' ? setting()->site_description_ar : setting()->site_description_en !!}">
-    <meta name="keywords"
-          content="{!! Lang()=='ar' ? setting()->site_keywords_ar : setting()->site_keywords_en !!}">
+@section('title')
+    {!! Lang() == 'ar' ? setting()->site_title_ar : setting()->site_title_en !!}
 @endsection
+@section('metaTags')
+    <meta name="description" content="{!! Lang() == 'ar' ? setting()->site_description_ar : setting()->site_description_en !!}">
+    <meta name="keywords" content="{!! Lang() == 'ar' ? setting()->site_keywords_ar : setting()->site_keywords_en !!}">
+    <meta name="application-name" content="{!! Lang() == 'ar' ? setting()->site_name_ar : setting()->site_name_en !!}" />
+    <meta name="author" content="{!! Lang() == 'ar' ? setting()->site_name_ar : setting()->site_name_en !!}" />
+@endsection
+@push('css')
+@endpush
 
 @section('content')
-
     <!-------------------------------------- Start Top Title Section  ------------------------------------->
     <div class="clearfix"></div>
     <div class="bradcam_area services_bg">
@@ -34,24 +37,25 @@
         </div><!-- Section Title /-->
         <div class="padding-between services-wrap bottom-icon-transparent">
 
-            @if($services->isEmpty())
+            @if ($services->isEmpty())
                 <h2 class="text-center text-capitalize text-warning">{!! trans('site.no_services') !!}</h2>
             @else
                 <div class="grid-container grid-x grid-padding-x grid-padding-y my_services_section">
 
-                @foreach($services as $service)
-                    <!-- Start Cell /-->
+                    @foreach ($services as $service)
+                        <!-- Start Cell /-->
                         <div class="large-4 medium-6 small-12 cell">
                             <div class="service-box">
                                 <div class="service-icon">
-                                    <img src="{!! asset(\Illuminate\Support\Facades\Storage::url($service->photo)) !!}"
-                                         alt="{!! Lang()=='ar'?$service->title_ar:$service->title_en !!}" width="100%">
+                                    <img src="{!! asset('adminBoard/uploadedImages/services/' . $service->photo) !!}" alt="{!! Lang() == 'ar' ? $service->title_ar : $service->title_en !!}" width="100%">
                                 </div>
                                 <div class="service-text">
-                                    <h4><a href="#">{!! Lang()=='ar'?$service->title_ar:$service->title_en !!}</a></h4>
-                                    <p>{!! Lang()=='ar'?$service->summary_ar:$service->summary_en !!}</p>
-                                    <a href="{!! route('service', Lang()=='ar'?str_replace(' ','-',$service->title_ar):str_replace(' ','-',$service->title_en)) !!}"
-                                       class="button secondary">{!! trans('site.read_more') !!}
+                                    <h4><a href="#">{!! Lang() == 'ar' ? $service->title_ar : $service->title_en !!}</a></h4>
+                                    <p>{!! Lang() == 'ar' ? $service->summary_ar : $service->summary_en !!}</p>
+                                    <a href="{!! route(
+                                        'service',
+                                        Lang() == 'ar' ? str_replace(' ', '-', $service->title_ar) : str_replace(' ', '-', $service->title_en),
+                                    ) !!}" class="button secondary">{!! trans('site.read_more') !!}
                                     </a>
                                 </div>
                             </div><!-- Service Box /-->
@@ -68,7 +72,7 @@
     <!-------------------------------------- Start Services Section ------------------------------>
 
     <!-------------------------------------- Start Call to Action ------------------------------>
-    @include('site.include.call-to-action')
+    @include('site.includes.call-to-action')
     <!-------------------------------------- End Call to Action -------------------------------->
 
 @endsection

@@ -23,23 +23,20 @@
                         </li>
 
                         {{-- services --}}
-                        {{-- <li class="single-sub parent-nav is-dropdown-submenu-parent opens-right" role="menuitem"
+                        <li class="single-sub parent-nav is-dropdown-submenu-parent opens-right" role="menuitem"
                             aria-haspopup="true" aria-expanded="false" aria-label="Courses">
-                            <a href="{!! route('services') !!}">{!! trans('site.services') !!}</a>
+                            <a href="{!! route('services') !!}">{!! __('site.services') !!}</a>
                             <ul class="child-nav menu vertical submenu is-dropdown-submenu first-sub" data-submenu=""
                                 aria-hidden="true" role="menu">
-                                @foreach (\App\Models\Service::orderBy('created_at', 'asc')->where('is_treatment_area', '=', '0')->get() as $navService)
+                                @foreach (getServicesOnly() as $navService)
                                     <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item">
-                                        <a href="{!! route(
-                                            'service',
-                                            Lang() == 'ar' ? str_replace(' ', '-', $navService->title_ar) : str_replace(' ', '-', $navService->title_en),
-                                        ) !!}">
+                                        <a href="{!! route('service', $navService->{'title_' . Lang() . '_slug'}) !!}">
                                             {!! Lang() == 'ar' ? $navService->title_ar : $navService->title_en !!}
                                         </a>
                                     </li>
                                 @endforeach
                             </ul>
-                        </li> --}}
+                        </li>
 
                         <li role="menuitem">
                             <a href="{!! route('tests') !!}">{!! trans('site.tests') !!}</a>

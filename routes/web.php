@@ -20,7 +20,8 @@ Route::group(
     Route::get('/', [SiteController::class , 'index'])->name('index');
     Route::get('/about-spa', [SiteController::class , 'aboutSpa'])->name('about.spa');
 
-
+    Route::get('/services', [SiteController::class , 'services'])->name('services');
+    Route::get('/service/{val?}',[SiteController::class , 'service'])->name('service');
 
 
     Route::get('/faq', [SiteController::class , 'faq'])->name('faq');
@@ -44,8 +45,7 @@ Route::group(
     Route::get('/articles', [SiteController::class , 'articles'])->name('articles');
     Route::get('/article/{val?}',[SiteController::class , 'article'])->name('article');
 
-    Route::get('/services', [SiteController::class , 'services'])->name('services');
-    Route::get('/service/{val?}',[SiteController::class , 'service'])->name('service');
+
     Route::get('/get-treatment-area',[SiteController::class , 'getTreatmentAreas'])->name('get.treatment.area');
     Route::get('/contact',[SiteController::class , 'contact'])->name('contact');
     Route::post('/send-contact', [SiteController::class , 'sendContact'])->name('send.contact');

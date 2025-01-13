@@ -2,7 +2,9 @@
 
 use App\Models\AboutSite;
 use App\Models\AboutType;
+use App\Models\FixedText;
 use App\Models\Projects;
+use App\Models\Service;
 use App\Models\Setting;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -62,6 +64,14 @@ if (!function_exists('fixedTexts')) {
     function fixedTexts()
     {
         return App\Models\FixedText::orderBy('id', 'desc')->first();
+    }
+}
+
+if (!function_exists('getServicesOnly')) {
+    function getServicesOnly()
+    {
+        $services = Service::orderBy('created_at' , 'desc')->whereIsTreatmentArea('no')->get();
+        return $services;
     }
 }
 
