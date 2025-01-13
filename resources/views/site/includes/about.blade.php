@@ -58,7 +58,7 @@
         <div class="large-6 medium-12 small-12 cell">
             <div class="about-section-img">
                 @if (!empty(fixedTexts()->about_spc_photo))
-                    <img src="{!! asset('adminBoard/uploadedImages/fixedTexts/' . fixedTexts()->about_spc_photo) !!}" alt="">
+                    <img src="{!! asset('site/assets/images/doctor1.png') !!}" alt="">
                 @endif
             </div><!-- About Section Img /-->
         </div><!-- Cell /-->
