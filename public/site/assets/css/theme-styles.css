@@ -1014,7 +1014,7 @@ nav ul.menu.dropdown li:last-child a {
 .book-preview img:first-child {
     position: absolute;
     bottom: -30px;
-    left: 0px;
+    left: 10px;
 }
 
 .book-text {

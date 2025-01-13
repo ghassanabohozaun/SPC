@@ -6,7 +6,6 @@ use App\Models\Projects;
 use App\Models\Setting;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-
 //  setting Helper Function
 if (!function_exists('setting')) {
     function setting()
@@ -14,7 +13,6 @@ if (!function_exists('setting')) {
         return Setting::orderBy('id', 'desc')->first();
     }
 }
-
 
 //  get active languages Helper Function
 if (!function_exists('getActiveLanguages')) {
@@ -34,12 +32,11 @@ if (!function_exists('admin')) {
 
 function reverseDate($date)
 {
-    $array = explode("-", $date);
+    $array = explode('-', $date);
     $rev = array_reverse($array);
-    $date = implode("-", $rev);
+    $date = implode('-', $rev);
     return $date;
 }
-
 
 function slug($string)
 {
@@ -47,13 +44,10 @@ function slug($string)
     return preg_replace('/[^\w\s\-]+/u', '', $string);
 }
 
-
 function returnSpaceBetweenString($string)
 {
     return $string = str_replace('-', ' ', $string); // Replaces all spaces with hyphens.
 }
-
-
 
 //  about site Helper Function
 if (!function_exists('aboutSite')) {
@@ -63,19 +57,18 @@ if (!function_exists('aboutSite')) {
     }
 }
 
-
-function fixedTexts()
-{
-    return App\Models\FixedText::orderBy('id', 'desc')->first();
+// fixed texts function
+if (!function_exists('fixedTexts')) {
+    function fixedTexts()
+    {
+        return App\Models\FixedText::orderBy('id', 'desc')->first();
+    }
 }
-
 
 // function abouts_type()
 // {
 //     return AboutType::get();
 // }
-
-
 
 // function projects()
 // {

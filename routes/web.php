@@ -18,11 +18,11 @@ Route::group(
     })->where(['any' => '.*']);
 
     Route::get('/', [SiteController::class , 'index'])->name('index');
-
-
-
-
     Route::get('/about-spa', [SiteController::class , 'aboutSpa'])->name('about.spa');
+
+
+
+
     Route::get('/faq', [SiteController::class , 'faq'])->name('faq');
     Route::get('/trainings', [SiteController::class , 'trainings'])->name('trainings');
     Route::get('/training-paging', [SiteController::class , 'trainingsPaging'])->name('trainings.paging');
