@@ -1,4 +1,4 @@
-@if (isEmpty(aboutSite()->{'about_doctor_' . Lang()}))
+@if (!empty(aboutSite()->{'about_doctor_' . Lang()}))
     <div class="book-preview grey-bg dark-bg">
         <img src="{!! asset('site/assets/images/doctor55.png') !!}" alt="">
         <div class="grid-container grid-x grid-padding-x">
