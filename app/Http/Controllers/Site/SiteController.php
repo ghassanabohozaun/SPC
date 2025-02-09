@@ -8,11 +8,14 @@ use App\Models\AboutSpc;
 use App\Models\Service;
 use App\Models\Slider;
 use App\Models\SupportCenter;
+use App\Models\Testimonial;
 use App\Traits\GeneralTrait;
 
 class SiteController extends Controller
 {
     use GeneralTrait;
+
+
 
     ///index
     public function index()
@@ -25,7 +28,11 @@ class SiteController extends Controller
 
         $sliders = $this->getSliders();
         $services = $this->getServices();
-        return view('site.index', compact('title', 'sliders', 'services'));
+        $offers = $this->getOffers();
+
+        $testimonials = $this->getTestimonials();
+
+        return view('site.index', compact('title', 'sliders', 'services', 'offers','testimonials'));
     }
 
     // get sliders
@@ -63,7 +70,7 @@ class SiteController extends Controller
         if (Lang() == 'ar') {
             $services = Service::withoutTrashed()
                 ->whereStatus('on')
-                ->orderByAsc('created_at')
+                ->orderByDesc('created_at')
                 ->whereIsTreatmentArea('no')
                 ->where(function ($q) {
                     $q->where('language', 'ar_en');
@@ -81,6 +88,59 @@ class SiteController extends Controller
         }
 
         return $services;
+    }
+
+    // get offers
+    public function getOffers()
+    {
+        // is_treatment_area => 1  Offers
+        // is_treatment_area => 0   services
+
+        if (Lang() == 'ar') {
+            $offers = Service::withoutTrashed()
+                ->whereStatus('on')
+                ->orderByDesc('created_at')
+                ->whereIsTreatmentArea('yes')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->get();
+        } else {
+            $offers = Service::withoutTrashed()
+                ->whereStatus('on')
+                ->orderByDesc('created_at')
+                ->whereIsTreatmentArea('yes')
+                ->where(function ($q) {
+                    $q->where('language', 'en')->orWhere('language', 'ar_en');
+                })
+                ->get();
+        }
+
+        return $offers;
+    }
+
+
+    // get testimonials
+    public function getTestimonials(){
+        if (Lang() == 'ar') {
+            $testimonials = Testimonial::withoutTrashed()
+                ->whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->get();
+        } else {
+            $testimonials = Testimonial::withoutTrashed()
+                ->whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'en')->orWhere('language', 'ar_en');
+                })
+                ->get();
+        }
+
+        return $testimonials;
     }
 
     // about spc
@@ -128,25 +188,23 @@ class SiteController extends Controller
 
     public function service($serviceTitle = null)
     {
-
         if (!$serviceTitle) {
             return redirect()->route('index');
         }
 
-        if(Lang() == 'ar'){
+        if (Lang() == 'ar') {
             $service = Service::where('title_ar_slug', '=', $serviceTitle)->first();
-            if(!$service){
+            if (!$service) {
                 return redirect()->route('index');
             }
             $title = $service->title_ar;
-        }else{
+        } else {
             $service = Service::where('title_en_slug', '=', $serviceTitle)->first();
-            if(!$service){
+            if (!$service) {
                 return redirect()->route('index');
             }
             $title = $service->title_en;
         }
-
 
         return view('site.service', compact('title', 'service'));
     }

@@ -46,9 +46,15 @@
                         <!-- Start Cell /-->
                         <div class="large-4 medium-6 small-12 cell">
                             <div class="service-box">
-                                <div class="service-icon">
-                                    <img src="{!! asset('adminBoard/uploadedImages/services/' . $service->photo) !!}" alt="{!! Lang() == 'ar' ? $service->title_ar : $service->title_en !!}" width="100%">
-                                </div>
+                                @if (!empty($service->photo))
+                                    <div class="service-icon">
+                                        <img src="{!! asset('adminBoard/uploadedImages/services/' . $service->photo) !!}" alt="{!! Lang() == 'ar' ? $service->title_ar : $service->title_en !!}" width="100%">
+                                    </div>
+                                @else
+                                    <div class="service-icon">
+                                        <img src="{!! asset('site/assets/images/backgrounds/services-3.jpg') !!}" alt="{!! $service->{'summary_' . Lang()} !!}">
+                                    </div>
+                                @endif
                                 <div class="service-text">
                                     <h4><a href="#">{!! Lang() == 'ar' ? $service->title_ar : $service->title_en !!}</a></h4>
                                     <p>{!! Lang() == 'ar' ? $service->summary_ar : $service->summary_en !!}</p>

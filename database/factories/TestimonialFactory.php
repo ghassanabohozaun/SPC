@@ -23,8 +23,8 @@ class TestimonialFactory extends Factory
 
             'opinion_ar'=> $faker->sentence(30),
             'opinion_en'=>$faker->sentence(30),
-            'name_ar'=> $faker->sentence(12),
-            'name_en'=> $faker->sentence(12),
+            'name_ar'=> $faker->sentence(2),
+            'name_en'=> $faker->sentence(2),
             'age'=>$faker->numberBetween(20, 60),
             'country'=>$faker->country(),
             'gender'=>'male',

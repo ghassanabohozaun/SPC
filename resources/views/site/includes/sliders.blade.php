@@ -1,10 +1,8 @@
 <div>
     @if (!$sliders->isEmpty())
         <div class="swiper-container">
-
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
-
                 @foreach ($sliders as $slider)
                     <!-- Slider -->
                     <div class="swiper-slide" style="background-image: url({!! asset('adminBoard/uploadedImages/sliders/' . $slider->photo) !!});">
@@ -22,7 +20,6 @@
                                         {!! __('site.read_more') !!}
                                     </a>
                                 @endif
-
 
                                 @if (!empty($slider->url_ar) && Lang() == 'ar')
                                     <a class="button primary" href="{!! $slider->url_ar !!}" target="_blank">
@@ -65,9 +62,6 @@
                 type: 'bullets',
                 clickable: 'true'
             },
-
-
-
         });
     </script>
 @endpush

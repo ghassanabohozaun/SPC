@@ -70,7 +70,7 @@ if (!function_exists('fixedTexts')) {
 if (!function_exists('getServicesOnly')) {
     function getServicesOnly()
     {
-        $services = Service::orderBy('created_at' , 'desc')->whereIsTreatmentArea('no')->get();
+        $services = Service::whereStatus('on')->orderByDesc('created_at')->whereIsTreatmentArea('no')->get();
         return $services;
     }
 }

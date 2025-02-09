@@ -191,4 +191,27 @@ return [
     'go_to_tests' => 'Go Back To Tests Page',
     'rate_us' => 'Rate Us',
     'success_send_contact_message' => 'Success Sending Contact Message',
+    'omar_name' => 'Dr Omar El Buhaisi',
+    'omar_profile' => 'Consultant Psychiatrist with more than 20 years of experience in Ministry of Health,   institutional and academic work.Masters degree in Mental Health and Human Rights - Al - Quds University / Palestine
+                        Head of the Department of Liaison Psychiatry and Director of Mental Health Services at the Palestinian Ministry of Health .
+                        Participated in many local and international conferences, workshops, and seminars .
+                        Lecturer in many Palestinian universities .
+                        Clinical and supervisory experience in cognitive behavioural therapy techniques, focussing therapy, family therapy, and psychosocial support .
+                        Has advanced psycho - therapeutic skills in crisis psychological interventions, stress management skills, and self - care .
+                        ',
+
+    'jennah_name' => 'Jennah Asad',
+    'jennah_profile' => '
+First-class BSc with honours in Clinical and Community Psychology
+MSc in Clinical Psychology
+PGDip in Cognitive and Behavioural Therapy (CBT)
+Psychology PhD; my project is focusing on metacognition in children/adolescents with PTSD and dissociation.
+Advanced Mental Health Practitioner; CAMHS Crisis Line at Barnet, Enfield and Haringey NHS Trust
+Mental Health Practitioner; Step2 CAMHS at Hertfordshire Community NHS Trust
+ARC worker and CBT therapist; ARC services at Hertfordshire County Council childrens services
+Assistant Psychologist; Cygnet Health Care (Adults Psychiatric Hospital)
+Mental Health Assistant; Friends of Bright Eyes (respite charity).
+
+I completed a training course in Supervision and have started offering clinical supervision for trainees/students/therapists within my NHS role and privately.
+',
 ];

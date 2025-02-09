@@ -29,11 +29,11 @@
     @if (Lang() == 'ar')
         <link rel="stylesheet" type="text/css" href="{!! asset('site/assets/css/style_rtl.css') !!}" media="all" />
         <link rel="stylesheet" type="text/css" href="{!! asset('site/assets/css/media_rtl.css') !!}" media="all" />
-        <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet" />
+        {{-- <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet" /> --}}
         <style>
             body,
             html {
-                font-family: 'Cairo', sans-serif;
+                /* font-family: 'Cairo', sans-serif; */
             }
         </style>
     @else

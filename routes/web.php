@@ -24,6 +24,13 @@ Route::group(
     Route::get('/service/{val?}',[SiteController::class , 'service'])->name('service');
 
 
+
+
+    Route::get('/test' , [SiteController::class, 'test'])->name('test');
+
+
+
+
     Route::get('/faq', [SiteController::class , 'faq'])->name('faq');
     Route::get('/trainings', [SiteController::class , 'trainings'])->name('trainings');
     Route::get('/training-paging', [SiteController::class , 'trainingsPaging'])->name('trainings.paging');

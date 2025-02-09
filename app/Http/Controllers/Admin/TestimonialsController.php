@@ -127,7 +127,6 @@ class TestimonialsController extends Controller
             'gender' => $request->gender,
             'country' => null,
             'rating' => $request->rating,
-            'status' => '',
             'photo' => $photo_path,
             'language' => 'ar_en',
         ]);

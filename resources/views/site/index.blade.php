@@ -22,7 +22,7 @@
     <!-------------------------------------- End About Section ---------------------------------->
 
     <!-------------------------------------- Start offers Testimonials -------------------------->
-    {{-- @include('site.includes.offers') --}}
+    @include('site.includes.offers')
     <!-------------------------------------- End  offers Testimonials --------------------------->
 
     <!-------------------------------------- Start Counter -------------------------------------->
@@ -42,7 +42,7 @@
     <!-------------------------------------- End Services Section ------------------------------->
 
     <!-------------------------------------- Start client opinions Testimonials ----------------->
-    {{-- @include('site.includes.testimonials') --}}
+    @include('site.includes.testimonials')
     <!-------------------------------------- End  client opinions Testimonials ------------------>
 
     <!-------------------------------------- Start Publications Section ------------------------->

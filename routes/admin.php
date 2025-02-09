@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PhotoAlbumsController;
 use App\Http\Controllers\Admin\PostersController;
 use App\Http\Controllers\Admin\PublicationsController;
+use App\Http\Controllers\Admin\RevisionController;
 use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\SlidersController;
@@ -374,7 +375,30 @@ Route::group(
             Route::post('/change-status', [SupportCenterController::class, 'changeStatus'])->name('admin.support.center.change.status');
             Route::get('/get-one-message', [SupportCenterController::class, 'getOneMessage'])->name('admin.support.center.get.one.message');
         });
+
+
+
+
+        Route::group(['prefix'=>'revisions'],function(){
+            Route::get('/',[RevisionController::class , 'index'])->name('admin.revisions');
+            Route::get('/create',[RevisionController::class, 'create'])->name('admin.revisions.create');
+            Route::get('/store' , [RevisionController::class, 'store'])->name('admin.revisions.store');
+            Route::get('trashed' , [RevisionController::class,'trashed'])->name('admin.revisions.trashed');
+            Route::post('destroy' , [RevisionController::class , 'destroy'])->name('admin.revisions.destroy');
+            Route::post('restore' , [RevisionController::class , 'restore'])->name('admin.revisions.restore');
+            Route::post('force_delete' , [RevisionController::class , 'forceDelete'])->name('admin.revisions.force.delete');
+            Route::post('/change_status' , [RevisionController::class, 'changeStatus'])->name('admin.revisions.change.status');
+            Route::get('/edit/{id?}', [RevisionController::class, 'edit'])->name('admin.revisions.edit');
+            Route::post('/update', [RevisionController::class, 'update'])->name('admin.revisions.update');
+        });
+
     },
+
+
+
+
+
+
 );
 
 /////////////////////////////////////////////////////////////////////////////////////////////
