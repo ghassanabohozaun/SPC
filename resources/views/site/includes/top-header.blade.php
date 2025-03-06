@@ -44,24 +44,26 @@
                                 </div>
                             </a>
                         </div>
-                        @if (Lang() == 'ar')
-                            <div class="col-sm-12 col-md-6">
-                                <a class="dedcription-btn" href="/en">
-                                    <span class="name-descripeion" id="ar_lang_description">ع</span>
-                                    <div class="btn-icon brain">
-                                        <i class="fas fa-globe"></i>
-                                    </div>
-                                </a>
-                            </div>
-                        @else
-                            <div class="col-sm-12 col-md-6">
-                                <a class="dedcription-btn" href="/ar">
-                                    <span class="name-descripeion" id="en_lang_description">EN</span>
-                                    <div class="btn-icon brain">
-                                        <i class="fas fa-globe"></i>
-                                    </div>
-                                </a>
-                            </div>
+                        @if (setting()->lang_front_button_status == 'on')
+                            @if (Lang() == 'ar')
+                                <div class="col-sm-12 col-md-6">
+                                    <a class="dedcription-btn" href="/en">
+                                        <span class="name-descripeion" id="ar_lang_description">ع</span>
+                                        <div class="btn-icon brain">
+                                            <i class="fas fa-globe"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            @else
+                                <div class="col-sm-12 col-md-6">
+                                    <a class="dedcription-btn" href="/ar">
+                                        <span class="name-descripeion" id="en_lang_description">EN</span>
+                                        <div class="btn-icon brain">
+                                            <i class="fas fa-globe"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endif
                         @endif
                     </div>
                 </div>

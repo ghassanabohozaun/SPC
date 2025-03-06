@@ -18,6 +18,7 @@ class SettingsSeeder extends Seeder
             'site_name_en' => 'SPC',
             'site_lang_ar' => 'on',
             'site_lang_en' => 'on',
+            'lang_front_button_status' => 'on',
         ]);
     }
 }
