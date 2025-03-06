@@ -45,8 +45,6 @@
 </head>
 
 <body>
-    Ghassan
-
     <div class="main-container">
         <!-------------------------------------- Start Header ---------------------------------------->
         <div class="header header-tow">
