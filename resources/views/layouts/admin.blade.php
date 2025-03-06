@@ -104,6 +104,8 @@
 
 <!--begin::Body-->
 
+test
+
 <body id="kt_body"
     class="header-fixed header-mobile-fixed subheader-enabled
        subheader-fixed subheader-mobile-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
