@@ -104,7 +104,7 @@
 
 <!--begin::Body-->
 
-test
+
 
 <body id="kt_body"
     class="header-fixed header-mobile-fixed subheader-enabled
