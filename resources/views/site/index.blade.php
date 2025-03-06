@@ -41,10 +41,13 @@
     @include('site.includes.services')
     <!-------------------------------------- End Services Section ------------------------------->
 
+    <!-------------------------------------- Start other doctors Section ------------------------>
+    @include('site.includes.other_doctors')
+
+    <!-------------------------------------- End other doctors Section -------------------------->
     <!-------------------------------------- Start client opinions Testimonials ----------------->
     @include('site.includes.testimonials')
     <!-------------------------------------- End  client opinions Testimonials ------------------>
-
     <!-------------------------------------- Start Publications Section ------------------------->
     {{-- @include('site.includes.publications') --}}
     <!-------------------------------------- End Publications Section --------------------------->

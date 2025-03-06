@@ -33,7 +33,7 @@
         <style>
             body,
             html {
-                /* font-family: 'Cairo', sans-serif; */
+                font-family: 'Cairo', sans-serif;
             }
         </style>
     @else
