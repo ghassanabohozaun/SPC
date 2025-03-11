@@ -1,15 +1,13 @@
 @extends('layouts.site')
 @section('title')
-    {!! Lang() == 'ar' ? setting()->site_title_ar : setting()->site_title_en !!}
+    {!! setting()->{'site_title_' . Lang()} !!}
 @endsection
 @section('metaTags')
-    <meta name="description" content="{!! Lang() == 'ar' ? setting()->site_description_ar : setting()->site_description_en !!}">
-    <meta name="keywords" content="{!! Lang() == 'ar' ? setting()->site_keywords_ar : setting()->site_keywords_en !!}">
-    <meta name="application-name" content="{!! Lang() == 'ar' ? setting()->site_name_ar : setting()->site_name_en !!}" />
-    <meta name="author" content="{!! Lang() == 'ar' ? setting()->site_name_ar : setting()->site_name_en !!}" />
+    <meta name="description" content="{!! setting()->{'site_description_' . Lang()} !!}">
+    <meta name="keywords" content="{!! setting()->{'site_keywords_' . Lang()} !!}">
+    <meta name="application-name" content="{!! setting()->{'site_name_' . Lang()} !!}" />
+    <meta name="author" content="{!! setting()->{'site_name_' . Lang()} !!}" />
 @endsection
-@push('css')
-@endpush
 
 @section('content')
     <!-------------------------------------- Start Top Title Section  ------------------------------------->
@@ -34,34 +32,31 @@
                 <img src="{!! asset('site/assets/images/help/brain-icon.png') !!}" alt="Icon">
             </div>
             <p></p>
-        </div><!-- Section Title /-->
-        <div class="padding-between services-wrap bottom-icon-transparent">
+        </div>
+        <!-- Section Title /-->
 
+        <div class="padding-between services-wrap bottom-icon-transparent">
             @if ($services->isEmpty())
                 <h2 class="text-center text-capitalize text-warning">{!! trans('site.no_services') !!}</h2>
             @else
                 <div class="grid-container grid-x grid-padding-x grid-padding-y my_services_section">
-
                     @foreach ($services as $service)
                         <!-- Start Cell /-->
-                        <div class="large-4 medium-6 small-12 cell">
+                        <div class="large-6 medium-6 small-12 cell">
                             <div class="service-box">
                                 @if (!empty($service->photo))
                                     <div class="service-icon">
-                                        <img src="{!! asset('adminBoard/uploadedImages/services/' . $service->photo) !!}" alt="{!! Lang() == 'ar' ? $service->title_ar : $service->title_en !!}" width="100%">
+                                        <img src="{!! asset('adminBoard/uploadedImages/services/' . $service->photo) !!}" alt="{!! $service->{'title_' . Lang()} !!}">
                                     </div>
                                 @else
                                     <div class="service-icon">
-                                        <img src="{!! asset('site/assets/images/backgrounds/services-3.jpg') !!}" alt="{!! $service->{'summary_' . Lang()} !!}">
+                                        <img src="{!! asset('site/assets/images/backgrounds/services-3.jpg') !!}" alt="{!! $service->{'title_' . Lang()} !!}">
                                     </div>
                                 @endif
                                 <div class="service-text">
-                                    <h4><a href="#">{!! Lang() == 'ar' ? $service->title_ar : $service->title_en !!}</a></h4>
+                                    <h4><a href="#">{!! $service->{'title_' . Lang()} !!}</a></h4>
                                     <p>{!! Lang() == 'ar' ? $service->summary_ar : $service->summary_en !!}</p>
-                                    <a href="{!! route(
-                                        'service',
-                                        Lang() == 'ar' ? str_replace(' ', '-', $service->title_ar) : str_replace(' ', '-', $service->title_en),
-                                    ) !!}" class="button secondary">{!! trans('site.read_more') !!}
+                                    <a href="{!! route('service', Lang() == 'ar' ? $service->title_ar_slug : $service->title_en_slug) !!}" class="button secondary">{!! trans('site.read_more') !!}
                                     </a>
                                 </div>
                             </div><!-- Service Box /-->
@@ -82,5 +77,3 @@
     <!-------------------------------------- End Call to Action -------------------------------->
 
 @endsection
-@push('js')
-@endpush

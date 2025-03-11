@@ -1,12 +1,12 @@
 @extends('layouts.site')
 @section('title')
-    {!! Lang() == 'ar' ? setting()->site_title_ar : setting()->site_title_en !!}
+    {!! setting()->{'site_title_' . Lang()} !!}
 @endsection
 @section('metaTags')
-    <meta name="description" content="{!! Lang() == 'ar' ? setting()->site_description_ar : setting()->site_description_en !!}">
-    <meta name="keywords" content="{!! Lang() == 'ar' ? setting()->site_keywords_ar : setting()->site_keywords_en !!}">
-    <meta name="application-name" content="{!! Lang() == 'ar' ? setting()->site_name_ar : setting()->site_name_en !!}" />
-    <meta name="author" content="{!! Lang() == 'ar' ? setting()->site_name_ar : setting()->site_name_en !!}" />
+    <meta name="description" content="{!! setting()->{'site_description_' . Lang()} !!}">
+    <meta name="keywords" content="{!! setting()->{'site_keywords_' . Lang()} !!}">
+    <meta name="application-name" content="{!! setting()->{'site_name_' . Lang()} !!}" />
+    <meta name="author" content="{!! setting()->{'site_name_' . Lang()} !!}" />
 @endsection
 @push('css')
 @endpush
@@ -22,11 +22,11 @@
     <!-------------------------------------- End About Section ---------------------------------->
 
     <!-------------------------------------- Start offers Testimonials -------------------------->
-    {{-- @include('site.includes.offers') --}}
+    @include('site.includes.offers')
     <!-------------------------------------- End  offers Testimonials --------------------------->
 
     <!-------------------------------------- Start Counter -------------------------------------->
-    {{-- @include('site.includes.counters') --}}
+    @include('site.includes.counters')
     <!-------------------------------------- End Counters --------------------------------------->
 
     <!-------------------------------------- Start Tests Section -------------------------------->

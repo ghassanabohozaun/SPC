@@ -24,8 +24,8 @@ class SupportCenterRequest extends FormRequest
     public function rules()
     {
         return [
-            'customer_name' => 'required',
-            'customer_email' => 'required|email',
+            'name' => 'required',
+            'email' => 'required|email',
             'title' => 'required',
             'message' => 'required',
            // 'captcha' => 'required|captcha'

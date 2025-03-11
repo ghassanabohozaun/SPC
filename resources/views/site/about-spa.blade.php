@@ -1,12 +1,12 @@
 @extends('layouts.site')
 @section('title')
-    {!! Lang() == 'ar' ? setting()->site_title_ar : setting()->site_title_en !!}
+    {!! setting()->{'site_title_' . Lang()} !!}
 @endsection
 @section('metaTags')
-    <meta name="description" content="{!! Lang() == 'ar' ? setting()->site_description_ar : setting()->site_description_en !!}">
-    <meta name="keywords" content="{!! Lang() == 'ar' ? setting()->site_keywords_ar : setting()->site_keywords_en !!}">
-    <meta name="application-name" content="{!! Lang() == 'ar' ? setting()->site_name_ar : setting()->site_name_en !!}" />
-    <meta name="author" content="{!! Lang() == 'ar' ? setting()->site_name_ar : setting()->site_name_en !!}" />
+    <meta name="description" content="{!! setting()->{'site_description_' . Lang()} !!}">
+    <meta name="keywords" content="{!! setting()->{'site_keywords_' . Lang()} !!}">
+    <meta name="application-name" content="{!! setting()->{'site_name_' . Lang()} !!}" />
+    <meta name="author" content="{!! setting()->{'site_name_' . Lang()} !!}" />
 @endsection
 @push('css')
 @endpush
@@ -30,7 +30,7 @@
     <!-------------------------------------- Start wrapper  ------------------------------------->
     <div class="pricing-table-wrapper my-about-spc-section module">
         <main>
-            <div class="my_div my_lead" style="float: left">
+            <div class="my_lead">
                 @foreach ($aboutSpaItems as $aboutSpaItem)
                     <section id="{!! $aboutSpaItem->{'title_' . Lang()} !!}">
                         <h2>{!! $aboutSpaItem->{'title_' . Lang()} !!}</h2>
@@ -38,7 +38,7 @@
                     </section>
                 @endforeach
             </div>
-            <nav class="section-nav" style="float: right">
+            <nav class="section-nav ">
                 <ol>
                     @foreach ($aboutSpaItems as $aboutSpaItem)
                         <li>
@@ -61,7 +61,6 @@
 @push('js')
     <script type="text/javascript">
         window.addEventListener('DOMContentLoaded', () => {
-
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     const id = entry.target.getAttribute('id');
@@ -74,12 +73,10 @@
                     }
                 });
             });
-
             // Track all sections that have an `id` applied
             document.querySelectorAll('section[id]').forEach((section) => {
                 observer.observe(section);
             });
-
         });
     </script>
 @endpush

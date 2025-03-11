@@ -62,8 +62,8 @@
                                                 <table class="table myTable table-hover" id="myTable">
                                                     <thead>
                                                         <tr>
-                                                            <th>{!! __('supportCenter.customer_name') !!}</th>
-                                                            <th>{!! __('supportCenter.customer_email') !!}</th>
+                                                            <th>{!! __('supportCenter.name') !!}</th>
+                                                            <th>{!! __('supportCenter.email') !!}</th>
                                                             <th>{!! __('supportCenter.title') !!}</th>
                                                             <th>{!! __('supportCenter.status') !!}</th>
                                                             <th>{!! __('supportCenter.show_message') !!}</th>
@@ -74,8 +74,8 @@
                                                     <tbody>
                                                         @forelse($supportCenters as $supportCenter)
                                                             <tr>
-                                                                <td>{{ $supportCenter->customer_name }}</td>
-                                                                <td>{{ $supportCenter->customer_email }}</td>
+                                                                <td>{{ $supportCenter->name }}</td>
+                                                                <td>{{ $supportCenter->email }}</td>
                                                                 <td>{{ $supportCenter->title }}</td>
                                                                 <td>
                                                                     @if ($supportCenter->status == 'new')

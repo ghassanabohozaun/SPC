@@ -30,14 +30,15 @@ class FAQController extends Controller
     // store
     public function store(FAQRequest $request)
     {
-        $lang_ar  = setting()->site_lang_ar;
+        $site_lang_ar = setting()->site_lang_ar;
 
         FAQ::create([
             'question_en' => $request->question_en,
-            'question_ar' => $lang_ar == 'on' ? $request->question_ar : '',
+            'question_ar' => $site_lang_ar == 'on' ? $request->question_ar : '',
             'answer_en' => $request->answer_en,
-            'answer_ar' => $lang_ar == 'on' ? $request->answer_ar : '',
+            'answer_ar' => $site_lang_ar == 'on' ? $request->answer_ar : '',
             'status' => 'on',
+            'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
         ]);
 
         return $this->returnSuccessMessage(__('general.add_success_message'));
@@ -58,13 +59,15 @@ class FAQController extends Controller
             return redirect()->route('admin.not.found');
         }
 
-        $lang_ar = setting()->site_lang_ar;
+        $site_lang_ar = setting()->site_lang_ar;
+
         $faq->update([
             'question_en' => $request->question_en,
-            'question_ar' => $lang_ar == 'on' ? $request->question_ar : '',
+            'question_ar' => $site_lang_ar == 'on' ? $request->question_ar : '',
             'answer_en' => $request->answer_en,
-            'answer_ar' => $lang_ar == 'on' ? $request->answer_ar : '',
+            'answer_ar' => $site_lang_ar == 'on' ? $request->answer_ar : '',
             'status' => 'on',
+            'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
         ]);
 
         return $this->returnSuccessMessage(__('general.update_success_message'));
@@ -77,7 +80,6 @@ class FAQController extends Controller
         $faqs = FAQ::onlyTrashed()->orderByDesc('deleted_at')->paginate(15);
         return view('admin.faq.trashed', compact('title', 'faqs'));
     }
-
 
     // destroy
     public function destroy(Request $request)
@@ -118,7 +120,6 @@ class FAQController extends Controller
     {
         try {
             if ($request->ajax()) {
-
                 $faq = FAQ::onlyTrashed()->find($request->id);
                 if (!$faq) {
                     return redirect()->route('admin.not.found');
@@ -131,13 +132,11 @@ class FAQController extends Controller
         } catch (\Exception $exception) {
             return $this->returnError(__('general.try_catch_error_message'), 500);
         } //end catch
-
     }
 
     // change status
     public function changeStatus(Request $request)
     {
-
         $faq = FAQ::find($request->id);
 
         if ($request->switchStatus == 'false') {

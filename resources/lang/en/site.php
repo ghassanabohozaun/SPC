@@ -107,7 +107,7 @@ return [
     'fill_the_form_below_to_contact_us' => 'Fill the form below to contact us',
 
     'enter_Name' => 'Enter Name',
-    'enter_phone' => 'Enter Phone',
+    'enter_mobile' => 'Enter Mobile',
     'enter_email' => 'Enter Email',
     'enter_message_title' => 'Enter Message Title',
     'enter_your_message' => 'Enter Your Message',

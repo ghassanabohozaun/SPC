@@ -76,38 +76,38 @@
             <div class="social-icons">
                 <ul class="menu">
                     <li>
-                        <a onclick="return {!! setting()->site_facebook ? 'true' : 'false' !!};" href="{!! setting()->site_facebook !!}">
+                        <a onclick="return {!! setting()->site_facebook ? 'true' : 'false' !!};" href="{!! setting()->site_facebook !!}" target="__blank">
                             <i class="fab fa-facebook-f"></i>
                         </a>
                     </li>
 
                     <li>
-                        <a onclick="return {!! setting()->site_twitter ? 'true' : 'false' !!};" href="{!! setting()->site_twitter !!}">
+                        <a onclick="return {!! setting()->site_twitter ? 'true' : 'false' !!};" href="{!! setting()->site_twitter !!}" target="__blank">
                             <i class="fab fa-twitter"></i>
                         </a>
                     </li>
 
                     <li>
-                        <a onclick="return {!! setting()->site_instagram ? 'true' : 'false' !!};" href="{!! setting()->site_instagram !!}">
+                        <a onclick="return {!! setting()->site_instagram ? 'true' : 'false' !!};" href="{!! setting()->site_instagram !!}" target="__blank">
                             <i class="fab fa-instagram"></i>
                         </a>
                     </li>
 
                     <li>
-                        <a onclick="return {!! setting()->site_linkedin ? 'true' : 'false' !!};" href="{!! setting()->site_linkedin !!}">
+                        <a onclick="return {!! setting()->site_linkedin ? 'true' : 'false' !!};" href="{!! setting()->site_linkedin !!}" target="__blank">
                             <i class="fab fa-linkedin"></i>
                         </a>
                     </li>
 
                     <li>
-                        <a onclick="return {!! setting()->site_youtube ? 'true' : 'false' !!};" href="{!! setting()->site_youtube !!}">
+                        <a onclick="return {!! setting()->site_youtube ? 'true' : 'false' !!};" href="{!! setting()->site_youtube !!}" target="__blank">
                             <i class="fab fa-youtube"></i>
                         </a>
                     </li>
 
                     <li>
-                        <a onclick="return {!! setting()->site_gmail ? 'true' : 'false' !!};" href="{!! setting()->site_gmail !!}"><i
-                                class="fas fa-envelope"></i>
+                        <a onclick="return {!! setting()->site_gmail ? 'true' : 'false' !!};" href="{!! setting()->site_gmail !!}" target="__blank">
+                            <i class="fas fa-envelope"></i>
                         </a>
                     </li>
 

@@ -32,7 +32,7 @@ class TrainingController extends Controller
     // store
     public function store(TrainingRequest $request)
     {
-        $site_lang = setting()->site_lang_ar;
+        $site_lang_ar = setting()->site_lang_ar;
 
         if ($request->hasFile('photo')) {
             $photo_file  = $request->file('photo');
@@ -45,11 +45,11 @@ class TrainingController extends Controller
         $training =  Training::create(
             [
                 'title_en' => $request->title_en,
-                'title_ar' => $site_lang == 'on' ? $request->title_ar : '',
+                'title_ar' => $site_lang_ar == 'on' ? $request->title_ar : '',
                 'status' => 'on',
                 'photo' => $photo,
                 'started_date' => $request->started_date,
-                'language' =>  'ar_en',
+                'language' =>   $site_lang_ar == 'on' ? 'ar_en'  : 'en',
             ]
         );
 
@@ -105,14 +105,15 @@ class TrainingController extends Controller
         }
 
 
-        $site_lang = setting()->site_lang_ar;
+        $site_lang_ar = setting()->site_lang_ar;
 
         $training->update([
-            'title_ar' => $site_lang == 'on' ?  $request->title_ar : '',
+            'title_ar' => $site_lang_ar == 'on' ?  $request->title_ar : '',
             'title_en' => $request->title_en,
             'started_date' => $request->started_date,
-            'language' => $site_lang == 'on' ? 'ar_en' : 'en',
+            'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
             'photo' => $photo,
+            'language' =>   $site_lang_ar == 'on' ? 'ar_en'  : 'en',
         ]);
 
         return $this->returnSuccessMessage(__('general.update_success_message'));
@@ -191,7 +192,7 @@ class TrainingController extends Controller
 
             //return response()->json($request->id, 200);
 
-            if ($request->statusSwitch == 'true') {
+            if ($request->switchStatus == 'true') {
                 $training->status = 'on';
                 $training->save();
             } else {

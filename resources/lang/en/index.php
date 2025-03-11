@@ -49,8 +49,8 @@ return [
     'visit_case_studies' => 'Visit Case Studies',
     'administrative' => 'Administrative Report',
     'financial' => 'Financial Report',
-    'association_financial_guide'=>'Association financial guide',
-    'download'=>'Download',
+    'association_financial_guide' => 'Association financial guide',
+    'download' => 'Download',
 
     'email' => 'Email must be :',
     'drop_Line' => 'Drop a Line',
@@ -70,6 +70,8 @@ return [
     'send_message' => 'Send Message',
     'views_count' => 'Views',
     'comments_count' => 'Comments',
+    'book_an_appointment' => 'Book An Appointment',
+    'trainings'=>'Trainings',
 
     'leave_Reply' => 'Leave a Reply',
     'required_fields_are_marked' => 'Your email address will not be published. Required fields are marked',
@@ -77,7 +79,6 @@ return [
     'you_name' => 'Your Name',
     'your_email' => 'Your Email',
     'submit' => 'Submit',
-
 
     'my_comments' => 'Comments',
     'you_comment_required' => 'Your comment is required',

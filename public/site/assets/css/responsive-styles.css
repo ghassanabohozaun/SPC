@@ -523,7 +523,7 @@
 
     /** General CSS **/
     .grid-container .cell {
-        margin: auto;
+        /* margin: auto; */
     }
 
     .grid-container .cell {

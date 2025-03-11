@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'ethar' => 'إيثار',
     'home' => 'الرئيسية',
     'about' => 'عن الجمعية',
@@ -49,7 +49,7 @@ return array(
     'visit_case_studies' => 'زيارة دراسات الحالة',
     'administrative' => 'التقرير الاداري',
     'financial' => 'التقرير المالي',
-    'association_financial_guide'=>'الدليل المالي للجمعية',
+    'association_financial_guide' => 'الدليل المالي للجمعية',
 
     'email' => 'الايميل يجب ان يكون :',
     'drop_Line' => 'اكتب الرسالة',
@@ -69,8 +69,9 @@ return array(
     'send_message' => 'ارسل الرسالة',
     'views_count' => 'مشاهدة',
     'comments_count' => 'تعليق',
-    'download'=>'تحميل',
-
+    'download' => 'تحميل',
+    'book_an_appointment' => 'التسجيل',
+     'trainings'=>'التدريبات',
 
     'leave_Reply' => 'اترك لنا ردك',
     'required_fields_are_marked' => 'لن يتم نشر عنوان بريدك الإلكتروني. الحقول المطلوبة محددة',
@@ -85,7 +86,6 @@ return array(
     'your_email_required' => 'ايميلك مطلوب',
     'email_email' => 'الايميل يجب ان يكون : someone@someone.com',
 
-
     'play_video' => 'تشغيل الفيديو',
 
     'view_all' => 'عرض الكل',
@@ -94,6 +94,4 @@ return array(
 
     'send_success_message' => 'تم ارسال رسالتك بنجاح',
     'add_success_comment' => 'تم اضافة تعليقك بنجاح',
-
-
-);
+];

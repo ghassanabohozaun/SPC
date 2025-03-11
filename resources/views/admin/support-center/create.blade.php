@@ -1,13 +1,12 @@
 @extends('layouts.admin')
-@section('title') @endsection
+@section('title')
+@endsection
 @section('content')
-
     <form class="form" action="{!! route('admin.support.center.send') !!}" method="POST" id="form_message_send">
-    @csrf
-    <!--begin::Subheader-->
+        @csrf
+        <!--begin::Subheader-->
         <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
-            <div
-                class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                 <!--begin::Info-->
                 <div class="d-flex align-items-center flex-wrap mr-2">
 
@@ -17,14 +16,14 @@
 
                     <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                         <li class="breadcrumb-item">
-                            <a href="{{route('admin.support.center')}}" class="text-muted">
-                                {{__('menu.support_center')}}
+                            <a href="{{ route('admin.support.center') }}" class="text-muted">
+                                {{ __('menu.support_center') }}
                             </a>
                         </li>
 
                         <li class="breadcrumb-item">
                             <a href="" class="text-muted">
-                                {{__('supportCenter.send_message')}}
+                                {{ __('supportCenter.send_message') }}
                             </a>
                         </li>
                     </ul>
@@ -35,14 +34,13 @@
 
                 <!--begin::Toolbar-->
                 <div class="d-flex align-items-center">
-                    <button type="submit"
-                            class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
-                        @if(Lang()=='ar')
+                    <button type="submit" class="btn btn-primary btn-sm font-weight-bold font-size-base  mr-1">
+                        @if (Lang() == 'ar')
                             <i class="fa fa-angle-double-left"></i>
                         @else
                             <i class="fa fa-angle-double-right"></i>
                         @endif
-                        {{__('general.submit')}}
+                        {{ __('general.submit') }}
                     </button>
 
                 </div>
@@ -76,16 +74,46 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('supportCenter.customer_name')}}
+                                                            {{ __('supportCenter.name') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
-                                                                name="customer_name" id="customer_name" type="text"
-                                                                placeholder=" {{__('supportCenter.enter_customer_name')}}"
-                                                                autocomplete="off"/>
-                                                            <span class="form-text text-danger"
-                                                                  id="customer_name_error"></span>
+                                                            <input class="form-control form-control-solid form-control-lg"
+                                                                name="name" id="name" type="text"
+                                                                placeholder=" {{ __('supportCenter.enter_name') }}"
+                                                                autocomplete="off" />
+                                                            <span class="form-text text-danger" id="name_error"></span>
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Group-->
+
+                                                    <!--begin::Group-->
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label">
+                                                            {{ __('supportCenter.mobile') }}
+                                                        </label>
+                                                        <div class="col-lg-9 col-xl-9">
+                                                            <input class="form-control form-control-solid form-control-lg"
+                                                                name="mobile" id="mobile" type="mobile"
+                                                                placeholder=" {{ __('supportCenter.enter_mobile') }}"
+                                                                autocomplete="off" />
+                                                            <span class="form-text text-danger" id="mobile_error"></span>
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Group-->
+
+
+
+                                                    <!--begin::Group-->
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label">
+                                                            {{ __('supportCenter.email') }}
+                                                        </label>
+                                                        <div class="col-lg-9 col-xl-9">
+                                                            <input class="form-control form-control-solid form-control-lg"
+                                                                name="email" id="email" type="email"
+                                                                placeholder=" {{ __('supportCenter.enter_email') }}"
+                                                                autocomplete="off" />
+                                                            <span class="form-text text-danger" id="email_error"></span>
                                                         </div>
                                                     </div>
                                                     <!--end::Group-->
@@ -94,32 +122,13 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('supportCenter.customer_email')}}
+                                                            {{ __('supportCenter.title') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
-                                                                name="customer_email" id="customer_email" type="email"
-                                                                placeholder=" {{__('supportCenter.enter_customer_email')}}"
-                                                                autocomplete="off"/>
-                                                            <span class="form-text text-danger"
-                                                                  id="customer_email_error"></span>
-                                                        </div>
-                                                    </div>
-                                                    <!--end::Group-->
-
-
-                                                    <!--begin::Group-->
-                                                    <div class="form-group row">
-                                                        <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('supportCenter.title')}}
-                                                        </label>
-                                                        <div class="col-lg-9 col-xl-9">
-                                                            <input
-                                                                class="form-control form-control-solid form-control-lg"
+                                                            <input class="form-control form-control-solid form-control-lg"
                                                                 name="title" id="title" type="text"
-                                                                placeholder=" {{__('supportCenter.enter_title')}}"
-                                                                autocomplete="off"/>
+                                                                placeholder=" {{ __('supportCenter.enter_title') }}"
+                                                                autocomplete="off" />
                                                             <span class="form-text text-danger" id="title_error"></span>
                                                         </div>
                                                     </div>
@@ -129,16 +138,12 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
-                                                            {{__('supportCenter.message')}}
+                                                            {{ __('supportCenter.message') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <textarea rows="7"
-                                                                      class="form-control form-control-solid form-control-lg"
-                                                                      name="message" id="message" type="text"
-                                                                      placeholder=" {{__('supportCenter.enter_message')}}"
-                                                                      autocomplete="off"></textarea>
-                                                            <span class="form-text text-danger"
-                                                                  id="message_error"></span>
+                                                            <textarea rows="7" class="form-control form-control-solid form-control-lg" name="message" id="message"
+                                                                type="text" placeholder=" {{ __('supportCenter.enter_message') }}" autocomplete="off"></textarea>
+                                                            <span class="form-text text-danger" id="message_error"></span>
 
                                                         </div>
                                                     </div>
@@ -170,18 +175,19 @@
 
 @push('js')
     <script type="text/javascript">
-
         ////////////////////////////////////////////////////
-        $('#form_message_send').on('submit', function (e) {
+        $('#form_message_send').on('submit', function(e) {
             e.preventDefault();
             //////////////////////////////////////////////////////////////
-            $('#customer_name').css('border-color', '');
-            $('#customer_email').css('border-color', '');
+            $('#name').css('border-color', '');
+            $('#mobile').css('border-color', '');
+            $('#email').css('border-color', '');
             $('#title').css('border-color', '');
             $('#message').css('border-color', '');
 
-            $('#customer_name_error').text('');
-            $('#customer_email_error').text('');
+            $('#name_error').text('');
+            $('#mobile_error').text('');
+            $('#email_error').text('');
             $('#title_error').text('');
             $('#message_error').text('');
             /////////////////////////////////////////////////////////////
@@ -197,14 +203,14 @@
                 contentType: false,
                 cache: false,
                 processData: false,
-                beforeSend: function () {
+                beforeSend: function() {
                     KTApp.blockPage({
                         overlayColor: '#000000',
                         state: 'danger',
-                        message: "{{__('general.please_wait')}}",
+                        message: "{{ __('general.please_wait') }}",
                     });
                 },
-                success: function (data) {
+                success: function(data) {
                     KTApp.unblockPage();
                     console.log(data);
                     if (data.status == true) {
@@ -213,28 +219,31 @@
                             text: "",
                             icon: "success",
                             allowOutsideClick: false,
-                            customClass: {confirmButton: 'send_message_button'}
+                            customClass: {
+                                confirmButton: 'send_message_button'
+                            }
                         });
-                        $('.send_message_button').click(function () {
-                            window.location.href = "{{route('admin.support.center')}}";
+                        $('.send_message_button').click(function() {
+                            window.location.href = "{{ route('admin.support.center') }}";
                         });
                     }
                 },
 
-                error: function (reject) {
+                error: function(reject) {
                     var response = $.parseJSON(reject.responseText);
-                    $.each(response.errors, function (key, value) {
+                    $.each(response.errors, function(key, value) {
                         $('#' + key + '_error').text(value[0]);
                         $('#' + key).css('border-color', 'red');
-                        $('body,html').animate({scrollTop: 20}, 300);
+                        $('body,html').animate({
+                            scrollTop: 20
+                        }, 300);
                     });
                 },
-                complete: function () {
+                complete: function() {
                     KTApp.unblockPage();
                 },
             })
 
-        });//end submit
-
+        }); //end submit
     </script>
 @endpush

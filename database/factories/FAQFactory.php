@@ -25,6 +25,7 @@ class FAQFactory extends Factory
             'answer_en' => $faker->paragraph(),
             'answer_ar' => $faker->paragraph(),
             'status' => 'on',
+            'language'=>'ar_en',
         ];
     }
 }

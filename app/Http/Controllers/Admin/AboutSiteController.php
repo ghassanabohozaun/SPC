@@ -32,6 +32,12 @@ class AboutSiteController extends Controller
         $why_chose_us_photo = $this->storeWhyChoseUsPhoto($request, $aboutSite);
 
 
+        $counter_icon_one_photo = $this->storeCounterIconOnePhoto($request, $aboutSite);
+        $counter_icon_two_photo = $this->storeCounterIconTwoPhoto($request, $aboutSite);
+        $counter_icon_three_photo = $this->storeCounterIconThreePhoto($request, $aboutSite);
+        $counter_icon_four_photo = $this->storeCounterIconFourPhoto($request, $aboutSite);
+
+
         if ($aboutSite) {
             $aboutSite->update([
                 // whom
@@ -41,19 +47,39 @@ class AboutSiteController extends Controller
                 'contact_us_ar' => $request->contact_us_ar,
                 'whom_brochure' => $whom_brochure_file,
                 // who are you
-                'who_are_we_en'=>$request->who_are_we_en,
-                'who_are_we_ar'=>$request->who_are_we_en,
-                'who_are_we_profile'=>$who_are_we_profile,
+                'who_are_we_en' => $request->who_are_we_en,
+                'who_are_we_ar' => $request->who_are_we_en,
+                'who_are_we_profile' => $who_are_we_profile,
                 // about doctor
-                'about_doctor_en'=>$request->about_doctor_en,
-                'about_doctor_ar'=>$request->about_doctor_ar,
+                'about_doctor_en' => $request->about_doctor_en,
+                'about_doctor_ar' => $request->about_doctor_ar,
                 // why chose us
-                'why_chose_us_title_en'=>$request->why_chose_us_title_en,
-                'why_chose_us_title_ar'=>$request->why_chose_us_title_ar,
-                'why_chose_us_details_en'=>$request->why_chose_us_details_en,
-                'why_chose_us_details_ar'=>$request->why_chose_us_details_ar,
-                'why_chose_us_photo'=>$why_chose_us_photo,
+                'why_chose_us_title_en' => $request->why_chose_us_title_en,
+                'why_chose_us_title_ar' => $request->why_chose_us_title_ar,
+                'why_chose_us_details_en' => $request->why_chose_us_details_en,
+                'why_chose_us_details_ar' => $request->why_chose_us_details_ar,
+                'why_chose_us_photo' => $why_chose_us_photo,
 
+                // counters
+                'counter_icon_one' =>$counter_icon_one_photo,
+                'counter_ar_one' => $request->counter_ar_one,
+                'counter_en_one' =>  $request->counter_en_one,
+                'counter_number_one' =>  $request->counter_number_one,
+
+                'counter_icon_two' =>  $counter_icon_two_photo,
+                'counter_ar_two' => $request->counter_ar_two,
+                'counter_en_two' => $request->counter_en_two,
+                'counter_number_two' => $request->counter_number_two,
+
+                'counter_icon_three' =>$counter_icon_three_photo,
+                'counter_ar_three' => $request->counter_ar_three,
+                'counter_en_three' => $request->counter_en_three,
+                'counter_number_three' => $request->counter_number_three,
+
+                'counter_icon_four' => $counter_icon_four_photo,
+                'counter_ar_four' => $request->counter_ar_four,
+                'counter_en_four' => $request->counter_en_four,
+                'counter_number_four' => $request->counter_number_four,
 
             ]);
 
@@ -98,7 +124,6 @@ class AboutSiteController extends Controller
         return $file;
     }
 
-
     public function storeWhoAreYouBrochure($request, $aboutSite)
     {
         // whom brochure  upload
@@ -130,12 +155,10 @@ class AboutSiteController extends Controller
         return $file;
     }
 
-
-    public function storeWhyChoseUsPhoto($request, $aboutSite){
-
+    public function storeWhyChoseUsPhoto($request, $aboutSite)
+    {
         if ($request->hasFile('why_chose_us_photo')) {
             if (!empty($aboutSite->why_chose_us_photo)) {
-
                 //delete old photo
                 $public_path = public_path('/adminBoard/uploadedImages/about_sites//') . $aboutSite->why_chose_us_photo;
                 if (File::exists($public_path)) {
@@ -147,10 +170,9 @@ class AboutSiteController extends Controller
                 $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
                 $photo = $this->saveResizeImage($photo_file, $photo_destination, 400, 400);
             } else {
-
                 $photo_file = $request->file('why_chose_us_photo');
                 $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
-                $photo  = $this->saveResizeImage($photo_file, $photo_destination, 400, 400);
+                $photo = $this->saveResizeImage($photo_file, $photo_destination, 400, 400);
             }
         } else {
             if (!empty($aboutSite->why_chose_us_photo)) {
@@ -161,6 +183,128 @@ class AboutSiteController extends Controller
         }
 
         return $photo;
+    }
 
+        public function storeCounterIconOnePhoto($request, $aboutSite)
+    {
+        if ($request->hasFile('counter_icon_one')) {
+            if (!empty($aboutSite->counter_icon_one)) {
+                //delete old photo
+                $public_path = public_path('/adminBoard/uploadedImages/about_sites//') . $aboutSite->counter_icon_one;
+                if (File::exists($public_path)) {
+                    File::delete($public_path);
+                }
+
+                // upload new photo
+                $photo_file = $request->file('counter_icon_one');
+                $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
+                $photo = $this->saveImage($photo_file, $photo_destination);
+            } else {
+                $photo_file = $request->file('counter_icon_one');
+                $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
+                $photo = $this->saveImage($photo_file, $photo_destination);
+            }
+        } else {
+            if (!empty($aboutSite->counter_icon_one)) {
+                $photo = $aboutSite->counter_icon_one;
+            } else {
+                $photo = '';
+            }
+        }
+
+        return $photo;
+    }
+
+
+    public function storeCounterIconTwoPhoto($request, $aboutSite)
+    {
+        if ($request->hasFile('counter_icon_two')) {
+            if (!empty($aboutSite->counter_icon_two)) {
+                //delete old photo
+                $public_path = public_path('/adminBoard/uploadedImages/about_sites//') . $aboutSite->counter_icon_two;
+                if (File::exists($public_path)) {
+                    File::delete($public_path);
+                }
+
+                // upload new photo
+                $photo_file = $request->file('counter_icon_two');
+                $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
+                $photo = $this->saveImage($photo_file, $photo_destination);
+            } else {
+                $photo_file = $request->file('counter_icon_two');
+                $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
+                $photo = $this->saveImage($photo_file, $photo_destination);
+            }
+        } else {
+            if (!empty($aboutSite->counter_icon_two)) {
+                $photo = $aboutSite->counter_icon_two;
+            } else {
+                $photo = '';
+            }
+        }
+
+        return $photo;
+    }
+
+
+    public function storeCounterIconThreePhoto($request, $aboutSite)
+    {
+        if ($request->hasFile('counter_icon_three')) {
+            if (!empty($aboutSite->counter_icon_three)) {
+                //delete old photo
+                $public_path = public_path('/adminBoard/uploadedImages/about_sites//') . $aboutSite->counter_icon_three;
+                if (File::exists($public_path)) {
+                    File::delete($public_path);
+                }
+
+                // upload new photo
+                $photo_file = $request->file('counter_icon_three');
+                $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
+                $photo = $this->saveImage($photo_file, $photo_destination);
+            } else {
+                $photo_file = $request->file('counter_icon_three');
+                $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
+                $photo = $this->saveImage($photo_file, $photo_destination);
+            }
+        } else {
+            if (!empty($aboutSite->counter_icon_three)) {
+                $photo = $aboutSite->counter_icon_three;
+            } else {
+                $photo = '';
+            }
+        }
+
+        return $photo;
+    }
+
+
+    public function storeCounterIconFourPhoto($request, $aboutSite)
+    {
+        if ($request->hasFile('counter_icon_four')) {
+            if (!empty($aboutSite->counter_icon_four)) {
+                //delete old photo
+                $public_path = public_path('/adminBoard/uploadedImages/about_sites//') . $aboutSite->counter_icon_four;
+                if (File::exists($public_path)) {
+                    File::delete($public_path);
+                }
+
+                // upload new photo
+                $photo_file = $request->file('counter_icon_four');
+                $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
+                $photo = $this->saveImage($photo_file, $photo_destination);
+            } else {
+                $photo_file = $request->file('counter_icon_four');
+                $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
+                $photo = $this->saveImage($photo_file, $photo_destination);
+            }
+        } else {
+            if (!empty($aboutSite->counter_icon_four)) {
+                $photo = $aboutSite->counter_icon_four;
+            } else {
+                $photo = '';
+            }
+        }
+
+        return $photo;
     }
 }

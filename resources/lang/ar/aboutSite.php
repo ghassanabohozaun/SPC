@@ -5,7 +5,7 @@ return [
     'who_are_you_tab' => 'تبويب من نحن',
     'about_doctor_tab' => 'تبويب عن الدكتور',
     'why_chose_us_tab' => 'تبويب بماذا تختارنا',
-
+    'counters_tab'=>'تبويب العدادات',
 
 
     // whom
@@ -49,6 +49,31 @@ return [
 
     'enter_about_doctor_en' => 'ادخل عن الدكتور بالانلجيزي',
     'enter_about_doctor_ar' => 'ادخل عن الدكتور بالعربي',
+
+
+    'counter_icon_one' => 'ايقونة العداد الاول',
+    'counter_ar_one' => 'نص العدد الاول | عربي',
+    'counter_en_one' => 'نص العداد الاول | انجليزي',
+    'counter_number_one' => 'قيمة العداد الاول',
+
+    'counter_icon_two' => 'ايقونة العداد الثاني ',
+    'counter_ar_two' => 'نص العداد الثاني | عربي',
+    'counter_en_two' => 'نص العداد الثاني | انجليزي',
+    'counter_number_two' => 'قيمة العداد الثاني',
+
+    'counter_icon_three' => 'ايقونة العداد الثالث',
+    'counter_ar_three' => 'نص العداد الثالت عربي',
+    'counter_en_three' => 'نص العداد الثالث |انجليزي',
+    'counter_number_three' => 'قيمة العداد الثالث',
+
+    'counter_icon_four' => 'ايقونة العداد الرابع',
+    'counter_ar_four' => 'نص العداد الرابع | عربي',
+    'counter_en_four' => 'نص العداد الرابع | انجليزي',
+    'counter_number_four' => 'قيمة العداد الرابع',
+
+
+
+
 
     'required' => 'هذا الحقل مطلوب',
     'max' => 'الحد الاقصي المسموح به للحروف 100',

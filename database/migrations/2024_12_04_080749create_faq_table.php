@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('answer_en')->nullable();
             $table->text('answer_ar')->nullable();
             $table->string('status')->nullable();
+            $table->enum('language', ['en', 'ar_en'])->default('en');
             $table->softDeletes();
             $table->timestamps();
         });

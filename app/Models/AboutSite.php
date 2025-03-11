@@ -25,8 +25,28 @@ class AboutSite extends Model
         'why_chose_us_title_ar',
         'why_chose_us_details_en',
         'why_chose_us_details_ar',
-        'why_chose_us_photo'
+        'why_chose_us_photo',
+
+        'counter_icon_one',
+        'counter_ar_one',
+        'counter_en_one',
+        'counter_number_one',
+
+        'counter_icon_two',
+        'counter_ar_two',
+        'counter_en_two',
+        'counter_number_two',
+
+        'counter_icon_three',
+        'counter_ar_three',
+        'counter_en_three',
+        'counter_number_three',
+
+        'counter_icon_four',
+        'counter_ar_four',
+        'counter_en_four',
+        'counter_number_four',
+
     ];
     protected $hidden = ['updated_at'];
-
 }

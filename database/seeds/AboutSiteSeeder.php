@@ -41,11 +41,34 @@ class AboutSiteSeeder extends Seeder
                                 الدكتور الطويل عالم وباحث ومطور لبرنامج العلاج النفسي المستدام. الدكتور الطويل هو المؤسس الرئيسي لمركز فلسطين للإصابات في غزة (2007) وفي المملكة المتحدة (2010).
                                 الدكتور الطويل هو محاضر ومدرب ومشرف زائر على طلبة للدكتوراه في علم النفس الإكلينيكي في جامعة هيرتفوردشاير.',
 
+
             'why_chose_us_title_en' => '',
             'why_chose_us_title_ar' => '',
             'why_chose_us_details_en' => '',
             'why_chose_us_details_ar' => '',
             'why_chose_us_photo' => '',
+
+            'counter_icon_one' => '',
+            'counter_ar_one' => 'شفاء نفسي',
+            'counter_en_one' => 'Recoveries',
+            'counter_number_one' => '3138',
+
+            'counter_icon_two' => '',
+            'counter_ar_two' => 'استشارات مجانية',
+            'counter_en_two' => 'Free Consultations',
+            'counter_number_two' => '2850',
+
+            'counter_icon_three' => '',
+            'counter_ar_three' => 'عدد الحالات المعالجة',
+            'counter_en_three' => 'Treated Cases',
+            'counter_number_three' => '3350',
+
+            'counter_icon_four' => '',
+            'counter_ar_four' => 'الجوائز المحققة',
+            'counter_en_four' => 'Awards Winning',
+            'counter_number_four' => '36',
+
         ]);
+
     }
 }

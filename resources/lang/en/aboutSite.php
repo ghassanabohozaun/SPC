@@ -6,6 +6,7 @@ return [
     'who_are_you_tab' => 'Who are you Tab',
     'about_doctor_tab' => 'About Doctor Tab',
     'why_chose_us_tab' => 'Why Chose us Tab',
+    'counters_tab'=>'Counters Tab',
 
     // whom
     'whom_en' => 'Whom | English',
@@ -53,6 +54,23 @@ return [
     'enter_about_doctor_en' => 'Enter English About Doctor',
     'enter_about_doctor_ar' => 'Enter Arabic About Doctor',
 
+    // counters
+    'counter_icon_one' => 'Counter Icon One',
+    'counter_ar_one' => 'Counter Text Ar One',
+    'counter_en_one' => 'Counter Text En One',
+    'counter_number_one' => 'Counter Number One',
+    'counter_icon_two' => 'Counter Icon Two',
+    'counter_ar_two' => 'Counter Text Ar Two',
+    'counter_en_two' => 'Counter Text En Two',
+    'counter_number_two' => 'Counter Number Two',
+    'counter_icon_three' => 'Counter Icon Three',
+    'counter_ar_three' => 'Counter Text Ar Three',
+    'counter_en_three' => 'Counter Text En Three',
+    'counter_number_three' => 'Counter Number Three',
+    'counter_icon_four' => 'Counter Icon Four',
+    'counter_ar_four' => 'Counter Text Ar Four',
+    'counter_en_four' => 'Counter Text En Four',
+    'counter_number_four' => 'Counter Number Four',
 
 
     'required' => 'This Field Required',

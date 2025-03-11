@@ -33,8 +33,9 @@ class SupportCenterController extends Controller
     {
         try {
             SupportCenter::create([
-                'customer_name' => $request->customer_name,
-                'customer_email' => $request->customer_email,
+                'name' => $request->name,
+                'mobile' => $request->mobile,
+                'email' => $request->email,
                 'title' => $request->title,
                 'message' => $request->message,
             ]);

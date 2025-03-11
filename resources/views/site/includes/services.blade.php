@@ -12,7 +12,7 @@
             <div class="grid-container grid-x grid-padding-x grid-padding-y">
                 @foreach ($services as $service)
                     <!-- Start Cell /-->
-                    <div class="large-3 medium-6 small-12 cell">
+                    <div class="large-6 medium-6 small-12 cell">
                         <div class="service-box">
                             @if (!empty($service->photo))
                                 <div class="service-icon">

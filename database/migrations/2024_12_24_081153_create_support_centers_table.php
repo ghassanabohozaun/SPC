@@ -15,8 +15,9 @@ class CreateSupportCentersTable extends Migration
     {
         Schema::create('support_centers', function (Blueprint $table) {
             $table->id();
-            $table->string('customer_name')->nullable();
-            $table->string('customer_email')->nullable();
+            $table->string('name')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('email')->nullable();
             $table->string('title')->nullable();
             $table->longText('message')->nullable();
             $table->enum('status', ['new', 'contacted', 'solved'])->default('new');

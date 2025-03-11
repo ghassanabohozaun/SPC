@@ -19,5 +19,6 @@ class FAQ extends Model
         'answer_en',
         'answer_ar',
         'status',
+        'language',
     ];
 }

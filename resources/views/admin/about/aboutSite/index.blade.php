@@ -98,13 +98,23 @@
                                         </a>
                                     </li>
 
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="counters_tab" data-toggle="tab" href="#counters">
+                                            <span class="nav-icon"><i class="flaticon2-layers-2"></i></span>
+                                            <span class="nav-text">{{ __('aboutSite.counters_tab') }}</span>
+                                        </a>
+                                    </li>
+
                                 </ul>
 
                                 <div class="tab-content mt-5">
+                                    @include('admin.about.aboutSite.tabs.counters')
                                     @include('admin.about.aboutSite.tabs.whom')
                                     @include('admin.about.aboutSite.tabs.who_are_you')
                                     @include('admin.about.aboutSite.tabs.about_doctor')
                                     @include('admin.about.aboutSite.tabs.why_chose_us')
+
+
                                 </div>
                             </div>
 
@@ -126,7 +136,6 @@
             e.preventDefault();
             ////////////////////////////////////////////////////////////////////
             $('#whom_brochure_error').text('');
-
             $('#whom_brochure').css('border-color', '');
             ///////////////////////////////////////////////////////////////////
 
@@ -152,6 +161,7 @@
                 success: function(data) {
                     KTApp.unblockPage();
                     console.log(data);
+
                     if (data.status == true) {
                         Swal.fire({
                             title: data.msg,

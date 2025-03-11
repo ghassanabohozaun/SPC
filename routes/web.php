@@ -17,23 +17,31 @@ Route::group(
         return view('site.index');
     })->where(['any' => '.*']);
 
+    // about spa
     Route::get('/', [SiteController::class , 'index'])->name('index');
     Route::get('/about-spa', [SiteController::class , 'aboutSpa'])->name('about.spa');
 
+    // services
     Route::get('/services', [SiteController::class , 'services'])->name('services');
     Route::get('/service/{val?}',[SiteController::class , 'service'])->name('service');
 
 
+    //contact
+    Route::get('/contact',[SiteController::class , 'contact'])->name('contact');
+    Route::post('/send-contact', [SiteController::class , 'sendContact'])->name('send.contact');
+
+    // appointment
+    Route::get('/appointment',[SiteController::class , 'appointment'])->name('appointment');
+    Route::post('/booking-appointment',[SiteController::class , 'bookingAppointment'])->name('booking.appointment');
 
 
-    Route::get('/test' , [SiteController::class, 'test'])->name('test');
-
-
-
-
+    // faq
     Route::get('/faq', [SiteController::class , 'faq'])->name('faq');
+
+    //trainings
     Route::get('/trainings', [SiteController::class , 'trainings'])->name('trainings');
     Route::get('/training-paging', [SiteController::class , 'trainingsPaging'])->name('trainings.paging');
+
     Route::get('/videos', [SiteController::class , 'videos'])->name('videos');
     Route::get('/videos-paging', [SiteController::class , 'videosPaging'])->name('videos.paging');
     Route::get('/photo-albums', [SiteController::class , 'photoAlbums'])->name('photo.albums');
@@ -54,10 +62,8 @@ Route::group(
 
 
     Route::get('/get-treatment-area',[SiteController::class , 'getTreatmentAreas'])->name('get.treatment.area');
-    Route::get('/contact',[SiteController::class , 'contact'])->name('contact');
-    Route::post('/send-contact', [SiteController::class , 'sendContact'])->name('send.contact');
-    Route::get('/appointment',[SiteController::class , 'appointment'])->name('appointment');
-    Route::post('/booking-appointment',[SiteController::class , 'bookingAppointment'])->name('booking.appointment');
+
+
     Route::get('/testimonials', [SiteController::class , 'testimonials'])->name('testimonials');
     Route::get('testimonialsFilterByYear',[SiteController::class , 'testimonialsFilterByYear'])->name('testimonials.filter.by.year');
     Route::get('/testimonial-paging',[SiteController::class , 'testimonialPaging'])->name('testimonial.paging');
@@ -74,7 +80,7 @@ Route::group(
     Route::get('/get-test-questions/{testID?}', [SiteController::class , 'getTestQuestions'])->name('get.test.questions');
     Route::get('/get-question-answer/{questionID?}',[SiteController::class , 'getQuestionAnswers'])->name('get.questions.answers');
 
-    Route::get('/reload-captcha', [SiteController::class , 'reloadCaptcha'])->name('reload.Captcha');
+    Route::get('/reload-captcha', [SiteController::class , 'reloadCaptcha'])->name('reload.captcha');
 
     // external link
     //Route::get('/link/{link}/{id}', [SiteController::class, 'externalLink'])->name('site.external.link');

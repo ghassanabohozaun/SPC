@@ -70,7 +70,7 @@
                                                 <div class="my-5">
 
                                                     <!--begin::Group-->
-                                                    <div class="form-group row">
+                                                    <div class="form-group row d-none">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
                                                             ID
                                                         </label>
@@ -78,6 +78,8 @@
                                                             <input class="form-control form-control-solid form-control-lg"
                                                                 name="id" id="id" type="text"
                                                                 value="{{ $training->id }}" />
+                                                            <input type="text" class="form-control" id="site_lang_ar"
+                                                                name="site_lang_ar" value="{!! setting()->site_lang_ar !!}">
                                                             <input type="hidden" name="hidden_photo" value="hidden_photo">
                                                         </div>
 

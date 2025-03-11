@@ -15,7 +15,7 @@ class CreateTestimonialsTable extends Migration
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
             $table->string('photo')->nullable();
-            $table->enum('language', ['ar', 'ar_en'])->default('ar');
+            $table->enum('language', ['en', 'ar_en'])->default('en');
             $table->longText('opinion_ar')->nullable();
             $table->longText('opinion_en')->nullable();
             $table->string('name_ar')->nullable();

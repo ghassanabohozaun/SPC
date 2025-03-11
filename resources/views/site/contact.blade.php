@@ -1,14 +1,15 @@
 @extends('layouts.site')
-@section('title') {!! trans('frontend.home') !!} @endsection
+@section('title')
+    {!! setting()->{'site_title_' . Lang()} !!}
+@endsection
 @section('metaTags')
-    <meta name="description"
-          content="{!! Lang()=='ar' ? setting()->site_description_ar : setting()->site_description_en !!}">
-    <meta name="keywords"
-          content="{!! Lang()=='ar' ? setting()->site_keywords_ar : setting()->site_keywords_en !!}">
+    <meta name="description" content="{!! setting()->{'site_description_' . Lang()} !!}">
+    <meta name="keywords" content="{!! setting()->{'site_keywords_' . Lang()} !!}">
+    <meta name="application-name" content="{!! setting()->{'site_name_' . Lang()} !!}" />
+    <meta name="author" content="{!! setting()->{'site_name_' . Lang()} !!}" />
 @endsection
 
 @section('content')
-
     <!-------------------------------------- Start Top Title Section  ------------------------------------->
     <div class="clearfix"></div>
     <div class="bradcam_area my_contact_us_bg">
@@ -32,30 +33,44 @@
                 <img src="{!! asset('site/assets/images/doctor7.png') !!}" alt="">
                 <h4 class="padding-top-zero">{!! trans('site.meet_our_psychotherapist') !!}</h4>
                 <p>
-                    @if(Lang() == 'ar')
-                        {!! setting()->site_address_ar !!}
-                    @else
-                        {!! setting()->site_address_en !!}
-                    @endif
+                    {!! setting()->{'site_address_' . Lang()} !!}
                 </p>
                 <h4>{!! trans('site.customer_service') !!}</h4>
                 <p>
                     {!! trans('site.phone') !!} : {!! setting()->site_mobile !!}
-                    <br/>
+                    <br />
                     {!! trans('site.email') !!} : {!! setting()->site_email !!}
                 </p>
                 <h4>{!! trans('site.follow_us') !!}</h4>
                 <div class="social-icons">
-                    <a href="{!! setting()->site_facebook !!}"><i class="fab fa-facebook-f"></i></a>
-                    <a href="{!! setting()->site_twitter !!}"><i class="fab fa-twitter"></i></a>
-                    <a href="{!! setting()->site_instagram !!}"><i class="fab fa-instagram"></i></a>
-                    <a href="{!! setting()->site_linkedin !!}"><i class="fab fa-linkedin"></i></a>
-                    <a href="{!! setting()->site_youtube !!}"><i class="fab fa-youtube"></i></a>
-                    <a href="{!! setting()->site_email !!}"><i class="fas fa-envelope"></i></a>
+                    <a onclick="return {!! setting()->site_facebook ? 'true' : 'false' !!};" href="{!! setting()->site_facebook !!}" target="__blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+
+                    <a onclick="return {!! setting()->site_twitter ? 'true' : 'false' !!};" href="{!! setting()->site_twitter !!}" target="__blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+
+                    <a onclick="return {!! setting()->site_instagram ? 'true' : 'false' !!};" href="{!! setting()->site_instagram !!}" target="__blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <a onclick="return {!! setting()->site_linkedin ? 'true' : 'false' !!};" href="{!! setting()->site_linkedin !!}" target="__blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+
+                    <a onclick="return {!! setting()->site_youtube ? 'true' : 'false' !!};" href="{!! setting()->site_youtube !!}" target="__blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+
+                    <a onclick="return {!! setting()->site_email ? 'true' : 'false' !!};" href="{!! setting()->site_email !!}" target="__blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
                 </div>
             </div> <!-- Left Side Ends /-->
 
             <div class="medium-9 small-12 cell">
+
                 <!-- Start map  -->
                 <div class="contact-map">
                     <iframe
@@ -69,42 +84,35 @@
                 <!-- Start contact form  -->
                 <div class="content-section-form">
                     <h3>{!! trans('site.fill_the_form_below_to_contact_us') !!}</h3>
-                    <form id="contact_form" enctype="multipart/form-data" method="POST"
-                          action="{!! route('send.contact') !!}">
+                    <form id="contact_form" enctype="multipart/form-data" method="POST" action="{!! route('send.contact') !!}">
                         @csrf
                         <div class="grid-container grid-x grid-padding-x">
 
                             <div class="medium-4 cell">
-                                <input type="text" placeholder="{!! trans('site.enter_Name') !!}"
-                                       id="communication_sender" name="communication_sender"
-                                       autocomplete="off">
-                                <span id="communication_sender_error" class="form-text text-danger"></span>
+                                <input type="text" placeholder="{!! trans('site.enter_Name') !!}" id="name" name="name"
+                                    autocomplete="off">
+                                <span id="name_error" class="form-text text-danger"></span>
                             </div>
 
                             <div class="medium-4 cell">
-                                <input type="text" placeholder="{!! trans('site.enter_phone') !!}"
-                                       id="communication_mobile" name="communication_mobile"
-                                       autocomplete="off">
-                                <span id="communication_mobile_error" class="form-text text-danger"></span>
+                                <input type="text" placeholder="{!! trans('site.enter_mobile') !!}" id="mobile" name="mobile"
+                                    autocomplete="off">
+                                <span id="mobile_error" class="form-text text-danger"></span>
                             </div>
 
                             <div class="medium-4 cell">
-                                <input type="text" placeholder="{!! trans('site.enter_email') !!}"
-                                       id="communication_email" name="communication_email"
-                                       autocomplete="off">
-                                <span id="communication_email_error" class="form-text text-danger"></span>
+                                <input type="text" placeholder="{!! trans('site.enter_email') !!}" id="email" name="email"
+                                    autocomplete="off">
+                                <span id="email_error" class="form-text text-danger"></span>
                             </div>
                             <div class="medium-12 cell">
-                                <input type="text" placeholder="{!! trans('site.enter_message_title') !!}"
-                                       id="communication_title" name="communication_title"
-                                       autocomplete="off">
-                                <span id="communication_title_error" class="form-text text-danger"></span>
+                                <input type="text" placeholder="{!! trans('site.enter_message_title') !!}" id="title" name="title"
+                                    autocomplete="off">
+                                <span id="title_error" class="form-text text-danger"></span>
                             </div>
                             <div class="medium-12 cell">
-                                <textarea placeholder="{!! trans('site.enter_your_message') !!}" rows="5"
-                                          id="communication_details" name="communication_details"
-                                          autocomplete="off"></textarea>
-                                <span id="communication_details_error" class="form-text text-danger"></span>
+                                <textarea placeholder="{!! trans('site.enter_your_message') !!}" rows="5" id="message" name="message" autocomplete="off"></textarea>
+                                <span id="message_error" class="form-text text-danger"></span>
                             </div>
                             <div class="medium-12 cell">
                                 <div class="captcha">
@@ -116,10 +124,8 @@
 
                                 <div class="form-group mb-4">
                                     <input id="captcha" type="text" class="form-control"
-                                           placeholder="{!! trans('site.enter_captcha') !!}"
-                                           name="captcha">
-                                    <span class="form-text text-danger"
-                                          id="captcha_error"></span>
+                                        placeholder="{!! trans('site.enter_captcha') !!}" name="captcha">
+                                    <span class="form-text text-danger" id="captcha_error"></span>
                                 </div>
                             </div>
 
@@ -142,20 +148,19 @@
     <!-------------------------------------- End Content ------------------------------------->
 
     <!-------------------------------------- Start Call to Action ------------------------------>
-    @include('site.include.call-to-action')
+    @include('site.includes.call-to-action')
     <!-------------------------------------- End Call to Action -------------------------------->
-
 @endsection
+
 @push('js')
-    <script src="{{asset('adminBoard/assets/js/jquery.validate.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('adminBoard/assets/js/jquery.validate.min.js') }}" type="text/javascript"></script>
 
     <script type="text/javascript">
-
-        $('#reload').click(function () {
+        $('#reload').click(function() {
             $.ajax({
                 type: 'GET',
                 url: 'reload-captcha',
-                success: function (data) {
+                success: function(data) {
                     $(".captcha span").html(data.captcha);
                 }
             });
@@ -165,7 +170,7 @@
             $.ajax({
                 type: 'GET',
                 url: 'reload-captcha',
-                success: function (data) {
+                success: function(data) {
                     $(".captcha span").html(data.captcha);
                 }
             });
@@ -174,20 +179,20 @@
         // Validation
         $('#contact_form').validate({
             rules: {
-                communication_sender: {
+                name: {
                     required: true,
                 },
-                communication_mobile: {
+                mobile: {
                     required: true,
                 },
-                communication_email: {
+                email: {
                     required: true,
                     email: true
                 },
-                communication_title: {
+                title: {
                     required: true,
                 },
-                communication_details: {
+                message: {
                     required: true,
                 },
                 captcha: {
@@ -195,29 +200,29 @@
                 },
             },
             messages: {
-                communication_sender: {
-                    required: '{{trans('site.sender_required')}}',
+                name: {
+                    required: '{{ trans('site.sender_required') }}',
                 },
-                communication_mobile: {
-                    required: '{{trans('site.mobile_required')}}',
+                mobile: {
+                    required: '{{ trans('site.mobile_required') }}',
                 },
-                communication_email: {
-                    required: '{{trans('site.email_required')}}',
-                    email: '{{trans('site.email_email')}}',
+                email: {
+                    required: '{{ trans('site.email_required') }}',
+                    email: '{{ trans('site.email_email') }}',
                 },
-                communication_title: {
-                    required: '{{trans('site.title_required')}}',
+                title: {
+                    required: '{{ trans('site.title_required') }}',
                 },
-                communication_details: {
-                    required: '{{trans('site.details_required')}}',
+                message: {
+                    required: '{{ trans('site.details_required') }}',
                 },
                 captcha: {
-                    required: '{{trans('site.captcha_required')}}',
+                    required: '{{ trans('site.captcha_required') }}',
                 },
             },
         });
 
-        $(document).on('submit', 'form', function (e) {
+        $(document).on('submit', 'form', function(e) {
             e.preventDefault();
             /////////////////////////////////////////////////////////////////////////////////
             $('#captcha_error').text('');
@@ -239,7 +244,7 @@
                 cache: false,
                 processData: false,
 
-                success: function (data) {
+                success: function(data) {
                     console.log(data);
                     if (data.status == true) {
                         $('#loading_spinner').addClass('d-none')
@@ -261,15 +266,15 @@
                             timer: 3000,
                         });
                     }
-                },// end success
-                error: function (reject) {
+                }, // end success
+                error: function(reject) {
                     $('#loading_spinner').addClass('d-none')
                     var response = $.parseJSON(reject.responseText);
-                    $.each(response.errors, function (key, value) {
+                    $.each(response.errors, function(key, value) {
                         $('#' + key + '_error').text(value[0]);
                         $('#' + key).css('border-color', '#F64E60');
                     });
-                },//end error
+                }, //end error
 
             });
         });

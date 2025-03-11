@@ -9,6 +9,20 @@
                     <div class="my-5">
 
                         <!--begin::Group-->
+                        <div class=" form-group row d-none">
+                            <label class="col-xl-3 col-lg-3 col-form-label">
+
+                            </label>
+                            <div class="col-lg-9 col-xl-9">
+                                <input value="{{ setting()->site_lang_ar }}"
+                                    class="form-control form-control-solid form-control-lg" name="site_lang_ar"
+                                    id="site_lang_ar" type="hidden" autocomplete="off" />
+                            </div>
+                        </div>
+                        <!--end::Group-->
+
+
+                        <!--begin::Group-->
                         <div class="form-group">
                             <label>
                                 {{ __('faqs.question_en') }}

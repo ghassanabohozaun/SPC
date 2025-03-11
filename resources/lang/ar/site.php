@@ -109,7 +109,7 @@ return [
 
 
     'enter_Name' => 'اكتب اسمك',
-    'enter_phone' => 'اكتب رقم موبايلك',
+    'enter_mobile' => 'اكتب رقم موبايلك',
     'enter_email' => 'اكتب ايميلك',
     'enter_message_title' => 'اكتب عنوان رسالتك',
     'enter_your_message' => 'اكتب رسالتك',

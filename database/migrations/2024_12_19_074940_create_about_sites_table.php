@@ -39,6 +39,27 @@ return new class extends Migration
             $table->longText('why_chose_us_details_ar')->nullable();
             $table->string('why_chose_us_photo')->nullable();
 
+            // counters
+            $table->string('counter_icon_one')->nullable();
+            $table->string('counter_ar_one')->nullable();
+            $table->string('counter_en_one')->nullable();
+            $table->string('counter_number_one')->nullable();
+
+            $table->string('counter_icon_two')->nullable();
+            $table->string('counter_ar_two')->nullable();
+            $table->string('counter_en_two')->nullable();
+            $table->string('counter_number_two')->nullable();
+
+            $table->string('counter_icon_three')->nullable();
+            $table->string('counter_ar_three')->nullable();
+            $table->string('counter_en_three')->nullable();
+            $table->string('counter_number_three')->nullable();
+
+            $table->string('counter_icon_four')->nullable();
+            $table->string('counter_ar_four')->nullable();
+            $table->string('counter_en_four')->nullable();
+            $table->string('counter_number_four')->nullable();
+
             $table->timestamps();
         });
     }
