@@ -71,8 +71,10 @@ return [
     'views_count' => 'Views',
     'comments_count' => 'Comments',
     'book_an_appointment' => 'Book An Appointment',
-    'trainings'=>'Trainings',
-
+    'trainings' => 'Trainings',
+    'videos' => 'Videos',
+    'photos' => 'Photos',
+    'photos_album' => 'Photo Album',
     'leave_Reply' => 'Leave a Reply',
     'required_fields_are_marked' => 'Your email address will not be published. Required fields are marked',
     'you_comment' => 'Your Comment',

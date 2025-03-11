@@ -37,7 +37,7 @@ class TrainingController extends Controller
         if ($request->hasFile('photo')) {
             $photo_file  = $request->file('photo');
             $path_destination = public_path('/adminBoard/uploadedImages/trainings//');
-            $photo = $this->saveResizeImage($photo_file, $path_destination, 200, 200);
+            $photo = $this->saveResizeImage($photo_file, $path_destination, 400, 400);
         } else {
             $photo = '';
         }
@@ -89,12 +89,12 @@ class TrainingController extends Controller
                 // upload new photo
                 $photo_file = $request->file('photo');
                 $photo_destination = public_path('/adminBoard/uploadedImages/trainings//');
-                $photo = $this->saveResizeImage($photo_file, $photo_destination, 200, 200);
+                $photo = $this->saveResizeImage($photo_file, $photo_destination, 400, 400);
             } else {
 
                 $photo_file = $request->file('photo');
                 $photo_destination = public_path('/adminBoard/uploadedImages/trainings//');
-                $photo  = $this->saveResizeImage($photo_file, $photo_destination, 200, 200);
+                $photo  = $this->saveResizeImage($photo_file, $photo_destination, 400, 400);
             }
         } else {
             if (!empty($training->photo)) {

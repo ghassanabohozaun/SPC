@@ -71,8 +71,10 @@ return [
     'comments_count' => 'تعليق',
     'download' => 'تحميل',
     'book_an_appointment' => 'التسجيل',
-     'trainings'=>'التدريبات',
-
+    'trainings' => 'التدريبات',
+    'videos' => 'الفيديوهات',
+    'photos' => 'معرض الصور',
+    'photos_album' => 'البوم الصور',
     'leave_Reply' => 'اترك لنا ردك',
     'required_fields_are_marked' => 'لن يتم نشر عنوان بريدك الإلكتروني. الحقول المطلوبة محددة',
     'you_comment' => 'تعليقك',

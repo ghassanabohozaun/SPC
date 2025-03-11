@@ -45,7 +45,7 @@ class VideosController extends Controller
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
             $destinationPath = public_path('/adminBoard/uploadedImages/videos//');
-            $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
+            $photo_path = $this->saveResizeImage($image, $destinationPath, 400, 400);
         } else {
             $photo_path = '';
         }
@@ -124,11 +124,11 @@ class VideosController extends Controller
                 }
                 $image = $request->file('photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/videos//');
-                $photo_path = $this->saveResizeImage($image, $destinationPath, 1920, 908);
+                $photo_path = $this->saveResizeImage($image, $destinationPath, 400, 400);
             } else {
                 $image = $request->file('photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/videos//');
-                $photo_path = $this->saveResizeImage($image, $destinationPath, 1920, 908);
+                $photo_path = $this->saveResizeImage($image, $destinationPath, 400, 400);
             }
         } else {
             if (!empty($video->photo)) {

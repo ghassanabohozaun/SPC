@@ -63,7 +63,6 @@
                                                     }
                                                 </style>
 
-
                                                 <label
                                                     style="font-weight:bold">{{ __('photoAlbums.add_other_album_photos') }}
                                                 </label>
@@ -105,7 +104,7 @@
                 paramName: 'file',
                 uploadMultiple: false,
                 maxFiles: 20, // Max File  Count
-                maximumFileSize: 1, // File Size
+                maximumFileSize: 5, // File Size
                 acceptedFiles: 'image/*', // File Type
                 resizeWidth: 700,
                 //// Default Message

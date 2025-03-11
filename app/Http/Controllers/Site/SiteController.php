@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SupportCenterRequest;
 use App\Models\AboutSpc;
 use App\Models\FAQ;
+use App\Models\PhotoAlbum;
 use App\Models\Service;
 use App\Models\Slider;
 use App\Models\SupportCenter;
 use App\Models\Testimonial;
 use App\Models\Training;
+use App\Models\Video;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -236,40 +238,18 @@ class SiteController extends Controller
     }
 
     // trainings
-    public function trainings(){
-     $title  = __('index.trainings');
-     if (Lang() == 'ar') {
-        $trainings  = Training::whereStatus('on')
-            ->orderByDesc('created_at')
-            ->where(function ($q) {
-                $q->where('language', 'ar_en');
-            })
-            ->paginate(6);
-    } else {
-        $trainings  = Training::whereStatus('on')
-            ->orderByDesc('created_at')
-            ->where(function ($q) {
-                $q->where('language', 'en')->orWhere('language', 'ar_en');
-            })
-            ->paginate(6);
-    }
-
-
-    return view('site.trainings.trainings', compact('title','trainings'));
-
-    }
-    // trainings paging function
-    public function trainingsPaging()
+    public function trainings()
     {
+        $title = __('index.trainings');
         if (Lang() == 'ar') {
-            $trainings  = Training::whereStatus('on')
+            $trainings = Training::whereStatus('on')
                 ->orderByDesc('created_at')
                 ->where(function ($q) {
                     $q->where('language', 'ar_en');
                 })
                 ->paginate(6);
         } else {
-            $trainings  = Training::whereStatus('on')
+            $trainings = Training::whereStatus('on')
                 ->orderByDesc('created_at')
                 ->where(function ($q) {
                     $q->where('language', 'en')->orWhere('language', 'ar_en');
@@ -277,9 +257,116 @@ class SiteController extends Controller
                 ->paginate(6);
         }
 
+        return view('site.trainings.trainings', compact('title', 'trainings'));
+    }
+    // trainings paging function
+    public function trainingsPaging()
+    {
+        if (Lang() == 'ar') {
+            $trainings = Training::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->paginate(6);
+        } else {
+            $trainings = Training::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'en')->orWhere('language', 'ar_en');
+                })
+                ->paginate(6);
+        }
 
         return view('site.trainings.trainings-paging', compact('trainings'))->render();
     }
+
+    // videos
+    public function videos()
+    {
+        $title = __('index.videos');
+        if (Lang() == 'ar') {
+            $videos = Video::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->paginate(6);
+        } else {
+            $videos = Video::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'en')->orWhere('language', 'ar_en');
+                })
+                ->paginate(6);
+        }
+        return view('site.videos.videos',compact('title', 'videos'));
+    }
+
+    // videos paging
+    public function videosPaging()
+    {
+        if (Lang() == 'ar') {
+            $videos = Video::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->paginate(6);
+        } else {
+            $videos = Video::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'en')->orWhere('language', 'ar_en');
+                })
+                ->paginate(6);
+        }
+        return view('site.videos.videos-paging',compact('videos'))->render();
+    }
+
+       // photo albums
+       public function photoAlbums()
+       {
+           $title = __('index.photos_album');
+           if (Lang() == 'ar') {
+               $photoAlbums = PhotoAlbum::whereStatus('on')
+                   ->orderByDesc('created_at')
+                   ->where(function ($q) {
+                       $q->where('language', 'ar_en');
+                   })
+                   ->paginate(6);
+           } else {
+               $photoAlbums = PhotoAlbum::whereStatus('on')
+                   ->orderByDesc('created_at')
+                   ->where(function ($q) {
+                       $q->where('language', 'en')->orWhere('language', 'ar_en');
+                   })
+                   ->paginate(6);
+           }
+           return view('site.photos.photo-albums',compact('title', 'photoAlbums'));
+       }
+
+       // photos paging
+       public function photoAlbumsPaging()
+       {
+           $title = __('index.photos_album');
+           if (Lang() == 'ar') {
+               $photoAlbums = PhotoAlbum::whereStatus('on')
+                   ->orderByDesc('created_at')
+                   ->where(function ($q) {
+                       $q->where('language', 'ar_en');
+                   })
+                   ->paginate(6);
+           } else {
+               $photoAlbums = PhotoAlbum::whereStatus('on')
+                   ->orderByDesc('created_at')
+                   ->where(function ($q) {
+                       $q->where('language', 'en')->orWhere('language', 'ar_en');
+                   })
+                   ->paginate(6);
+           }
+           return view('site.photos.photo-albums-paging',compact('photoAlbums'))->render();
+       }
 
     // contact
     public function contact()
@@ -363,7 +450,6 @@ class SiteController extends Controller
     {
         return view($link, compact('id'));
     }
-
 
     // reload Captcha
     public function reloadCaptcha()

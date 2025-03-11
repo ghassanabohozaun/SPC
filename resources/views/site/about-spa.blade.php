@@ -8,8 +8,6 @@
     <meta name="application-name" content="{!! setting()->{'site_name_' . Lang()} !!}" />
     <meta name="author" content="{!! setting()->{'site_name_' . Lang()} !!}" />
 @endsection
-@push('css')
-@endpush
 
 @section('content')
     <!-------------------------------------- Start Top Title Section  ------------------------------------->

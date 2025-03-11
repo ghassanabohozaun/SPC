@@ -9,7 +9,11 @@
             <div class="large-4 medium-4 small-12 cell">
                 <div class="team-box hover-wrap">
                     <div class="hover-img">
-                        <img src="{!! asset('adminBoard/uploadedImages/trainings/' . $training->photo) !!}" alt="{!! $training->{'title_' . Lang()} !!}">
+                        @if ($training->photo)
+                            <img src="{!! asset('adminBoard/uploadedImages/trainings/' . $training->photo) !!}" alt="{!! $training->{'title_' . Lang()} !!}">
+                        @else
+                            <img src="{!! asset('site/assets/images/backgrounds/photos.jpg') !!}" alt="{!! $training->{'title_' . Lang()} !!}">
+                        @endif
                         <div class="team-detail hover-info">
                             <a href="{!! route('appointment') !!}" class="button">{!! trans('site.click_here') !!}</a>
                         </div>

@@ -42,10 +42,15 @@ Route::group(
     Route::get('/trainings', [SiteController::class , 'trainings'])->name('trainings');
     Route::get('/training-paging', [SiteController::class , 'trainingsPaging'])->name('trainings.paging');
 
+    // videos
     Route::get('/videos', [SiteController::class , 'videos'])->name('videos');
     Route::get('/videos-paging', [SiteController::class , 'videosPaging'])->name('videos.paging');
+
+    // photos
     Route::get('/photo-albums', [SiteController::class , 'photoAlbums'])->name('photo.albums');
     Route::get('/photo-albums-paging', [SiteController::class , 'photoAlbumsPaging'])->name('photo.albums.paging');
+
+
 
     Route::get('/publications/{val?}', [SiteController::class , 'publications'])->name('publications');
     Route::get('/publication-paging/{val?}', [SiteController::class , 'publicationPaging'])->name('publication.paging');
