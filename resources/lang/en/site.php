@@ -1,9 +1,10 @@
 <?php
 
 return [
+
     'home' => 'Home',
     'ar' => 'ع',
-    'en' => 'En',
+    'en' => 'EN',
     'book_by_email' => 'Book By Email',
     'book_by_whatsapp' => 'Book By Whatsapp',
     'feedbacks' => 'Feedbacks',
@@ -23,8 +24,17 @@ return [
     'trainings' => 'Trainings',
     'publications' => 'Publications',
     'articles' => 'Articles',
-    'posters' => 'Posters',
+    'no_articles' => 'No Articles',
+    'read_abstract' => 'Read Abstract',
+    'read_full_article' => 'Read Full Article',
     'books' => 'Books',
+    'no_books' => 'No Books',
+    'read_full_book' => 'Read Full Book',
+    'posters' => 'Posters',
+    'no_posters' => 'No Posters',
+    'show_poster' => 'Show Poster',
+    'download_poster' => 'Download Poster',
+
     'contact' => 'Contact',
     'spc_about' => 'The Center for Sustainable Psychotherapy was initially established in January 2010 in the United Kingdom,
                      while I was working as a lecturer in the Department of Clinical Psychology, specializing in family psychotherapy.',
@@ -33,8 +43,11 @@ return [
     'testimonials' => 'Testimonials',
     'albums' => 'Photos Albums',
     'videos' => 'Videos',
+    'video_show' => 'Show Video',
+
     'faqs' => 'FAQ',
-    'contact_spc' => 'Contact SPC',
+    'contact_spc' => 'Contact Doctors',
+    'contact_management' => 'Contact Management',
     'address' => 'Address',
     'phone' => 'Phone',
     'email' => 'Email',
@@ -51,6 +64,7 @@ return [
                          and positive behaviours for them and their social environment for a long period of time.
                          Also, to use the skills learned from the therapeutic journey as a new way of life. (Altawil, 2020).',
 
+
     'sustainable_psychotherapy_goals' => 'Sustainable Psychotherapy Goals : ',
     'first_goal' => 'To reduce the symptoms of mental health problems .',
     'second_goal' => ' To improve life functioning for the clients .',
@@ -63,6 +77,7 @@ return [
     'we_will_offer' => 'We Will Offer',
     'no_offers' => 'No Offers',
     'about' => 'About',
+    'about_doctors' => 'About Doctors',
     'doctor' => 'DR ALTAWIL',
     'doctor_details' => 'Expert Clinical Psychologist in UK
                         Dr Altawil a certified specialist in clinical psychology, concerned with the assessment and treatment of mental illness and behavioural problems. Dr Altawil is a consultant Clinical Psychologist registered by HCPC.
@@ -101,13 +116,16 @@ return [
     'latest_news' => 'Latest News',
     'no_treatment_areas' => 'No Treatment Areas',
     'contact_us' => 'Contact Us',
-    'meet_our_psychotherapist' => 'Meet Our Psychotherapist',
+    'meet_our_psychotherapist' => 'Meet Our Psychotherapists',
     'customer_service' => 'Customer Service',
     'follow_us' => 'Follow Us',
     'fill_the_form_below_to_contact_us' => 'Fill the form below to contact us',
+    'director_name' => 'Director',
+    'contact_director' => 'To contact the site director',
+
 
     'enter_Name' => 'Enter Name',
-    'enter_mobile' => 'Enter Mobile',
+    'enter_phone' => 'Enter Phone',
     'enter_email' => 'Enter Email',
     'enter_message_title' => 'Enter Message Title',
     'enter_your_message' => 'Enter Your Message',
@@ -155,6 +173,7 @@ return [
     'select_your_image' => 'Select Your Image',
     'submit' => 'Submit',
 
+
     'photo_required' => 'Photo Required',
     'opinion_ar_required' => 'Arabic Opinion  Required',
     'opinion_en_required' => 'English Opinion Required',
@@ -175,22 +194,38 @@ return [
     'captcha_required' => 'Captcha Required',
     'enter_captcha' => 'Enter Captcha',
 
-    'starting_test' => 'Starting Test',
+    'starting_test' => 'Test Yourself',
     'download_test' => 'Download Test',
     'no_questions' => 'No Questions',
     'test' => 'Test',
-    'collecting_point' => 'Collecting Point',
+    'collecting_point' => 'Collecting Points',
     'test_details' => 'Test Details',
     'next_question' => 'Next',
     'please_select_answer' => 'Please Select Answer',
     'finish_test' => 'Finish Test',
     'no_scale' => 'No Scale !',
+    'no_evaluation' => 'No Evaluation !',
+
     'test_result' => 'Test Result',
     'next' => 'Next Question',
     'submit_answer' => 'submit Answer',
     'go_to_tests' => 'Go Back To Tests Page',
     'rate_us' => 'Rate Us',
     'success_send_contact_message' => 'Success Sending Contact Message',
+    'website_visitors_counter' => 'Visitors Count',
+    'from' => 'out of',
+    'years' => 'yrs',
+    'stars' => 'Stars',
+    'count' => 'Count',
+    'about_doctor' => 'About Doctor',
+
+    'out_of ' => 'Out OF',
+    'no_result' => 'No Result',
+    'search' => 'Search',
+    'enter_your_search_text_here' => 'Enter your search text here',
+    'enter_your_search_text' => 'Enter your search text ',
+
+
     'omar_name' => 'Dr Omar El Buhaisi',
     'omar_profile' => 'Consultant Psychiatrist with more than 20 years of experience in Ministry of Health,   institutional and academic work.Masters degree in Mental Health and Human Rights - Al - Quds University / Palestine
                         Head of the Department of Liaison Psychiatry and Director of Mental Health Services at the Palestinian Ministry of Health .
@@ -202,15 +237,17 @@ return [
 
     'jennah_name' => 'Jennah Asad',
     'jennah_profile' => '
-                    First-class BSc with honours in Clinical and Community Psychology
-                    MSc in Clinical Psychology
-                    PGDip in Cognitive and Behavioural Therapy (CBT)
-                    Psychology PhD; my project is focusing on metacognition in children/adolescents with PTSD and dissociation.
-                    Advanced Mental Health Practitioner; CAMHS Crisis Line at Barnet, Enfield and Haringey NHS Trust
-                    Mental Health Practitioner; Step2 CAMHS at Hertfordshire Community NHS Trust
-                    ARC worker and CBT therapist; ARC services at Hertfordshire County Council childrens services
-                    Assistant Psychologist; Cygnet Health Care (Adults Psychiatric Hospital)
-                    Mental Health Assistant; Friends of Bright Eyes (respite charity).
-                    I completed a training course in Supervision and have started offering clinical supervision for trainees/students/therapists within my NHS role and privately.
-                    ',
+First-class BSc with honours in Clinical and Community Psychology
+MSc in Clinical Psychology
+PGDip in Cognitive and Behavioural Therapy (CBT)
+Psychology PhD;
+Advanced Mental Health Practitioner; CAMHS Crisis Line at Barnet, Enfield and Haringey NHS Trust
+Mental Health Practitioner; Step2 CAMHS at Hertfordshire Community NHS Trust
+ARC worker and CBT therapist; ARC services at Hertfordshire County Council childrens services
+Assistant Psychologist; Cygnet Health Care (Adults Psychiatric Hospital)
+Mental Health Assistant; Friends of Bright Eyes (respite charity).
+
+I completed a training course in Supervision and have started offering clinical supervision for trainees/students/therapists within my NHS role and privately.
+',
+
 ];

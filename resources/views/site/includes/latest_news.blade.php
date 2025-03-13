@@ -1,4 +1,4 @@
-<div class="blog-section  services-section  grey-bg dark-bg">
+<div class="blog-section  services-section  grey-bg dark-bg margin-top-minius-1">
     <!-- Start Section Title /-->
     <div class="section-title">
         <h2>{!! trans('site.recent') !!} <span>{!! trans('site.news') !!}</span></h2>

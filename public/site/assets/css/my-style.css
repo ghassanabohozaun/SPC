@@ -604,7 +604,7 @@ color: white;
 padding-top: 40px;
 }
 #my-swiper-container{
-height: 650px;
+height: 450px;
 }
 
 .creative-testimonial--slider .testimonial-inner {
@@ -615,9 +615,9 @@ margin-right: auto;
 background-repeat: no-repeat;
 background-size: cover;
 
-
-
 }
+
+
 
 .testimonial-inner .testimonial-heading {
 text-align: center;
@@ -1855,4 +1855,8 @@ opacity: 1
 
 .rating:hover > input:checked ~ label:before {
 opacity: 0.4
+}
+
+.margin-top-minius-1{
+    margin-top: -1px;
 }

@@ -80,6 +80,29 @@
                         </ul>
                     </div>
                     <!-- End Contact Us /-->
+                    <h6>{!! trans('site.contact_management') !!}</h6>
+                    <!-- Start Contact Management /-->
+                    <div class="contact-us">
+                        <ul>
+
+
+                            <li><i class="fas fa-mobile-alt"></i>
+                                <a href="javascript:void(0)">
+                                    <span>{!! trans('site.phone') !!} : </span> +972 59-523-5002
+                                </a>
+                            </li>
+
+                            <li><i class="fas fa-envelope"></i>
+                                <a href="javascript:void(0)">
+                                    <span>{!! trans('site.email') !!} : </span> star_man_95@hotmail.com
+                                </a>
+
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- End Contact Management /-->
+
                     <!-- Start Social /-->
                     <div class="social-icons my-contact-us">
                         <ul class="menu">
