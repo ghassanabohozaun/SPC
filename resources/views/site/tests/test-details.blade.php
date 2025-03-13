@@ -1,14 +1,15 @@
 @extends('layouts.site')
-@section('title') {!! trans('frontend.home') !!} @endsection
+@section('title')
+    {!! $test->test_name !!}
+@endsection
 @section('metaTags')
-    <meta name="description"
-          content="{!! Lang()=='ar' ? setting()->site_description_ar : setting()->site_description_en !!}">
-    <meta name="keywords"
-          content="{!! Lang()=='ar' ? setting()->site_keywords_ar : setting()->site_keywords_en !!}">
+    <meta name="description" content="{!! setting()->{'site_description_' . Lang()} !!}">
+    <meta name="keywords" content="{!! setting()->{'site_keywords_' . Lang()} !!}">
+    <meta name="application-name" content="{!! setting()->{'site_name_' . Lang()} !!}" />
+    <meta name="author" content="{!! setting()->{'site_name_' . Lang()} !!}" />
 @endsection
 
 @section('content')
-
     <!-------------------------------------- Start Top Title Section  ------------------------------------->
     <div class="clearfix"></div>
     <div class="bradcam_area tests_bg">
@@ -27,9 +28,9 @@
     <!-------------------------------------- Start testimonials  ------------------------------------->
     <div class="testimonials testimonial-page ">
         <div class="test-questions-wrapper  my_test_question grey-bg my_test_question_section"
-             id="my_test_question_section">
+            id="my_test_question_section">
             <div class="container">
-                @if(App\Models\Tests\TestQuestion::where('test_id',$id)->get()->isEmpty())
+                @if ($test->questions->isEmpty())
                     <div class="test-questions-inner">
                         <div class="questions-box text-warning font-weight-bolder">
                             <h2 class="text-center text-warning text-capitalize">{!! trans('site.no_questions') !!}</h2>
@@ -38,59 +39,40 @@
                 @else
                     <form>
                         <div class="test-questions-inner">
-                            <!--
-                            <div class="questions-bar">
-                                <span></span>
-                            </div>
-                           -->
                             <div class="questions-box">
                                 <div class="questions-box-head">
-                                        <span class="questions-number">
-                                            <span class="questions-number" id="questions_number_span">1</span>
-                                             /
-                                           <span
-                                               id="total_questions_number">{!! App\Models\Tests\TestQuestion::where('test_id',$id)->count() !!}</span>
-                                        </span>
+                                    <span class="questions-number">
+                                        <span class="questions-number" id="questions_number_span">1</span>
+                                        /
+                                        <span id="total_questions_number">{!! $test->questions->count() !!}</span>
+                                    </span>
                                     <span class="questions-scale"> {!! $test->test_name !!}</span>
                                     <span class="questions-point">
-                                            <label class="mb-0">{!! trans('site.collecting_point') !!}
-                                                  :  <span id="collecting_point">0</span>
-                                            </label>
-
-                                        </span>
+                                        <label class="mb-0">{!! trans('site.collecting_point') !!}
+                                            : <span id="collecting_point">0</span>
+                                        </label>
+                                    </span>
                                 </div>
 
                                 <div id="question_list">
                                     @include('site.tests.test-paging')
                                 </div>
-
                             </div>
                         </div>
                     </form>
                 @endif
-
             </div>
         </div>
-
     </div>
-
-
 
     <!-- endTest modal  data-backdrop="static" data-keyboard="false"-->
     <div class="modal fade endTest" id="endTest" data-backdrop="static" data-keyboard="false" tabindex="-1"
-         role="dialog"
-         aria-labelledby="staticBackdrop">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
-            <div class="modal-content"><!--
-                <div class="modal-header">
-                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>-->
-
+        role="dialog" aria-labelledby="staticBackdrop">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
                 <div class="modal-body">
-
                     <div class="end-test-wrapper">
                         <div id="test_metric_photo">
-
                         </div>
                         <h5 id="test_metric_evaluation">
                         </h5>
@@ -101,12 +83,10 @@
             </div>
         </div>
     </div>
-
 @endsection
+
 @push('js')
     <script type="text/javascript">
-
-
         var total_questions_number = $('#total_questions_number').text();
         var progress_value = 1;
         $(".questions-bar").find('span').css('height', 0 + '%');
@@ -114,7 +94,7 @@
 
         ///////////////////////////////////////////////////////////////////////////////
         ///  article Paging
-        $(document).on('click', '.pagination a', function (e) {
+        $(document).on('click', '.pagination a', function(e) {
             e.preventDefault();
 
             if ($('input[name=questions]:checked').length <= 0) {
@@ -156,14 +136,14 @@
         function readPage(page) {
             $.ajax({
                 url: '/get-test-paging/' + '{!! $id !!}' + '?page=' + page
-            }).done(function (data) {
+            }).done(function(data) {
                 $('#question_list').html(data);
             });
 
-        }// end readPage
+        } // end readPage
 
         ///////////////////////////////////////////////////////////////////////////////
-        $('body').on('click', '#end_test_btn', function (e) {
+        $('body').on('click', '#end_test_btn', function(e) {
             e.preventDefault();
             if ($('input[name=questions]:checked').length <= 0) {
                 swal({
@@ -184,12 +164,12 @@
                 val += old_value;
                 $('#collecting_point').text(val);
 
-                var url = '{{url("get-test-metric/".$id)}}' + '/' + val;
+                var url = '{{ url('get-test-metric/' . $id) }}' + '/' + val;
                 $.ajax({
                     url: url,
                     type: 'get',
                     dataType: 'json',
-                    success: function (data) {
+                    success: function(data) {
                         console.log(data)
                         if (data.evaluation == null) {
                             $('#test_metric_photo').empty();
@@ -199,9 +179,11 @@
                             $('#test_metric_statement').html('');
                         } else {
                             var photo = data.photo;
-                            var url = '{{Storage::url('')}}' + photo;
+                            var url = '{{ asset('adminBoard/uploadedImages/tests/scales/') }}/' + photo;
                             $('#kt_scale_photo_update').css("background-image", "url(" + url + ")");
-                            $('#test_metric_photo').html('<img src="' + url + '" alt="" class="img-fluid">');
+                            $('#test_metric_photo').html('<img class="img-thumbnail rounded" src="' +
+                                url +
+                                '" alt="" class="img-fluid">');
                             $('#test_metric_evaluation').empty();
                             $('#test_metric_evaluation').html(data.evaluation);
                             $('#test_metric_statement').empty();
@@ -220,11 +202,10 @@
         })
 
 
-        $('#endTest').on('hidden.bs.modal', function (e) {
-            setTimeout(function () {
+        $('#endTest').on('hidden.bs.modal', function(e) {
+            setTimeout(function() {
                 window.location.href = "{!! route('tests') !!}";
             }, 500);
         });
     </script>
-
 @endpush

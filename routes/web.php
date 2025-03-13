@@ -77,26 +77,30 @@ Route::group(
 
 
 
-
-
-
-        Route::get('/get-treatment-area', [SiteController::class, 'getTreatmentAreas'])->name('get.treatment.area');
-
         // tests
         Route::get('/tests', [SiteController::class, 'tests'])->name('tests');
         Route::get('/tests-paging', [SiteController::class, 'testsPaging'])->name('tests.paging');
+
         Route::get('/get-test-details/{id?}', [SiteController::class, 'getTestDetails'])->name('get.test.details');
+
+
         Route::get('/get-test-paging/{id?}', [SiteController::class, 'getTestPaging'])->name('get.test.paging');
         Route::get('/get-test-metric/{id?}/{val?}', [SiteController::class, 'getTestMetric'])->name('get.test.metric');
+
+
+
+
 
         Route::get('/test/{val?}', [SiteController::class, 'test'])->name('test');
         Route::get('/get-test-questions/{testID?}', [SiteController::class, 'getTestQuestions'])->name('get.test.questions');
         Route::get('/get-question-answer/{questionID?}', [SiteController::class, 'getQuestionAnswers'])->name('get.questions.answers');
 
+
+        Route::get('/get-treatment-area', [SiteController::class, 'getTreatmentAreas'])->name('get.treatment.area');
+
         Route::get('/reload-captcha', [SiteController::class, 'reloadCaptcha'])->name('reload.captcha');
 
         // external link
-        //Route::get('/link/{link}/{id}', [SiteController::class, 'externalLink'])->name('site.external.link');
-
+        Route::get('/link/{link}/{id}', [SiteController::class, 'externalLink'])->name('site.external.link');
     }
 );

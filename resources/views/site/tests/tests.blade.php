@@ -1,14 +1,14 @@
 @extends('layouts.site')
-@section('title') {!! trans('frontend.home') !!} @endsection
-@section('metaTags')
-    <meta name="description"
-          content="{!! Lang()=='ar' ? setting()->site_description_ar : setting()->site_description_en !!}">
-    <meta name="keywords"
-          content="{!! Lang()=='ar' ? setting()->site_keywords_ar : setting()->site_keywords_en !!}">
+@section('title')
+    {!! $title !!}
 @endsection
-
+@section('metaTags')
+    <meta name="description" content="{!! setting()->{'site_description_' . Lang()} !!}">
+    <meta name="keywords" content="{!! setting()->{'site_keywords_' . Lang()} !!}">
+    <meta name="application-name" content="{!! setting()->{'site_name_' . Lang()} !!}" />
+    <meta name="author" content="{!! setting()->{'site_name_' . Lang()} !!}" />
+@endsection
 @section('content')
-
     <!-------------------------------------- Start Top Title Section  ------------------------------------->
     <div class="clearfix"></div>
     <div class="bradcam_area tests_bg">
@@ -26,28 +26,21 @@
 
     <!-------------------------------------- Start Tests  ------------------------------------->
     <div class="testimonials testimonial-page module">
-
-
         <div class="tests_list" id="tests_list">
             @include('site.tests.tests-paging')
         </div>
-
-
     </div>
     <!-------------------------------------- End Tests  --------------------------------------->
 
-
     <!-------------------------------------- Start Call to Action ------------------------------>
-    @include('site.include.call-to-action')
+    @include('site.includes.call-to-action')
     <!-------------------------------------- End Call to Action -------------------------------->
-
 @endsection
 @push('js')
     <script type="text/javascript">
-
         /////////////////////////////////////////////////////////////////
         ///  posts Paging
-        $(document).on('click', '.pagination a', function (e) {
+        $(document).on('click', '.pagination a', function(e) {
             e.preventDefault();
             var page = $(this).attr('href').split('page=')[1];
             readPage(page);
@@ -57,17 +50,16 @@
         function readPage(page) {
             $.ajax({
                 url: '/tests-paging/' + '?page=' + page,
-                success:function (data){
+                success: function(data) {
 
                     $('html').animate({
                         scrollTop: "520px"
-                    }, 600);
-                    setTimeout(function (){
+                    }, 0);
+                    setTimeout(function() {
                         $('#tests_list').html(data);
-                    },1200);
+                    }, 0);
                 }
             })
-
-        }// end readPage
+        } // end readPage
     </script>
 @endpush

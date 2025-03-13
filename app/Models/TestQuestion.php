@@ -16,7 +16,7 @@ class TestQuestion extends Model
     protected $hidden = ['updated_at'];
 
     //  relationship
-    public function test():BelongsTo
+    public function test(): BelongsTo
     {
         return $this->belongsTo(Test::class);
     }

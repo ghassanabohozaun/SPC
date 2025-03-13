@@ -405,9 +405,10 @@ object-fit: fill;
 /*---------------------------------
 Start My Test Section
 ---------------------------------*/
-.my_tests_section .my_new_image_card {
+.my_tests_section .my_test_image_card {
 width: 100% !important;
-height: 100% !important;
+height: 350px !important;
+object-fit: fill;
 }
 
 .my_tests_section .my_row {

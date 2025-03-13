@@ -202,16 +202,15 @@ return [
 
     'jennah_name' => 'Jennah Asad',
     'jennah_profile' => '
-First-class BSc with honours in Clinical and Community Psychology
-MSc in Clinical Psychology
-PGDip in Cognitive and Behavioural Therapy (CBT)
-Psychology PhD; my project is focusing on metacognition in children/adolescents with PTSD and dissociation.
-Advanced Mental Health Practitioner; CAMHS Crisis Line at Barnet, Enfield and Haringey NHS Trust
-Mental Health Practitioner; Step2 CAMHS at Hertfordshire Community NHS Trust
-ARC worker and CBT therapist; ARC services at Hertfordshire County Council childrens services
-Assistant Psychologist; Cygnet Health Care (Adults Psychiatric Hospital)
-Mental Health Assistant; Friends of Bright Eyes (respite charity).
-
-I completed a training course in Supervision and have started offering clinical supervision for trainees/students/therapists within my NHS role and privately.
-',
+                    First-class BSc with honours in Clinical and Community Psychology
+                    MSc in Clinical Psychology
+                    PGDip in Cognitive and Behavioural Therapy (CBT)
+                    Psychology PhD; my project is focusing on metacognition in children/adolescents with PTSD and dissociation.
+                    Advanced Mental Health Practitioner; CAMHS Crisis Line at Barnet, Enfield and Haringey NHS Trust
+                    Mental Health Practitioner; Step2 CAMHS at Hertfordshire Community NHS Trust
+                    ARC worker and CBT therapist; ARC services at Hertfordshire County Council childrens services
+                    Assistant Psychologist; Cygnet Health Care (Adults Psychiatric Hospital)
+                    Mental Health Assistant; Friends of Bright Eyes (respite charity).
+                    I completed a training course in Supervision and have started offering clinical supervision for trainees/students/therapists within my NHS role and privately.
+                    ',
 ];

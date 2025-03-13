@@ -15,7 +15,10 @@ use App\Models\Poster;
 use App\Models\Service;
 use App\Models\Slider;
 use App\Models\SupportCenter;
+use App\Models\Test;
 use App\Models\Testimonial;
+use App\Models\TestQuestion;
+use App\Models\TestScale;
 use App\Models\Training;
 use App\Models\Video;
 use App\Traits\GeneralTrait;
@@ -175,6 +178,7 @@ class SiteController extends Controller
         return view('site.about-spa', compact('title', 'aboutSpaItems'));
     }
 
+    // services
     public function services()
     {
         $title = __('site.services');
@@ -196,6 +200,7 @@ class SiteController extends Controller
         return view('site.services', compact('title', 'services'));
     }
 
+    // service
     public function service($serviceTitle = null)
     {
         if (!$serviceTitle) {
@@ -241,6 +246,91 @@ class SiteController extends Controller
         return view('site.faq', compact('title', 'faqs'));
     }
 
+
+    // tests
+    public function tests()
+    {
+        $title = __('site.tests');
+
+        if (Lang() == 'ar') {
+            $tests  = Test::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->whereLanguage('ar_en');
+                })->paginate(5);
+        } else {
+            $tests  = Test::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->whereLanguage('ar_en')->orWhere('language', 'en');
+                })->paginate(5);
+        }
+
+        return view('site.tests.tests', compact('title', 'tests'));
+    }
+
+
+    // tests paging
+    public function testsPaging()
+    {
+
+        if (Lang() == 'ar') {
+            $tests  = Test::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->whereLanguage('ar_en');
+                })->paginate(5);
+        } else {
+            $tests  = Test::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->whereLanguage('ar_en')->orWhere('language', 'en');
+                })->paginate(5);
+        }
+
+        return view('site.tests.tests-paging', compact('tests'))->render();
+    }
+
+    // get Test Details
+    public function getTestDetails($val = null)
+    {
+        if (!$val) {
+            return redirect()->route('tests');
+        }
+
+        $test = Test::with('questions')->with('answers')->where('test_name_slug', $val)->first();
+        if (!$test) {
+            return redirect()->route('tests');
+        }
+
+        $questions = TestQuestion::orderBy('id', 'asc')->where('test_id', $test->id)->paginate(1);
+        $id = $test->id;
+
+        return view('site.tests.test-details', compact('id', 'test', 'questions'));
+    }
+
+    // get test metric
+    public function getTestMetric($id = null, $val = null)
+    {
+        $metric = TestScale::where('test_id', $id)->where('minimum', '<=', $val)->where('maximum', '>=', $val)->first();
+
+        $test = Test::find($id);
+
+        $test->update([
+            'number_times_of_use' => $test->number_times_of_use + 1,
+        ]);
+
+        return response()->json($metric);
+    }
+
+    // get Test paging
+    public function getTestPaging($id = null)
+    {
+        $test = Test::with('questions')->find($id);
+        $questions = TestQuestion::orderBy('id', 'asc')->where('test_id', $test->id)->paginate(1);
+        return view('site.tests.test-paging', compact('test', 'questions'))->render();
+    }
+
     // trainings
     public function trainings()
     {
@@ -263,7 +353,7 @@ class SiteController extends Controller
 
         return view('site.trainings.trainings', compact('title', 'trainings'));
     }
-    // trainings paging function
+    // trainings paging
     public function trainingsPaging()
     {
         if (Lang() == 'ar') {

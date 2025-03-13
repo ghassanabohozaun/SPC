@@ -52,6 +52,8 @@ class TestsController extends Controller
             $file = '';
         }
 
+        $site_lang_ar = setting()->site_lang_ar;
+
         $test = Test::create([
             'test_name_slug' => slug($request->test_name),
             'test_name' => $request->test_name,
@@ -142,7 +144,7 @@ class TestsController extends Controller
             }
         }
 
-        $site_lang = setting()->site_lang_ar;
+        $site_lang_ar = setting()->site_lang_ar;
 
         $test->update([
             'test_name_slug' => slug($request->test_name),
