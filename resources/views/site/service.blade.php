@@ -1,6 +1,6 @@
 @extends('layouts.site')
 @section('title')
-    {!! setting()->{'site_title_' . Lang()} !!}
+    {!! $service->{'title_' . Lang()} !!}
 @endsection
 @section('metaTags')
     <meta name="description" content="{!! setting()->{'site_description_' . Lang()} !!}">
@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text text-center">
-                        <h1>{!! $title !!}</h1>
+                        <h1>{!! $service->{'title_' . Lang()} !!}</h1>
                     </div>
                 </div>
             </div>

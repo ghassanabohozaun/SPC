@@ -143,24 +143,6 @@
                                                         <!--begin::Group-->
                                                         <div class="form-group row">
                                                             <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                {{ __('settings.site_name_ar') }}
-                                                            </label>
-                                                            <div class="col-lg-9 col-xl-9">
-                                                                <input
-                                                                    class="form-control form-control-solid form-control-lg"
-                                                                    name="site_name_ar" id="site_name_ar" type="text"
-                                                                    placeholder=" {{ __('settings.enter_site_name_ar') }}"
-                                                                    autocomplete="off"
-                                                                    value="{{ setting()->site_name_ar }}" />
-                                                                <span class="form-text text-danger"
-                                                                    id="site_name_ar_error"></span>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Group-->
-
-                                                        <!--begin::Group-->
-                                                        <div class="form-group row">
-                                                            <label class="col-xl-3 col-lg-3 col-form-label">
                                                                 {{ __('settings.site_name_en') }}
                                                             </label>
                                                             <div class="col-lg-9 col-xl-9">
@@ -172,6 +154,24 @@
                                                                     value="{{ setting()->site_name_en }}" />
                                                                 <span class="form-text text-danger"
                                                                     id="site_name_en_error"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                {{ __('settings.site_name_ar') }}
+                                                            </label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <input
+                                                                    class="form-control form-control-solid form-control-lg"
+                                                                    name="site_name_ar" id="site_name_ar" type="text"
+                                                                    placeholder=" {{ __('settings.enter_site_name_ar') }}"
+                                                                    autocomplete="off"
+                                                                    value="{{ setting()->site_name_ar }}" />
+                                                                <span class="form-text text-danger"
+                                                                    id="site_name_ar_error"></span>
                                                             </div>
                                                         </div>
                                                         <!--end::Group-->
@@ -376,23 +376,6 @@
                                                         <!--begin::Group-->
                                                         <div class="form-group row">
                                                             <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                {{ __('settings.site_description_ar') }}
-                                                            </label>
-                                                            <div class="col-lg-9 col-xl-9">
-                                                                <textarea rows="3" class="form-control form-control-solid  form-control-lg" name="site_description_ar"
-                                                                    id="site_description_ar" type="text" placeholder=" {{ __('settings.enter_site_description_ar') }}"
-                                                                    autocomplete="off">{{ setting()->site_description_ar }}</textarea>
-
-                                                                <span class="form-text text-danger"
-                                                                    id="site_description_ar_error"></span>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Group-->
-
-
-                                                        <!--begin::Group-->
-                                                        <div class="form-group row">
-                                                            <label class="col-xl-3 col-lg-3 col-form-label">
                                                                 {{ __('settings.site_description_en') }}
                                                             </label>
                                                             <div class="col-lg-9 col-xl-9">
@@ -406,23 +389,21 @@
                                                         </div>
                                                         <!--end::Group-->
 
-
                                                         <!--begin::Group-->
                                                         <div class="form-group row">
                                                             <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                {{ __('settings.site_keywords_ar') }}
+                                                                {{ __('settings.site_description_ar') }}
                                                             </label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <textarea rows="5" class="form-control form-control-solid form-control-lg" name="site_keywords_ar"
-                                                                    id="site_keywords_ar" type="text" placeholder=" {{ __('settings.enter_site_keywords_ar') }}"
-                                                                    autocomplete="off">{{ setting()->site_keywords_ar }}</textarea>
+                                                                <textarea rows="3" class="form-control form-control-solid  form-control-lg" name="site_description_ar"
+                                                                    id="site_description_ar" type="text" placeholder=" {{ __('settings.enter_site_description_ar') }}"
+                                                                    autocomplete="off">{{ setting()->site_description_ar }}</textarea>
 
                                                                 <span class="form-text text-danger"
-                                                                    id="site_keywords_ar_error"></span>
+                                                                    id="site_description_ar_error"></span>
                                                             </div>
                                                         </div>
                                                         <!--end::Group-->
-
 
                                                         <!--begin::Group-->
                                                         <div class="form-group row">
@@ -440,19 +421,18 @@
                                                         </div>
                                                         <!--end::Group-->
 
-
                                                         <!--begin::Group-->
                                                         <div class="form-group row">
                                                             <label class="col-xl-3 col-lg-3 col-form-label">
-                                                                {{ __('settings.site_address_ar') }}
+                                                                {{ __('settings.site_keywords_ar') }}
                                                             </label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <textarea rows="5" class="form-control form-control-solid form-control-lg" name="site_address_ar"
-                                                                    id="site_address_ar" type="text" placeholder=" {{ __('settings.enter_site_address_ar') }}"
-                                                                    autocomplete="off">{{ setting()->site_address_ar }}</textarea>
+                                                                <textarea rows="5" class="form-control form-control-solid form-control-lg" name="site_keywords_ar"
+                                                                    id="site_keywords_ar" type="text" placeholder=" {{ __('settings.enter_site_keywords_ar') }}"
+                                                                    autocomplete="off">{{ setting()->site_keywords_ar }}</textarea>
 
                                                                 <span class="form-text text-danger"
-                                                                    id="site_address_ar_error"></span>
+                                                                    id="site_keywords_ar_error"></span>
                                                             </div>
                                                         </div>
                                                         <!--end::Group-->
@@ -473,6 +453,21 @@
                                                         </div>
                                                         <!--end::Group-->
 
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                {{ __('settings.site_address_ar') }}
+                                                            </label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <textarea rows="5" class="form-control form-control-solid form-control-lg" name="site_address_ar"
+                                                                    id="site_address_ar" type="text" placeholder=" {{ __('settings.enter_site_address_ar') }}"
+                                                                    autocomplete="off">{{ setting()->site_address_ar }}</textarea>
+
+                                                                <span class="form-text text-danger"
+                                                                    id="site_address_ar_error"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
 
                                                     </div>
                                                 </div>

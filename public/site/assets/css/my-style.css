@@ -45,6 +45,9 @@ text-align: center;
 
 }
 
+.website_color{
+    color : #f2963f;
+}
 /**************** top social media ***********************/
 
 .info-container ul li a p {
@@ -359,11 +362,11 @@ End my offers sections CSS
 display: none;
 }
 
-.my_publications_section .card {
+.my_blog_div .card {
 border: none;
 }
 
-.my_publications_section .card-img-top {
+.my_blog_div .card-img-top {
 width: 100% !important;
 height: 300px !important;
 object-fit: cover;
@@ -375,7 +378,7 @@ border: none;
 
 .my_latest_news_section .card-img-top {
 width: 100% !important;
-height: 150px !important;
+/* height: 150px !important; */
 object-fit: cover;
 }
 
@@ -396,7 +399,7 @@ font-size: 16px;
 .my_news_section .my_new_image_card {
 width: 100% !important;
 height: 235px !important;
-object-fit: cover;
+object-fit: fill;
 }
 
 /*---------------------------------
@@ -445,7 +448,7 @@ End My Test Section
 ---------------------------------*/
 .my_news_section .my_new_image {
 width: 100% !important;
-height: 350px !important;
+height: 400px !important;
 
 }
 

@@ -1160,7 +1160,7 @@ nav ul.menu.dropdown li:last-child a {
 }
 
 .blog-section .post-text a {
-    margin-bottom: 0;
+    margin-bottom: 5px;
 }
 
 /*-----------------------------
@@ -2132,7 +2132,7 @@ body.box .banner-container .slide-text {
 }
 
 .sidebar .menu > li > a {
-    line-height: normal;
+    line-height: 10px;
     padding-left: 0px;
     padding-right: 0px;
     padding-top: 3px;

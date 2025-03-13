@@ -8,7 +8,7 @@
                     <!--begin::body-->
                     <div class="my-5">
                         <!--begin::Group-->
-                        <div class="form-group row">
+                        <div class="form-group row d-none">
                             <input type="text" class="form-control form-control-solid form-control-lg"
                                 id='site_lang_ar' name="site_lang_ar" value="{!! setting()->site_lang_ar !!}">
                             <input type="text" class="form-control form-control-solid form-control-lg" name="action"

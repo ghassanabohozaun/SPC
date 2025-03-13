@@ -37,7 +37,7 @@ class BooksController extends Controller
         if ($request->hasFile('photo')) {
             $photo_name  = $request->file('photo');
             $photo_path_destination = public_path('/adminBoard/uploadedImages/books//');
-            $photo = $this->saveResizeImage($photo_name, $photo_path_destination, 500, 500);
+            $photo = $this->saveResizeImage($photo_name, $photo_path_destination, 600, 400);
         } else {
             $photo = '';
         }
@@ -52,21 +52,21 @@ class BooksController extends Controller
             $file = '';
         }
 
-        $site_lang = setting()->site_lang_ar;
+        $site_lang_ar = setting()->site_lang_ar;
         $book =  Book::create(
             [
                 'title_en_slug' => slug($request->title_en),
-                'title_ar_slug' => $site_lang == 'on' ? slug($request->title_ar) : '',
+                'title_ar_slug' => $site_lang_ar == 'on' ? slug($request->title_ar) : '',
                 'title_en' => $request->title_en,
-                'title_ar' => $site_lang == 'on' ? $request->title_ar : '',
+                'title_ar' => $site_lang_ar == 'on' ? $request->title_ar : '',
                 'abstract_en' => $request->abstract_en,
-                'abstract_ar' => $site_lang == 'on' ? $request->abstract_ar : '',
+                'abstract_ar' => $site_lang_ar == 'on' ? $request->abstract_ar : '',
                 'publish_date' => $request->publish_date,
                 'publisher_name' => $request->publisher_name,
                 'status' => 'on',
                 'photo' => $photo,
                 'file' => $file,
-                'language' =>  'ar_en',
+                'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
             ]
         );
 
@@ -110,12 +110,12 @@ class BooksController extends Controller
                 // upload new photo
                 $photo_name = $request->file('photo');
                 $photo_destination = public_path('/adminBoard/uploadedImages/books//');
-                $photo = $this->saveResizeImage($photo_name, $photo_destination, 200, 200);
+                $photo = $this->saveResizeImage($photo_name, $photo_destination, 600, 400);
             } else {
 
                 $photo_name = $request->file('photo');
                 $photo_destination = public_path('/adminBoard/uploadedImages/books//');
-                $photo  = $this->saveResizeImage($photo_name, $photo_destination, 200, 200);
+                $photo  = $this->saveResizeImage($photo_name, $photo_destination, 600, 400);
             }
         } else {
             if (!empty($book->photo)) {
@@ -156,20 +156,20 @@ class BooksController extends Controller
 
 
 
-        $site_lang = setting()->site_lang_ar;
+        $site_lang_ar = setting()->site_lang_ar;
         $book->update([
             'title_en_slug' => slug($request->title_en),
-            'title_ar_slug' => $site_lang == 'on' ? slug($request->title_ar) : '',
+            'title_ar_slug' => $site_lang_ar == 'on' ? slug($request->title_ar) : '',
             'title_en' => $request->title_en,
-            'title_ar' => $site_lang == 'on' ? $request->title_ar : '',
+            'title_ar' => $site_lang_ar == 'on' ? $request->title_ar : '',
             'abstract_en' => $request->abstract_en,
-            'abstract_ar' => $site_lang == 'on' ? $request->abstract_ar : '',
+            'abstract_ar' => $site_lang_ar == 'on' ? $request->abstract_ar : '',
             'publish_date' => $request->publish_date,
             'publisher_name' => $request->publisher_name,
             'status' => 'on',
             'photo' => $photo,
             'file' => $file,
-            'language' =>  'ar_en',
+            'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
         ]);
 
         return $this->returnSuccessMessage(__('general.update_success_message'));

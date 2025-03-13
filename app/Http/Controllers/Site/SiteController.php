@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SupportCenterRequest;
+use App\Http\Requests\TestimonialRequestFront;
 use App\Models\AboutSpc;
+use App\Models\Article;
+use App\Models\Book;
 use App\Models\FAQ;
+use App\Models\MyNew;
 use App\Models\PhotoAlbum;
+use App\Models\Poster;
 use App\Models\Service;
 use App\Models\Slider;
 use App\Models\SupportCenter;
@@ -33,10 +38,11 @@ class SiteController extends Controller
         $sliders = $this->getSliders();
         $services = $this->getServices();
         $offers = $this->getOffers();
+        $latest_news = $this->latestNews(3);
 
         $testimonials = $this->getTestimonials();
 
-        return view('site.index', compact('title', 'sliders', 'services', 'offers', 'testimonials'));
+        return view('site.index', compact('title', 'sliders', 'services', 'offers', 'testimonials', 'latest_news'));
     }
 
     // get sliders
@@ -201,16 +207,14 @@ class SiteController extends Controller
             if (!$service) {
                 return redirect()->route('index');
             }
-            $title = $service->title_ar;
         } else {
             $service = Service::where('title_en_slug', '=', $serviceTitle)->first();
             if (!$service) {
                 return redirect()->route('index');
             }
-            $title = $service->title_en;
         }
 
-        return view('site.service', compact('title', 'service'));
+        return view('site.service', compact('service'));
     }
 
     // faq
@@ -300,7 +304,7 @@ class SiteController extends Controller
                 })
                 ->paginate(6);
         }
-        return view('site.videos.videos',compact('title', 'videos'));
+        return view('site.videos.videos', compact('title', 'videos'));
     }
 
     // videos paging
@@ -321,52 +325,475 @@ class SiteController extends Controller
                 })
                 ->paginate(6);
         }
-        return view('site.videos.videos-paging',compact('videos'))->render();
+        return view('site.videos.videos-paging', compact('videos'))->render();
     }
 
-       // photo albums
-       public function photoAlbums()
-       {
-           $title = __('index.photos_album');
-           if (Lang() == 'ar') {
-               $photoAlbums = PhotoAlbum::whereStatus('on')
-                   ->orderByDesc('created_at')
-                   ->where(function ($q) {
-                       $q->where('language', 'ar_en');
-                   })
-                   ->paginate(6);
-           } else {
-               $photoAlbums = PhotoAlbum::whereStatus('on')
-                   ->orderByDesc('created_at')
-                   ->where(function ($q) {
-                       $q->where('language', 'en')->orWhere('language', 'ar_en');
-                   })
-                   ->paginate(6);
-           }
-           return view('site.photos.photo-albums',compact('title', 'photoAlbums'));
-       }
+    // photo albums
+    public function photoAlbums()
+    {
+        $title = __('index.photos_album');
+        if (Lang() == 'ar') {
+            $photoAlbums = PhotoAlbum::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->paginate(6);
+        } else {
+            $photoAlbums = PhotoAlbum::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'en')->orWhere('language', 'ar_en');
+                })
+                ->paginate(6);
+        }
+        return view('site.photos.photo-albums', compact('title', 'photoAlbums'));
+    }
 
-       // photos paging
-       public function photoAlbumsPaging()
-       {
-           $title = __('index.photos_album');
-           if (Lang() == 'ar') {
-               $photoAlbums = PhotoAlbum::whereStatus('on')
-                   ->orderByDesc('created_at')
-                   ->where(function ($q) {
-                       $q->where('language', 'ar_en');
-                   })
-                   ->paginate(6);
-           } else {
-               $photoAlbums = PhotoAlbum::whereStatus('on')
-                   ->orderByDesc('created_at')
-                   ->where(function ($q) {
-                       $q->where('language', 'en')->orWhere('language', 'ar_en');
-                   })
-                   ->paginate(6);
-           }
-           return view('site.photos.photo-albums-paging',compact('photoAlbums'))->render();
-       }
+    // photos paging
+    public function photoAlbumsPaging()
+    {
+        $title = __('index.photos_album');
+        if (Lang() == 'ar') {
+            $photoAlbums = PhotoAlbum::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->paginate(6);
+        } else {
+            $photoAlbums = PhotoAlbum::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'en')->orWhere('language', 'ar_en');
+                })
+                ->paginate(6);
+        }
+        return view('site.photos.photo-albums-paging', compact('photoAlbums'))->render();
+    }
+
+    // articles
+    public function articles()
+    {
+        $title = __('index.articles');
+        $latest_news = $this->latestNews(5);
+        if (Lang() == 'ar') {
+            $articles = Article::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->paginate(3);
+        } else {
+            $articles = Article::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en')->orWhere('language', 'en');
+                })
+                ->paginate(3);
+        }
+
+        return view('site.articles.articles', compact('title', 'articles', 'latest_news'));
+    }
+
+    // articles paging
+    public function articlesPaging()
+    {
+        if (Lang() == 'ar') {
+            $articles = Article::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->paginate(3);
+        } else {
+            $articles = Article::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en')->orWhere('language', 'en');
+                })
+                ->paginate(3);
+        }
+
+        return view('site.articles.articles-paging', compact('articles'))->render();
+    }
+
+    //article
+    public function article($val = null)
+    {
+        if (!$val) {
+            return redirect()->route('index');
+        }
+        if (Lang() == 'ar') {
+            $article = Article::where('title_ar_slug', $val)->first();
+            if (!$article) {
+                return redirect()->route('index');
+            }
+        } else {
+            $article = Article::where('title_en_slug', $val)->first();
+            if (!$article) {
+                return redirect()->route('index');
+            }
+        }
+        $latest_news = $this->latestNews(5);
+
+        return view('site.articles.article', compact('article', 'latest_news'));
+    }
+
+    // news
+    public function news()
+    {
+        $title = __('index.news');
+        $latest_news = $this->latestNews(5);
+        if (Lang() == 'ar') {
+            $news = MyNew::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->paginate(3);
+        } else {
+            $news = MyNew::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en')->orWhere('language', 'en');
+                })
+                ->paginate(3);
+        }
+
+        return view('site.news.news', compact('title', 'news', 'latest_news'));
+    }
+
+    // news paging
+    public function newsPaging()
+    {
+        if (Lang() == 'ar') {
+            $news = MyNew::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->paginate(3);
+        } else {
+            $news = MyNew::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en')->orWhere('language', 'en');
+                })
+                ->paginate(3);
+        }
+
+        return view('site.news.news-paging', compact('news'))->render();
+    }
+
+    //new
+    public function new($val = null)
+    {
+        if (!$val) {
+            return redirect()->route('index');
+        }
+        if (Lang() == 'ar') {
+            $new = MyNew::where('title_ar_slug', $val)->first();
+            if (!$new) {
+                return redirect()->route('index');
+            }
+        } else {
+            $new = MyNew::where('title_en_slug', $val)->first();
+            if (!$new) {
+                return redirect()->route('index');
+            }
+        }
+        $latest_news = $this->latestNews(5);
+
+        return view('site.news.new', compact('new', 'latest_news'));
+    }
+
+    // books
+    public function books()
+    {
+        $title = __('index.books');
+        $latest_news = $this->latestNews(5);
+        if (Lang() == 'ar') {
+            $books = Book::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->paginate(3);
+        } else {
+            $books = Book::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en')->orWhere('language', 'en');
+                })
+                ->paginate(3);
+        }
+
+        return view('site.books.books', compact('title', 'books', 'latest_news'));
+    }
+
+    // books paging
+    public function booksPaging()
+    {
+        if (Lang() == 'ar') {
+            $books = Book::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->paginate(3);
+        } else {
+            $books = Book::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en')->orWhere('language', 'en');
+                })
+                ->paginate(3);
+        }
+
+        return view('site.books.books-paging', compact('books'))->render();
+    }
+
+    //book
+    public function book($val = null)
+    {
+        if (!$val) {
+            return redirect()->route('index');
+        }
+        if (Lang() == 'ar') {
+            $book = Book::where('title_ar_slug', $val)->first();
+            if (!$book) {
+                return redirect()->route('index');
+            }
+        } else {
+            $book = Book::where('title_en_slug', $val)->first();
+            if (!$book) {
+                return redirect()->route('index');
+            }
+        }
+        $latest_news = $this->latestNews(5);
+
+        return view('site.books.book', compact('book', 'latest_news'));
+    }
+
+
+    // posters
+    public function posters()
+    {
+        $title = __('index.posters');
+        $latest_news = $this->latestNews(5);
+        if (Lang() == 'ar') {
+            $posters = Poster::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->paginate(3);
+        } else {
+            $posters = Poster::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en')->orWhere('language', 'en');
+                })
+                ->paginate(3);
+        }
+
+        return view('site.posters.posters', compact('title', 'posters', 'latest_news'));
+    }
+
+    // posters paging
+    public function postersPaging()
+    {
+        if (Lang() == 'ar') {
+            $posters = Poster::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->paginate(3);
+        } else {
+            $posters = Poster::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en')->orWhere('language', 'en');
+                })
+                ->paginate(3);
+        }
+
+        return view('site.posters.posters-paging', compact('posters'))->render();
+    }
+
+
+    // latest news
+    public function latestNews($val = null)
+    {
+
+        if (Lang() == 'ar') {
+            $news = MyNew::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->take($val)->get();
+        } else {
+            $news = MyNew::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en')->orWhere('Language', 'en');
+                })
+                ->take($val)->get();
+        }
+
+
+        return $news;
+    }
+    // testimonials
+    public function testimonials()
+    {
+        $title = __('index.testimonials');
+        if (Lang() == 'ar') {
+            $testimonials = Testimonial::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->paginate(6);
+        } else {
+            $testimonials = Testimonial::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'en')->orWhere('language', 'ar_en');
+                })
+                ->paginate(6);
+        }
+        return view('site.testimonials.testimonials', compact('title', 'testimonials'));
+    }
+
+    // testimonials paging
+    public function testimonialPaging()
+    {
+        if (Lang() == 'ar') {
+            $testimonials = Testimonial::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar_en');
+                })
+                ->paginate(6);
+        } else {
+            $testimonials = Testimonial::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'en')->orWhere('language', 'ar_en');
+                })
+                ->paginate(6);
+        }
+        return view('site.testimonials.testimonial-paging', compact('testimonials'))->render();
+    }
+
+    // testimonials filter by year
+    public function testimonialsFilterByYear(Request $request)
+    {
+        if ($request->ajax()) {
+            if ($request->year == null) {
+                $data = Testimonial::whereStatus('on')->orderByDesc('created_at')->paginate(6);
+            } else {
+                $data = Testimonial::whereStatus('on')->orderByDesc('created_at')->whereYear('created_at', '=', $request->year)->paginate(6);
+            }
+
+            $output = '';
+
+            if (count($data) > 0) {
+                $output = '<div class="testimonial">';
+
+                foreach ($data as $row) {
+                    $output .= ' <div class="testimonial-text testimonial-block">';
+                    if ($row->photo == null) {
+                        if ($row->gender == 'male') {
+                            $output .= '<img src="' . asset('site/assets/images/male.jpeg') . '" alt=""  class="my_testimonial_img">';
+                        } else {
+                            $output .= '<img src="' . asset('site/assets/images/female.jpeg') . '" alt=""  class="my_testimonial_img">';
+                        }
+                    } else {
+                        $output .= '<img src="' . asset('adminBoard/uploadedImages/testimonials/' . $row->photo) . '" alt=""  class="my_testimonial_img">';
+                    }
+                    if (Lang() == 'ar') {
+                        $output .=
+                            '<p>' .
+                            $row->opinion_ar .
+                            '</p>
+                          <h6>' .
+                            $row->name_ar .
+                            '
+                           - <span>' .
+                            $row->job_title_ar .
+                            '</span></h6>
+                          <h6>';
+                    } else {
+                        $output .=
+                            '<p>' .
+                            $row->opinion_en .
+                            '</p>
+                          <h6>' .
+                            $row->name_en .
+                            '
+                           - <span>' .
+                            $row->job_title_en .
+                            '</span></h6>
+                          <h6>';
+                    }
+
+                    for ($i = 1; $i <= $row->rating; $i++) {
+                        $output .= '<img src="' . asset('site/assets/images/icons/star.png') . '">';
+                    }
+                    $output .= '</h6></div><div class="clearfix"></div>';
+                }
+                $output .= ' <div class="container-fluid text-center"> <div class="row">' . $data->links('vendor.pagination.bootstrap-4') . '</div></div>';
+                $output .= '</div>';
+            } else {
+                $output .= ' <div class="testimonial-text testimonial-block"><div><h2   class="text-capitalize text-warning text-center">' . __('site.no_testimonials') . '</h2></div></div>';
+            }
+
+            return $output;
+        }
+    }
+
+    public function sendTestimonial(TestimonialRequestFront $request)
+    {
+        if ($request->hasFile('photo')) {
+            $photo_path = $request->file('photo')->store('Opinions');
+        } else {
+            $photo_path = '';
+        }
+
+        // save image
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $destinationPath = public_path('adminBoard/uploadedImages/testimonials');
+            $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
+        } else {
+            $photo_path = '';
+        }
+
+        $site_lang_ar = setting()->site_lang_ar;
+
+        Testimonial::create([
+            'opinion_en' => $request->opinion_en,
+            'opinion_ar' => $site_lang_ar == 'on' ? $request->opinion_ar : '',
+            'name_en' => $request->name_en,
+            'name_ar' => $site_lang_ar == 'on' ? $request->name_ar : null,
+            'job_title_en' => $request->job_title_en,
+            'job_title_ar' => $site_lang_ar == 'on' ? $request->job_title_ar : null,
+            'age' => $request->age,
+            'gender' => $request->gender,
+            'country' => $request->country,
+            'rating' => $request->rating,
+            'status' => '',
+            'photo' => $photo_path,
+            'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
+        ]);
+
+        return $this->returnSuccessMessage(trans('general.add_success_message'));
+    }
 
     // contact
     public function contact()

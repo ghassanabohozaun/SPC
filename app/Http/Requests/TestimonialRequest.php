@@ -30,7 +30,7 @@ class TestimonialRequest extends FormRequest
             'name_en' => 'required',
             'name_ar' => 'required_if:site_lang_ar,on',
             'age' => 'required',
-            //'country' => 'required',
+            'country' => 'required',
             'gender' => 'required',
             'rating' => 'required',
             'photo' => 'sometimes|image|mimes:jpeg,jpg,png|max:1024',
@@ -46,6 +46,7 @@ class TestimonialRequest extends FormRequest
             'image' => __('testimonials.image'),
             'mimes' => __('testimonials.mimes'),
             'max' => __('testimonials.image_max'),
+            'captcha' => trans('general.captcha'),
         ];
     }
 }

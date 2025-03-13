@@ -9,7 +9,7 @@
     <!-- End Section Title /-->
 
     <!-- Start Container /-->
-    <div class="container my_publications_section">
+    <div class="container my_blog_div">
         @if ($publications->isEmpty())
             <h2 class="text-capitalize text-center text-warning">{!! trans('site.no_publications') !!}</h2>
         @else

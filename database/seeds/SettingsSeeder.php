@@ -14,7 +14,7 @@ class SettingsSeeder extends Seeder
     {
 
         Setting::create([
-            'site_name_ar' => 'SPC',
+            'site_name_ar' => 'مركز العلاج النفسي المستدام',
             'site_name_en' => 'SPC',
             'site_lang_ar' => 'on',
             'site_lang_en' => 'on',

@@ -35,7 +35,7 @@ class NewsController extends Controller
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
             $destinationPath = public_path('adminBoard/uploadedImages/news');
-            $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
+            $photo_path = $this->saveResizeImage($image, $destinationPath, 600, 400);
         } else {
             $photo_path = '';
         }
@@ -53,7 +53,7 @@ class NewsController extends Controller
             'added_date' => $request->added_date,
             'status' => 'on',
             'photo' => $photo_path,
-            'language' => 'ar_en',
+            'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
         ]);
 
         return $this->returnSuccessMessage(__('general.add_success_message'));
@@ -95,11 +95,11 @@ class NewsController extends Controller
             if (!empty($new->photo)) {
                 $image = $request->file('photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/news//');
-                $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
+                $photo_path = $this->saveResizeImage($image, $destinationPath, 600, 400);
             } else {
                 $image = $request->file('photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/news//');
-                $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
+                $photo_path = $this->saveResizeImage($image, $destinationPath, 600, 400);
             }
         } else {
             if (!empty($new->photo)) {
@@ -121,7 +121,7 @@ class NewsController extends Controller
             'added_date' => $request->added_date,
             'status' => 'on',
             'photo' => $photo_path,
-            'language' => 'ar_en',
+            'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
         ]);
 
         return $this->returnSuccessMessage(__('general.update_success_message'));

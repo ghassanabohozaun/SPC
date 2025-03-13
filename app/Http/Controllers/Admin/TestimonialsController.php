@@ -53,12 +53,11 @@ class TestimonialsController extends Controller
             'job_title_ar' => $site_lang_ar == 'on' ? $request->job_title_ar : null,
             'age' => $request->age,
             'gender' => $request->gender,
-            'country' => null,
+            'country' => $request->country,
             'rating' => $request->rating,
             'status' => '',
             'photo' => $photo_path,
-            'language' => 'ar_en',
-
+            'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
         ]);
 
         return $this->returnSuccessMessage(__('general.add_success_message'));
@@ -125,10 +124,10 @@ class TestimonialsController extends Controller
             'job_title_ar' => $site_lang_ar == 'on' ? $request->job_title_ar : null,
             'age' => $request->age,
             'gender' => $request->gender,
-            'country' => null,
+            'country' => $request->country,
             'rating' => $request->rating,
             'photo' => $photo_path,
-            'language' => 'ar_en',
+            'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
         ]);
 
         return $this->returnSuccessMessage(__('general.update_success_message'));

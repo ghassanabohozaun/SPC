@@ -1,6 +1,6 @@
 @extends('layouts.site')
 @section('title')
-    {!! setting()->{'site_title_' . Lang()} !!}
+    {!! setting()->{'site_name_' . Lang()} !!}
 @endsection
 @section('metaTags')
     <meta name="description" content="{!! setting()->{'site_description_' . Lang()} !!}">
@@ -45,15 +45,13 @@
     @include('site.includes.other_doctors')
 
     <!-------------------------------------- End other doctors Section -------------------------->
+
     <!-------------------------------------- Start client opinions Testimonials ----------------->
     @include('site.includes.testimonials')
     <!-------------------------------------- End  client opinions Testimonials ------------------>
-    <!-------------------------------------- Start Publications Section ------------------------->
-    {{-- @include('site.includes.publications') --}}
-    <!-------------------------------------- End Publications Section --------------------------->
 
     <!-------------------------------------- Start News Section --------------------------------->
-    {{-- @include('site.includes.news') --}}
+    @include('site.includes.latest_news')
     <!-------------------------------------- End News Section ----------------------------------->
 
     <!-------------------------------------- Start Call to Action ------------------------------->

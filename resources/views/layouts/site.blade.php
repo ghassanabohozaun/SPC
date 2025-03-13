@@ -3,7 +3,7 @@
 
 <head>
     <!--title -->
-    <title>{{ !empty($title) ? $title : __('site.spc') }}</title>
+    <title>@yield('title')</title>
 
     <!-- meta Icon -->
     <meta name="csrf-token" content="{{ csrf_token() }}">

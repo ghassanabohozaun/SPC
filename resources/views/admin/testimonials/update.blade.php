@@ -203,6 +203,28 @@
                                                     <!--begin::Group-->
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">
+                                                            {{ __('testimonials.country') }}
+                                                        </label>
+                                                        <div class="col-lg-9 col-xl-9">
+
+                                                            <select class="form-control form-control-solid form-control-lg"
+                                                                name="country" id="country" type="text">
+                                                                <option value="">{!! __('general.select_from_list') !!}</option>
+                                                                @foreach (\App\Models\Country::all() as $country)
+                                                                    <option value="{{ $country->id }}"
+                                                                        {{ $country->id == $testimonial->country ? 'selected' : '' }}>
+                                                                        {!! $country->{'name_' . Lang()} !!}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                            <span class="form-text text-danger" id="country_error"></span>
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Group-->
+
+                                                    <!--begin::Group-->
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label">
                                                             {{ __('testimonials.job_title_ar') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">

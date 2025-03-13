@@ -9,7 +9,7 @@
                     <div class="my-5">
 
                         <!--begin::Group-->
-                        <div class=" form-group row">
+                        <div class=" form-group row d-none">
                             <label class="col-xl-3 col-lg-3 col-form-label">ID</label>
                             <div class="col-lg-9 col-xl-9">
                                 <input type="text" value="{{ $article->id }}"

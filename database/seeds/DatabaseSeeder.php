@@ -4,6 +4,7 @@ use Database\Seeders\AboutSiteSeeder;
 use Database\Seeders\AboutSpcSeeder;
 use Database\Seeders\ArticleSeeder;
 use Database\Seeders\BooksSeeder;
+use Database\Seeders\CountrySeeder;
 use Database\Seeders\FaqSeeder;
 use Database\Seeders\MyNewsSeeder;
 use Database\Seeders\PhotoAlbumSeeder;
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
+            CountrySeeder::class,
             SettingsSeeder::class,
             RoleSeeder::class,
             AdminSeeder::class,
@@ -48,6 +50,7 @@ class DatabaseSeeder extends Seeder
             AboutSiteSeeder::class,
             TestimonialsSeeder::class,
             FixedTextsSeeder::class,
+
         ]);
     }
 }
