@@ -63,7 +63,7 @@ class TestsController extends Controller
             'status' => 'on',
             'test_photo' => $photo,
             'file' => $file,
-            'language' => 'ar_en',
+            'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
         ]);
 
         if ($test) {
@@ -155,7 +155,7 @@ class TestsController extends Controller
             'status' => 'on',
             'test_photo' => $photo,
             'file' => $file,
-            'language' => 'ar_en',
+            'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
         ]);
 
         return $this->returnSuccessMessage(__('general.update_success_message'));
@@ -233,7 +233,7 @@ class TestsController extends Controller
 
                 //  delete test scales and photos
                 $testScales =  TestScale::where('test_id', $request->id)->get();
-                foreach($testScales as $testScale){
+                foreach ($testScales as $testScale) {
                     if (!empty($testScale->photo)) {
                         $image_path = public_path("/adminBoard/uploadedImages/tests/scales//") . $testScale->photo;
                         if (File::exists($image_path)) {
