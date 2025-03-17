@@ -5,14 +5,18 @@ return [
     'panels' => "Panels",
     'chart_article' => 'Article views Growth',
     'chart_tests' => 'Tests Views Growth',
+    'latest_articles' => 'Latest Articles',
+    'latest_tests' => 'Latest Tests',
 
     'test_counter' => 'Number of Tests',
     'article_counter' => 'Number of Articles',
     'publication_counter' =>  'Number of Publications',
+    'books_counter' =>  'Number of Books',
+
     'report_counter' => 'Number of Reports',
     'new_counter' => 'Number of News',
     'poster_counter' => 'Number of Posters',
-    'book_counter' => 'Number of News',
+    'training_counter' => 'Number of Trainings',
 
 
 
@@ -43,7 +47,7 @@ return [
     'return_to_dashboard' => 'Return To Dashboard',
     'page_not_found' => 'Page Not Found',
     'return_to_dashboard_message' => ' You can back or use our Help Center.',
-    'sorry'=>'Oops',
+    'sorry' => 'Oops',
 
     /////////////////////////////////
     /// Upload Center

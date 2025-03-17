@@ -1,18 +1,18 @@
-<div class="blog-section  services-section  grey-bg dark-bg margin-top-minius-1">
-    <!-- Start Section Title /-->
-    <div class="section-title">
-        <h2>{!! trans('site.recent') !!} <span>{!! trans('site.news') !!}</span></h2>
-        <div class="section-title-icon">
-            <img src="{!! asset('site/assets/images/help/brain-icon.png') !!}" alt="Icon">
-        </div>
-    </div>
-    <!-- End Section Title /-->
+@if (!$latest_news->isEmpty())
 
-    <!-- Start Container /-->
-    <div class="container my_news_section">
-        @if ($latest_news->isEmpty())
-            <h2 class="text-capitalize text-center text-warning">{!! trans('site.no_publications') !!}</h2>
-        @else
+    <div class="blog-section  services-section  grey-bg dark-bg margin-top-minius-1">
+        <!-- Start Section Title /-->
+        <div class="section-title">
+            <h2>{!! trans('site.recent') !!} <span>{!! trans('site.news') !!}</span></h2>
+            <div class="section-title-icon">
+                <img src="{!! asset('site/assets/images/help/brain-icon.png') !!}" alt="Icon">
+            </div>
+        </div>
+        <!-- End Section Title /-->
+
+        <!-- Start Container /-->
+        <div class="container my_news_section">
+
             @foreach ($latest_news as $new)
                 <div class="row">
                     <div class="col">
@@ -29,7 +29,7 @@
                                         </div>
                                         <h5 class="card-title">{!! $new->{'title_' . Lang()} !!}</h5>
                                         <p class="card-text">
-                                            {!! \Illuminate\Support\Str::limit(strip_tags($new->{'details_' . Lang()}), $limit = 250, $end = '...') !!}
+                                            {!! \Illuminate\Support\Str::limit(strip_tags($new->{'details_' . Lang()}), $limit = 500, $end = '...') !!}
                                         </p>
                                         <a href="{!! route('new', Lang() == 'ar' ? $new->title_ar_slug : $new->title_en_slug) !!}" class="button secondary">
                                             {!! trans('site.read_more') !!}
@@ -41,7 +41,7 @@
                     </div>
                 </div>
             @endforeach
-        @endif
+        </div>
+        <!-- End Container /-->
     </div>
-    <!-- End Container /-->
-</div>
+@endif

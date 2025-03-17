@@ -26,8 +26,8 @@ class AboutSpcSeeder extends Seeder
             AboutSpc::create([
                 'title_en' => $title_en[$i],
                 'title_ar' => $title_ar[$i],
-                'details_ar'=>$faker->paragraph(50),
-                'details_en'=>$faker->paragraph(50),
+                'details_ar' => '',
+                'details_en' => '',
                 'language' => 'ar_en',
                 'status' => 'on',
             ]);

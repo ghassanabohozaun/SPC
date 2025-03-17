@@ -16,6 +16,15 @@ if (!function_exists('setting')) {
     }
 }
 
+
+//  get visitor counter Helper Function
+if (!function_exists('getVisitorCounter')) {
+    function getVisitorCounter()
+    {
+        return Setting::orderBy('id', 'desc')->first()->visitors_counter;
+    }
+}
+
 //  get active languages Helper Function
 if (!function_exists('getActiveLanguages')) {
     function Lang()
@@ -74,20 +83,3 @@ if (!function_exists('getServicesOnly')) {
         return $services;
     }
 }
-
-// function abouts_type()
-// {
-//     return AboutType::get();
-// }
-
-// function projects()
-// {
-//     return   Projects::orderByDesc('id')->where('status', 'on')->where('type', 'current')->where(function ($q) {
-//         if (LaravelLocalization::getCurrentLocale() == 'ar') {
-//             $q->where('language', 'ar')
-//                 ->orWhere('language', 'ar_en');
-//         } else {
-//             $q->orWhere('language', 'ar_en');
-//         }
-//     })->limit(4)->get();
-// }

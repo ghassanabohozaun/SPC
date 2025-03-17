@@ -12,7 +12,7 @@
             <div class="grid-container grid-x grid-padding-x grid-padding-y">
                 @foreach ($services as $service)
                     <!-- Start Cell /-->
-                    <div class="large-6 medium-6 small-12 cell">
+                    <div class="large-3 medium-6 small-12 cell">
                         <div class="service-box">
                             @if (!empty($service->photo))
                                 <div class="service-icon">
@@ -26,7 +26,7 @@
                             <div class="service-text">
                                 <h5><a href="javascript:;">{!! Lang() == 'ar' ? $service->title_ar : $service->title_en !!}</a></h5>
                                 <p>
-                                    {!! \Illuminate\Support\Str::limit(strip_tags($service->{'details_' . Lang()}), $limit = 150, $end = '...') !!}
+                                    {!! \Illuminate\Support\Str::limit(strip_tags($service->{'details_' . Lang()}), $limit = 100, $end = '...') !!}
                                 </p>
                                 <a class="button secondary" href="{!! route('service', $service->{'title_' . Lang() . '_slug'}) !!}">
                                     {!! __('site.read_more') !!}

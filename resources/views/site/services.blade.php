@@ -27,14 +27,6 @@
 
     <!-------------------------------------- Start Services Section ------------------------------>
     <div class="services-section services-page grey-bg dark-bg">
-        <div class="section-title">
-            <div class="section-title-icon">
-                <img src="{!! asset('site/assets/images/help/brain-icon.png') !!}" alt="Icon">
-            </div>
-            <p></p>
-        </div>
-        <!-- Section Title /-->
-
         <div class="padding-between services-wrap bottom-icon-transparent">
             @if ($services->isEmpty())
                 <h2 class="text-center text-capitalize text-warning">{!! trans('site.no_services') !!}</h2>
@@ -42,7 +34,7 @@
                 <div class="grid-container grid-x grid-padding-x grid-padding-y my_services_section">
                     @foreach ($services as $service)
                         <!-- Start Cell /-->
-                        <div class="large-6 medium-6 small-12 cell">
+                        <div class="large-4 medium-6 small-12 cell">
                             <div class="service-box">
                                 @if (!empty($service->photo))
                                     <div class="service-icon">
@@ -55,7 +47,9 @@
                                 @endif
                                 <div class="service-text">
                                     <h4><a href="#">{!! $service->{'title_' . Lang()} !!}</a></h4>
-                                    <p>{!! Lang() == 'ar' ? $service->summary_ar : $service->summary_en !!}</p>
+                                    <p class="my_lead">
+                                        {!! \Illuminate\Support\Str::limit(strip_tags($service->{'summary_' . Lang()}), $limit = 100, $end = '...') !!}
+                                    </p>
                                     <a href="{!! route('service', Lang() == 'ar' ? $service->title_ar_slug : $service->title_en_slug) !!}" class="button secondary">{!! trans('site.read_more') !!}
                                     </a>
                                 </div>

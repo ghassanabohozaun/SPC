@@ -8,6 +8,11 @@
     <meta name="application-name" content="{!! setting()->{'site_name_' . Lang()} !!}" />
     <meta name="author" content="{!! setting()->{'site_name_' . Lang()} !!}" />
 @endsection
+
+@push('css')
+@endpush
+
+
 @section('content')
     <!-------------------------------------- Start Top Title Section  ------------------------------------->
     <div class="clearfix"></div>
@@ -25,6 +30,9 @@
     <!-------------------------------------- End Top Title Section  ------------------------------------->
 
     <!-------------------------------------- Start Tests  ------------------------------------->
+
+
+
     <div class="testimonials testimonial-page module">
         <div class="tests_list" id="tests_list">
             @include('site.tests.tests-paging')

@@ -5,13 +5,16 @@ return [
     'panels' => 'لوحات التحكم',
     'chart_article' => 'نمو مشاهدات المقالات',
     'chart_tests' => 'نمو مشاهدات الاختبارات',
+    'latest_articles' => 'آخر المقالات',
+    'latest_tests' => 'آخر الإختبارات',
 
     'test_counter' => 'عدد الاختبارات ',
     'article_counter' => 'عدد المقالات',
     'publication_counter' => 'عدد المنشورت ',
+    'books_counter' => 'عدد الكتب ',
     'new_counter' => 'عدد الأخبار',
     'poster_counter' => 'عدد البوسترات',
-    'book_counter' => 'عدد الكتب',
+    'training_counter' => 'عدد التدريبات',
 
     'last_articles' => 'اخر المقالات',
     'last_comments' => 'اخر التعليقات',

@@ -83,6 +83,27 @@
                         </div>
                         <!--end::Group-->
 
+                        <!--begin::Group-->
+                        <div class="form-group row">
+                            <label class="col-xl-3 col-lg-3 col-form-label">
+                                {{ __('articles.file') }}
+                            </label>
+                            <div class="col-lg-9 col-xl-9">
+
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="file" name="file">
+                                    <label class="custom-file-label" choose="" file="">
+                                    </label>
+                                </div>
+                                <span class="form-text text-muted">
+                                    {{ __('general.file_format_allow') }}
+                                </span>
+                                <span class="form-text text-danger" id="file_error"></span>
+
+                            </div>
+                        </div>
+                        <!--end::Group-->
+
                     </div>
                 </div>
             </div>

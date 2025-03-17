@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->string('file')->nullable();
             $table->string('test_photo')->nullable();
-            $table->enum('language', ['en', 'ar_en'])->default('en');
+            $table->enum('language', ['en', 'ar'])->default('en');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -26,6 +26,7 @@ class TestRequest extends FormRequest
         $rules =  [
             'test_name' =>  'required',
             'test_details' => 'required',
+            'language' =>  'required',
             'added_date' =>  'required',
             'test_photo' => 'required_without:hidden_photo|image|mimes:png,jpg,jpeg|max:1024',
             'file' => 'required_without:hidden_file|mimes:pdf|max:10240',

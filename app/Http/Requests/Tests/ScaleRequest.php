@@ -24,7 +24,7 @@ class ScaleRequest extends FormRequest
     public function rules()
     {
         return [
-            'statement' => 'required',
+            // 'statement' => 'required',
             'evaluation' => 'required',
             'minimum' => 'required|numeric',
             'maximum' => 'required|numeric',
@@ -43,7 +43,5 @@ class ScaleRequest extends FormRequest
             'photo.mimes' => __('tests.mimes'),
             'photo.max' => __('tests.mimmaxes'),
         ];
-
-
     }
 }

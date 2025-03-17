@@ -121,7 +121,7 @@
                                 <span class="form-text text-danger" id="file_error"></span>
                                 @if ($book->file)
                                     <a class="form-text text-info" style="font-size: 14px ;font-weight: bolder"
-                                        href="{!! asset('adminBoard/uploadedFiles/books/' . $book->file) !!}">{!! __('general.download') !!}</a>
+                                        target="_blank" href="{!! asset('adminBoard/uploadedFiles/books/' . $book->file) !!}">{!! __('general.download') !!}</a>
                                 @endif
                             </div>
                         </div>

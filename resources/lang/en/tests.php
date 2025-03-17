@@ -3,6 +3,9 @@
 return [
     'update_test' => 'Update Test',
 
+    'arabic' => 'Arabic',
+    'english' => 'English',
+
     'test_name' => 'Test Name',
     'test_details' => 'Test Details',
     'question_count' => 'Question Count',

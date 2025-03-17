@@ -196,13 +196,13 @@
         // reset test scale form function
         function resetTestScaleForm() {
             $('#test_scales_form')[0].reset();
-            $('#statement_error').text('');
+            // $('#statement_error').text('');
             $('#evaluation_error').text('');
             $('#minimum_error').text('');
             $('#maximum_error').text('');
             $('#photo_error').text('');
 
-            $('#statement').css('border-color', '');
+            // $('#statement').css('border-color', '');
             $('#evaluation').css('border-color', '');
             $('#minimum').css('border-color', '');
             $('#maximum').css('border-color', '');

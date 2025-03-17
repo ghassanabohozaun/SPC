@@ -35,10 +35,20 @@ class ArticlesController extends Controller
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
             $destinationPath = public_path('adminBoard/uploadedImages/articles');
-            $photo_path = $this->saveResizeImage($image, $destinationPath, 600, 400);
+            $photo_path = $this->saveImage($image, $destinationPath);
         } else {
             $photo_path = '';
         }
+
+        // article file
+        if ($request->hasFile('file')) {
+            $file_name = $request->file('file');
+            $file_public_path =  public_path('/adminBoard/uploadedFiles/articles//');
+            $file = $this->saveFile($file_name, $file_public_path);
+        } else {
+            $file = '';
+        }
+
 
         $site_lang_ar = setting()->site_lang_ar;
         Article::create([
@@ -53,6 +63,7 @@ class ArticlesController extends Controller
             'publisher_name' => $request->publisher_name,
             'status' => 'on',
             'photo' => $photo_path,
+            'file' => $file,
             'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
         ]);
 
@@ -94,11 +105,11 @@ class ArticlesController extends Controller
             if (!empty($article->photo)) {
                 $image = $request->file('photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/articles//');
-                $photo_path = $this->saveResizeImage($image, $destinationPath, 600, 400);
+                $photo_path = $this->saveImage($image, $destinationPath);
             } else {
                 $image = $request->file('photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/articles//');
-                $photo_path = $this->saveResizeImage($image, $destinationPath, 600, 400);
+                $photo_path = $this->saveImage($image, $destinationPath);
             }
         } else {
             if (!empty($article->photo)) {
@@ -108,6 +119,33 @@ class ArticlesController extends Controller
             }
         }
 
+
+        // file upload
+        if ($request->hasFile('file')) {
+            if (!empty($article->file)) {
+
+                //delete old file
+                $file_public_path = public_path('/adminBoard/uploadedFiles/articles//') . $article->file;
+                if (File::exists($file_public_path)) {
+                    File::delete($file_public_path);
+                }
+
+                // upload new file
+                $file_name = $request->file('file');
+                $file_destination = public_path('/adminBoard/uploadedFiles/articles//');
+                $file = $this->saveFile($file_name, $file_destination);
+            } else {
+                $file_name = $request->file('file');
+                $file_destination = public_path('/adminBoard/uploadedFiles/articles//');
+                $file  = $this->saveFile($file_name, $file_destination);
+            }
+        } else {
+            if (!empty($article->file)) {
+                $file = $article->file;
+            } else {
+                $file = '';
+            }
+        }
 
         $site_lang_ar = setting()->site_lang_ar;
         $article->update([
@@ -121,6 +159,7 @@ class ArticlesController extends Controller
             'publisher_name' => $request->publisher_name,
             'status' => 'on',
             'photo' => $photo_path,
+            'file' => $file,
             'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
         ]);
 
@@ -193,6 +232,13 @@ class ArticlesController extends Controller
                     $image_path = public_path("/adminBoard/uploadedImages/articles//") . $article->photo;
                     if (File::exists($image_path)) {
                         File::delete($image_path);
+                    }
+                }
+
+                if (!empty($article->file)) {
+                    $file_public_path = public_path('/adminBoard/uploadedFiles/articles//') . $article->file;
+                    if (File::exists($file_public_path)) {
+                        File::delete($file_public_path);
                     }
                 }
 

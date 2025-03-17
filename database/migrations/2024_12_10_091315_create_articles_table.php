@@ -27,6 +27,7 @@ class CreateArticlesTable extends Migration
             $table->string('status')->nullable();
             $table->integer('views')->default(1);
             $table->string('photo')->nullable();
+            $table->string('file')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

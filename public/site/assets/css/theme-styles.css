@@ -1329,6 +1329,7 @@ nav ul.menu.dropdown li:last-child a {
 
 .counter-icon img {
     margin-bottom: 10px;
+    max-width: 100px;
 }
 
 .counter-text h2 {

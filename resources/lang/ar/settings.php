@@ -35,9 +35,9 @@ return [
     'site_gmail' => ' جيميل ',
     'site_linkedin' => ' لينكد ان ',
     'site_phone' => ' تلفون ',
-    'site_mobile' => ' الواتس اب ',
+    'site_mobile' => 'الموبايل ',
     'lang_front_button_status' => ' حالة زر اللغة في الواجهة',
-
+    'disabled_forms_button' => 'زر ايقاف الادخال في النماذج',
 
 
     'enter_site_name_ar' => 'ادخل اسم الموقع | عربي',

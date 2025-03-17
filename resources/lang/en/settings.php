@@ -37,8 +37,9 @@ return [
     'site_gmail' => 'Gmail',
     'site_linkedin' => 'Linked In',
     'site_phone' => 'Phone',
-    'site_mobile' => 'Whatsapp',
+    'site_mobile' => 'Mobile',
     'lang_front_button_status' => 'Language button in the frontend',
+    'disabled_forms_button' => 'Disabled Forms Button',
 
 
     'enter_name' => 'Enter Language Name',

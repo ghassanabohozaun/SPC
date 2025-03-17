@@ -3,7 +3,7 @@
         <div class="testimonial-inner">
             <div class="testimonial-row">
                 <!-- Start Section Title /-->
-                <div class="section-title testimonial-section-title">
+                <div class="section-title    testimonial-section-title">
                     <h2 id="my_testimonial_header">{!! __('site.whats') !!}
                         <span>{!! __('site.people_says') !!}</span>
                     </h2>
@@ -71,7 +71,7 @@
                                                     | {!! Lang() == 'ar' ? $testimonial->created_at->format('Y-m-d') : $testimonial->created_at->format('d-m-Y') !!}
                                                 </span>
                                             </span>
-                                            <p class="text-center">
+                                            <span class="text-center">
                                                 @if ($testimonial->rating != null)
                                                     [
                                                     <span>
@@ -81,7 +81,7 @@
                                                     </span>
                                                     ]
                                                 @endif
-                                            </p>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

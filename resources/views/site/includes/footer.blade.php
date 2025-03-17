@@ -14,6 +14,19 @@
                     </a>
                     <p class="my_lead">{!! trans('site.spc_about') !!}</p>
 
+                    <!-- Start Website Counter /-->
+
+                    <div class="">
+                        <span class=" my_visitor_text">
+                            {!! __('site.website_visitors_counter') !!} :
+                        </span>
+
+                        <span class="my_visitor_span"> {!! getVisitorCounter() !!}</span>
+
+                    </div>
+
+                    <!-- End Website Counter /-->
+
                 </div>
             </div>
             <!-- End logo /-->
@@ -107,32 +120,38 @@
                     <div class="social-icons my-contact-us">
                         <ul class="menu">
                             <li>
-                                <a onclick="return {!! setting()->site_facebook ? 'true' : 'false' !!};" href="{!! setting()->site_facebook !!}">
+                                <a target="_blank" onclick="return {!! setting()->site_facebook ? 'true' : 'false' !!};"
+                                    href="{!! setting()->site_facebook !!}">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
                             </li>
-                            <li><a onclick="return {!! setting()->site_twitter ? 'true' : 'false' !!};" href="{!! setting()->site_twitter !!}">
+                            <li><a target="_blank" onclick="return {!! setting()->site_twitter ? 'true' : 'false' !!};"
+                                    href="{!! setting()->site_twitter !!}">
                                     <i class="fab fa-twitter"></i>
                                 </a>
                             </li>
                             <li>
-                                <a onclick="return {!! setting()->site_instagram ? 'true' : 'false' !!};" href="{!! setting()->site_instagram !!}">
+                                <a target="_blank" onclick="return {!! setting()->site_instagram ? 'true' : 'false' !!};"
+                                    href="{!! setting()->site_instagram !!}">
                                     <i class="fab fa-instagram"></i>
                                 </a>
                             </li>
                             <li>
-                                <a onclick="return {!! setting()->site_linkedin ? 'true' : 'false' !!};" href="{!! setting()->site_linkedin !!}">
+                                <a target="_blank" onclick="return {!! setting()->site_linkedin ? 'true' : 'false' !!};"
+                                    href="{!! setting()->site_linkedin !!}">
                                     <i class="fab fa-linkedin"></i>
                                 </a>
                             </li>
                             <li>
-                                <a onclick="return {!! setting()->site_youtube ? 'true' : 'false' !!};" href="{!! setting()->site_youtube !!}">
+                                <a target="_blank" onclick="return {!! setting()->site_youtube ? 'true' : 'false' !!};"
+                                    href="{!! setting()->site_youtube !!}">
                                     <i class="fab fa-youtube">
                                     </i>
                                 </a>
                             </li>
                             <li>
-                                <a onclick="return {!! setting()->site_email ? 'true' : 'false' !!};" href="{!! setting()->site_email !!}">
+                                <a target="_blank" onclick="return {!! setting()->site_email ? 'true' : 'false' !!};"
+                                    href="{!! setting()->site_email !!}">
                                     <i class="fas fa-envelope"></i>
                                 </a>
                             </li>

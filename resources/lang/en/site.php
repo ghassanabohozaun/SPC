@@ -125,7 +125,7 @@ return [
 
 
     'enter_Name' => 'Enter Name',
-    'enter_phone' => 'Enter Phone',
+    'enter_mobile' => 'Enter Mobile',
     'enter_email' => 'Enter Email',
     'enter_message_title' => 'Enter Message Title',
     'enter_your_message' => 'Enter Your Message',

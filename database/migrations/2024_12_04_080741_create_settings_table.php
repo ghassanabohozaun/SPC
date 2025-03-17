@@ -29,12 +29,14 @@ class CreateSettingsTable extends Migration
             $table->string('site_lang_en')->default('on');
             $table->string('site_lang_ar')->nullable();
             $table->string('lang_front_button_status')->nullable();
+            $table->string('disabled_forms_button')->nullable();
             $table->longText('site_description_ar')->nullable();
             $table->longText('site_description_en')->nullable();
             $table->longText('site_keywords_ar')->nullable();
             $table->longText('site_keywords_en')->nullable();
             $table->longText('site_address_ar')->nullable();
             $table->longText('site_address_en')->nullable();
+            $table->bigInteger('visitors_counter')->default(1);
             $table->longText('site_icon')->nullable();
             $table->longText('site_logo')->nullable();
             $table->timestamps();

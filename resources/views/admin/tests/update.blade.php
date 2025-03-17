@@ -150,7 +150,7 @@
                                                             {{ __('tests.test_details') }}
                                                         </label>
                                                         <div class="col-lg-9 col-xl-9">
-                                                            <textarea rows="5" class="form-control form-control-solid form-control-lg" name="test_details" id="test_details"
+                                                            <textarea rows="7" class="form-control summernote" name="test_details" id="test_details"
                                                                 placeholder=" {{ __('tests.enter_test_details') }}" autocomplete="off">{!! $test->test_details !!}</textarea>
                                                             <span class="form-text text-danger"
                                                                 id="test_details_error"></span>
@@ -158,6 +158,31 @@
                                                     </div>
                                                     <!--end::Group-->
 
+
+                                                    <!--begin::Group-->
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label">
+                                                            {{ __('tests.language') }}
+                                                        </label>
+                                                        <div class="col-lg-9 col-xl-9">
+
+                                                            <select class="form-control form-control-solid form-control-lg"
+                                                                name="language" id="language" type="text">
+                                                                <option value="">
+                                                                    {{ __('general.select_from_list') }}
+                                                                </option>
+                                                                <option value="ar" {!! $test->language == 'ar' ? 'selected' : '' !!}>
+                                                                    {{ __('tests.arabic') }}
+                                                                </option>
+                                                                <option value="en" {!! $test->language == 'en' ? 'selected' : '' !!}>
+                                                                    {{ __('tests.english') }}
+                                                                </option>
+                                                            </select>
+                                                            <span class="form-text text-danger"
+                                                                id="language_error"></span>
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Group-->
 
                                                     <!--begin::Group-->
                                                     <div class="form-group row">

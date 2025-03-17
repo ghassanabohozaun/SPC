@@ -38,7 +38,7 @@ class PostersController extends Controller
         if ($request->hasFile('photo')) {
             $photo_name  = $request->file('photo');
             $photo_path_destination = public_path('/adminBoard/uploadedImages/posters//');
-            $photo = $this->saveResizeImage($photo_name, $photo_path_destination, 500, 500);
+            $photo = $this->saveImage($photo_name, $photo_path_destination);
         } else {
             $photo = '';
         }
@@ -56,6 +56,8 @@ class PostersController extends Controller
         $site_lang_ar = setting()->site_lang_ar;
         $poster =  Poster::create(
             [
+                'title_en_slug' => slug($request->title_en_slug),
+                'title_ar' => $site_lang_ar == 'on' ?  slug($request->title_ar) : '',
                 'title_en' => $request->title_en,
                 'title_ar' => $site_lang_ar == 'on' ? $request->title_ar : '',
                 'added_date' => $request->added_date,
@@ -64,7 +66,6 @@ class PostersController extends Controller
                 'photo' => $photo,
                 'file' => $file,
                 'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
-
             ]
         );
 
@@ -105,12 +106,12 @@ class PostersController extends Controller
                 // upload new photo
                 $photo_name = $request->file('photo');
                 $photo_destination = public_path('/adminBoard/uploadedImages/posters//');
-                $photo = $this->saveResizeImage($photo_name, $photo_destination, 200, 200);
+                $photo = $this->saveImage($photo_name, $photo_destination);
             } else {
 
                 $photo_name = $request->file('photo');
                 $photo_destination = public_path('/adminBoard/uploadedImages/posters//');
-                $photo  = $this->saveResizeImage($photo_name, $photo_destination, 200, 200);
+                $photo  = $this->saveImage($photo_name, $photo_destination);
             }
         } else {
             if (!empty($poster->photo)) {
@@ -154,8 +155,10 @@ class PostersController extends Controller
         $site_lang_ar = setting()->site_lang_ar;
 
         $poster->update([
-            'title_ar' => $site_lang_ar == 'on' ?  $request->title_ar : '',
+            'title_en_slug' => slug($request->title_en),
+            'title_ar_slug' => $site_lang_ar == 'on' ? slug($request->title_ar) : '',
             'title_en' => $request->title_en,
+            'title_ar' => $site_lang_ar == 'on' ?  $request->title_ar : '',
             'added_date' => $request->added_date,
             'publisher_name' => $request->publisher_name,
             'photo' => $photo,
@@ -244,7 +247,7 @@ class PostersController extends Controller
                 return redirect()->route('admin.not.found');
             }
 
-            if ($request->statusSwitch == 'true') {
+            if ($request->switchStatus == 'true') {
                 $poster->status = 'on';
                 $poster->save();
             } else {

@@ -12,7 +12,7 @@
                                     alt="{!! $test->test_name !!}">
                             </div>
                             <div class="col-md-7">
-                                <div class="card-body">
+                                <div class="card-body  ">
 
                                     <div class="row">
                                         <h5 class="card-title">{!! $test->test_name !!}</h5>
@@ -21,8 +21,10 @@
                                         </p>
                                     </div>
 
-                                    <div style="position: absolute ; bottom: 0%">
-                                        <a href="{!! route('get.test.details', $test->test_name_slug) !!}" class="button primary">{!! trans('site.starting_test') !!}
+
+                                    <div>
+                                        <a style="" href="{!! route('get.test.details', $test->test_name_slug) !!}"
+                                            class="button primary">{!! trans('site.starting_test') !!}
                                             &nbsp;
                                             @if (Lang() == 'ar')
                                                 <i class="fas fa-1x fa-arrow-alt-circle-left"></i>

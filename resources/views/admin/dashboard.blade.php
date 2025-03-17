@@ -141,10 +141,10 @@
                                     </svg><!--end::Svg Icon--></span>
                             </span>
                             <span class="card-title font-weight-bolder  font-size-h2 mb-0 mt-6 text-hover-primary d-block">
-                                {{ App\Models\Publication::count() }}
+                                {{ App\Models\book::count() }}
                             </span>
                             <span class="font-weight-bold  card_name_span">
-                                {{ __('dashboard.publication_counter') }}
+                                {{ __('dashboard.books_counter') }}
                             </span>
                         </div>
                         <!--end::Body-->
@@ -227,7 +227,7 @@
                 </div>
                 <!------------------------ end Posters count ----------->
 
-                <!------------------------ start books count----------->
+                <!------------------------ start trainings count----------->
                 <div class="col-xl-2">
                     <!--begin::Stats Widget 32-->
                     <div class="card card-custom bg-danger-o-80 card-stretch gutter-b">
@@ -252,10 +252,10 @@
                                     </svg><!--end::Svg Icon--></span>
                             </span>
                             <span class="card-title font-weight-bolder font-size-h2 mb-0 mt-6 text-hover-primary d-block">
-                                {{ App\Models\Book::count() }}
+                                {{ App\Models\training::count() }}
                             </span>
                             <span class="font-weight-bold  card_name_span">
-                                {{ __('dashboard.book_counter') }}
+                                {{ __('dashboard.training_counter') }}
                             </span>
                         </div>
                         <!--end::Body-->
@@ -307,6 +307,114 @@
             <!--end::chart-->
 
 
+            <!--begin::Last Articles-->
+            <div class="card card-custom gutter-b ">
+
+                <!--begin::Body-->
+                <div class="card-body py-2" style="">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-6">
+                                <!--begin::Header-->
+                                <div class="card-header border-0 pt-5">
+                                    <h3 class="card-title align-items-start flex-column">
+                                        <span class="card-label font-weight-bolder text-dark">
+                                            {{ __('dashboard.latest_articles') }}
+                                        </span>
+                                    </h3>
+                                </div>
+                                <!--end::Header-->
+                                @if ($latest_articles->isEmpty())
+                                    <img src="{!! asset('adminBoard/images/noRecordFound.svg') !!}" class="img-fluid" id="no_data_img">
+                                @else
+                                    <div class="table-responsive ">
+                                        <table class="table" style="text-align: center;vertical-align: middle;">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">{!! __('articles.photo') !!}</th>
+                                                    <th scope="col">{!! __('articles.title') !!}</th>
+                                                    <th scope="col">{!! __('index.views_count') !!}</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($latest_articles as $key => $article)
+                                                    <tr>
+                                                        <td>{!! $key + 1 !!}</td>
+                                                        <td>
+                                                            <img src="{{ asset('adminBoard/uploadedImages/articles/' . $article->photo) }}"
+                                                                class="img-fluid img-thumbnail table-image " />
+                                                        </td>
+                                                        <td>{!! $article->{'title_' . Lang()} !!}</td>
+                                                        <td>{!! $article->views !!}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @endif
+                            </div>
+
+
+
+                            <div class="col-6">
+                                <!--begin::Header-->
+                                <div class="card-header border-0 pt-5">
+                                    <h3 class="card-title align-items-start flex-column">
+                                        <span class="card-label font-weight-bolder text-dark">
+                                            {{ __('dashboard.latest_tests') }}
+                                        </span>
+                                    </h3>
+                                </div>
+                                <!--end::Header-->
+
+                                @if ($latest_tests->isEmpty())
+                                    <img src="{!! asset('adminBoard/images/noRecordFound.svg') !!}" class="img-fluid" id="no_data_img">
+                                @else
+                                    <!--begin::Body-->
+
+                                    <div class="table-responsive ">
+                                        <table class="table" style="text-align: center;vertical-align: middle;">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">{!! __('tests.test_name') !!}</th>
+                                                    <th scope="col">{!! __('tests.number_times_of_use') !!}</th>
+                                                    <th scope="col">{!! __('tests.added_date') !!}</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($latest_tests as $key => $test)
+                                                    <tr>
+                                                        <td>{!! $key + 1 !!}</td>
+                                                        <td>{!! $test->test_name !!} </td>
+                                                        <td>{!! $test->number_times_of_use !!}</td>
+                                                        <td>{!! $test->added_date !!}</td>
+
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @endif
+
+
+
+                                <!--end::Body-->
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <!--end::Body-->
+
+            </div>
+            <!--end::Last Articles-->
+
         </div>
         <!--end::Container-->
 
@@ -319,8 +427,9 @@
     <script type="text/javascript" src="{!! asset('adminBoard/assets/js/Chart.bundle.min.js') !!}"></script>
     <script type="text/javascript">
         $(function() {
+
+
             var testtData = <?php echo json_encode($testData); ?>;
-            console.log(testtData);
             var barCanvas = $("#barChart1");
             var barChart = new Chart(barCanvas, {
                 type: 'bar',

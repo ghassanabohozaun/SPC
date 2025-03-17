@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SupportCenterRequest;
 use App\Http\Requests\TestimonialRequestFront;
 use App\Models\AboutSpc;
 use App\Models\Article;
@@ -41,11 +40,16 @@ class SiteController extends Controller
         $sliders = $this->getSliders();
         $services = $this->getServices();
         $offers = $this->getOffers();
+        $tests = $this->getTests(3);
         $latest_news = $this->latestNews(3);
 
         $testimonials = $this->getTestimonials();
 
-        return view('site.index', compact('title', 'sliders', 'services', 'offers', 'testimonials', 'latest_news'));
+        // update visitors counter
+        $visitorsCounter = setting()->visitors_counter;
+        setting()->update(['visitors_counter' => $visitorsCounter + 1]);
+
+        return view('site.index', compact('title', 'sliders', 'services', 'offers', 'testimonials', 'tests', 'latest_news'));
     }
 
     // get sliders
@@ -55,7 +59,7 @@ class SiteController extends Controller
             // Slider
             $sliders = Slider::withoutTrashed()
                 ->whereStatus('on')
-                ->orderByDesc('order')
+                ->orderBy('order', 'asc')
                 ->where(function ($q) {
                     $q->where('language', 'ar_en');
                 })
@@ -64,7 +68,7 @@ class SiteController extends Controller
             //Slider
             $sliders = Slider::withoutTrashed()
                 ->whereStatus('on')
-                ->orderByDesc('order')
+                ->orderBy('order', 'asc')
                 ->where(function ($q) {
                     $q->where('language', 'en')->orWhere('language', 'ar_en');
                 })
@@ -142,7 +146,7 @@ class SiteController extends Controller
                 ->where(function ($q) {
                     $q->where('language', 'ar_en');
                 })
-                ->get();
+                ->take(10)->get();
         } else {
             $testimonials = Testimonial::withoutTrashed()
                 ->whereStatus('on')
@@ -150,10 +154,33 @@ class SiteController extends Controller
                 ->where(function ($q) {
                     $q->where('language', 'en')->orWhere('language', 'ar_en');
                 })
-                ->get();
+                ->take(10)->get();
         }
 
         return $testimonials;
+    }
+
+
+    // get tests
+    public function getTests()
+    {
+        if (Lang() == 'ar') {
+            $tests = Test::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'ar');
+                })
+                ->get();
+        } else {
+            $tests = Test::whereStatus('on')
+                ->orderByDesc('created_at')
+                ->where(function ($q) {
+                    $q->where('language', 'en');
+                })
+                ->get();
+        }
+
+        return $tests;
     }
 
     // about spc
@@ -256,13 +283,13 @@ class SiteController extends Controller
             $tests  = Test::whereStatus('on')
                 ->orderByDesc('created_at')
                 ->where(function ($q) {
-                    $q->whereLanguage('ar_en');
+                    $q->whereLanguage('ar');
                 })->paginate(5);
         } else {
             $tests  = Test::whereStatus('on')
                 ->orderByDesc('created_at')
                 ->where(function ($q) {
-                    $q->whereLanguage('ar_en')->orWhere('language', 'en');
+                    $q->whereLanguage('en');
                 })->paginate(5);
         }
 
@@ -278,13 +305,13 @@ class SiteController extends Controller
             $tests  = Test::whereStatus('on')
                 ->orderByDesc('created_at')
                 ->where(function ($q) {
-                    $q->whereLanguage('ar_en');
+                    $q->whereLanguage('ar');
                 })->paginate(5);
         } else {
             $tests  = Test::whereStatus('on')
                 ->orderByDesc('created_at')
                 ->where(function ($q) {
-                    $q->whereLanguage('ar_en')->orWhere('language', 'en');
+                    $q->whereLanguage('en');
                 })->paginate(5);
         }
 
@@ -747,14 +774,14 @@ class SiteController extends Controller
                 ->where(function ($q) {
                     $q->where('language', 'ar_en');
                 })
-                ->paginate(6);
+                ->paginate(4);
         } else {
             $testimonials = Testimonial::whereStatus('on')
                 ->orderByDesc('created_at')
                 ->where(function ($q) {
                     $q->where('language', 'en')->orWhere('language', 'ar_en');
                 })
-                ->paginate(6);
+                ->paginate(4);
         }
         return view('site.testimonials.testimonials', compact('title', 'testimonials'));
     }
@@ -768,14 +795,14 @@ class SiteController extends Controller
                 ->where(function ($q) {
                     $q->where('language', 'ar_en');
                 })
-                ->paginate(6);
+                ->paginate(4);
         } else {
             $testimonials = Testimonial::whereStatus('on')
                 ->orderByDesc('created_at')
                 ->where(function ($q) {
                     $q->where('language', 'en')->orWhere('language', 'ar_en');
                 })
-                ->paginate(6);
+                ->paginate(4);
         }
         return view('site.testimonials.testimonial-paging', compact('testimonials'))->render();
     }
@@ -785,9 +812,9 @@ class SiteController extends Controller
     {
         if ($request->ajax()) {
             if ($request->year == null) {
-                $data = Testimonial::whereStatus('on')->orderByDesc('created_at')->paginate(6);
+                $data = Testimonial::whereStatus('on')->orderByDesc('created_at')->paginate(4);
             } else {
-                $data = Testimonial::whereStatus('on')->orderByDesc('created_at')->whereYear('created_at', '=', $request->year)->paginate(6);
+                $data = Testimonial::whereStatus('on')->orderByDesc('created_at')->whereYear('created_at', '=', $request->year)->get();
             }
 
             $output = '';
@@ -837,7 +864,9 @@ class SiteController extends Controller
                     }
                     $output .= '</h6></div><div class="clearfix"></div>';
                 }
-                $output .= ' <div class="container-fluid text-center"> <div class="row">' . $data->links('vendor.pagination.bootstrap-4') . '</div></div>';
+                if ($request->year == null) {
+                    $output .= ' <div class="container-fluid text-center"> <div class="row">' . $data->links('vendor.pagination.bootstrap-4') . '</div></div>';
+                }
                 $output .= '</div>';
             } else {
                 $output .= ' <div class="testimonial-text testimonial-block"><div><h2   class="text-capitalize text-warning text-center">' . __('site.no_testimonials') . '</h2></div></div>';
@@ -859,7 +888,7 @@ class SiteController extends Controller
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
             $destinationPath = public_path('adminBoard/uploadedImages/testimonials');
-            $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
+            $photo_path = $this->saveImage($image, $destinationPath);
         } else {
             $photo_path = '';
         }
@@ -893,39 +922,50 @@ class SiteController extends Controller
     }
 
     // Send Contact Message
-    public function sendContact(SupportCenterRequest $request)
-    {
-        SupportCenter::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'mobile' => $request->mobile,
-            'title' => $request->title,
-            'message' => $request->message,
-        ]);
-        return $this->returnSuccessMessage(trans('index.send_success_message'));
-    }
+    // public function sendContact(SupportCenterRequest $request)
+    // {
+    //     SupportCenter::create([
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'mobile' => $request->mobile,
+    //         'title' => $request->title,
+    //         'message' => $request->message,
+    //     ]);
+    //     return $this->returnSuccessMessage(trans('index.send_success_message'));
+    // }
 
     // Send Contact function
-    public function sendContact2(Request $request)
+    public function sendContact(Request $request)
     {
         if ($request->ajax()) {
-            $request->validate([
-                'captcha' => 'required|captcha',
-            ]);
 
-            $communication_sender = $request->name;
-            $communication_mobile = $request->mobile;
-            $communication_email = $request->email;
-            $communication_title = $request->title;
-            $communication_details = $request->message;
+            if (setting()->disabled_forms_button == 'on') {
 
-            $emailData = ['communication_email' => $communication_email, 'communication_title' => $communication_title, 'communication_details' => $communication_details, 'communication_sender' => $communication_sender, 'communication_mobile' => $communication_mobile];
+                $request->validate([
+                    'captcha' => 'required|captcha',
+                ]);
+                SupportCenter::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'mobile' => $request->mobile,
+                    'title' => $request->title,
+                    'message' => $request->message,
+                ]);
 
-            Mail::send('site.emails.contact-email', compact('emailData'), function ($message) use ($emailData) {
-                $message->from($emailData['communication_email'], $emailData['communication_sender']);
-                $message->to(config('websiteemail.mail'));
-                $message->subject($emailData['communication_title']);
-            });
+                $communication_sender = $request->name;
+                $communication_mobile = $request->mobile;
+                $communication_email = $request->email;
+                $communication_title = $request->title;
+                $communication_details = $request->message;
+
+                $emailData = ['communication_email' => $communication_email, 'communication_title' => $communication_title, 'communication_details' => $communication_details, 'communication_sender' => $communication_sender, 'communication_mobile' => $communication_mobile];
+
+                Mail::send('site.emails.contact-email', compact('emailData'), function ($message) use ($emailData) {
+                    $message->from($emailData['communication_email'], $emailData['communication_sender']);
+                    $message->to(config('websiteemail.mail'));
+                    $message->subject($emailData['communication_title']);
+                });
+            }
             return $this->returnSuccessMessage(trans('site.success_send_contact_message'));
         }
     }
@@ -941,23 +981,25 @@ class SiteController extends Controller
     public function bookingAppointment(Request $request)
     {
         if ($request->ajax()) {
-            $request->validate([
-                'captcha' => 'required|captcha',
-            ]);
 
-            $full_name = $request->full_name;
-            $phone = $request->phone;
-            $email = $request->email;
-            $preferred_date = $request->preferred_date;
-            $details = $request->details;
+            if (setting()->disabled_forms_button == 'on') {
+                $request->validate([
+                    'captcha' => 'required|captcha',
+                ]);
 
-            $emailData = ['email' => $email, 'title' => 'Booking an appointment', 'details' => $details, 'full_name' => $full_name, 'phone' => $phone, 'preferred_date' => $preferred_date];
+                $full_name = $request->full_name;
+                $phone = $request->phone;
+                $email = $request->email;
+                $preferred_date = $request->preferred_date;
+                $details = $request->details;
 
-            Mail::send('site.emails.booking-appointment-email', compact('emailData'), function ($message) use ($emailData) {
-                $message->from($emailData['email'], $emailData['full_name']);
-                $message->to(config('websiteemail.mail'));
-                $message->subject($emailData['title']);
-            });
+                $emailData = ['email' => $email, 'title' => 'Booking an appointment', 'details' => $details, 'full_name' => $full_name, 'phone' => $phone, 'preferred_date' => $preferred_date];
+                Mail::send('site.emails.booking-appointment-email', compact('emailData'), function ($message) use ($emailData) {
+                    $message->from($emailData['email'], $emailData['full_name']);
+                    $message->to(config('websiteemail.mail'));
+                    $message->subject($emailData['title']);
+                });
+            }
             return $this->returnSuccessMessage(trans('site.success_booking_message'));
         }
     }

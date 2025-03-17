@@ -38,10 +38,9 @@ class Test extends Model
     {
         return $this->hasMany(TestAnswer::class);
     }
-      // scales relation
-      public function scales(): HasMany
-      {
-          return $this->hasMany(TestScale::class);
-      }
+    // scales relation
+    public function scales(): HasMany
+    {
+        return $this->hasMany(TestScale::class);
+    }
 }
-

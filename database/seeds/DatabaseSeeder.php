@@ -34,22 +34,24 @@ class DatabaseSeeder extends Seeder
             SettingsSeeder::class,
             RoleSeeder::class,
             AdminSeeder::class,
-            TrainingsSeeder::class,
-            FaqSeeder::class,
-            VideosSeeder::class,
-            PhotoAlbumSeeder::class,
-            SlidersSeeder::class,
-            ServicesSeeder::class,
-            ArticleSeeder::class,
-            PublicationsSeeder::class,
-            SectionsSeeder::class,
-            MyNewsSeeder::class,
-            PostersSeeder::class,
-            BooksSeeder::class,
+            FixedTextsSeeder::class,
             AboutSpcSeeder::class,
             AboutSiteSeeder::class,
-            TestimonialsSeeder::class,
-            FixedTextsSeeder::class,
+
+            // TrainingsSeeder::class,
+            // FaqSeeder::class,php
+            // VideosSeeder::class,
+            // PhotoAlbumSeeder::class,
+            // SlidersSeeder::class,
+            // ServicesSeeder::class,
+            // ArticleSeeder::class,
+            // PublicationsSeeder::class,
+            // SectionsSeeder::class,
+            // MyNewsSeeder::class,
+            // PostersSeeder::class,
+            // BooksSeeder::class,
+            // TestimonialsSeeder::class,
+
 
         ]);
     }

@@ -20,12 +20,12 @@ class ArticleRequest extends FormRequest
 
         $route = $this->route()->getName();
 
-
         $rules = [
             'abstract_en' => 'required',
             'abstract_ar' => 'required_if:site_lang_ar,on',
             'publish_date' => 'required',
             'photo' => 'required_without:hidden_photo|image|mimes:jpeg,jpg,png|max:1024',
+            'file' => 'required_without:hidden_file|mimes:pdf|max:10240',
         ];
 
 

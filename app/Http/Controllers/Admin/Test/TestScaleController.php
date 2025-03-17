@@ -19,12 +19,11 @@ class TestScaleController extends Controller
     {
         if (!$request->scale_id_hidden) {
 
-            if($request->hasFile('photo')){
+            if ($request->hasFile('photo')) {
                 $photo_name = $request->file('photo');
                 $public_path = public_path('/adminBoard/uploadedImages/tests/scales//');
-                $photo = $this->saveResizeImage($photo_name, $public_path,300,300);
-
-            }else{
+                $photo = $this->saveImage($photo_name, $public_path);
+            } else {
                 $photo = '';
             }
 
@@ -35,7 +34,7 @@ class TestScaleController extends Controller
                 'minimum' => $request->minimum,
                 'maximum' => $request->maximum,
                 'test_id' => $request->scale_test_id_hidden,
-                'photo'=> $photo,
+                'photo' => $photo,
             ]);
 
             if ($scale) {
@@ -48,12 +47,37 @@ class TestScaleController extends Controller
             // update
 
             $scale = TestScale::find($request->scale_id_hidden);
+
+            if ($request->hasFile('photo')) {
+                if (!empty($scale->photo)) {
+                    $photo_public_path = public_path('/adminBoard/uploadedImages/tests/scales//') . $scale->photo;
+                    if (File::exists($photo_public_path)) {
+                        File::delete($photo_public_path);
+                    }
+                    $photo_name = $request->file('photo');
+                    $public_path = public_path('/adminBoard/uploadedImages/tests/scales//');
+                    $photo = $this->saveImage($photo_name, $public_path);
+                } else {
+                    $photo_name = $request->file('photo');
+                    $public_path = public_path('/adminBoard/uploadedImages/tests/scales//');
+                    $photo = $this->saveImage($photo_name, $public_path);
+                }
+            } else {
+
+                if (!empty($scale->photo)) {
+                    $photo = $scale->photo;
+                } else {
+                    $photo = '';
+                }
+            }
+
             $scale->update([
                 'statement' => $request->statement,
                 'evaluation' => $request->evaluation,
                 'minimum' => $request->minimum,
                 'maximum' => $request->maximum,
                 'test_id' => $request->scale_test_id_hidden,
+                'photo' => $photo,
             ]);
             if ($scale) {
                 return $this->returnData(__('general.update_success_message'), $scale);
@@ -99,21 +123,21 @@ class TestScaleController extends Controller
     }
 
 
-        // increase scales count
-        public function increaseTestScalesCount($id)
-        {
-            $test = Test::whereId($id)->first();
-            $scalesCount = $test->scales_count;
-            $testMetricsCount = $scalesCount + 1;
-            $test->update(['scales_count' => $testMetricsCount]);
-        }
+    // increase scales count
+    public function increaseTestScalesCount($id)
+    {
+        $test = Test::whereId($id)->first();
+        $scalesCount = $test->scales_count;
+        $testMetricsCount = $scalesCount + 1;
+        $test->update(['scales_count' => $testMetricsCount]);
+    }
 
-        // decrease scales count
-        public function decreaseTestScalesCount($id)
-        {
-            $test = Test::whereId($id)->first();
-            $scalesCount = $test->scales_count;
-            $testMetricsCount = $scalesCount - 1;
-            $test->update(['scales_count' => $testMetricsCount]);
-        }
+    // decrease scales count
+    public function decreaseTestScalesCount($id)
+    {
+        $test = Test::whereId($id)->first();
+        $scalesCount = $test->scales_count;
+        $testMetricsCount = $scalesCount - 1;
+        $test->update(['scales_count' => $testMetricsCount]);
+    }
 }

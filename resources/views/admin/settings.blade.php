@@ -67,7 +67,7 @@
                                                         <hr />
                                                         <br />
                                                         <!--begin::Group-->
-                                                        <div class="form-group row">
+                                                        <div class="form-group row my-5">
                                                             <label
                                                                 class="col-xl-3 col-lg-3 col-form-label text-left">{{ __('settings.site_icon') }}</label>
                                                             <div class="col-lg-9 col-xl-9">
@@ -103,7 +103,7 @@
                                                         <!--begin::Group-->
 
                                                         <!--begin::Group-->
-                                                        <div class="form-group row">
+                                                        <div class="form-group row my-15">
                                                             <label
                                                                 class="col-xl-3 col-lg-3 col-form-label text-left">{{ __('settings.site_logo') }}</label>
                                                             <div class="col-lg-9 col-xl-9">
@@ -319,7 +319,7 @@
 
 
                                                         <!--begin::Group-->
-                                                        <div class="d-none form-group row">
+                                                        <div class="form-group row">
                                                             <label class="col-xl-3 col-lg-3 col-form-label">
                                                                 {{ __('settings.site_phone') }}
                                                             </label>
@@ -379,7 +379,7 @@
                                                                 {{ __('settings.site_description_en') }}
                                                             </label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <textarea rows="3" class="form-control form-control-solid form-control-lg" name="site_description_en"
+                                                                <textarea rows="7" class="form-control form-control-solid form-control-lg" name="site_description_en"
                                                                     id="site_description_en" type="text" placeholder=" {{ __('settings.enter_site_description_en') }}"
                                                                     autocomplete="off">{{ setting()->site_description_en }}</textarea>
 
@@ -395,7 +395,7 @@
                                                                 {{ __('settings.site_description_ar') }}
                                                             </label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <textarea rows="3" class="form-control form-control-solid  form-control-lg" name="site_description_ar"
+                                                                <textarea rows="7" class="form-control form-control-solid  form-control-lg" name="site_description_ar"
                                                                     id="site_description_ar" type="text" placeholder=" {{ __('settings.enter_site_description_ar') }}"
                                                                     autocomplete="off">{{ setting()->site_description_ar }}</textarea>
 
@@ -411,7 +411,7 @@
                                                                 {{ __('settings.site_keywords_en') }}
                                                             </label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <textarea rows="5" class="form-control form-control-solid form-control-lg" name="site_keywords_en"
+                                                                <textarea rows="7" class="form-control form-control-solid form-control-lg" name="site_keywords_en"
                                                                     id="site_keywords_en" type="text" placeholder=" {{ __('settings.enter_site_keywords_en') }}"
                                                                     autocomplete="off">{{ setting()->site_keywords_en }}</textarea>
 
@@ -427,7 +427,7 @@
                                                                 {{ __('settings.site_keywords_ar') }}
                                                             </label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <textarea rows="5" class="form-control form-control-solid form-control-lg" name="site_keywords_ar"
+                                                                <textarea rows="7" class="form-control form-control-solid form-control-lg" name="site_keywords_ar"
                                                                     id="site_keywords_ar" type="text" placeholder=" {{ __('settings.enter_site_keywords_ar') }}"
                                                                     autocomplete="off">{{ setting()->site_keywords_ar }}</textarea>
 
@@ -443,7 +443,7 @@
                                                                 {{ __('settings.site_address_en') }}
                                                             </label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <textarea rows="5" class="form-control form-control-solid form-control-lg" name="site_address_en"
+                                                                <textarea rows="2" class="form-control form-control-solid form-control-lg" name="site_address_en"
                                                                     id="site_address_en" type="text" placeholder=" {{ __('settings.enter_site_address_en') }}"
                                                                     autocomplete="off">{{ setting()->site_address_en }}</textarea>
 
@@ -459,7 +459,7 @@
                                                                 {{ __('settings.site_address_ar') }}
                                                             </label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <textarea rows="5" class="form-control form-control-solid form-control-lg" name="site_address_ar"
+                                                                <textarea rows="2" class="form-control form-control-solid form-control-lg" name="site_address_ar"
                                                                     id="site_address_ar" type="text" placeholder=" {{ __('settings.enter_site_address_ar') }}"
                                                                     autocomplete="off">{{ setting()->site_address_ar }}</textarea>
 
@@ -528,6 +528,22 @@
                                                                         {{ setting()->lang_front_button_status == 'on' ? 'checked' : '' }}
                                                                         name="lang_front_button_status"
                                                                         id="lang_front_button_status">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-8 col-lg-8 col-form-label">
+                                                                {{ __('settings.disabled_forms_button') }}
+                                                            </label>
+                                                            <div class="col-lg-4 col-xl-4 " id="site_lang_en_section">
+                                                                <div class="cst-switch switch-lg">
+                                                                    <input class="disabled_forms_button" type="checkbox"
+                                                                        {{ setting()->disabled_forms_button == 'on' ? 'checked' : '' }}
+                                                                        name="disabled_forms_button"
+                                                                        id="disabled_forms_button">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -766,6 +782,51 @@
                             }
                         });
                         $('.switch_frontend_lang_button').click(function() {});
+                    }
+                }, //end success
+            })
+        });
+
+        ////////////////////////////////////////////////////
+        // disabled form button
+        var switchDisabledFromsButton = false;
+        $("#disabled_forms_button").on('change', function(e) {
+            e.preventDefault();
+
+            if ($(this).is(':checked')) {
+                switchDisabledFromsButton = $(this).is(':checked');
+            } else {
+                switchDisabledFromsButton = $(this).is(':checked');
+            }
+
+            $.ajax({
+                url: "{{ route('switch.disabled.forms') }}",
+                data: {
+                    switchDisabledFromsButton: switchDisabledFromsButton
+                },
+                type: 'post',
+                dataType: 'JSON',
+                beforeSend: function() {
+                    KTApp.blockPage({
+                        overlayColor: '#000000',
+                        state: 'danger',
+                        message: "{{ __('general.please_wait') }}",
+                    });
+                }, //end beforeSend
+                success: function(data) {
+                    KTApp.unblockPage();
+                    console.log(data);
+                    if (data.status == true) {
+                        Swal.fire({
+                            title: data.msg,
+                            text: "",
+                            icon: "success",
+                            allowOutsideClick: false,
+                            customClass: {
+                                confirmButton: 'switch_disabled_forms_button'
+                            }
+                        });
+                        $('.switch_disabled_forms_button').click(function() {});
                     }
                 }, //end success
             })

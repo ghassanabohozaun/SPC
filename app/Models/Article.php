@@ -23,6 +23,7 @@ class Article extends Model
         'status',
         'views',
         'photo',
+        'file',
         'language',
     ];
     protected $hidden = ['updated_at'];

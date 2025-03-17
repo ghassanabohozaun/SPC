@@ -31,17 +31,17 @@
 
             <div class="medium-3 small-12 cell contact-sidebar">
                 <img src="{!! asset('site/assets/images/doctor7.png') !!}" alt="">
-                <h4 class="padding-top-zero">{!! trans('site.meet_our_psychotherapist') !!}</h4>
+                <h4 class="padding-top-zero">{!! __('site.meet_our_psychotherapist') !!}</h4>
                 <p>
                     {!! setting()->{'site_address_' . Lang()} !!}
                 </p>
-                <h4>{!! trans('site.customer_service') !!}</h4>
+                <h4>{!! __('site.customer_service') !!}</h4>
                 <p>
-                    {!! trans('site.phone') !!} : {!! setting()->site_mobile !!}
+                    {!! __('site.phone') !!} : {!! setting()->site_mobile !!}
                     <br />
-                    {!! trans('site.email') !!} : {!! setting()->site_email !!}
+                    {!! __('site.email') !!} : {!! setting()->site_email !!}
                 </p>
-                <h4>{!! trans('site.follow_us') !!}</h4>
+                <h4>{!! __('site.follow_us') !!}</h4>
                 <div class="social-icons">
                     <a onclick="return {!! setting()->site_facebook ? 'true' : 'false' !!};" href="{!! setting()->site_facebook !!}" target="__blank">
                         <i class="fab fa-facebook-f"></i>
@@ -83,35 +83,35 @@
 
                 <!-- Start contact form  -->
                 <div class="content-section-form">
-                    <h3>{!! trans('site.fill_the_form_below_to_contact_us') !!}</h3>
+                    <h3>{!! __('site.fill_the_form_below_to_contact_us') !!}</h3>
                     <form id="contact_form" enctype="multipart/form-data" method="POST" action="{!! route('send.contact') !!}">
                         @csrf
                         <div class="grid-container grid-x grid-padding-x">
 
                             <div class="medium-4 cell">
-                                <input type="text" placeholder="{!! trans('site.enter_Name') !!}" id="name" name="name"
+                                <input type="text" placeholder="{!! __('site.enter_Name') !!}" id="name" name="name"
                                     autocomplete="off">
                                 <span id="name_error" class="form-text text-danger"></span>
                             </div>
 
                             <div class="medium-4 cell">
-                                <input type="text" placeholder="{!! trans('site.enter_mobile') !!}" id="mobile" name="mobile"
+                                <input type="text" placeholder="{!! __('site.enter_mobile') !!}" id="mobile" name="mobile"
                                     autocomplete="off">
                                 <span id="mobile_error" class="form-text text-danger"></span>
                             </div>
 
                             <div class="medium-4 cell">
-                                <input type="text" placeholder="{!! trans('site.enter_email') !!}" id="email" name="email"
+                                <input type="text" placeholder="{!! __('site.enter_email') !!}" id="email" name="email"
                                     autocomplete="off">
                                 <span id="email_error" class="form-text text-danger"></span>
                             </div>
                             <div class="medium-12 cell">
-                                <input type="text" placeholder="{!! trans('site.enter_message_title') !!}" id="title" name="title"
+                                <input type="text" placeholder="{!! __('site.enter_message_title') !!}" id="title" name="title"
                                     autocomplete="off">
                                 <span id="title_error" class="form-text text-danger"></span>
                             </div>
                             <div class="medium-12 cell">
-                                <textarea placeholder="{!! trans('site.enter_your_message') !!}" rows="5" id="message" name="message" autocomplete="off"></textarea>
+                                <textarea placeholder="{!! __('site.enter_your_message') !!}" rows="5" id="message" name="message" autocomplete="off"></textarea>
                                 <span id="message_error" class="form-text text-danger"></span>
                             </div>
                             <div class="medium-12 cell">
@@ -124,13 +124,13 @@
 
                                 <div class="form-group mb-4">
                                     <input id="captcha" type="text" class="form-control"
-                                        placeholder="{!! trans('site.enter_captcha') !!}" name="captcha">
+                                        placeholder="{!! __('site.enter_captcha') !!}" name="captcha">
                                     <span class="form-text text-danger" id="captcha_error"></span>
                                 </div>
                             </div>
 
                             <div class="medium-12 cell">
-                                <button class="primary button" type="submit">{!! trans('site.send') !!} &nbsp;
+                                <button class="primary button" type="submit">{!! __('site.send') !!} &nbsp;
                                     <div class="spinner-border  text-info d-none loading_spinner" id="loading_spinner">
                                         <span class="visually-hidden">Loading...</span>
                                     </div>
@@ -201,23 +201,23 @@
             },
             messages: {
                 name: {
-                    required: '{{ trans('site.sender_required') }}',
+                    required: '{{ __('site.sender_required') }}',
                 },
                 mobile: {
-                    required: '{{ trans('site.mobile_required') }}',
+                    required: '{{ __('site.mobile_required') }}',
                 },
                 email: {
-                    required: '{{ trans('site.email_required') }}',
-                    email: '{{ trans('site.email_email') }}',
+                    required: '{{ __('site.email_required') }}',
+                    email: '{{ __('site.email_email') }}',
                 },
                 title: {
-                    required: '{{ trans('site.title_required') }}',
+                    required: '{{ __('site.title_required') }}',
                 },
                 message: {
-                    required: '{{ trans('site.details_required') }}',
+                    required: '{{ __('site.details_required') }}',
                 },
                 captcha: {
-                    required: '{{ trans('site.captcha_required') }}',
+                    required: '{{ __('site.captcha_required') }}',
                 },
             },
         });
@@ -250,7 +250,7 @@
                         $('#loading_spinner').addClass('d-none')
                         swal({
                             icon: "success",
-                            text: "{!! trans('site.success_send_contact_message') !!}",
+                            text: "{!! __('site.success_send_contact_message') !!}",
                             buttons: false,
                             timer: 3000,
                         });
@@ -261,7 +261,7 @@
                         $('#loading_spinner').addClass('d-none')
                         swal({
                             icon: "success",
-                            text: "{!! trans('site.send_failed_message') !!}",
+                            text: "{!! __('site.send_failed_message') !!}",
                             buttons: false,
                             timer: 3000,
                         });

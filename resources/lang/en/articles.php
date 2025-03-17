@@ -7,7 +7,7 @@ return [
     'article_details_ar_tab' => 'Arabic Article Details',
     'article_details_en_tab' => 'English Article Details',
 
-
+    'title' => 'Article Title',
     'title_ar' => 'Article Title | Arabic',
     'title_en' => 'Article Title | English',
     'abstract_ar' => 'Article Abstract | Arabic',

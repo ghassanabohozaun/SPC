@@ -38,7 +38,7 @@ class TestsController extends Controller
         if ($request->hasFile('test_photo')) {
             $photo_name = $request->file('test_photo');
             $photo_path_destination = public_path('/adminBoard/uploadedImages/tests//');
-            $photo = $this->saveResizeImage($photo_name, $photo_path_destination, 500, 500);
+            $photo = $this->saveImage($photo_name, $photo_path_destination);
         } else {
             $photo = '';
         }
@@ -52,7 +52,6 @@ class TestsController extends Controller
             $file = '';
         }
 
-        $site_lang_ar = setting()->site_lang_ar;
 
         $test = Test::create([
             'test_name_slug' => slug($request->test_name),
@@ -65,7 +64,7 @@ class TestsController extends Controller
             'status' => 'on',
             'test_photo' => $photo,
             'file' => $file,
-            'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
+            'language' => $request->language,
         ]);
 
         if ($test) {
@@ -100,15 +99,14 @@ class TestsController extends Controller
                 if (File::exists($photo_public_path)) {
                     File::delete($photo_public_path);
                 }
-
                 // upload new photo
                 $photo_name = $request->file('test_photo');
                 $photo_destination = public_path('/adminBoard/uploadedImages/tests//');
-                $photo = $this->saveResizeImage($photo_name, $photo_destination, 200, 200);
+                $photo = $this->saveImage($photo_name, $photo_destination);
             } else {
                 $photo_name = $request->file('photo');
                 $photo_destination = public_path('/adminBoard/uploadedImages/tests//');
-                $photo = $this->saveResizeImage($photo_name, $photo_destination, 200, 200);
+                $photo = $this->saveImage($photo_name, $photo_destination);
             }
         } else {
             if (!empty($test->test_photo)) {
@@ -144,20 +142,15 @@ class TestsController extends Controller
             }
         }
 
-        $site_lang_ar = setting()->site_lang_ar;
 
         $test->update([
             'test_name_slug' => slug($request->test_name),
             'test_name' => $request->test_name,
             'test_details' => $request->test_details,
             'added_date' => $request->added_date,
-            'question_count' => 0,
-            'metrics_count' => 0,
-            'number_times_of_use' => 0,
-            'status' => 'on',
             'test_photo' => $photo,
             'file' => $file,
-            'language' => $site_lang_ar == 'on' ? 'ar_en' : 'en',
+            'language' => $request->language,
         ]);
 
         return $this->returnSuccessMessage(__('general.update_success_message'));

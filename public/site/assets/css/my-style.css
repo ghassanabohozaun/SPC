@@ -221,6 +221,8 @@ margin-top: 20px;
 /*---------------------------------
 Start my offers sections CSS
 ---------------------------------*/
+
+
 .offers .section-title p,
 .offers .section-title h2 {
 color: #fff;
@@ -398,7 +400,7 @@ font-size: 16px;
 
 .my_news_section .my_new_image_card {
 width: 100% !important;
-height: 235px !important;
+height: 280px !important;
 object-fit: fill;
 }
 
@@ -407,10 +409,18 @@ Start My Test Section
 ---------------------------------*/
 .my_tests_section .my_test_image_card {
 width: 100% !important;
-height: 350px !important;
+height: 100%  !important;
 object-fit: fill;
 }
-
+.test-card-div{
+    display: flex;
+    height: auto;
+}
+.test-card-body{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+}
 .my_tests_section .my_row {
 margin-bottom: 40px
 }
@@ -604,7 +614,7 @@ color: white;
 padding-top: 40px;
 }
 #my-swiper-container{
-height: 450px;
+height: 570px;
 }
 
 .creative-testimonial--slider .testimonial-inner {
@@ -636,7 +646,7 @@ content: "";
 background-color: rgba(56, 51, 51, 0.9);
 position: relative;
 overflow: hidden;
-margin-bottom: 6%;
+margin-bottom: 2%;
 z-index: 1;
 
 }
@@ -659,7 +669,7 @@ height: 35px;
 .swiper-slide--inner .testimonial-detail p {
 margin: 0px;
 color: white;
-font-size: 18px;
+font-size: 16px;
 line-height: 30px;
 font-weight: 500;
 margin-bottom: 5px;
@@ -854,8 +864,9 @@ font-size: 16px;
 .services-section .service-icon img {
 border-radius: 2px;
 margin-bottom: 24px;
-height: 100%;
+height: 270px;
 width: 100%;
+object-fit: fill
 }
 
 .services-section .service-text a {
@@ -865,8 +876,9 @@ font-size: 16px;
 .my_services_section .service-icon img {
 border-radius: 2px;
 margin-bottom: 24px;
-height: 100%;
+height: 270px;
 width: 100%;
+object-fit: fill
 }
 
 .my_treatment_areas_section .service-icon img {
@@ -1111,6 +1123,7 @@ opacity: 0.6 !important;
 testimonials CSS Ends
 -------------------------*/
 
+
 .testimonials .section-title h2 {
 color: #ffffff;
 }
@@ -1295,6 +1308,18 @@ padding-top: 40px;
 display: none !important;
 }
 
+.my_visitor_text{
+    color: #f2963f;
+    font-size: 25px;
+    font-weight: bolder;
+
+}
+.my_visitor_span{
+    color: white;
+    font-size: 25px;
+    font-weight: bolder;
+    text-decoration:underline;
+}
 .test-questions-wrapper {
 min-height: 50vh;
 position: relative;
@@ -1628,9 +1653,9 @@ padding: 10px;
 }
 
 .my_photos_section .card-img-top {
-max-height: 200px;
-min-height: 200px;
-object-fit: cover;
+max-width: 100%;
+min-height: 250px;
+object-fit: fill;
 }
 
 .my_photos_section .card .card-text {

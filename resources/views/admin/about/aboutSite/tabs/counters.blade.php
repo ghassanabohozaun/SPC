@@ -1,4 +1,4 @@
-<div class="tab-pane fade" id="counters" role="tabpanel" aria-labelledby="counters_tab">
+<div class="tab-pane fade show active" id="counters" role="tabpanel" aria-labelledby="counters_tab">
     <div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
         <div class="col-xl-12 col-xxl-10">
 

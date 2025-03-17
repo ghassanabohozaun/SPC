@@ -60,6 +60,7 @@ class SettingsController extends Controller
                 'site_mobile' => $request->site_mobile,
                 'site_lang_ar' => $request->site_lang_ar,
                 'lang_front_button_status' => $request->lang_front_button_status,
+                'disabled_forms_button' => $request->disabled_forms_button,
                 'site_description_ar' => $request->site_description_ar,
                 'site_description_en' => $request->site_description_en,
                 'site_keywords_ar' => $request->site_keywords_ar,
@@ -144,6 +145,7 @@ class SettingsController extends Controller
                 'site_mobile' => $request->site_mobile,
                 'site_lang_ar' => $request->site_lang_ar,
                 'lang_front_button_status' => $request->lang_front_button_status,
+                'disabled_forms_button' => $request->disabled_forms_button,
                 'site_description_ar' => $request->site_description_ar,
                 'site_description_en' => $request->site_description_en,
                 'site_keywords_ar' => $request->site_keywords_ar,
@@ -174,7 +176,7 @@ class SettingsController extends Controller
     }
 
     ////////////////////////////////////////////////////////
-    ///  switchFrontend Language
+    ///  switch Frontend Language
     public function switchFrontendLang(Request $request)
     {
         $settings = Setting::orderBy('id', 'desc')->first();
@@ -183,6 +185,22 @@ class SettingsController extends Controller
             $settings->save();
         } else {
             $settings->lang_front_button_status = 'on';
+            $settings->save();
+        }
+
+        return $this->returnSuccessMessage(__('general.change_status_success_message'));
+    }
+
+    ////////////////////////////////////////////////////////
+    ///  switch disabled forms
+    public function switchDisabledForms(Request $request)
+    {
+        $settings = Setting::orderBy('id', 'desc')->first();
+        if ($request->switchDisabledFromsButton == 'false') {
+            $settings->disabled_forms_button = null;
+            $settings->save();
+        } else {
+            $settings->disabled_forms_button = 'on';
             $settings->save();
         }
 

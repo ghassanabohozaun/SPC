@@ -227,7 +227,7 @@
                                                             <span class="form-text text-danger" id="file_error"></span>
 
                                                             @if ($poster->file)
-                                                                <a class="form-text text-info"
+                                                                <a class="form-text text-info" target="_blank"
                                                                     style="font-size: 14px ;font-weight: bolder"
                                                                     href="{!! asset('adminBoard/uploadedFiles/posters/' . $poster->file) !!}">{!! __('general.download') !!}</a>
                                                             @endif

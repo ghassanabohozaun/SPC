@@ -119,6 +119,7 @@
 
             ////////////////////////////////////////////////////////////////////
             $('#photo_error').text('');
+            $('#file_error').text('');
             $('#publish_date_error').text('');
             $('#publisher_name_error').text('');
             $('#title_ar_error').text('');
@@ -126,6 +127,7 @@
             $('#title_en_error').text('');
             $('#abstract_en_error').text('');
 
+            $('#file').css('border-color', '');
             $('#photo').css('border-color', '');
             $('#publish_date').css('border-color', '');
             $('#publisher_name').css('border-color', '');

@@ -46,6 +46,16 @@
                                         {!! $article->{'abstract_' . Lang()} !!}
                                     </div>
                                     <div class="clearfix"></div>
+                                    <br />
+                                    @if ($article->file != null)
+                                        <a href="{!! asset('adminBoard/uploadedFiles/articles/' . $article->file) !!}">
+                                            <h4 class="website_color">
+                                                <i class="fas fa-file-pdf"></i>
+                                                &nbsp; {!! __('general.download') !!} &nbsp;
+                                            </h4>
+                                        </a>
+                                    @endif
+                                    <div class="clearfix"></div>
                                 </div>
                             </div><!-- Left Post /-->
                         </div><!-- cell /-->

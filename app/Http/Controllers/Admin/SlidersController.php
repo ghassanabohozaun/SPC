@@ -48,7 +48,7 @@ class SlidersController extends Controller
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
             $destinationPath = public_path('/adminBoard/uploadedImages/sliders//');
-            $photo_path = $this->saveResizeImage($image, $destinationPath, 1865, 700);
+            $photo_path = $this->saveResizeImage($image, $destinationPath, 1865, 900);
         } else {
             $photo_path = '';
         }
@@ -114,11 +114,11 @@ class SlidersController extends Controller
                 }
                 $image = $request->file('photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/sliders//');
-                $photo_path = $this->saveResizeImage($image, $destinationPath, 1865, 700);
+                $photo_path = $this->saveResizeImage($image, $destinationPath, 1865, 1200);
             } else {
                 $image = $request->file('photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/sliders//');
-                $photo_path = $this->saveResizeImage($image, $destinationPath, 1865, 700);
+                $photo_path = $this->saveResizeImage($image, $destinationPath, 1865, 1200);
             }
         } else {
             if (!empty($slider->photo)) {

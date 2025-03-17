@@ -36,7 +36,7 @@ class PhotoAlbumsController extends Controller
         if ($request->hasFile('main_photo')) {
             $image = $request->file('main_photo');
             $destinationPath = public_path('/adminBoard/uploadedImages/albums//');
-            $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
+            $photo_path = $this->saveResizeImage($image, $destinationPath, 600, 400);
         } else {
             $photo_path = '';
         }
@@ -84,11 +84,11 @@ class PhotoAlbumsController extends Controller
 
                 $image = $request->file('main_photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/albums//');
-                $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
+                $photo_path = $this->saveResizeImage($image, $destinationPath, 600, 400);
             } else {
                 $image = $request->file('main_photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/albums//');
-                $photo_path = $this->saveResizeImage($image, $destinationPath, 500, 500);
+                $photo_path = $this->saveResizeImage($image, $destinationPath, 600, 400);
             }
         } else {
             if (!empty($photoAlbum->main_photo)) {

@@ -71,7 +71,21 @@
                                 <ul class="nav nav-tabs" id="myTab2" role="tablist">
 
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="whom_tab" data-toggle="tab" href="#whom">
+                                        <a class="nav-link active" id="counters_tab" data-toggle="tab" href="#counters">
+                                            <span class="nav-icon"><i class="flaticon2-layers-2"></i></span>
+                                            <span class="nav-text">{{ __('aboutSite.counters_tab') }}</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="about_doctor_tab" data-toggle="tab" href="#about_doctor">
+                                            <span class="nav-icon"><i class="flaticon2-layers-2"></i></span>
+                                            <span class="nav-text">{{ __('aboutSite.about_doctor_tab') }}</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="whom_tab" data-toggle="tab" href="#whom">
                                             <span class="nav-icon"><i class="flaticon2-layers-2"></i></span>
                                             <span class="nav-text">{{ __('aboutSite.whom_tab') }}</span>
                                         </a>
@@ -85,23 +99,9 @@
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link" id="about_doctor_tab" data-toggle="tab" href="#about_doctor">
-                                            <span class="nav-icon"><i class="flaticon2-layers-2"></i></span>
-                                            <span class="nav-text">{{ __('aboutSite.about_doctor_tab') }}</span>
-                                        </a>
-                                    </li>
-
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="why_chose_us_tab" data-toggle="tab" href="#why_chose_us">
+                                        <a class="nav-link " id="why_chose_us_tab" data-toggle="tab" href="#why_chose_us">
                                             <span class="nav-icon"><i class="flaticon2-layers-2"></i></span>
                                             <span class="nav-text">{{ __('aboutSite.why_chose_us_tab') }}</span>
-                                        </a>
-                                    </li>
-
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="counters_tab" data-toggle="tab" href="#counters">
-                                            <span class="nav-icon"><i class="flaticon2-layers-2"></i></span>
-                                            <span class="nav-text">{{ __('aboutSite.counters_tab') }}</span>
                                         </a>
                                     </li>
 
@@ -109,12 +109,10 @@
 
                                 <div class="tab-content mt-5">
                                     @include('admin.about.aboutSite.tabs.counters')
+                                    @include('admin.about.aboutSite.tabs.about_doctor')
                                     @include('admin.about.aboutSite.tabs.whom')
                                     @include('admin.about.aboutSite.tabs.who_are_you')
-                                    @include('admin.about.aboutSite.tabs.about_doctor')
                                     @include('admin.about.aboutSite.tabs.why_chose_us')
-
-
                                 </div>
                             </div>
 

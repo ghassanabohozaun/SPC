@@ -2,6 +2,8 @@
 
 return [
     'update_test' => 'تعديل الاختبار ',
+    'arabic' => 'عربي',
+    'english' => 'انجليزي',
 
     'test_name' => 'اسم الاختبار',
     'test_details' => 'تفاصيل الاختبار',

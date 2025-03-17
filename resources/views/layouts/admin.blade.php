@@ -128,7 +128,7 @@
                         @if (!empty(setting()->site_logo))
                             <a href="javascript:;" class="brand-logo">
                                 <img src="{{ asset('adminBoard/uploadedImages/logos/' . setting()->site_logo) }}"
-                                    style="width: 80; height: 70px; border-radius: 1px">
+                                    style="width: 80; height: 70px; border-radius: 10%">
                             </a>
                         @else
                             LOGO

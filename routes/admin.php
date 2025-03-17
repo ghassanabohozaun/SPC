@@ -68,6 +68,7 @@ Route::group(
                 ->middleware('can:settings');
             Route::post('switch-ar-lang', [SettingsController::class, 'switchArabicLang'])->name('switch.arabic.lang');
             Route::post('switch-frontend-lang', [SettingsController::class, 'switchFrontendLang'])->name('switch.frontend.lang');
+            Route::post('switch-disabled-forms', [SettingsController::class, 'switchDisabledForms'])->name('switch.disabled.forms');
         });
         /////////////////////////////////////////////////////////////////////////////////////////////
         /// admin routes
@@ -379,19 +380,18 @@ Route::group(
 
 
 
-        Route::group(['prefix'=>'revisions'],function(){
-            Route::get('/',[RevisionController::class , 'index'])->name('admin.revisions');
-            Route::get('/create',[RevisionController::class, 'create'])->name('admin.revisions.create');
-            Route::get('/store' , [RevisionController::class, 'store'])->name('admin.revisions.store');
-            Route::get('trashed' , [RevisionController::class,'trashed'])->name('admin.revisions.trashed');
-            Route::post('destroy' , [RevisionController::class , 'destroy'])->name('admin.revisions.destroy');
-            Route::post('restore' , [RevisionController::class , 'restore'])->name('admin.revisions.restore');
-            Route::post('force_delete' , [RevisionController::class , 'forceDelete'])->name('admin.revisions.force.delete');
-            Route::post('/change_status' , [RevisionController::class, 'changeStatus'])->name('admin.revisions.change.status');
+        Route::group(['prefix' => 'revisions'], function () {
+            Route::get('/', [RevisionController::class, 'index'])->name('admin.revisions');
+            Route::get('/create', [RevisionController::class, 'create'])->name('admin.revisions.create');
+            Route::get('/store', [RevisionController::class, 'store'])->name('admin.revisions.store');
+            Route::get('trashed', [RevisionController::class, 'trashed'])->name('admin.revisions.trashed');
+            Route::post('destroy', [RevisionController::class, 'destroy'])->name('admin.revisions.destroy');
+            Route::post('restore', [RevisionController::class, 'restore'])->name('admin.revisions.restore');
+            Route::post('force_delete', [RevisionController::class, 'forceDelete'])->name('admin.revisions.force.delete');
+            Route::post('/change_status', [RevisionController::class, 'changeStatus'])->name('admin.revisions.change.status');
             Route::get('/edit/{id?}', [RevisionController::class, 'edit'])->name('admin.revisions.edit');
             Route::post('/update', [RevisionController::class, 'update'])->name('admin.revisions.update');
         });
-
     },
 
 
