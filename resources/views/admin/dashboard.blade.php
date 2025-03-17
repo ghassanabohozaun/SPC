@@ -252,7 +252,7 @@
                                     </svg><!--end::Svg Icon--></span>
                             </span>
                             <span class="card-title font-weight-bolder font-size-h2 mb-0 mt-6 text-hover-primary d-block">
-                                {{ App\Models\training::count() }}
+                                {{ App\Models\Training::count() }}
                             </span>
                             <span class="font-weight-bold  card_name_span">
                                 {{ __('dashboard.training_counter') }}
