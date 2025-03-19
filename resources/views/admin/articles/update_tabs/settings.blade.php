@@ -20,6 +20,9 @@
                                     name="hidden_photo" value="hidden_photo">
 
                                 <input type="text" class="form-control form-control-solid form-control-lg"
+                                    name="hidden_file" value="hidden_file">
+
+                                <input type="text" class="form-control form-control-solid form-control-lg"
                                     name="action" value="update">
 
                                 <input type="text" class="form-control form-control-solid form-control-lg"

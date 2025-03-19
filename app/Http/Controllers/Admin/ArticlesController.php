@@ -35,7 +35,7 @@ class ArticlesController extends Controller
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
             $destinationPath = public_path('adminBoard/uploadedImages/articles');
-            $photo_path = $this->saveImage($image, $destinationPath);
+            $photo_path = $this->saveResizeImage($image, $destinationPath, 1000, 800);
         } else {
             $photo_path = '';
         }
@@ -105,11 +105,11 @@ class ArticlesController extends Controller
             if (!empty($article->photo)) {
                 $image = $request->file('photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/articles//');
-                $photo_path = $this->saveImage($image, $destinationPath);
+                $photo_path = $this->saveResizeImage($image, $destinationPath, 1000, 800);
             } else {
                 $image = $request->file('photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/articles//');
-                $photo_path = $this->saveImage($image, $destinationPath);
+                $photo_path = $this->saveResizeImage($image, $destinationPath, 1000, 800);
             }
         } else {
             if (!empty($article->photo)) {

@@ -75,8 +75,9 @@ trait GeneralTrait
     {
         $input['photo'] = time() . '.' . $image->getClientOriginalExtension();
         $imgFile = Image::make($image->getRealPath());
-        $imgFile->fit($width, $height, function ($constraint) {
+        $imgFile->resize($width, $height, function ($constraint) {
             $constraint->aspectRatio();
+            $constraint->upsize();
         })->save($destinationPath . '/' . $input['photo']);
         return  $input['photo'];
     }

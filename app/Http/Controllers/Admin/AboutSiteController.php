@@ -61,7 +61,7 @@ class AboutSiteController extends Controller
                 'why_chose_us_photo' => $why_chose_us_photo,
 
                 // counters
-                'counter_icon_one' =>$counter_icon_one_photo,
+                'counter_icon_one' => $counter_icon_one_photo,
                 'counter_ar_one' => $request->counter_ar_one,
                 'counter_en_one' =>  $request->counter_en_one,
                 'counter_number_one' =>  $request->counter_number_one,
@@ -71,7 +71,7 @@ class AboutSiteController extends Controller
                 'counter_en_two' => $request->counter_en_two,
                 'counter_number_two' => $request->counter_number_two,
 
-                'counter_icon_three' =>$counter_icon_three_photo,
+                'counter_icon_three' => $counter_icon_three_photo,
                 'counter_ar_three' => $request->counter_ar_three,
                 'counter_en_three' => $request->counter_en_three,
                 'counter_number_three' => $request->counter_number_three,
@@ -107,11 +107,11 @@ class AboutSiteController extends Controller
                 // upload new file
                 $file_name = $request->file('whom_brochure');
                 $file_destination = public_path('/adminBoard/uploadedFiles/brochures//');
-                $file = $this->saveFile($file_name, $file_destination);
+                $file = $this->saveResizeImage($file_name, $file_destination, 800, 600);
             } else {
                 $file_name = $request->file('whom_brochure');
                 $file_destination = public_path('/adminBoard/uploadedFiles/brochures//');
-                $file = $this->saveFile($file_name, $file_destination);
+                $file = $this->saveResizeImage($file_name, $file_destination, 800, 600);
             }
         } else {
             if (!empty($aboutSite->whom_brochure)) {
@@ -138,11 +138,11 @@ class AboutSiteController extends Controller
                 // upload new file
                 $file_name = $request->file('who_are_we_profile');
                 $file_destination = public_path('/adminBoard/uploadedFiles/brochures//');
-                $file = $this->saveFile($file_name, $file_destination);
+                $file = $this->saveFile($file_name, $file_destination, 800, 600);
             } else {
                 $file_name = $request->file('who_are_we_profile');
                 $file_destination = public_path('/adminBoard/uploadedFiles/brochures//');
-                $file = $this->saveFile($file_name, $file_destination);
+                $file = $this->saveResizeImage($file_name, $file_destination, 800, 600);
             }
         } else {
             if (!empty($aboutSite->who_are_we_profile)) {
@@ -168,11 +168,11 @@ class AboutSiteController extends Controller
                 // upload new photo
                 $photo_file = $request->file('why_chose_us_photo');
                 $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
-                $photo = $this->saveResizeImage($photo_file, $photo_destination, 400, 400);
+                $photo = $this->saveResizeImage($photo_file, $photo_destination, 800, 600);
             } else {
                 $photo_file = $request->file('why_chose_us_photo');
                 $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
-                $photo = $this->saveResizeImage($photo_file, $photo_destination, 400, 400);
+                $photo = $this->saveResizeImage($photo_file, $photo_destination, 800, 600);
             }
         } else {
             if (!empty($aboutSite->why_chose_us_photo)) {
@@ -185,7 +185,7 @@ class AboutSiteController extends Controller
         return $photo;
     }
 
-        public function storeCounterIconOnePhoto($request, $aboutSite)
+    public function storeCounterIconOnePhoto($request, $aboutSite)
     {
         if ($request->hasFile('counter_icon_one')) {
             if (!empty($aboutSite->counter_icon_one)) {
@@ -198,11 +198,11 @@ class AboutSiteController extends Controller
                 // upload new photo
                 $photo_file = $request->file('counter_icon_one');
                 $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
-                $photo = $this->saveImage($photo_file, $photo_destination);
+                $photo = $this->saveResizeImage($photo_file, $photo_destination, 400, 400);
             } else {
                 $photo_file = $request->file('counter_icon_one');
                 $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
-                $photo = $this->saveImage($photo_file, $photo_destination);
+                $photo = $this->saveResizeImage($photo_file, $photo_destination, 400, 400);
             }
         } else {
             if (!empty($aboutSite->counter_icon_one)) {
@@ -229,11 +229,11 @@ class AboutSiteController extends Controller
                 // upload new photo
                 $photo_file = $request->file('counter_icon_two');
                 $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
-                $photo = $this->saveImage($photo_file, $photo_destination);
+                $photo = $this->saveResizeImage($photo_file, $photo_destination, 400, 400);
             } else {
                 $photo_file = $request->file('counter_icon_two');
                 $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
-                $photo = $this->saveImage($photo_file, $photo_destination);
+                $photo = $this->saveResizeImage($photo_file, $photo_destination, 400, 400);
             }
         } else {
             if (!empty($aboutSite->counter_icon_two)) {
@@ -260,11 +260,11 @@ class AboutSiteController extends Controller
                 // upload new photo
                 $photo_file = $request->file('counter_icon_three');
                 $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
-                $photo = $this->saveImage($photo_file, $photo_destination);
+                $photo = $this->saveResizeImage($photo_file, $photo_destination, 400, 400);
             } else {
                 $photo_file = $request->file('counter_icon_three');
                 $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
-                $photo = $this->saveImage($photo_file, $photo_destination);
+                $photo = $this->saveResizeImage($photo_file, $photo_destination, 400, 400);
             }
         } else {
             if (!empty($aboutSite->counter_icon_three)) {
@@ -291,11 +291,11 @@ class AboutSiteController extends Controller
                 // upload new photo
                 $photo_file = $request->file('counter_icon_four');
                 $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
-                $photo = $this->saveImage($photo_file, $photo_destination);
+                $photo = $this->saveResizeImage($photo_file, $photo_destination, 400, 400);
             } else {
                 $photo_file = $request->file('counter_icon_four');
                 $photo_destination = public_path('/adminBoard/uploadedImages/about_sites//');
-                $photo = $this->saveImage($photo_file, $photo_destination);
+                $photo = $this->saveResizeImage($photo_file, $photo_destination, 400, 400);
             }
         } else {
             if (!empty($aboutSite->counter_icon_four)) {

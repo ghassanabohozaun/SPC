@@ -38,7 +38,7 @@ class TestsController extends Controller
         if ($request->hasFile('test_photo')) {
             $photo_name = $request->file('test_photo');
             $photo_path_destination = public_path('/adminBoard/uploadedImages/tests//');
-            $photo = $this->saveImage($photo_name, $photo_path_destination);
+            $photo = $this->saveResizeImage($photo_name, $photo_path_destination, 800, 600);
         } else {
             $photo = '';
         }
@@ -102,11 +102,11 @@ class TestsController extends Controller
                 // upload new photo
                 $photo_name = $request->file('test_photo');
                 $photo_destination = public_path('/adminBoard/uploadedImages/tests//');
-                $photo = $this->saveImage($photo_name, $photo_destination);
+                $photo = $this->saveResizeImage($photo_name, $photo_destination, 800, 600);
             } else {
                 $photo_name = $request->file('photo');
                 $photo_destination = public_path('/adminBoard/uploadedImages/tests//');
-                $photo = $this->saveImage($photo_name, $photo_destination);
+                $photo = $this->saveResizeImage($photo_name, $photo_destination, 800, 600);
             }
         } else {
             if (!empty($test->test_photo)) {

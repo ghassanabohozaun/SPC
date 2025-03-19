@@ -36,7 +36,7 @@ class ServicesController extends Controller
         if ($request->hasFile('photo')) {
             $photo_file  = $request->file('photo');
             $path_destination = public_path('/adminBoard/uploadedImages/services//');
-            $photo = $this->saveImage($photo_file, $path_destination);
+            $photo = $this->saveResizeImage($photo_file, $path_destination, 800, 600);
         } else {
             $photo = '';
         }
@@ -98,12 +98,12 @@ class ServicesController extends Controller
                 // upload new photo
                 $photo_file = $request->file('photo');
                 $photo_destination = public_path('/adminBoard/uploadedImages/services//');
-                $photo = $this->saveImage($photo_file, $photo_destination);
+                $photo = $this->saveResizeImage($photo_file, $photo_destination, 800, 600);
             } else {
 
                 $photo_file = $request->file('photo');
                 $photo_destination = public_path('/adminBoard/uploadedImages/services//');
-                $photo  = $this->saveImage($photo_file, $photo_destination);
+                $photo = $this->saveResizeImage($photo_file, $photo_destination, 800, 600);
             }
         } else {
             if (!empty($service->photo)) {

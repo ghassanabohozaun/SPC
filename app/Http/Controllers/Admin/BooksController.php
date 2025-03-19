@@ -37,7 +37,7 @@ class BooksController extends Controller
         if ($request->hasFile('photo')) {
             $photo_name  = $request->file('photo');
             $photo_path_destination = public_path('/adminBoard/uploadedImages/books//');
-            $photo = $this->saveImage($photo_name, $photo_path_destination);
+            $photo = $this->saveResizeImage($photo_name, $photo_path_destination, 1000, 800);
         } else {
             $photo = '';
         }
@@ -110,12 +110,12 @@ class BooksController extends Controller
                 // upload new photo
                 $photo_name = $request->file('photo');
                 $photo_destination = public_path('/adminBoard/uploadedImages/books//');
-                $photo = $this->saveImage($photo_name, $photo_destination);
+                $photo = $this->saveResizeImage($photo_name, $photo_destination, 1000, 800);
             } else {
 
                 $photo_name = $request->file('photo');
                 $photo_destination = public_path('/adminBoard/uploadedImages/books//');
-                $photo  = $this->saveImage($photo_name, $photo_destination);
+                $photo = $this->saveResizeImage($photo_name, $photo_destination, 1000, 800);
             }
         } else {
             if (!empty($book->photo)) {

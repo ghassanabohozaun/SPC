@@ -114,11 +114,11 @@ class SlidersController extends Controller
                 }
                 $image = $request->file('photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/sliders//');
-                $photo_path = $this->saveResizeImage($image, $destinationPath, 1865, 1200);
+                $photo_path = $this->saveResizeImage($image, $destinationPath, 1500, 900);
             } else {
                 $image = $request->file('photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/sliders//');
-                $photo_path = $this->saveResizeImage($image, $destinationPath, 1865, 1200);
+                $photo_path = $this->saveResizeImage($image, $destinationPath, 1500, 900);
             }
         } else {
             if (!empty($slider->photo)) {

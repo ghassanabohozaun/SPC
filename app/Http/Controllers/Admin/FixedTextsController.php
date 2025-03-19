@@ -68,11 +68,11 @@ class FixedTextsController extends Controller
                 // upload new photo
                 $photo_file = $request->file('about_spc_photo');
                 $photo_destination = public_path('/adminBoard/uploadedImages/fixedTexts//');
-                $photo = $this->saveImage($photo_file, $photo_destination);
+                $photo = $this->saveResizeImage($photo_file, $photo_destination, 1200, 800);
             } else {
                 $photo_file = $request->file('about_spc_photo');
                 $photo_destination = public_path('/adminBoard/uploadedImages/fixedTexts//');
-                $photo = $this->saveImage($photo_file, $photo_destination);
+                $photo = $this->saveResizeImage($photo_file, $photo_destination, 1200, 800);
             }
         } else {
             if (!empty($fixedText->about_spc_photo)) {

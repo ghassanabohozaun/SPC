@@ -35,7 +35,7 @@ class NewsController extends Controller
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
             $destinationPath = public_path('adminBoard/uploadedImages/news');
-            $photo_path = $this->saveImage($image, $destinationPath);
+            $photo_path = $this->saveResizeImage($image, $destinationPath, 800, 600);
         } else {
             $photo_path = '';
         }
@@ -95,11 +95,11 @@ class NewsController extends Controller
             if (!empty($new->photo)) {
                 $image = $request->file('photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/news//');
-                $photo_path = $this->saveImage($image, $destinationPath);
+                $photo_path = $this->saveResizeImage($image, $destinationPath, 800, 600);
             } else {
                 $image = $request->file('photo');
                 $destinationPath = public_path('/adminBoard/uploadedImages/news//');
-                $photo_path = $this->saveImage($image, $destinationPath);
+                $photo_path = $this->saveResizeImage($image, $destinationPath, 800, 600);
             }
         } else {
             if (!empty($new->photo)) {
